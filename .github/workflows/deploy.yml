@@ -7,25 +7,25 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v1
 
-      - name: Set up AWS CLI
-        uses: aws-actions/setup-aws-cli@v2
-        with:
-          aws-access-key-id: AKIATD5M2B3UVBWRPOGB
-          aws-secret-access-key: 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
-          aws-region: us-east-1
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: AKIATD5M2B3UVBWRPOGB
+        aws-secret-access-key: 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
+        aws-region: us-east-1
 
-      - name: Deploy to S3
-        run: |
-          aws s3 sync . s3://sdev-test-helper --delete --acl public-read
+    - name: Deploy static site to S3 bucket
+      run: aws s3 sync ./public/ s3://sdev-test-helper --delete
 
-      - name: Invalidate CloudFront Cache
-        run: |
-          aws configure set preview.cloudfront true
-          aws cloudfront create-invalidation --distribution-id ERUXZ17GY5DZX --paths '/*'
+    - name: Invalidate CloudFront Cache
+      run: |
+        aws configure set preview.cloudfront true
+        aws cloudfront create-invalidation --distribution-id ERUXZ17GY5DZX --paths '/*'
+
+
 
         
