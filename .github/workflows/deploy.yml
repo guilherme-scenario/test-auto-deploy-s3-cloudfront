@@ -7,14 +7,25 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
-    - uses: kersvers/s3-sync-with-cloudfront-invalidation@v1.0.0
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_ACCESS_KEY_ID: AKIATD5M2B3UVBWRPOGB
-        AWS_SECRET_ACCESS_KEY: 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
-        AWS_S3_BUCKET: sdev-test-helper
-        DISTRIBUTION_ID: 'ERUXZ17GY5DZX'
-        AWS_REGION: 'us-east-1'
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up AWS CLI
+        uses: aws-actions/setup-aws-cli@v2
+        with:
+          aws-access-key-id: AKIATD5M2B3UVBWRPOGB
+          aws-secret-access-key: 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
+          aws-region: us-east-1
+
+      - name: Deploy to S3
+        run: |
+          aws s3 sync . s3://sdev-test-helper --delete --acl public-read
+
+      - name: Invalidate CloudFront Cache
+        run: |
+          aws configure set preview.cloudfront true
+          aws cloudfront create-invalidation --distribution-id ERUXZ17GY5DZX --paths '/*'
+
+        
