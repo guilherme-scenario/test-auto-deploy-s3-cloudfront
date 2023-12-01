@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Room-Control</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="80d958e8-f40a-4d43-95e8-5c27e6a2fcc2" class="page sans"><header><h1 class="page-title">Room-Control</h1><p class="page-description"></p></header><div class="page-body"><p id="718db094-cc25-493d-8599-331a4401c53a" class="">O&nbsp;Room&nbsp;Control&nbsp;(<strong>RC</strong>) é um&nbsp;<strong>módulo lógico</strong>&nbsp;utilizado para controle de iluminação dos ambientes da instalação, que também faz a integração com os sensores Embrace de forma muito simples. Trabalhando com&nbsp;<a href="Modulo%20Dia%20Noite.html"><strong>Módulo Dia/Noite</strong></a>, que controla os períodos/modos de atuação durante o dia (Dia, Noite e Madrugada),&nbsp;o&nbsp;<strong>RC</strong>&nbsp;pode controlar a iluminação do ambiente de forma automática. Quando um sensor de movimento está vinculado ao RC, ele permite o controle de cenas de iluminação com e sem movimento de acordo com cada período do dia. O programador pode configurar cada cena no<strong> E-Config</strong> e depois o RC aciona as cenas correspondentes ao período em que o ambiente (bem como a instalação) está, juntamente com o estado de&nbsp;<em>Com</em>&nbsp;ou&nbsp;<em>Sem</em>&nbsp;<em>movimento</em>.</p><p id="b3f367b9-70c6-45d6-ad98-cfa59a54ade2" class="">O&nbsp;<strong>Modo Dormir&nbsp;</strong>é um modo especial que o RC permite ao usuário escolher&nbsp;como quer a iluminação quando a instalação está neste modo.&nbsp;O&nbsp;<strong>E-Config</strong>&nbsp;habilita a possibilidade de editar as cenas do Modo Dormir <em>com/sem movimento</em> quando são detectadas conexões no projeto que viabilizem esse tipo de acionamento, nominalmente quando existem&nbsp;<strong>conexões&nbsp;</strong>nas&nbsp;entradas dos&nbsp;<strong>Sensores&nbsp;</strong>e no&nbsp;<strong>Ativador Modo Dormir</strong>&nbsp;do RC em questão. Quando estes requisitos são cumpridos, é possível acessar a aba&nbsp;<strong>Cenas&nbsp;</strong>do RC e observar que sob a lista de cenas existentes tanto a&nbsp;<em>Cena dormir sem movimento</em>&nbsp;quanto a&nbsp;<em>Cena dormir com movimento</em>&nbsp;estão habilitadas para customização.</p><p id="d0688b61-6f76-4d65-abbc-62b2a7c1e352" class=""><strong>Exemplificando</strong>:</p><blockquote id="5028085a-15f5-4878-941c-336a23dde0fe" class="">     Temos uma suíte que durante o <mark class="highlight-yellow_background"><strong>Dia</strong></mark><strong></strong>possui uma iluminação natural boa através das janelas, portanto a condição <mark class="highlight-yellow_background">Dia </mark><strong><mark class="highlight-yellow_background">com </mark></strong><mark class="highlight-yellow_background">movimento</mark> e <mark class="highlight-yellow_background">Dia </mark><strong><mark class="highlight-yellow_background">sem </mark></strong><mark class="highlight-yellow_background">movimento</mark> pode ser com as luzes <strong>apagadas </strong>em ambos os casos. Porém, para o período <strong><mark class="highlight-blue_background">Noite</mark></strong>, podemos ter <mark class="highlight-blue_background">Noite </mark><strong><mark class="highlight-blue_background">com </mark></strong><mark class="highlight-blue_background">movimento</mark> com as luzes <strong>acesas&nbsp;</strong>e <mark class="highlight-blue_background">Noite </mark><strong><mark class="highlight-blue_background">sem </mark></strong><mark class="highlight-blue_background">movimento</mark> com as luzes <strong>apagadas</strong>. Podemos ainda ter a situação <mark class="highlight-purple_background"><strong>Madrugada</strong></mark><mark class="highlight-purple_background"></mark><strong><mark class="highlight-purple_background">com movimento</mark></strong><strong></strong>com as luzes, <strong>acesas </strong>porém em uma intensidade mais <em>fraca.</em> E, por fim, podemos ter o&nbsp;modo <mark class="highlight-gray_background"><strong>Dormir</strong></mark>,&nbsp;onde neste caso o usuário pode preferir que <mark class="highlight-gray_background">Dormir </mark><strong><mark class="highlight-gray_background">sem </mark></strong><mark class="highlight-gray_background">movimento</mark> seja com as luzes todas <strong>apagadas </strong>e <mark class="highlight-gray_background">Dormir </mark><strong><mark class="highlight-gray_background">com </mark></strong><mark class="highlight-gray_background">movimento</mark> seja apenas uma iluminação bem <em>sutil </em>para o&nbsp;caso de acender um caminho até o Banheiro, por exemplo.    </blockquote><p id="dcdd7aa4-11e5-47e1-8bdc-a1a4adc6679e" class=""></p><p id="52bad48e-b8eb-454c-a110-3f8774f40fd2" class="">Sobre a parte de <strong>identificação de movimento</strong>, o RC permite a configuração e personalização de alguns comportamentos da iluminação no ambiente baseado em diversas <strong>variáveis </strong>de tempo que podem ser <strong>customizadas </strong>de acordo com a preferência do cliente, sendo elas as seguintes:</p><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">T<strong>empo de Inibição</strong></summary><div class="indented"><p id="59643239-1164-45dc-8261-1e360a732c20" class="">O&nbsp;<strong>tempo de inibição</strong>&nbsp;é o tempo de saída do ambiente, ou seja, quando a cena&nbsp;C<em>ustom</em>&nbsp;está ativa e nós acionamos o&nbsp;<em>Modo Automático</em>, a cena sem movimento é acionada. E o tempo de inibição é quem mantém o sensor “desativado” por um determinado momento para que você saia do ambiente sem que ative a cena com movimento pelo sensor. Nesse caso, o sensor ficará <strong>inibido</strong>, ou seja, não fará monitoramento na detecção de movimento pelo tempo que for determinado.</p></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">T<strong>empo de Ocupação</strong></summary><div class="indented"><p id="3f21ff35-b5eb-47b5-86f3-275306b91e57" class="">O&nbsp;<strong>tempo de ocupação</strong>&nbsp;é quem mantém a cena <strong>com movimento </strong>ativa e enquanto houver captação de movimento pelo sensor, esse tempo será reiniciado. Mas, se não houver movimentação após tempo o ambiente entrará novamente na cena <strong>sem movimento</strong>. O tempo de ocupação deve ser muito bem organizado de acordo com o ambiente e posicionamento do sensor, pois, caso seja um ambiente de passagem, por exemplo, o tempo de ocupação pode ser bem curto já que não teremos de ficar no local por muito tempo.</p></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">T<strong>empo de Esquecimento</strong></summary><div class="indented"><p id="6568f7af-2f7a-4b2a-addf-41a970f78cdb" class="">O&nbsp;<strong>tempo de esquecimento</strong>&nbsp;é atrelado diretamente ao acionamento das cenas&nbsp;C<em>ustom</em>, e é opcional pois só atua quando há <strong>sensoriamento </strong>no ambiente. Quando acionamos uma cena&nbsp;C<em>ustom</em>, ela ficará ativa pelo tempo que deixar programado. E enquanto houver movimentação, esse tempo será reiniciado. Caso o cliente saia do ambiente sem pressionar ou ativar o modo automático, essa iluminação ficará ligada de acordo com esse período. Esse tempo normalmente é <strong>maior </strong>que o de ocupação, justamente por se tratar do acionamento de uma cena&nbsp;C<em>ustom</em>.</p></div></details><p id="6457d37e-ac24-4a0e-8f27-e0cd6da066e0" class=""></p><h2 id="3cb04ea7-80eb-48b3-8dbc-011f1d33937b" class=""><strong>Informações</strong></h2><div id="08d6d4ee-03d5-476f-98e5-ad0976517948" class="column-list"><div id="53da883e-6d72-4912-8b75-09a7f22af5cb" style="width:56.25%" class="column"><h3 id="4929a9da-5f88-4ba2-bc22-bbdca6d4c409" class=""><strong>Propriedades</strong></h3><ul id="aac8947f-69b5-49d2-b2aa-51e080c93c67" class="bulleted-list"><li style="list-style-type:disc"><strong>Canais:</strong>&nbsp;define a quantidade de canais de iluminação&nbsp;do ambiente que este RC controlará</li></ul><ul id="d66ead49-d244-445d-8b2a-120657ba7ee3" class="bulleted-list"><li style="list-style-type:disc"><strong>Cenas:</strong>&nbsp;define a quantidade de cenas&nbsp;personalizadas (além das automáticas)&nbsp;que&nbsp;este RC terá</li></ul><ul id="5726887f-f2d6-4a3c-9efc-08beb80914bd" class="bulleted-list"><li style="list-style-type:disc"><strong>Parar o ciclo na cena:</strong>&nbsp;ao utilizar a função&nbsp;<em>Pulsador&nbsp;superior</em>, em&nbsp;<strong>Entrada</strong>&nbsp;(usado em&nbsp;<em>E-App</em><em>&nbsp;Customizado</em>&nbsp;ou em&nbsp;<em>Macro</em>), irá acontecer um ciclo começando da Cena 1, ou seja, ao acionar o<em>&nbsp;</em><em>Pulsador&nbsp;Superior</em><em>&nbsp;</em>iniciará uma sequência de acionamento de cenas (iniciando na Cena 1) e parando na cena definida em&nbsp;<em>Parar o ciclo na cena</em>, recomeçando na Cena 1.&nbsp;Este recurso é útil onde um&nbsp;<em>Keypad</em><em>&nbsp;</em>tradicional não é necessário, podendo diminuir o custo da instalação.</li></ul><ul id="1a352140-0a40-48d6-8a92-fad290b37e7c" class="bulleted-list"><li style="list-style-type:disc"><strong>Tempo de inibição dos sensores (1s até 60s):</strong>&nbsp;é o intervalo de tempo no qual&nbsp;o RC ignorará a detecção de movimento após ser colocado em&nbsp;<em>Modo Automático</em>.</li></ul><ul id="f4d4d7ac-a253-4689-8222-763802cbaa7a" class="bulleted-list"><li style="list-style-type:disc"><strong>Tempo de ocupação:</strong>&nbsp;quando o ambiente está no&nbsp;<em>Modo Automático</em>, passado o&nbsp;tempo de ocupação&nbsp;(sem captar movimento), o&nbsp;RC retornará para&nbsp;a situação&nbsp;<em>sem movimento.</em></li></ul><ul id="58551d49-d94c-4a32-ab9a-0ae711d7f5fc" class="bulleted-list"><li style="list-style-type:disc"><strong>Utilizar tempo de esquecimento:</strong>&nbsp;se selecionada esta opção,&nbsp;uma cena personalizada que foi acionada assim ficará por este tempo definido até que o RC volte para o&nbsp;<em>Modo Automático</em>.</li></ul><ul id="cc392f22-1dfe-4d55-bb4d-5b28801c34f1" class="bulleted-list"><li style="list-style-type:disc"><strong>Cena alterada apaga o LED:</strong>&nbsp;é possível alterar as cenas tanto pelo teclado físico (mantendo o botão pressionado) quanto pelo aplicativo (através dos&nbsp;<em>sliders</em>), e quando selecionada essa opção ao alterar alguma cena o LED referente a seu&nbsp;<em>feedback</em>&nbsp;é apagado.</li></ul></div><div id="ffc83609-b5da-4347-946d-efac13ad7aa0" style="width:87.5%" class="column"><figure id="514a2b49-1849-475e-9597-9c01c8f455c1" class="image"><a href="Room-Control/Untitled.png"><img style="width:528px" src="Room-Control/Untitled.png"></a></figure></div></div><ul id="4b32e8d8-94e9-4917-9074-8109e471a238" class="bulleted-list"><li style="list-style-type:disc"><strong>Alteração de canais mantém modo automático:</strong>&nbsp;com essa&nbsp;<em>checkbox&nbsp;</em>habilitada, o usuário poderá alterar a intensidade de canais individualmente sem que o RC saia do&nbsp;<em>Modo Automático</em>&nbsp;e por consequência disso deixe de apresentar o comportamento programado para este Modo.</li></ul><ul id="e4dfc466-715b-4016-b8ec-bc5aea9e738a" class="bulleted-list"><li style="list-style-type:disc"><strong>Funcionamento de cena ON/OFF:</strong>&nbsp;quando acionada uma cena, ao acioná-la novamente entrará em Modo Automático.</li></ul><ul id="4b87ea3a-08c0-4313-b683-11e89b861ed1" class="bulleted-list"><li style="list-style-type:disc"><strong>Integração Classic</strong>: é possível integrar Embrace e Classic e para que toda iluminação funcione corretamente é altamente recomendado que selecione a opção Integração Classic.</li></ul><ul id="3c04c7d3-c3d4-433f-a742-e792706fd084" class="bulleted-list"><li style="list-style-type:disc"><strong>Modo Dia Noite Global:</strong>&nbsp;utiliza a configuração de Dia/Noite feita em&nbsp;<strong>Módulo Dia/Noite</strong>. Quando não for selecionada os horários serão definidos especificamente para este ambiente. Então aparecerão as opções:      <ul id="2917991d-a014-418e-a9d3-9391e8e26381" class="bulleted-list"><li style="list-style-type:circle"><strong><em>Dia</em></strong>: em qual momento começa o dia;</li></ul><ul id="7bd59290-8338-41e1-ab1d-7b890a668b85" class="bulleted-list"><li style="list-style-type:circle"><strong><em>Noite</em></strong>: em qual momento começa a noite;</li></ul><ul id="1e68dc1b-ff7d-4676-acbc-00258e0a9661" class="bulleted-list"><li style="list-style-type:circle"><strong><em>Madrugada</em></strong>: quando selecionada, é possível definir em qual momento começa a madrugada.</li></ul></li></ul><h3 id="74b168c3-c025-470f-87f2-8d171d04bfe3" class=""><strong>Conexões</strong></h3><p id="5f87f188-52ef-4c1b-be0a-90ae9d51f7e2" class="">Conexões de <strong>Entrada </strong>e <strong>Saída </strong>utilizadas para programar acionamentos do Room-Control.</p><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Entrada</strong></summary><div class="indented"><ul id="546a6823-2589-4c74-aa28-4fd8fb8c8d75" class="bulleted-list"><li style="list-style-type:disc"><strong>Entrada de seleção de cenas</strong>:&nbsp;nesta pasta&nbsp;estão listadas todas as cenas&nbsp;personalizadas&nbsp;do ambiente, bem como a entrada referente ao&nbsp;<em>Modo Automático</em>.</li></ul><ul id="0e71557e-fa1c-480a-92dc-ec19443c6e0e" class="bulleted-list"><li style="list-style-type:disc"><strong>Ativador Modo Dormir</strong>: esta função ativa o modo dormir, que pode ser definido na aba&nbsp;<strong>Cenas</strong>.&nbsp;        <figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9ceb4ad9-89e5-4949-b460-a308bd2fae06"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Atenção:</strong>&nbsp;esta função é ativada apenas no&nbsp;<em>hold</em>, ou seja, para manter acionada é preciso manter o botão em questão pressionado.         </div></figure></li></ul><ul id="4ee39de0-b60c-44d1-b6b0-ff7a08e777f1" class="bulleted-list"><li style="list-style-type:disc"><strong>Pulsador Superior</strong>: esta função possibilita navegar entre as cenas, começando da cena 1, utilizando apenas um acionador. O ciclo se encerra na cena definida em&nbsp;<em>Parar o ciclo na cena</em>&nbsp;em&nbsp;<strong>Propriedades</strong>.</li></ul><ul id="e0a762d2-9b7f-42f7-acfb-11151d0fd48a" class="bulleted-list"><li style="list-style-type:disc"><strong>Pulsador Inferior</strong>: esta função possibilita acionar o Modo Automático.</li></ul><ul id="0fd099f1-0d3f-4643-b5ad-45220da633bc" class="bulleted-list"><li style="list-style-type:disc"><strong>Sensores</strong>: conexão feita com sensores.</li></ul><ul id="9795ece4-a440-45b7-9984-0b5012d91691" class="bulleted-list"><li style="list-style-type:disc"><strong>Salvar cena atual</strong>: essa conexão permite que o usuário salve a cena que configurou manualmente pelo&nbsp;<em>aplicativo Embrace</em>.</li></ul><ul id="e0a3b988-0653-4659-bd16-4cee24d20629" class="bulleted-list"><li style="list-style-type:disc"><strong>Ativar cena dia/noite/madrugada/dormir </strong><em>- sem movimento</em>: esta função ativa as respectivas cenas que são acionadas quando não há movimento captado pelo sensor de movimento. Essas cenas são configuradas na aba&nbsp;<strong>Cenas</strong>.</li></ul><ul id="652edac5-8b4a-41e1-9903-9c302ef25704" class="bulleted-list"><li style="list-style-type:disc"><strong>Ativar cena dia/noite/madrugada/dormir</strong><em> - com movimento</em>: esta função ativa as respectivas cenas que são acionadas quando há movimento captado pelo sensor de movimento. Essas cenas são configuradas na aba&nbsp;<strong>Cenas</strong>.</li></ul><ul id="9a4098f1-0b29-4373-8bee-551cafecf1ad" class="bulleted-list"><li style="list-style-type:disc"><strong>Gravar cena</strong>: as funções contidas nesta pasta são usadas em&nbsp;E-App&nbsp;Customizado. Servem para gravar a cena&nbsp;atual na respectiva cena (dia, noite, madrugada, dormir sem/com movimento e serviço&nbsp;ou em alguma outra cena personalizada).</li></ul></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Saída</summary><div class="indented"><ul id="4c4d8b8e-ca5e-4d9c-9732-1d2e8de92851" class="bulleted-list"><li style="list-style-type:disc"><strong>Canais</strong>: nesta pasta são feitas as conexões referentes às cargas do ambiente.</li></ul><ul id="f69b7ccf-020e-47d6-bc81-37ced4370fb4" class="bulleted-list"><li style="list-style-type:disc"><strong>Propaga Modo Dormir</strong>: esta função permite acionar outra função no momento do acionamento do&nbsp;<em>Modo Dormir</em>.</li></ul><ul id="ec428d9d-3d11-404b-8062-8d976793a454" class="bulleted-list"><li style="list-style-type:disc"><strong>Propaga Desliga-Geral</strong>: esta função permite acionar outra função no momento do acionamento do&nbsp;<em>Desliga-Geral</em>. Ao manter as funções&nbsp;<em>Modo Automático</em>&nbsp;ou&nbsp;<em>Pulsador inferior</em>&nbsp;pressionado por 1 segundo a função&nbsp;<em>Propaga Desliga-Geral</em>&nbsp;é acionada.</li></ul><ul id="5738c2da-7651-4661-bbb6-bae1ef240bb6" class="bulleted-list"><li style="list-style-type:disc"><strong>Teclados afetados pelo modo dormir</strong>: em todos os&nbsp;<em>Keypads</em>&nbsp;é possível regular a intensidade dos LEDs no&nbsp;<em>Modo Dormir</em>&nbsp;e ao conectar esta função a um teclado os LEDs deste irão seguir a configuração da intensidade programada.</li></ul><ul id="3bd6e734-c5b5-4331-9352-e6caff6a15cf" class="bulleted-list"><li style="list-style-type:disc"><strong>Indicador de ocupação</strong>: é o&nbsp;<em>feedback</em>&nbsp;do sensor de movimento do ambiente.</li></ul><ul id="c98ac8ba-ef7a-4265-b015-0cfd5cf73d32" class="bulleted-list"><li style="list-style-type:disc"><strong>Feedback</strong>: é a resposta de cada acionamento da Entrada.</li></ul></div></details><h2 id="8e1a4d6d-de2b-4376-9e30-db19fa4bc3f2" class=""><strong>Cenas</strong></h2><figure id="123e0a06-7af7-40d2-b36b-a8f2a77569f3" class="image"><a href="http://embrace.editme.com/files/Room-Control/ed1.png"><img style="width:768px" src="http://embrace.editme.com/files/Room-Control/ed1.png"></a></figure><p id="95d77e28-f5d1-4cb2-b4ba-ee1acc1901ef" class="">As intensidades e demais configurações de canais no Scenario Config Embrace podem ser ajustadas de forma visual e totalmente interativa para o programador: através de barras deslizantes do software, é possível configurar a intensidade de cada canal dimerizável.</p><ul id="6ae4e38f-6f8b-48b7-b11e-b1bbc3f4967d" class="bulleted-list"><li style="list-style-type:disc"><strong>Tempo de Transição:</strong>&nbsp;Essa caixa de texto mostra e permite a alteração do tempo de transição, que é o tempo que se leva para&nbsp;os canais do RC&nbsp;atingirem&nbsp;a intensidade programada iniciando da intensidade atual.</li></ul><ul id="45d4b60b-52bd-479d-9b88-083eb2bb1d45" class="bulleted-list"><li style="list-style-type:disc"><strong>Importar:</strong>&nbsp;serve para que o programador possa utilizar as mesmas configurações de cenas de outros ambientes.</li></ul><ul id="89dd8b99-8acc-401f-90a8-c8d7cc665f06" class="bulleted-list"><li style="list-style-type:disc"><strong>Online:</strong>&nbsp;apesar de parecer um botão ele é apenas um indicador, ou seja, quando estiver com um tom amarelado significa que o projeto está em&nbsp;<em>modo online</em>, o que significa que as alterações feitas serão vistas em tempo real nos canais físicos. O&nbsp;<em>modo online</em>&nbsp;é ativado em&nbsp;<strong>Configurações</strong>. Para isso é necessário que o Scenario Config Embrace esteja conectado a uma rede física composta por uma&nbsp;<a href="../Controladora.html">Controladora</a> e pelo menos um módulo.</li></ul><ul id="d2e86254-f1eb-46f9-9ab3-933b0e3cce5c" class="bulleted-list"><li style="list-style-type:disc"><strong>Barra de Intensidade dos Canais:</strong>&nbsp;as barras correspondem a intensidade (variando de 0 a 100) de cada canal. Para modificar a intensidade, basta mover a seta da barra com o mouse, pressionando o botão e mantendo-o pressionado enquanto move. As intensidades atuais de cada canal são mostradas sobre as barras. Quando um canal está marcado como não dimerizável a barra mostra o texto ON para os canais que estiverem ligados e OFF para os canais que estiverem desligados.</li></ul><ul id="513ca9aa-bd8e-41a6-8cee-a11a886921a1" class="bulleted-list"><li style="list-style-type:disc"><strong>Controle Master intensidade:</strong>&nbsp;Esses botões localizados à esquerda dos&nbsp;<em>sliders</em>&nbsp;são usados para alterar as intensidades de todos os canais ao mesmo tempo. As intensidades são alteradas em passos de 1 por cento (1%). Segurando o botão pressionado a intensidade dos canais aumenta/diminui gradativamente até que se deixe de pressioná-los.</li></ul><ul id="290f4811-040f-42f9-8f39-0fe9641e887d" class="bulleted-list"><li style="list-style-type:disc"><strong>Controle Master liga/desliga:</strong>&nbsp;Através destes botões é possível desligar todos os canais (intensidade 0 ou OFF) ou ajustá-los para a intensidade máxima (100 ou ON).</li></ul><ul id="47e05f9b-fdb0-4acc-b78f-b2d2eae69540" class="bulleted-list"><li style="list-style-type:disc"><strong>Ignorar Canal:</strong>&nbsp;A barra de canais Ignorados permite que cada um dos canais seja marcado como ignorado. Um canal marcado com essa opção não sofrerá alteração de intensidade quando a cena atual for ativada no módulo. Isso permite que certas cenas afetem apenas algumas das cargas e deixe outras inalteradas. A barra de um canal ignorado fica desabilitada (cinza) para indicar o estado do canal.</li></ul><p id="220b0e36-e072-4884-8074-62f761b14523" class=""></p><h2 id="f3aece47-2436-4874-be4e-5094b10b7cb3" class=""><strong>Ajustes de Cenas</strong>&nbsp;na E-App</h2><div id="72e46873-bef1-4237-ae66-b9d9aac2fc20" class="column-list"><div id="b5d1c8dd-a85e-4611-abd6-2691e05faaec" style="width:87.5%" class="column"><p id="efe02183-4e80-4e8d-8b1b-903b3f2389de" class="">Também é possível fazer a configuração e personalização das cenas de iluminação de todos os ambientes da instalação por meio da<strong>&nbsp;E-App</strong>, sem que seja necessário fazer o reenvio do projeto pelo&nbsp;<strong>E-Config&nbsp;</strong>toda vez que for necessário um ajuste nas cenas.</p><p id="fdf97f1c-80df-45e6-92ff-a16aef00b9fa" class="">Para acessar o assistente de configuração, basta navegar até o ambiente desejado e pressionar o botão <strong>Menu </strong>e, em seguida, o item <strong>Configurações</strong>. </p><p id="f3317e54-4658-4d26-bef8-cadac1f3b080" class="">Ao selecionar a opção <strong>Ajustes de cenas</strong>, uma lista com todas as cenas disponíveis do projeto será apresentada, a partir de onde será possível selecionar cada cena de iluminação individualmente para realização de ajustes nas mesmas, aumentando ou diminuindo a intensidade dos canais que compõem o ambiente, bem como o tempo de transição entre cada uma dessas cenas.</p><p id="3f4ee50a-98f3-454c-ab65-dc9040afdf6d" class=""></p></div><div id="5cdb0779-8e52-44e2-b537-ff9e51dd2ab2" style="width:99.99999999999997%" class="column"><figure id="35ef395b-070b-452e-bab9-f28087a835a7" class="image"><a href="http://embrace.editme.com/files/Room-Control/SelecaoCenasApp2.jpg"><img style="width:450px" src="http://embrace.editme.com/files/Room-Control/SelecaoCenasApp2.jpg"></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="16b7d0e8-62e4-4b76-ab88-32b8b8d4b1db"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Além das cenas <strong>fixas </strong>do Room Control, também estarão disponíveis para ajustes as cenas <strong>automáticas </strong>da Embrace, que serão apresentadas sempre que o recurso de <a href="../Inteligencia%20Iluminacao.html"><strong>Inteligência de Iluminação</strong></a><strong></strong>estiver ativado e os sensores estiverem devidamente configurados.     </div></figure><div id="ed6978c5-c3df-4443-8479-2e33d4195c72" class="column-list"><div id="0c180658-200b-426b-9a00-77a825e9cfbd" style="width:100%" class="column"><p id="b0738362-b770-45a5-a26c-b5a371281362" class="">Ao selecionar uma dessas cenas, a tela de ajustes será apresentada, e, para fins de pré-visualização, a cena em questão será ativada na automação. Por esse mesmo motivo, todas as alterações realizadas na cena (tanto nos&nbsp;<strong>canais&nbsp;</strong>quanto no<strong>&nbsp;tempo de transição</strong>) poderão ser observadas em tempo real.</p><p id="93601ee1-1c13-4309-937a-b53b2aa21284" class="">Após realizar todos os ajustes necessários, basta&nbsp;tocar no botão <strong>Salvar </strong>para gravar a nova configuração da cena no projeto. </p><p id="3cab040f-2f2d-4408-81e7-6534cc8d4d99" class="">As opções de <strong>Copiar </strong>e <strong>Colar </strong>cenas também são oferecidas com o objetivo de facilitar a personalização: para criar uma cena parecida com outra já existente, entre na cena desejada e aperte o botão <strong>Copiar</strong>. Volte ao menu anterior e selecione a cena que será modificada. </p><p id="6118f603-9c39-404b-8740-e04e05ffe646" class="">Ao pressionar o botão <strong>Colar </strong>nessa cena, a intensidade dos canais e o tempo de transição da cena anterior será replicado.</p></div><div id="22a86676-41c4-4fc5-abf3-2a95e615071a" style="width:100%" class="column"><figure id="984ab442-6aa0-4919-84bb-72fe8890640f" class="image"><a href="Room-Control/Untitled%201.png"><img style="width:1080px" src="Room-Control/Untitled%201.png"></a></figure></div></div><h2 id="b0fd7bb9-db99-4ae3-8ae9-374d3cbde49c" class=""><strong>Modo&nbsp;Vacancy</strong></h2><div id="72a1df1a-8ac3-4ed5-b318-50b90c24c3a0" class="column-list"><div id="83eff3a2-8f8f-4e31-98c5-f82417e72ba8" style="width:87.5%" class="column"><p id="d19eb894-1f55-4c6d-ae54-03f5bef1f6c6" class="">Para ambientes onde talvez não seja desejável o acionamento constante das cenas automáticas, como ambientes com baixa circulação, ambientes corporativos ou até mesmo por uma questão de economia de energia, existe a opção de<strong>&nbsp;Modo Vacancy</strong>, que pode ser habilitada e desabilitada por meio do&nbsp;<strong>E-Config</strong>&nbsp;ao acessar as&nbsp;<strong>Propriedades&nbsp;</strong>do&nbsp;<strong>Room Control</strong>. </p><p id="d693c31e-3b1c-4b9a-b66c-4a81b00ee381" class="">Quando habilitado, este recurso garante que os acionamentos das cenas de iluminação passem a ser estritamente manuais para um maior controle do usuário sobre o ambiente.</p><p id="4e462336-ec1d-4f19-8910-3391d4a9cd15" class="">Assim sendo, ao optar por este Modo de operação, as cenas&nbsp;<strong>com movimento</strong>&nbsp;do Room Control serão desabilitadas, fazendo com que apenas as cenas customizadas do ambiente possam ser acionadas. </p></div><div id="86638a20-aa0d-48ae-967c-14af5078b1f0" style="width:112.5%" class="column"><figure id="f12684db-47d6-40ae-ad35-54f01f50d289" class="image"><a href="http://embrace.editme.com/files/Room-Control/VacancyBeta2.png"><img style="width:387px" src="http://embrace.editme.com/files/Room-Control/VacancyBeta2.png"></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1eba280e-0573-42e0-a841-047e31d690f6"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Nessa situação, o&nbsp;<strong>tempo de ocupação</strong>&nbsp;passa a vigorar nessas cenas. Além disso, a própria configuração de&nbsp;<strong>Inteligência de Iluminação</strong>&nbsp;também fica desabilitada.     </div></figure><p id="cbdd41ad-0aab-4963-9049-7b9325abcce1" class=""></p><h2 id="d03f4562-3387-47a3-861b-72f37c61dae2" class=""><strong>Geração automática de Room-Control</strong></h2><p id="ccc72a04-e295-4042-bd0a-57bda32094ed" class="">O Scenario Config Embrace permite que o programador gere Room-Control para todos os ambientes do projeto ao mesmo tempo, otimizando tempo e trabalho. Um detalhe importante é que ao gerar Room-Control automaticamente para todos os ambientes, todos terão as mesmas configurações, porém isso não impede que o programador futuramente mude estes parâmetros eventualmente conforme necessário.</p><h3 id="44d7c307-60df-4cd5-a4f4-64cb8f5e31a3" class="">Preferências <strong>de Room-Control</strong></h3><figure id="0ece0aef-e9cc-42b1-bc36-e7756ff0a4cc" class="image"><a href="Room-Control/Untitled%202.png"><img style="width:624px" src="Room-Control/Untitled%202.png"></a></figure><p id="281fb766-fa79-4b33-9aa4-28b2f32010aa" class="">Na&nbsp;<a href="../Barra%20de%20menus.html">Barra de menus</a>, em&nbsp;<em>Preferências</em>, a opção&nbsp;<em>Gerador de Room-Control</em>&nbsp;oferece ao programador a possibilidade de realizar a configuração de uma forma mais sintetizada de tudo o que foi explicado em&nbsp;<strong>Informações</strong>&nbsp;e&nbsp;<strong>Cenas:&nbsp;</strong>ao utilizar essa ferramenta, é possível definir os parâmetros que serão aplicados em todos os&nbsp;<strong><em>RCs</em></strong><strong>&nbsp;</strong>gerados a partir de então, agilizando e facilitando assim o desenvolvimento do projeto. Além disso, a ferramenta possui a seção&nbsp;<strong>Conexões</strong>:</p><ul id="592a9b74-c389-4bda-9662-5e1f196f3c36" class="toggle"><li><details open><summary><strong>Conectar sensores de Movimento</strong></summary><p id="470eb3aa-e39b-4bdb-b8f1-de67a96ba7a5" class="">Se o ambiente possuir sensores de movimento, esta opção fará com que essa conexão seja feita automaticamente no momento da geração de Room-Control;</p></details></li></ul><ul id="ec306ffa-d127-42e9-adb5-c7c4edf4f5c6" class="toggle"><li><details open><summary><strong>Conectar sensores de Luminosidade</strong></summary><p id="ed32bc57-f7d2-4850-adcb-0039dfa8013c" class="">Se o ambiente possuir sensores de luminosidade, esta opção fará com que essa conexão seja feita automaticamente no momento da geração de Room-Control;</p></details></li></ul><ul id="ad3ba2d8-2993-4a7b-a69f-f85124cca99b" class="toggle"><li><details open><summary><strong>Conectar teclas para acionar cenas fixas</strong>&nbsp;</summary><p id="eea5247a-1f3e-49c7-b95b-6aa084482f49" class="">Caso o ambiente possua algum k<em>eypad&nbsp;</em>com 6 ou mais teclas, selecionar esta opção fará com que seja realizado o vínculo automático das teclas do lado esquerdo do k<em>eypad&nbsp;</em>em questão com os acionadores das cenas personalizadas do RC a ser gerado, de forma sequencial apenas nas teclas ímpares e reservando sempre o último botão ímpar à conexão com o&nbsp;acionador do&nbsp;<strong>Modo Automático</strong>: ou seja, por exemplo, ao habilitar essa opção para gerar um RC com 2 Cenas em um ambiente que possua um teclado com 6 ou mais teclas, os acionamentos das&nbsp;<strong>Cenas 1</strong>&nbsp;e&nbsp;<strong>2</strong>&nbsp;deste RC seriam respectivamente associados às teclas&nbsp;<strong>1</strong>&nbsp;e&nbsp;<strong>3</strong>&nbsp;deste teclado, além do&nbsp;<strong>Modo Automático</strong>&nbsp;que seria devidamente associado à última tecla do lado esquerdo do teclado (botão&nbsp;<strong>5</strong>&nbsp;para o&nbsp;<em>keypad&nbsp;</em>de 6 teclas e botão&nbsp;<strong>11</strong>&nbsp;para o&nbsp;<em>keypad&nbsp;</em>de 12 teclas, respectivamente).</p></details></li></ul><h3 id="9f956556-00c7-493d-bb99-e5fded471d77" class=""><strong>Gerar Room-Controls</strong></h3><figure id="b31169a6-36d4-49ee-92d2-41029ea8b935" class="image"><a href="Room-Control/Untitled%203.png"><img style="width:624px" src="Room-Control/Untitled%203.png"></a></figure><p id="2338c28d-78c4-4361-9bcf-97badc755759" class="">O Gerador serve para definir as funções que terão os Room-Controls. A função que efetivamente gera os Room-Controls é a função&nbsp;<strong>Gerar Room-Controls</strong>, acessível ao clicar com o botão direito do mouse sobre&nbsp;o <em><em><em><em><em><em><em><em><em><em><em>Nome do Projeto </em></em></em></em></em></em></em></em></em></em></em>no topo da árvore do Projeto. </p><p id="3261825c-26be-4bae-a972-24461892d2a5" class="">Ao selecionar a função, uma janela se abrirá para que o programador selecione quais ambientes terão o Room-Control gerado automaticamente. Após selecionar os ambientes, basta clicar em&nbsp;<em>Gerar</em>&nbsp;. Neste momento todos os ambientes selecionados terão um Room-Control com as conexões configuradas em&nbsp;<em>Gerador de Room-Control</em>.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

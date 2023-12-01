@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Sistema de Avisos</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="2eead5ff-3bd2-4341-82d8-4432ac729e6a" class="page sans"><header><h1 class="page-title">Sistema de Avisos</h1><p class="page-description"></p></header><div class="page-body"><p id="46e619b7-6d75-4b7d-87f1-589958952a69" class="">O sistema de aviso Embrace foi desenvolvido para que o usuário receba um notificações no celular e/ou e-mail quando um evento escolhido pelo usuário é executado na automação.</p><p id="fa9820c2-d9bb-4e24-9115-e5b7a4da602b" class="">Os eventos monitorados podem ser <em>nativos </em>do sistema Embrace, como:</p><ul id="759aeba1-7700-473d-8ca8-3443e8b888a6" class="bulleted-list"><li style="list-style-type:disc">Movimento;</li></ul><ul id="cc1f942c-a6dd-46a2-b37b-ff8919c1b38a" class="bulleted-list"><li style="list-style-type:disc">Iluminação acesa/apagada;</li></ul><ul id="cda21ce4-3169-4086-8b86-11f51ce3007a" class="bulleted-list"><li style="list-style-type:disc">Ar condicionado ligado/desligado;</li></ul><ul id="ff803616-c12e-40a5-9137-19387e18dd47" class="bulleted-list"><li style="list-style-type:disc">Áudio/Vídeo ligado/desligado;</li></ul><ul id="ce305ddc-bce8-4694-821f-25e5a1408aca" class="bulleted-list"><li style="list-style-type:disc">Temperatura abaixo/acima de determinado valor.</li></ul><p id="81384c23-05a5-453a-9b86-f759087299d9" class="">Já em casos em que o evento a ser executado não é nativo do sistema, é possível programá-lo no <strong>E-Config</strong>.</p><p id="fa93a619-f7eb-4681-90c0-dce0dcf1c1e9" class="">Para isso, basta adicionar ao projeto o item&nbsp;<strong>Aviso</strong>, localizado em&nbsp;<strong>Módulos Lógicos</strong>.</p><figure id="3fd0c34e-1a4a-4ec2-9752-4b13dbf77d21" class="image"><a href="http://embrace.editme.com/files/Sistema-de-aviso/avisoEquipamentos.png"><img style="width:692px" src="http://embrace.editme.com/files/Sistema-de-aviso/avisoEquipamentos.png"></a></figure><p id="d484b2bd-f8b5-41af-933f-65ed967958f7" class="">Na página inicial do<strong>&nbsp;Aviso</strong>&nbsp;há algumas opções:</p><figure id="e539e601-b061-46ed-beb9-e86fbf94fdd0" class="image"><a href="http://embrace.editme.com/files/Sistema-de-aviso/avisoPrincipal.png"><img style="width:689px" src="http://embrace.editme.com/files/Sistema-de-aviso/avisoPrincipal.png"></a></figure><ul id="b0be96fb-c23f-4eb8-a70d-0e12b1eef845" class="bulleted-list"><li style="list-style-type:disc"><strong>Ativação do aviso</strong>:      <ul id="4dfcff7b-2062-4941-aade-2e9ce7c0d663" class="bulleted-list"><li style="list-style-type:circle"><strong>Borda 0 -&gt; 1</strong>: o aviso é disparado quando a conexão feita é aberta.</li></ul><ul id="47aafd5c-535a-4146-bce6-cb40542785b3" class="bulleted-list"><li style="list-style-type:circle"><strong>Borda 1 -&gt; 0</strong>: o aviso é disparado quando a conexão feita é fechada.</li></ul><ul id="7708e7d1-f3d1-45de-9654-2ecde64bd1ec" class="bulleted-list"><li style="list-style-type:circle"><strong>Ambos</strong>: o aviso é disparado em ambas situações.</li></ul></li></ul><ul id="624ef1eb-b547-4ad4-9c81-6ccba43e531b" class="bulleted-list"><li style="list-style-type:disc"><strong>Conexões</strong>:      <ul id="339b5eef-2ddb-411f-8571-65892be7bdf9" class="bulleted-list"><li style="list-style-type:circle"><strong>Entrada</strong>: a conexão feita neste link é a saída de um dispositivo digital, ou seja, seu feedback.</li></ul></li></ul><h2 id="cfa5790b-0169-40ce-9cca-3e0189458356" class=""><strong>Exemplo prático</strong></h2><p id="09e46aa9-8fed-476a-831a-30d83c6e5507" class="">Considere um sensor colocado em uma porta para que saibamos quando é aberta/fechada. A partir daí queremos criar um aviso que dispare uma mensagem todas as vezes que essa porta for aberta. Por não ser nativo do sistema, precisamos utilizar o <strong>E-Config</strong>.</p><figure id="84cd7004-65bd-4003-93de-f8b9153d24c7" class="image"><a href="http://embrace.editme.com/files/Sistema-de-aviso/exemploAviso2.png"><img style="width:697px" src="http://embrace.editme.com/files/Sistema-de-aviso/exemploAviso2.png"></a></figure><p id="dab9ed29-0697-44f4-9a0e-cc57bdfd8133" class="">De acordo com a opção escolhida em&nbsp;<strong>Ativação do aviso</strong>&nbsp;este será recebido em momentos diferentes:</p><ul id="40c85da8-3400-4e9d-b9d2-762b841d7099" class="bulleted-list"><li style="list-style-type:disc">Borda 0 -&gt; 1: o aviso é disparado quando a porta for aberta.</li></ul><ul id="d6883cd7-4a25-4515-9289-e8c462cf8b43" class="bulleted-list"><li style="list-style-type:disc">Borda 1 -&gt; 0: o aviso é disparado quando a porta for fechada.</li></ul><ul id="0186a762-84f6-466c-a9fc-72fda45801e2" class="bulleted-list"><li style="list-style-type:disc">Ambos: o aviso é disparado quando a porta for aberta e também quando for fechada.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="68b9ffeb-f5de-4f03-9e82-b253481b9c62"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>OBS</strong>: A mensagem&nbsp;<em>default</em>&nbsp;a ser exibida neste aviso será seu nome, então é altamente recomendado colocar uma frase que indique a ação que será executada.     </div></figure><hr id="ec378713-e036-47f5-968c-908e54f59fcd"><h2 id="09eeb2d1-c63a-4102-b3ae-7e1bea6f64c2" class="">Configuração na E-App</h2><p id="81a16acf-59c4-42e7-b2da-27d427274f3e" class="">Com todos os eventos possíveis definidos, agora basta gerar o aviso na <strong>E-App:</strong></p><div id="3dab03d2-f888-4d62-b4d2-57ddc2005c47" class="column-list"><div id="0d21715a-c0a2-4a6c-bab3-310610b5dfec" style="width:50%" class="column"><p id="04b79c87-51ac-4cf8-8706-02532b758678" class="">No aplicativo Embrace 2, acesse o menu e toque em&nbsp;<strong>Avisos</strong>.</p><p id="c0d4066f-414f-4761-ade2-68809e952348" class=""></p></div><div id="e1b35ba1-a4d6-4a1a-b3e0-516d0de95a3c" style="width:50%" class="column"><figure id="3a9ee990-2677-4749-9832-7a6be62083d4" class="image"><a href="http://embrace.editme.com/files/Sistema-de-aviso/285.png"><img style="width:300px" src="http://embrace.editme.com/files/Sistema-de-aviso/285.png"></a></figure></div></div><hr id="98a0dd66-c9a9-44fe-b47c-542831d54031"><div id="5a37f4cd-6ad6-428a-bce5-c658e1fcd733" class="column-list"><div id="3f1d8e42-d6e6-4e5e-97d4-e64978eb5ab6" style="width:50%" class="column"><p id="95915f99-cdbc-44fd-974c-6e4f2359cae1" class="">A tela a seguir contém todos os avisos já cadastrados. Toque no&nbsp;<mark class="highlight-yellow"><strong>+</strong></mark>&nbsp;localizado no canto superior direito para adicionar um aviso.</p></div><div id="9a91d6b1-1474-4175-bbb3-050cea6615fa" style="width:50%" class="column"><figure id="42c39751-e44a-4dca-9624-9cf775255002" class="image"><a href="http://embrace.editme.com/files/Sistema-de-aviso/286.png"><img style="width:300px" src="http://embrace.editme.com/files/Sistema-de-aviso/286.png"></a></figure></div></div><hr id="e9902d0c-66ba-45f6-8267-da2667585e06"><div id="710503c6-fecd-4e43-a595-b1e8ef8e478d" class="column-list"><div id="e4a2f248-c00b-4adc-869c-ef2a13f7a08f" style="width:50%" class="column"><p id="87aea090-f85d-432c-8da9-c0e9cbb15f70" class="">Na primeira tela&nbsp;o usuário vai definir o&nbsp;<strong>nome</strong>&nbsp;e a&nbsp;<strong>mensagem</strong>&nbsp;do aviso.</p></div><div id="2341c33a-71d4-4032-b06d-e53d44805bd5" style="width:50%" class="column"><figure id="87b64ee9-da37-4049-9742-822e49f96b28" class="image"><a href="http://embrace.editme.com/files/Sistema-de-aviso/287.png"><img style="width:300px" src="http://embrace.editme.com/files/Sistema-de-aviso/287.png"></a></figure></div></div><p id="9d91f6ad-a3da-434d-9602-af7d1f56a804" class="">O nome tem função apenas de organização na lista de avisos e a mensagem será mostrada no conteúdo do aviso. O nome é de preenchimento obrigatório, já a mensagem pode ser deixada em branco, neste caso será gerada uma mensagem&nbsp;<em>default</em>&nbsp;de acordo com o evento escolhido.</p><ul id="197d935b-8e36-44a0-a9d2-915a5ccd1e5f" class="bulleted-list"><li style="list-style-type:disc">Se o evento for <strong>nativo do sistema</strong> Embrace, a mensagem&nbsp;<em>default</em>&nbsp;é "&lt;evento&gt; no ambiente &lt;nome do ambiente&gt;".</li></ul><ul id="4331fd1d-044a-44e7-9093-18086e908d87" class="bulleted-list"><li style="list-style-type:disc">Se o evento for <strong>feito no E-Config</strong>, a mensagem&nbsp;<em>default</em>&nbsp;é "&lt;nome do aviso colocado no E-Config&gt;".</li></ul><div id="cda0a667-07e9-4eb4-bb65-b5d47a64c62e" class="column-list"><div id="f96f43ec-d3d8-4e3c-af41-0f485ac43585" style="width:93.75%" class="column"><figure id="7f70ef24-8229-4455-9f66-82117ad3ea88" class="image"><a href="Sistema%20de%20Avisos/Untitled.png"><img style="width:300px" src="Sistema%20de%20Avisos/Untitled.png"></a></figure></div><div id="e265704a-de73-43f9-8cb1-211fe0eff741" style="width:106.25%" class="column"><figure id="0edbc669-ea32-45f2-983e-827c3c787dce" class="image"><a href="Sistema%20de%20Avisos/Untitled%201.png"><img style="width:300px" src="Sistema%20de%20Avisos/Untitled%201.png"></a></figure></div></div><hr id="a7e071b1-c71a-4c5a-a856-6c2806581f52"><div id="0e46e5e0-b92e-421f-96fd-56517eb8f374" class="column-list"><div id="93871ab2-b433-4cb3-9e71-5b85af2ce344" style="width:50%" class="column"><p id="54493d37-7673-41b9-aeea-a14fde1bd882" class="">A seguir, o usuário pode escolher como será avisado:&nbsp;<strong>celular</strong>&nbsp;e/ou&nbsp;<strong>e-mail</strong>.</p><ul id="98999718-5ccd-43da-8214-24f49b5ede03" class="bulleted-list"><li style="list-style-type:disc"><strong>Celular</strong>: o aviso será enviado ao dispositivo em questão.        <ul id="5dae705f-3ea3-4c81-8d7b-ea1c294afe88" class="bulleted-list"><li style="list-style-type:circle">Se o usuário for administrador pode escolher quem terá acesso ao aviso: apenas o próprio usuário ou todos os usuários (que podem habilitar/desabilitar quando quiserem).</li></ul><ul id="9d24d585-9708-4438-9313-9783128029aa" class="bulleted-list"><li style="list-style-type:circle">Se o usuário não for administrador só terá opção de criar avisos privados.</li></ul></li></ul><ul id="a4a3050f-9e60-4282-a684-540843509412" class="bulleted-list"><li style="list-style-type:disc"><strong>E-mail</strong>: o aviso será enviado a um e-mail. Selecionando essa opção abrirá um campo para adicionar o e-mail que o usuário deseja receber o aviso. Este campo é preenchido automaticamente, mas o usuário pode alterá-lo.</li></ul></div><div id="0eaf51aa-2687-4f8c-b68c-78c720cb6551" style="width:50%" class="column"><figure id="cc9553d5-f5bd-4d27-b55c-d8aff217b118" class="image"><a href="http://embrace.editme.com/files/Sistema-de-aviso/289.png"><img style="width:300px" src="http://embrace.editme.com/files/Sistema-de-aviso/289.png"></a></figure></div></div><hr id="7d7020e9-4f31-4d89-b942-e4c539549fd9"><p id="4d3a9452-7136-4d2d-af9f-78ba01c06a65" class="">Em seguida&nbsp;tem a lista de todos os eventos possíveis e logo após o usuário escolhe os ambientes que serão monitorados. O item anterior (eventos possíveis) filtrará os ambientes e só serão listados os ambientes que possuírem o item responsável pela ativação do evento.: </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="aace47ac-5c1b-47fb-8cfa-bf738e05584e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Obs</strong>: é permitido apenas um evento por aviso.     </div></figure><div id="40986fe7-7516-477b-87ee-590a1f41446a" class="column-list"><div id="3c5a188e-6c2f-4db5-b13d-87808e9c68b1" style="width:100%" class="column"><p id="4550af7a-1e9d-4253-9308-ed64fffdeb95" class=""></p><ul id="73955d13-68e0-4cd1-9c6d-c63f846a173e" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Movimento</em></strong><strong>&nbsp;</strong>(o aviso será disparado na detecção de movimento);</li></ul><p id="554aa37e-cd60-4dee-a6e7-b7acd0f35009" class=""></p><ul id="cc91d708-dc15-4828-9d5d-d15839eda305" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Iluminação acesa</em></strong>&nbsp;(o aviso será disparado quando a iluminação for acesa);</li></ul><p id="2f52f3a1-b20c-4de6-9521-9fd130a27bc4" class=""></p><ul id="5d8b331f-51b9-4f56-b840-6e8f6cac16ed" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Iluminação apagada</em></strong>&nbsp;(o aviso será disparado quando a iluminação for apagada);</li></ul><p id="6df1c4c3-5867-447a-b698-bb0bdd31f188" class=""></p><ul id="ccfa2f6f-dab7-4d5c-9108-7c04d45c354d" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Ar condicionado ligado</em></strong>&nbsp;(o aviso será disparado quando o ar condicionado for ligado);</li></ul><p id="d828f609-c8e4-41bc-92f5-8b6f95f56f03" class=""></p><ul id="4b082fe0-fdba-461d-8185-064117c5c740" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Ar condicionado desligado</em></strong>&nbsp;(o aviso será disparado quando o ar condicionado for desligado);</li></ul><p id="6f9137be-8d9c-4f64-957e-e6f16aea58cf" class=""></p><ul id="b93d306c-703b-46ab-b81c-0c372a85b8a8" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Áudio/Vídeo ligado</em></strong>&nbsp;(o aviso será disparado quando um equipamento de áudio e vídeo for ligado);</li></ul><p id="e1cf9012-dfe3-4d3f-b7db-5f0c101e69fd" class=""></p><ul id="107dff21-36d5-4571-a78f-4c63a6e32c26" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Áudio/Vídeo desligado</em></strong>&nbsp;(o aviso será disparado quando um equipamento de áudio e vídeo for desligado);</li></ul><p id="abfd6cd1-ed0d-4cd3-91a7-6636f639ca23" class=""></p><ul id="a063d8e4-1947-40a7-a348-cc2a82bb3005" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Temperatura abaixo de</em></strong>&nbsp;(ao selecionar esta opção aparecerá um campo para adicionar a temperatura e o aviso será disparado quando a temperatura for menor que o valor adicionado);</li></ul><p id="cb5afb49-d97b-42a5-8a7b-fb4aaff70f0e" class=""></p><ul id="1c371836-7cfa-44dd-baf2-877eafa3030a" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Temperatura acima de</em></strong><strong>&nbsp;</strong>(ao selecionar esta opção aparecerá um campo para adicionar a temperatura e o aviso será disparado quando a temperatura for maior que o valor adicionado).</li></ul><p id="e80bf5fa-54dd-41fd-a866-9ba92e739fd8" class=""></p></div><div id="8ef0dd14-60a6-49e7-b900-4e2d70bf4899" style="width:100%" class="column"><figure id="87e4c278-a11e-4f62-9726-e389418732e6" class="image"><a href="Sistema%20de%20Avisos/Untitled%202.png"><img style="width:576px" src="Sistema%20de%20Avisos/Untitled%202.png"></a></figure><figure id="7b66aae2-1a59-4b2f-8e09-810e76268e3b" class="image"><a href="Sistema%20de%20Avisos/Untitled%203.png"><img style="width:384px" src="Sistema%20de%20Avisos/Untitled%203.png"></a></figure></div></div><hr id="489ea7e8-0a68-4eb1-8c2a-6ec595acae5b"><p id="a89af60c-ab50-4b8d-a2a0-0ce95ac7c9d1" class="">Em seguida o usuário pode escolher o momento em que o aviso será monitorado:</p><ul id="f8fc7572-d326-4ef3-bc75-5fdbc07e0e7d" class="bulleted-list"><li style="list-style-type:disc"><strong>Sempre</strong>: sempre que o evento for executado o aviso será enviado;</li></ul><ul id="61df6308-7e68-48c6-9a09-04faca10f6c4" class="bulleted-list"><li style="list-style-type:disc"><strong>Intervalo de tempo</strong>: o aviso será monitorado apenas no intervalo determinado.</li></ul><div id="a8d4f357-f154-44bd-8c71-918a62beb25d" class="column-list"><div id="65005026-9087-4292-8f87-e53633436c03" style="width:93.75%" class="column"><figure id="b8af3872-79c2-40a0-9453-0606689bf7f7" class="image"><a href="Sistema%20de%20Avisos/Untitled%204.png"><img style="width:300px" src="Sistema%20de%20Avisos/Untitled%204.png"></a></figure></div><div id="01c4b8f5-b0d8-492e-ac81-f660932b00b5" style="width:106.25%" class="column"><figure id="9ba8f728-6a5e-40d1-8672-0b7ced2514b3" class="image"><a href="Sistema%20de%20Avisos/Untitled%205.png"><img style="width:300px" src="Sistema%20de%20Avisos/Untitled%205.png"></a></figure></div></div><hr id="56f6afa8-ffb0-4268-b3e6-0cf0a244ff94"><p id="3d707e5b-a8db-436b-a969-ee113d3f5531" class="">É possível atribuir os&nbsp;<strong>dias da semana</strong>&nbsp;que deseja ser avisado:</p><ul id="e68724a7-0c93-4246-baa2-3ae61bab53c1" class="bulleted-list"><li style="list-style-type:disc"><strong>Semana inteira</strong>: o aviso será monitorado dentro das restrições colocadas independente do dia da semana;</li></ul><ul id="dd1abebe-31c4-41bd-b66a-7b35a0f9c667" class="bulleted-list"><li style="list-style-type:disc">Retirando a seleção do item&nbsp;Semana inteira&nbsp;é possível selecionar <strong>dias específicos</strong> da semana.</li></ul><div id="15c11eb1-da2c-494c-8f2f-2306a70e19fb" class="column-list"><div id="111282fb-726c-4c30-9558-ca6200e9fb78" style="width:100%" class="column"><figure id="458b6463-0d47-4128-96d9-ecac8654ffd4" class="image"><a href="Sistema%20de%20Avisos/Untitled%206.png"><img style="width:300px" src="Sistema%20de%20Avisos/Untitled%206.png"></a></figure></div><div id="c0b89e4c-6708-414d-97d7-59dd2d81506f" style="width:100%" class="column"><figure id="1e729fc8-35ff-4dda-9d65-0407779b3337" class="image"><a href="Sistema%20de%20Avisos/Untitled%207.png"><img style="width:300px" src="Sistema%20de%20Avisos/Untitled%207.png"></a></figure></div></div><hr id="a7d2f131-d40c-42f9-be29-0677f54dd87b"><p id="d253d8d1-95a1-4a46-aab9-c26a6bfaf6b5" class="">Em seguida o usuário pode determinar o período do dia que deseja receber o aviso.</p><ul id="fe838ce3-9797-4371-950c-f90dc419f849" class="bulleted-list"><li style="list-style-type:disc"><strong>Dia inteiro</strong>: o aviso será monitorado qualquer momento do dia.</li></ul><ul id="0b2c914f-3de6-44f0-8897-7a51927d160b" class="bulleted-list"><li style="list-style-type:disc">Retirando a seleção do item&nbsp;Dia inteiro&nbsp;é possível selecionar o <strong>período do dia</strong> que o usuário deseja receber o aviso.</li></ul><div id="e5939651-1c37-409e-ba45-87f87c861b44" class="column-list"><div id="09a05e33-e486-4b46-85e7-0b0288145b27" style="width:100%" class="column"><figure id="01c8f437-eb50-498b-9b2c-f1626120b872" class="image"><a href="Sistema%20de%20Avisos/Untitled%208.png"><img style="width:300px" src="Sistema%20de%20Avisos/Untitled%208.png"></a></figure></div><div id="007338e5-c12d-4a65-a33f-9a28384e924b" style="width:100%" class="column"><figure id="591b8b7a-7fc4-45bd-86d0-5ce7922c8e06" class="image"><a href="Sistema%20de%20Avisos/Untitled%209.png"><img style="width:300px" src="Sistema%20de%20Avisos/Untitled%209.png"></a></figure></div></div><hr id="835dcc19-f923-48cd-a063-41d877765ef2"><p id="21ac6cab-63bb-44cb-9704-fdd5789575fc" class="">Por fim, o usuário pode determinar o&nbsp;<strong>tempo de silenciamento</strong>: após um disparo de aviso, o sistema ignorará a condição do aviso que foi disparado pelo tempo definido de silenciamento e não irá monitorar a condição em questão; passado esse tempo, o sistema volta a monitorar a condição do aviso até que o mesmo evento seja disparado novamente. </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="839f50ba-890c-44af-9596-7547da4abbb3"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Avisos silenciados são <strong>independentes</strong>, ou seja: um aviso recém disparado e atualmente silenciado não irá interferir em outros avisos. O tempo <strong>mínimo </strong>de silenciamento é de <strong>1 minuto</strong>.     </div></figure><hr id="5f0a6c31-0c8e-4265-961e-73ba8e3438c7"><div id="828a5657-ee34-43ff-8b3f-ece61f6af36d" class="column-list"><div id="9a6b7549-34d6-4441-b2a0-6f2a04abe46a" style="width:50%" class="column"><p id="d084c769-9085-42d3-80b4-563d9c8e9d1e" class="">Ao tocar em&nbsp;<strong>Salvar</strong>&nbsp;o aviso será listado na tela inicial. </p><p id="f15d3e5f-f5dd-47a3-8751-90098d7768ec" class="">A notificação com o aviso será disparada do formato "&lt;mensagem do aviso&gt;" e o conteúdo do aviso será "&lt;data do disparo do evento&gt; &lt;horário do disparo do evento&gt;" como mostra a imagem a seguir:</p></div><div id="db898396-1169-48c2-9a76-20584c324d2b" style="width:50%" class="column"><figure id="746dfd6d-c59e-4940-a561-afeb089c2c7f" class="image"><a href="http://embrace.editme.com/files/Sistema-de-aviso/302.png"><img style="width:300px" src="http://embrace.editme.com/files/Sistema-de-aviso/302.png"></a></figure></div></div><hr id="51c37c0a-e289-4b7a-b28e-a99b2b97189e"><h3 id="97d52db2-3086-4ffd-82a6-6fe3d9c0edf6" class=""><strong><strong>Informações adicionais</strong></strong></h3><div id="a6e05c91-5b31-4b38-96bf-5eeae84fbeef" class="column-list"><div id="d0b88538-562f-4e74-a72d-177ee7a194cb" style="width:50%" class="column"><ul id="3a514cf6-a693-498b-8487-9bcca0649ce5" class="bulleted-list"><li style="list-style-type:disc">Os avisos serão recebidos em dispositivos que possuírem pelo menos um projeto gráfico da instalação baixados via&nbsp;<em>Cloud</em>:        <ul id="b075923b-a4be-4924-9ae3-d1b61e11b764" class="bulleted-list"><li style="list-style-type:circle"><strong>E-App Automático</strong>: se o usuário for administrador ou possuir acesso remoto poderá acessar a tela de avisos da mesma forma feita no projeto Controle de Usuário.</li></ul><ul id="644eea28-d03d-402a-bd7c-0eb49cde1b34" class="bulleted-list"><li style="list-style-type:circle"><strong>E-App Customizado</strong>: se o usuário possuir algum aviso cadastrado e habilitado, este aviso será recebido no dispositivo que tiver o E-App Customizado baixado. Para acessar a tela de avisos basta fazer o movimento de pinça no projeto (o mesmo para acessar controle de usuário e sair do projeto) e selecionar o item Avisos. A partir daí o processo é o mesmo descrito acima.</li></ul></li></ul></div><div id="c8979993-7bee-4f0a-b945-3b910ae7de38" style="width:50%" class="column"><figure id="d1e2138d-6fbb-4924-b023-33a5e3b5cf97" class="image"><a href="http://embrace.editme.com/files/Sistema-de-aviso/305.png"><img style="width:300px" src="http://embrace.editme.com/files/Sistema-de-aviso/305.png"></a></figure></div></div><ul id="e0f1ff72-53f7-4f3a-af3d-f77f826f95d0" class="bulleted-list"><li style="list-style-type:disc">Usuários administradores podem criar e editar&nbsp;avisos privados e públicos.</li></ul><ul id="ddc4027d-5744-4d2f-a198-e3c7ef639fc2" class="bulleted-list"><li style="list-style-type:disc">Usuários não administradores com acesso remoto podem apenas criar avisos privados.</li></ul><ul id="a818e5dd-0428-4dfc-9282-530e917f68a6" class="bulleted-list"><li style="list-style-type:disc">Usuários não administradores e sem acesso remoto não têm acesso à lista de avisos e não os recebem.</li></ul><ul id="727b0bb0-43f0-415e-be16-e98bedf2f7f9" class="bulleted-list"><li style="list-style-type:disc">Avisos públicos aparecem desabilitados para os demais usuários, sendo necessário habilitá-los se for desejado recebê-los.</li></ul><ul id="9d51d911-044f-49f6-b36e-e3e8199ee926" class="bulleted-list"><li style="list-style-type:disc">Projetos baixados localmente não têm acesso aos avisos.</li></ul><p id="9b3cecc7-d7d5-4039-9fbc-845550534d42" class="">A tabela a seguir é um resumo de acesso aos avisos de acordo com o tipo de usuário e projeto gráfico.</p><table id="e42b1efc-abc3-4ebd-a382-3ce116c22f26" class="simple-table"><tbody><tr id="08a85cde-9249-47d7-a15a-94375f65dca5"><td id="HNVQ" class="" style="width:174.5px"><strong>Projeto/Usuário</strong></td><td id="?nA|" class="" style="width:174.5px"><strong>Administrador</strong></td><td id="~Wc:" class="" style="width:174.5px"><strong>Não admin com acesso remoto</strong></td><td id="DV:p" class="" style="width:174.5px"><strong>Não admin sem acesso remoto</strong></td></tr><tr id="839aba13-82b0-43b3-9273-1f9f8dc8070b"><td id="HNVQ" class="" style="width:174.5px"><strong>Controle de Usuário</strong></td><td id="?nA|" class="" style="width:174.5px">Cria e edita públicos e privados</td><td id="~Wc:" class="" style="width:174.5px">Cria e edita privados; habilita/desabilita avisos públicos</td><td id="DV:p" class="" style="width:174.5px">Sem acesso à tela de avisos</td></tr><tr id="4638e69b-607d-4608-a866-beef505a3853"><td id="HNVQ" class="" style="width:174.5px"><strong>E-App Automático</strong></td><td id="?nA|" class="" style="width:174.5px">Cria e edita públicos e privados</td><td id="~Wc:" class="" style="width:174.5px">Cria e edita privados; habilita/desabilita avisos públicos</td><td id="DV:p" class="" style="width:174.5px">Sem acesso à tela de avisos</td></tr><tr id="4d20be02-184b-4294-b0b2-9c354444364d"><td id="HNVQ" class="" style="width:174.5px"><strong>E-App Customizado</strong></td><td id="?nA|" class="" style="width:174.5px">Cria e edita públicos e privados</td><td id="~Wc:" class="" style="width:174.5px">Cria e edita privados; habilita/desabilita avisos públicos</td><td id="DV:p" class="" style="width:174.5px">Sem acesso à tela de avisos</td></tr></tbody></table></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

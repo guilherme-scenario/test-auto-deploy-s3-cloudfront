@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Keypads</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="9f66f453-586d-4242-8da8-704306138246" class="page sans"><header><h1 class="page-title">Keypads</h1><p class="page-description"></p></header><div class="page-body"><p id="7c72c8a6-de28-41ae-9203-f6fba4b0b769" class="">Em&nbsp;<strong>Keypads</strong>&nbsp;são listados os diversos teclados físicos da Linha Embrace. Eles podem ser encontrados na aba <strong>E-Net</strong> do menu de <strong>Equipamentos </strong>e estarão organizados em diretórios de acordo com a linha à qual eles pertencem (Ex: <em>Virtue </em>ou <em>Metal</em>). </p><div id="436ff30b-ca80-473d-ade4-761fb88ca2fa" class="column-list"><div id="d44d1314-e9b4-45d9-ae92-3a58b73b0808" style="width:100%" class="column"><p id="0a324c32-8579-4425-a402-d848ebbd665b" class="">Para facilitar a identificação dos&nbsp;<em>keypads</em>, a quantidade de botões está no próprio nome do dispositivo e, além disso, se tiver a letra&nbsp;<strong>M</strong>&nbsp;ao fim do nome significa que ele dispõe de sensores de&nbsp;<em>movimento</em>,&nbsp;<em>luminosidade</em>&nbsp;e&nbsp;<em>temperatura</em>.</p><p id="82acbf25-4149-4c34-88ec-33e4193ce572" class="">Em todos os&nbsp;<em>keypads</em>&nbsp;encontramos os seguintes dados na seção de <strong>Informações</strong>&nbsp;(automaticamente preenchida ao associar o teclado do projeto com o componente físico):</p><ul id="e32348e7-16dd-4e9d-84c0-c970f08bf006" class="bulleted-list"><li style="list-style-type:disc"><em>Endereço</em></li></ul><ul id="edcd63ca-1e3d-4ec1-97b9-e43be66e616a" class="bulleted-list"><li style="list-style-type:disc"><em>Versão</em></li></ul><ul id="8240b2f5-c461-4aa8-986c-a825caee686f" class="bulleted-list"><li style="list-style-type:disc"><em>Número de Série</em></li></ul><ul id="8d46b0d1-343c-457b-9dc8-7cf0e628df28" class="bulleted-list"><li style="list-style-type:disc"><em>Rede</em></li></ul><p id="63d889e0-71ae-4c8c-a1fb-0294e7f06554" class="">Ao todo são 6&nbsp;<em>keypads:</em> dentre eles, 2 possuem os sensores de movimento, luminosidade e temperatura (e são oferecidos nas versões v1 e v2) e 4 oferecem diferentes quantidades e disposições de teclas.</p></div><div id="a23c663d-d313-4927-865b-151bb2902203" style="width:100%" class="column"><figure id="9602ba6c-6efb-4218-aa7f-dfa7b6289bad" class="image"><a href="Keypads/Untitled.png"><img style="width:422px" src="Keypads/Untitled.png"></a></figure></div></div><details open><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Com sensores</summary><div class="indented"><p id="d6c0eb7a-4521-404b-bc1a-e7da791f908f" class="">Na árvore do projeto, ao expandir esses&nbsp;<em>keypads</em>, além dos botões, temos:</p><ul id="bbcc4aea-5a0f-4438-ac69-67114f7c2edd" class="bulleted-list"><li style="list-style-type:disc"><strong>Detector de </strong><em><strong>movimento</strong></em></li></ul><ul id="9a3cdc28-9792-4114-b09b-7b278b34ab56" class="bulleted-list"><li style="list-style-type:disc"><strong>Detector de </strong><em><strong>luminosidade</strong></em></li></ul><ul id="cb71bdc8-2bdf-4fa3-b0c2-ac81012ed4df" class="bulleted-list"><li style="list-style-type:disc"><strong>Detector de </strong><em><strong>temperatura</strong></em></li></ul><p id="e9d3544f-9e6f-4b64-a794-9523c58176d0" class="">É possível fazer com que o E-Config gere as associações desses sensores ao ambiente de forma automática: ao gerar o <a href="Room-Control.html">Room-Control</a> de algum ambiente, o sistema oferece ao usuário a possibilidade de conectar a esse ambiente os sensores de&nbsp;<strong>movimento</strong>&nbsp;e os sensores de&nbsp;<strong>luminosidade</strong>&nbsp;do&nbsp;<em>keypad</em>. Da mesma forma, é possível observar que o detector de&nbsp;<strong>temperatura</strong>&nbsp;do&nbsp;<em>keypad</em>&nbsp;também terá uma conexão automaticamente criada no momento em que o projeto gráfico do usuário for gerado (contanto que o dispositivo no projeto seja devidamente associado a um dispositivo físico).</p><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>EB-KP0M</strong></summary><div class="indented"><p id="312cb32f-de7b-4755-bc6d-753a130b86cc" class="">Este&nbsp;<em>keypad</em>&nbsp;tem apenas os 3 sensores e não tem botões. A janela do EB-KP0M traz em&nbsp;<strong>Propriedades</strong>:</p><div id="a40968e7-be98-423f-9ba8-d46d3b44649b" class="column-list"><div id="acfd6f8e-04c6-45a1-b97a-ec2ac7a55411" style="width:68.75%" class="column"><ul id="dc3aa6de-7ddd-4318-bca0-8253f803d11a" class="bulleted-list"><li style="list-style-type:disc"><strong>LED indicativo de movimento habilitado</strong>: <em>checkbox </em>que possibilita habilitar ou não a função.</li></ul><ul id="73f0dff0-527d-4a40-992a-5dbbcd2ca553" class="bulleted-list"><li style="list-style-type:disc"><strong>Considerar luminosidade quando Smart Lumi ativado</strong>: <em>checkbox </em>que permite incluir ou não as informações capturadas pelo sensor de luminosidade no cálculo de média para o Smart Lumi (mais informações em <a href="../Inteligencia%20Iluminacao.html">Inteligência Iluminação</a>).</li></ul></div><div id="538d3200-7155-4e83-a69b-b8871df0e4f9" style="width:118.75%" class="column"><figure id="b6c119ef-974c-4f4f-b392-3655f449ac92" class="image"><a href="Keypads/Untitled%201.png"><img style="width:480px" src="Keypads/Untitled%201.png"></a></figure></div></div><p id="ae793563-05ed-4394-a13c-30220e90d66f" class=""></p></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong><strong>EB-KP6M</strong></strong></summary><div class="indented"><p id="2aca48a3-eb00-4c74-9164-d4796fd50771" class="">Este <em>keypad </em>possui, além de 3 sensores, 6 botões/teclas. Abaixo estão descritas suas <strong>Propriedades </strong>e <strong>Conexões</strong>.</p><figure id="c323ec1b-411c-40a7-96bb-a4cc1792bc32" class="image"><a href="Keypads/Untitled%202.png"><img style="width:432px" src="Keypads/Untitled%202.png"></a></figure><p id="d75b9896-423f-4498-8c61-e2faf76c0370" class=""></p><p id="7d9c73df-b3c3-4d18-9d59-a682ae6ed64f" class="">Em <strong>Propriedades </strong>são dadas duas opções em&nbsp;<strong>Intensidade dos LEDs</strong>:</p><div id="e5db192b-28a3-4932-8270-d81b21b3e54f" class="column-list"><div id="229833e2-cc6f-4bc1-b8e3-e3bc0b61d86e" style="width:62.5%" class="column"><ul id="88c156c7-aec1-4bdf-a92a-587ca91bd4a1" class="bulleted-list"><li style="list-style-type:disc"><strong>Fixa:</strong>&nbsp;a intensidade do LED é definida sem a necessidade de sensores.            <ul id="21444359-d02b-4173-8726-cb2136f78c88" class="bulleted-list"><li style="list-style-type:circle"><strong><em>Intensidade LEDs ON</em></strong>: intensidade dos LEDs do teclado quando estiverem acesos;</li></ul><ul id="0526e1b6-7cf7-4b6a-829d-f50e9098f184" class="bulleted-list"><li style="list-style-type:circle"><strong><em>Intensidade LEDs OFF</em></strong>: intensidade dos LEDs do teclado quando estiverem inativos;</li></ul><ul id="799f6efc-2ce6-48da-be23-25ea345ac4cf" class="bulleted-list"><li style="list-style-type:circle"><strong><em>Intensidade LEDs ON modo dormir</em></strong>: intensidade dos LEDs acesos quando o modo dormir estiver ativo.</li></ul></li></ul></div><div id="d039067c-319a-42df-97f0-7306320f8bd9" style="width:106.25%" class="column"><ul id="7865e1ea-405e-476b-919e-d15772c5d27f" class="bulleted-list"><li style="list-style-type:disc"><strong>Variável (entrada de sensor de luminosidade)</strong>: a intensidade dos LEDs varia de acordo com a luminosidade do local. Esta opção requer um sensor de luminosidade associado.            <ul id="99ca47cb-410d-4d68-a9d6-bfb9e01388e0" class="bulleted-list"><li style="list-style-type:circle"><strong><em>Ajuste de sensibilidade de brilho</em></strong>: vai ajustar a forma com que o sensor recebe a variação de luminosidade, ou seja, colocando o ponteiro em 100% a sensibilidade vai ser alta e a intensidade dos LEDs vai variar a cada pequena alteração de luminosidade; analogamente se o ponteiro estiver em 0% a intensidade dos LEDs irá variar apenas depois de certo tempo com a mesma luminosidade.</li></ul><ul id="9d57365d-587b-4730-a6f2-41390c8b9c4f" class="bulleted-list"><li style="list-style-type:circle"><strong><em>Intensidade LEDs ON modo dormir</em></strong>: intensidade dos LEDs quando estiver em modo dormir.</li></ul></li></ul></div></div><p id="a282e892-0ebc-4ca8-8406-981bca4c27c0" class="">• <strong>LED indicativo de movimento habilitado</strong>:&nbsp;<em>checkbox</em>&nbsp;que possibilita habilitar ou não a função.</p><h3 id="4c00b3aa-b616-4ac7-bd4f-bc3969a7d294" class=""><strong>Conexões</strong></h3><p id="f0719355-e5a2-4687-b83b-a9ed10c372c1" class=""><strong>Entrada</strong></p><ul id="ab941446-1b84-4867-bcad-90529494d067" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Modo dormir</em></strong>: esta função ativa o modo dormir.</li></ul><ul id="19b6c18e-bb02-4c42-9cce-53b3d11e5921" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Entrada de sensor de luminosidade</em></strong>: conexão com sensor de luminosidade.</li></ul><p id="e6226af4-7ebc-4ecd-badd-01dbed6f0cfc" class=""></p></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Keypads v2</summary><div class="indented"><p id="2f9e60af-b729-40af-944e-c97d550e4e8c" class="">Os <em>keypads </em>(KPs) com sensores <strong>KP6M </strong>e <strong>KP0M </strong>também são oferecidos na versão <strong>v2</strong>. Esta versão conta com sensores digitais e a possibilidade de fazer a captação de luminosidade <strong>lux</strong>, garantindo desta forma uma maior versatilidade para o desenvolvimento do projeto. Ambos os KPs na versão v2 também estão disponíveis para inserção no projeto via E-Config e ficam localizados no diretório <strong>Keypads </strong>na aba <strong>E-Net </strong>do menu de <strong>Equipamentos</strong>.</p><figure id="967454aa-3b44-4d84-9190-b948bf962ff1" class="image"><a href="Keypads/Untitled%203.png"><img style="width:720px" src="Keypads/Untitled%203.png"></a></figure><p id="25fb1e5d-c46e-44c7-96f7-20db6cca3629" class="">Ao adicionar algum desses dispositivos ao projeto o programador poderá observar que além do nó Detector de luminosidade, a v2 também disponibiliza o&nbsp;<strong>Detector de luminosidade lux</strong>. O detector em questão possui uma&nbsp;<em>Conexão de Saída</em>&nbsp;chamada&nbsp;<strong>Intensidade de luz ambiente</strong>, que retorna o valor captado pelo sensor (em lux) e pode ser utilizada pelo programador de acordo com sua necessidade para melhor atender a instalação.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="33e81547-6816-425f-876d-08c6e1dec0d9"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">          Este recurso também está disponível para os dispositivos sensores de teto&nbsp;<strong>EB-SMT</strong>. É possível encontrar os sensores de teto EB-SMT no diretório&nbsp;<strong>Sensores</strong>&nbsp;que também localiza-se na aba<strong> E-Net</strong> do menu <strong>Equipamentos</strong>.         </div></figure></div></details></div></details><details open><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Sem sensores</summary><div class="indented"><p id="1abb89a9-adfc-4a30-99b8-e861e6c0a7bf" class="">Todas as informações dispostas aqui podem ser aplicadas para todos os teclados sem sensores. São eles:&nbsp;<strong>EB-KP1</strong>,&nbsp;<strong>EB-KP2</strong>,&nbsp;<strong>EB-KP3</strong>&nbsp;e&nbsp;<strong>EB-KP12</strong>.</p><figure id="5fdb6954-b6db-4d42-b110-c102fe940709" class="image"><a href="Keypads/Untitled%204.png"><img style="width:720px" src="Keypads/Untitled%204.png"></a></figure><p id="3954a877-5fa1-4b0e-8a22-af392c37e831" class="">Em <strong>Propriedades </strong>são dadas duas opções em&nbsp;<strong>Intensidade dos LEDs</strong>:</p><div id="9a67fcd1-de6b-4c54-8d3a-8c8859036212" class="column-list"><ul id="49e8ba76-d2d3-4f63-acc8-3dedac5ab78b" class="bulleted-list"><li style="list-style-type:disc"><strong>Fixa:</strong>&nbsp;a intensidade do LED é definida sem a necessidade de sensores.</li></ul><ul id="9aa343c9-c192-46fb-b09d-408a08710a3f" class="bulleted-list"><li style="list-style-type:disc"><strong>Variável (entrada de sensor de luminosidade)</strong>: a intensidade dos LEDs varia de acordo com a luminosidade do local. Esta opção requer um sensor de luminosidade associado.</li></ul></div><h3 id="df134f48-b835-4031-aa28-97ff07e4c82b" class=""><strong>Conexões</strong></h3><p id="93ba29fb-ae58-41b6-8eab-dffc2023e6f3" class=""><strong>Entrada</strong></p><ul id="3c624819-6821-459d-a88a-810e401b3117" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Modo dormir</em></strong>: esta função faz com que os LEDs do teclado assumam a luminosidade configurada em&nbsp;<em>Intensidade LEDs ON modo dormir</em>. O recomendável é que essa função seja conectada à função&nbsp;<em>Teclados afetados pelo modo dormir</em>, localizado no Room-Control.</li></ul><ul id="544ab078-a095-4517-8608-55da1545ae7f" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Entrada de sensor de luminosidade</em></strong>: conexão com sensor de luminosidade.</li></ul><h3 id="6e927f48-3cb4-4215-96cc-c9a325dca5ce" class=""><strong>Auxiliares</strong></h3><p id="db11eede-dfb2-4f79-9c2e-2608f40b95ba" class="">Possuem 2 entradas auxiliares que podem ser vinculados a pulsadores, sensores, entre outros.</p></div></details><hr id="87017ab5-7bf4-415a-8574-acc561abeb9f"><h2 id="507a29a3-530f-498e-878b-40d19b8d7493" class=""><strong>Botões</strong></h2><h3 id="ff1b3e6b-fca2-4a07-b480-d8d410522a60" class=""><strong>Conexões</strong></h3><ul id="d5e805b0-0519-4512-ab48-37641e967bb3" class="bulleted-list"><li style="list-style-type:disc"><strong>Entrada:</strong>&nbsp;<em>Estado do LED</em>&nbsp;é a aparência do LED ao acionar a função conectada em&nbsp;<em>Saída</em>.</li></ul><ul id="487fa5c6-f7d8-4ec1-9ce9-aa0dad953364" class="bulleted-list"><li style="list-style-type:disc"><strong>Saída:</strong>&nbsp;<em>Estado</em>&nbsp;é o acionamento da função programada neste botão.</li></ul><figure id="12b5395b-6a57-4224-ada4-f9f835dc9b80" class="image"><a href="Keypads/Untitled%205.png"><img style="width:426px" src="Keypads/Untitled%205.png"></a></figure><h3 id="6d133240-c948-4cff-a7e1-0b93e177bb55" class=""><strong>Tipo do Acionador</strong></h3><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><em><strong>Press and Release</strong></em></summary><div class="indented"><p id="e76272ea-bf72-413f-8ae3-b495c4502398" class="">Em&nbsp;<strong>Triggers</strong>&nbsp;são listados os dois acionamentos:</p><ul id="12db4608-c773-4a91-b2e0-dce48f55d19b" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Press</em></strong>: acionamento do botão;</li></ul><ul id="6f017011-7224-44a9-8bd3-4df031f2b47a" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Release</em></strong>: momento ao liberar o botão.</li></ul></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><em><strong>Press, Hold and Release</strong></em></summary><div class="indented"><p id="3966973c-68ed-430d-81b1-e1c68310b5a2" class="">Inicialmente é possível determinar o tempo de&nbsp;<em>Hold</em>, ou seja, por quanto tempo o botão precisa ser pressionado para realizar a função programada em&nbsp;<em>Hold</em>. Em&nbsp;<strong>Triggers</strong>&nbsp;são listados os acionamentos:</p><ul id="2cc50122-608d-406b-b40a-0cd98a929577" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Press</em></strong>: acionamento do botão;</li></ul><ul id="b39a42b6-70c0-4d8e-84a3-6a7bac8afbe0" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Hold</em></strong>: manter o botão pressionado no tempo determinado em&nbsp;<em>Tempo de Hold</em>;</li></ul><ul id="e52960ac-2f6c-4dc4-92ba-b6106f83a725" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Release</em></strong>: momento ao liberar o botão.</li></ul></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><em><strong>MultiPress, Hold and Release</strong></em></summary><div class="indented"><p id="0ce0da8e-8a7f-458f-a2d7-913dac3c8cd8" class="">Nesta opção é possível determinar a quantidade de&nbsp;<em>Press</em>&nbsp;que aquele botão terá (o máximo é 100 estados). Em seguida tem a opção&nbsp;<em>Aceita Hold</em>&nbsp;que, quando selecionada, habilita as opções&nbsp;<em>Reset no Hold</em>&nbsp;(reinicia a numeração dos&nbsp;<em>Press</em>&nbsp;quando acionar o&nbsp;<em>Hold</em>) e&nbsp;<em>Tempo de Hold</em>&nbsp;(por quanto tempo precisa manter o botão pressionado para acionar a função). Em&nbsp;<strong>Triggers</strong>&nbsp;são listados os acionamentos:</p><ul id="54fab740-8080-4849-9060-7f3e3082f50a" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Hold</em></strong>: manter o botão pressionado no tempo determinado em&nbsp;<em>Tempo de Hold</em>;</li></ul><ul id="5b05a592-bad8-4aeb-a9b1-e7aec7fbe327" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Release</em></strong>: momento ao liberar o botão.</li></ul><ul id="e34a97f3-45c9-4344-b155-526685a9b237" class="bulleted-list"><li style="list-style-type:disc"><strong><em>MultiPress</em></strong>: acionamento do botão. Conforme aumentar o&nbsp;<em>Número de Estados</em>, a quantidade de&nbsp;<em>Press</em>&nbsp;aumenta ordenadamente.</li></ul></div></details><hr id="9cb1d315-2d52-40f8-892a-6502219c9748"><h2 id="4397a3ba-cb0e-4247-90a1-538b561c6c49" class=""><strong>Duplicar EB-</strong><strong>KPs</strong></h2><p id="5acd2fb9-cc5d-44e9-a50c-9eb93b82bf13" class="">Um dos recursos que o<strong>&nbsp;E-Config</strong>&nbsp;oferece para facilitar a etapa de desenvolvimento do projeto inclui a possibilidade de fazer <strong>cópias </strong>dos comandos de teclados<strong> já existentes</strong>. Muito útil para ocasiões em que se faz necessária a inclusão de <strong>dois (ou mais)</strong> dispositivos com <strong>comportamentos idênticos </strong>ou <strong>similares</strong>, este recurso permite maior agilidade na programação do projeto e garante que elementos que precisam ser replicados o sejam feitos de maneira <strong>automática </strong>e livre de margem para equívocos.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="587a029b-754b-4c3a-9478-1549eb432dab"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Ao duplicar um KP, também serão copiadas, por exemplo, as propriedades do dispositivo KP em si (configurações de intensidade dos LEDs) e as configurações de&nbsp;<em><strong>Tipo do Acionador</strong></em>/<em><strong>Triggers</strong></em><strong>&nbsp;</strong>dos botões.     </div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ba9c8e92-1c44-4cc9-a583-f014682cce10"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      É possível utilizar o recurso em todos os dispositivos da linha EB-KP.     </div></figure><p id="ca6ebe20-d513-4e41-8a02-e8972dcb0306" class=""><strong>Não </strong>é possível duplicar aparelhos <strong>incompatíveis entre si</strong>, logo, para fazer uso do recurso é necessário ter dois (ou mais) dispositivos do <strong>mesmo modelo</strong> já devidamente inseridos no projeto. Após certificar-se de que esse requisito é cumprido, basta acessar a árvore do projeto e <strong>arrastar </strong>o EB-KP que deseja <strong>duplicar </strong>para <strong>cima </strong>do EB-KP que receberá as <strong>novas conexões</strong>.</p><p id="f7fada86-ac0c-4e27-b998-2be8e9563bd8" class="">Logo após finalizar essa operação, o <strong>E-Config</strong> deverá exibir uma <strong>mensagem </strong>ao usuário, alertando-o a respeito da subsequente <strong>sobrescrita na programação</strong> do dispositivo que ocorrerá caso seja dada continuidade na duplicação: caso o usuário selecione a opção&nbsp;<em><strong>Sim</strong></em>, a duplicação será realizada e ambos os&nbsp;KPs&nbsp;terão comportamentos <strong>iguais </strong>no que diz respeito à interação das <strong>Conexões </strong>de <strong>Entrada </strong>e <strong>Saída </strong>das suas teclas e sensores com o restante do projeto.</p><hr id="155af934-3471-4818-99eb-ea4af489e938"><h2 id="05056ff1-d009-4331-971a-656c5bab3f9d" class=""><strong><strong>Geração do Room-Control</strong></strong></h2><p id="b2a58909-e78b-45e3-9382-e25fe6f19325" class="">Com a geração do <a href="Room-Control.html">Room-Control</a>, alguns botões são <strong>automaticamente </strong>programados com a finalidade de otimizar o tempo do programador. Os&nbsp;<em>keypads</em>&nbsp;que têm seus botões programados são&nbsp;<strong>EB-KP6M</strong>&nbsp;e&nbsp;<strong>EB-KP12</strong>. Nestes teclados os botões programados são sempre os da <strong>esquerda </strong>(botões <strong>ímpares</strong>) com as cenas ordenadas de forma <strong>crescente</strong>. </p><figure id="d343a54c-f590-41cc-b90c-8b52a6e684b1" class="image"><a href="Keypads/Untitled%206.png"><img style="width:611px" src="Keypads/Untitled%206.png"></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a9de8412-8989-4391-a28e-95f15fab7a6d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Suponha que tenha programado para gerar <strong>5 cenas</strong> no&nbsp;<em>Gerador de Room-Control:</em> no <strong>EB-KP6M</strong> as teclas <strong>1</strong>, <strong>3 </strong>e <strong>5</strong> estarão associadas às <strong>Cenas 1</strong>,<strong> 2</strong> e&nbsp;<strong><em>Modo Automático</em></strong>&nbsp;respectivamente, e no <strong>EB-KP12</strong> as teclas <strong>1</strong>, <strong>3</strong>, <strong>5</strong>, <strong>7</strong>, <strong>9 </strong>e <strong>11 </strong>estarão associadas às cenas <strong>1</strong>, <strong>2</strong>, <strong>3</strong>, <strong>4</strong>, <strong>5 </strong>e&nbsp;<strong><em>Modo Automático</em></strong><em>&nbsp;</em>respectivamente.     </div></figure><hr id="04e055cb-43ac-4959-a6b2-dac48e8826cd"><h2 id="a640ed4e-9d52-4370-80df-d4ba2d8672b0" class=""><em><strong>KPView</strong></em></h2><p id="f0fb6f68-f379-4167-9d14-ca92c1a670ff" class="">Ao clicar com botão direito do <em>mouse </em>sobre um&nbsp;<em>keypad </em>que possua <strong>teclas</strong>, o recurso <strong>KPView </strong>é exibido como uma das opções. Este recurso permite ao programador adicionar&nbsp;<strong><em>labels</em></strong><strong>&nbsp;</strong>(legendas) por escrito ou no formato de <strong>Ícones</strong> em cada tecla e personalizar a disposição dos botões dos teclados do projeto da forma que desejar.</p><figure id="f2e9dabb-1489-4f3c-ba48-8811e415f4f1" class="image"><a href="Keypads/Untitled%207.png"><img style="width:721px" src="Keypads/Untitled%207.png"></a></figure><p id="4d93063a-cd59-43fd-84a0-e453ee2d00f3" class="">Ao selecionar esta opção, todos os botões terão um <strong>campo</strong> para adicionar legenda, facilitando a identificação de cada botão.</p><h3 id="1f4565eb-eed0-41f9-b929-a555ac565bfa" class=""><strong>Personalizar</strong></h3><p id="9f2d656f-aefd-4c0c-9785-18996f5b5d21" class="">Esta opção dá liberdade ao programador de colocar quantas e quais teclas desejar. Ao selecionar esta opção, caso algum botão já tenha alguma função vinculada a ele, aparecerá uma mensagem informando que os&nbsp;<em>links</em>&nbsp;feitos podem ser apagados e se deseja continuar mesmo assim. </p><div id="670844d6-d1e9-4621-9434-9fbab31e37ea" class="column-list"><div id="aabe4b7f-cf5b-4a82-822e-9fe20708183c" style="width:87.5%" class="column"><p id="47b9dec2-c55f-48e4-b8ed-b05084fb32e3" class="">À direita da janela do&nbsp;<em>KPView</em>&nbsp;está a&nbsp;<strong>Paleta de botões</strong>:</p><ul id="6ba35aae-b5e9-4a16-bf7e-9e8c97c4513c" class="bulleted-list"><li style="list-style-type:disc">Tecla dupla;</li></ul><ul id="76a443e6-a505-4304-b7e4-7deba2fe7000" class="bulleted-list"><li style="list-style-type:disc">Tecla simples ocupando 2 espaços;</li></ul><ul id="fcca21dd-0f9b-4e43-a5eb-820af4f87e45" class="bulleted-list"><li style="list-style-type:disc">Tecla simples ocupando 4 espaços;</li></ul><ul id="b409e09e-a286-4a8c-9050-b41f2eb03b2a" class="bulleted-list"><li style="list-style-type:disc">Tecla simples ocupando 6 espaços;</li></ul><p id="ebd4ab6a-a092-4309-b2b0-ff35554fc15b" class="">Para alterar o teclado atual basta clicar com o botão direito do mouse sobre o botão que deseja retirar do teclado.</p><p id="f8372541-52eb-48f2-b8f5-b2c9df963dfd" class="">Aparecerão as opções&nbsp;<strong><em>Deletar botão</em></strong>&nbsp;e&nbsp;<strong><em>Limpar links</em></strong>. Selecionando&nbsp;<em>Deletar botão, </em>um espaço cinza ocupará o botão deletado. Para adicionar uma nova tecla basta arrastá-la até a posição desejada.</p></div><div id="d1096410-6688-49f2-b1f1-1be5bfe4a7ef" style="width:112.5%" class="column"><figure id="22333dee-05e8-42e1-8a25-cfdd18b529e5" class="image"><a href="Keypads/Untitled%208.png"><img style="width:513px" src="Keypads/Untitled%208.png"></a></figure></div></div><figure id="b48edba1-76f8-42b6-bec9-8bdb4e1dee7a" class="image"><a href="Keypads/Untitled%209.png"><img style="width:1050px" src="Keypads/Untitled%209.png"></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="73bd18c6-877e-4c28-a93c-8a701ab8ee8d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Se a tecla couber, o espaço que será ocupado ficará <strong><mark class="highlight-teal">esverdeado </mark></strong>(simulando onde a tecla ficará). Se o espaço for insuficiente, uma parte ficará <strong><mark class="highlight-red">avermelhada </mark></strong>e o mouse ficará com o ícone de proibido (um circulo cortado);     </div></figure><h2 id="be2036c7-a8f4-43dc-8cb6-82167275690d" class="">Exportar <em><strong>KPView</strong></em></h2><p id="cfdc44b0-0924-4804-8fec-d9c65cb75f36" class="">Por fim, o <strong>E-Config</strong> oferece ao usuário a possibilidade de exportar um <strong>relatório </strong>que exibe de forma ordenada e em formato apropriado para impressão todos os <em>keypads </em>do projeto de acordo com com as alterações realizadas por meio dos recursos de <strong>Label </strong>e <strong>Personalizar </strong>do KPView.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2bdf7139-9996-4232-a94c-36cb68784540"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para exportar este relatório, basta acessar a aba de <strong>Sistema </strong>na <a href="../Barra%20de%20menus.html">barra de menus</a> e selecionar a opção <strong>Exportar KPView</strong>, disponível nas opções <strong>TXT </strong>e <strong>PDF</strong>.     </div></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Drivers de Música</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="901ddeb6-ad11-4783-a433-a279bd39a7ac" class="page sans"><header><h1 class="page-title">Drivers de Música</h1><p class="page-description"></p></header><div class="page-body"><p id="17472913-651c-4d15-aa97-66096a14314d" class="">A&nbsp;plataforma Embrace&nbsp;oferece integração com os principais serviços de música do mercado, fornecendo uma rica experiência aos seus usuários. Os recursos disponíveis dependem do que cada plataforma de música oferece para integração. Usando a <strong>E-App</strong> o usuário poderá ter uma experiência completa, porém é possível também utilizar projetos customizados, sendo eles limitados ao que o driver oferece. As funções disponíveis são:</p><ul id="b60bc6df-9e6e-4bf5-98d7-a42076170a13" class="bulleted-list"><li style="list-style-type:disc"><strong>Player de música </strong>e <strong>navegação </strong>inclusos na <strong>E-App</strong> para que o usuário realize o controle do que está sendo executado e busque novas músicas para executar <strong>sem sair</strong> da aplicação;</li></ul><ul id="f0cd2125-8480-4ade-a37b-d47ff4c95e22" class="bulleted-list"><li style="list-style-type:disc"><strong>Lista de Tops </strong>que possibilita o acesso e customização de <strong>atalhos </strong>para <strong>músicas</strong>, <strong>álbuns </strong>e/ou&nbsp;<strong><em>playlists&nbsp;</em></strong>que o usuário pode <strong>salvar </strong>e posteriormente <strong>associar </strong>a acionamentos via <strong>E-Config</strong>&nbsp;ou <strong>E-App</strong>;</li></ul><ul id="0ed2432a-266f-4c55-8832-285218d5bc65" class="bulleted-list"><li style="list-style-type:disc">Acesso via <strong>E-App</strong> à&nbsp;<strong><em>playlists</em></strong>, <strong>álbuns </strong>e <strong>músicas </strong>vinculadas à conta do <strong>usuário </strong>nos serviços de música compatíveis;</li></ul><ul id="36082172-c61b-4cc1-b9cd-8d5be793d06f" class="bulleted-list"><li style="list-style-type:disc">Programação das <strong>conexões de entrada </strong>de tais serviços de música no <strong>E-Config</strong>&nbsp;para tornar possível realizar o controle do <strong>player de música</strong> e da <strong>Lista de Tops</strong> por meio de&nbsp;<strong><em>keypads</em></strong>, <strong>macros</strong>, <strong>atividades de áudio e vídeo</strong>, <strong>eventos </strong>e demais <strong>acionamentos </strong>disponibilizados pela plataforma.</li></ul><figure id="8dff2803-66d7-4626-a802-c78591cd1816" class="image"><a href="http://embrace.editme.com/files/Musica/playerPrincipal3.jpg"><img style="width:394px" src="http://embrace.editme.com/files/Musica/playerPrincipal3.jpg"></a><figcaption><em>Template do player de música da E-App</em></figcaption></figure><p id="60933133-cfaa-4267-99be-8e952c7edfeb" class="">O objetivo desta página é discorrer sobre tais funcionalidades e dessa forma servir como referência para eventuais dúvidas a respeito do funcionamento dos novos recursos.</p><hr id="9dd2612c-87ae-4566-a72f-6de715a59b4f"><div id="768dfb0c-1a95-4288-af0c-cb52c1d5161a" class="column-list"><div id="e74fda4b-a39f-428a-8ee2-dac76d5c0ed3" style="width:50%" class="column"><p id="c0f87071-b80e-483c-a6d7-26a78d6e9ee4" class="">Estes <strong>recursos </strong>estão disponíveis para uso a partir das seguintes <strong>versões </strong>do <strong>sistema</strong>:</p></div><div id="f7752b66-ddd7-4f8e-8c50-3e6e21f1fa54" style="width:49.99999999999999%" class="column"><blockquote id="8495c7b2-75c6-4ab6-b3b8-88d056b66db3" class=""><strong>AC</strong>: 1.12.0 <strong>E-Config</strong>: 1.17.0 <strong>E-App</strong>: 2.6.0 (iOS e Android)      </blockquote></div></div><hr id="91464087-0ec9-4101-b9e2-e0c99d33e1e8"><p id="b1d3a98d-1983-4370-bcbb-58d1677cc15e" class="">A linha Embrace oferece integração com as seguintes <strong>plataformas</strong>:</p><div id="89fb41d8-747e-4911-8cf4-31811cdc16e7" class="column-list"><div id="8b55724e-b411-4d6e-8e1c-64e37f2676cc" style="width:25%" class="column"><ul id="9a0ad36a-9970-4bee-a11b-886eb6b28f40" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.denon.com/de-CH/heos"><strong>HEOS</strong></a><strong></strong></li></ul><ul id="e00a0c92-ce5a-46d6-9786-9bb16686b079" class="bulleted-list"><li style="list-style-type:disc"><a href="https://aataudio.com.br"><strong>AAT</strong></a></li></ul><ul id="ec22ec79-b067-4319-8032-68773bfd4081" class="bulleted-list"><li style="list-style-type:disc"><a href="https://br.yamaha.com/pt/products/contents/audio_visual/musiccast/index.html"><strong>MusicCast</strong></a></li></ul></div><div id="2364e932-23d3-4d82-85bc-0570bb2fdc3b" style="width:112.5%" class="column"><ul id="7fea1e9a-c50a-4b97-8478-73c594a9ae9f" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.autonomic-controls.com"><strong>Autonomic</strong></a><strong></strong></li></ul><ul id="e27e78f3-4465-4bbb-bfb2-f364df5a5c74" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.sonos.com/en-us/home"><strong>Sonos</strong></a>&nbsp;(acesse <a href="Driver%20Sonos.html">aqui</a> para mais informações)</li></ul></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4fe9978b-88a8-484e-aaca-8f0fa81d9690"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      O usuário que quiser fazer a integração dos serviços de música à sua instalação deverá possuir contas <strong>Premium </strong>(ou equivalente)<strong></strong>nos serviços que desejar utilizar.     </div></figure><p id="cff1c4c3-4ac5-4d04-b96e-b54f799bee86" class="">Vale destacar a distinção entre essas plataformas com relação à forma com que elas disponibilizam seus <strong>serviços de música</strong>: enquanto algumas oferecem o serviço <strong>diretamente </strong>por meio de&nbsp;<em>streaming</em>, outras funcionam como plataformas que <strong>agregam </strong>diversos outros serviços de música (<strong>HEOS</strong>, <strong>Autonomic </strong>e <strong>AAT</strong>). Portanto, ao realizar a integração da plataforma <strong>Embrace </strong>com as plataformas referidas o usuário também poderá incorporar à sua instalação os <strong>serviços de música</strong> suportados por estas plataformas. </p><p id="dfd58d62-f838-4c50-9aac-a0e7642226a4" class=""><strong>Exemplo</strong>: a plataforma HEOS oferece suporte a serviços como:&nbsp;<a href="https://www.deezer.com/br"><strong>Deezer</strong></a>,&nbsp;<a href="https://soundcloud.com/discover"><strong>Soundcloud</strong></a>,&nbsp;<a href="https://tidal.com"><strong>Tidal</strong></a><strong>&nbsp;</strong>e&nbsp;<a href="https://music.amazon.com/home"><strong>Amazon Music</strong></a><strong>&nbsp;</strong>(para o caso do serviço Amazon Music em particular, nota-se que até o presente momento a plataforma não oferece suporte à funcionalidade de Busca). Assim sendo, o usuário Embrace que assim desejar poderá integrar todos esses serviços à sua automação.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="628b3de2-2591-44d5-9334-ca414c66bde5"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><strong>Importante</strong>: a partir de Junho de 2023, a forma como trabalhamos com a plataforma <strong>Spotify </strong>passou por alterações que tornam obsoletas algumas informações presentes neste texto e que fazem referência à integração com este serviço em <strong>específico </strong>e, portanto, devem ser desconsideradas. As orientações que são válidas para os <strong>demais serviços</strong>, porém, <strong>ainda se aplicam</strong> e podem ser adotadas normalmente. Para maiores detalhes, entrar em contato com nossos consultores.     </div></figure><h2 id="ed17a026-20b6-4059-8bd1-793a3cd24f5f" class=""><strong>Driver</strong></h2><p id="f767eb16-1821-4cbc-a684-0ad1755564d0" class="">Para a realização da integração com os serviços, o <strong>E-Config</strong>&nbsp;dispõe de&nbsp;<strong>drivers</strong>&nbsp;que deverão ser adicionados ao projeto de acordo com o(s) serviço(s) de música que o usuário desejar incorporar à sua instalação.</p><p id="8091a986-0b26-40fe-ae57-7b362b733fdb" class="">Tais drivers poderão ser adicionados ao projeto acessando a aba&nbsp;<strong>Drivers</strong>&nbsp;no menu de&nbsp;<strong>Equipamentos</strong>. Nessa área o usuário poderá procurar pelos drivers manualmente (eles estarão localizados no caminho&nbsp;<em>SCENARIO\MUSICA\SCENARIO</em>), ou utilizando a barra de pesquisa disponibilizada na área superior da tela e procurando pelo termo “<em>Musica</em>” (sem acento) para encontrar a pasta com todos os serviços disponíveis ou procurando individualmente pelo nome do serviço que deseja adicionar ao projeto:</p><figure id="e212ae56-cd98-4dc4-bb18-661a58ada8a6" class="image"><a href="http://embrace.editme.com/files/Musica/buscaDriver2.png"><img style="width:720px" src="http://embrace.editme.com/files/Musica/buscaDriver2.png"></a></figure><p id="f0020b1f-1e3a-4769-84c2-36a0879728cd" class="">Com o driver devidamente <strong>adicionado </strong>ao projeto, será possível acessá-lo no menu de&nbsp;<strong>Programação</strong>&nbsp;para conferir mais detalhes sobre&nbsp;o mesmo&nbsp;(como versão, modelo e fabricante). </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d44f77dc-bd29-437e-aa74-ae13e1589a94"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      O driver pode ser inserido em qualquer ambiente, porém idealmente recomenda-se por uma questão de organização e coerência do projeto que ele seja adicionado a um ambiente em que estejam localizados os aparelhos de reprodução de som da instalação, como&nbsp;<em>receivers&nbsp;</em>ou alto-falantes.&nbsp;<strong>Ex</strong>: “Sala de Áudio e Vídeo”, “Sala de Música” etc.     </div></figure><p id="785bd643-7375-4fd6-9ae8-aaf4386a03eb" class="">Nessa janela também será possível observar suas&nbsp;<strong>Conexões de Entrada/Saída</strong>, desenvolvidas para que o usuário tenha maior autonomia e potencial para personalização no desenvolvimento de seu projeto. Abaixo nesta página estarão disponibilizadas maiores informações sobre cada conexão.</p><hr id="a423970a-0d7b-4b06-accd-b2867e2a4523"><h3 id="3279aa3a-e47c-4a16-91a4-85b0201c6226" class=""><strong>Controle de&nbsp;Volume</strong></h3><p id="b7f029a7-4c08-4508-b389-55b1a65e2d3e" class="">Ao selecionar algum driver de música existente no projeto é possível observar que são oferecidas algumas opções de <strong>controle de volume</strong> para que o usuário possa realizar o desenvolvimento de seu projeto e a configuração da sua instalação da forma que melhor atenda suas necessidades e seus recursos.</p><figure id="834520ec-87f6-4212-b9cb-536517cccb81" class="image"><a href="http://embrace.editme.com/files/Musica/controleVolume2.png"><img style="width:576px" src="http://embrace.editme.com/files/Musica/controleVolume2.png"></a></figure><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Controle de volume fixo:&nbsp;</strong></summary><div class="indented"><p id="0cf40025-c201-4b6f-a25a-5a159f49f7ea" class="">Essa&nbsp;<em>checkbox&nbsp;</em>oferece&nbsp;ao usuário a possibilidade de escolher como será realizado o controle de volume do serviço de música em sua instalação.</p><p id="b3594006-28a8-44e6-b6db-2fbc6d761a5a" class="">Abaixo da&nbsp;<em>checkbox</em>&nbsp;é possível observar orientações relacionadas ao controle de volume fixo e às suas interações com os dispositivos de reprodução: tais orientações tem como objetivo auxiliar o usuário a adequar o projeto à sua instalação física e dessa forma garantir o bom funcionamento da plataforma.</p></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Controle de volume máximo e mínimo</strong>: </summary><div class="indented"><p id="896f9646-5d10-4751-a6d8-e3b36e26ca9c" class="">Essa&nbsp;<em>checkbox&nbsp;</em>oferece ao usuário a possibilidade de definir limites para o volume dos dispositivos. Dessa forma, é possível fixar valores (mínimo e máximo) que definirão um intervalo dentro de qual o dispositivo de som operará. </p><p id="3ca85a6e-fccd-4e9a-998c-931f9770bf77" class="">Tais alterações são devidamente tratadas para que a representação do volume na E-App não seja afetada: ao atribuir o valor "<strong>20</strong>" para o "<strong>Volume mínimo</strong>" do dispositivo em questão, por exemplo, o usuário estará definindo que intensidade de som mais baixa no seu aparelho de reprodução será correspondente a "<strong>20</strong>". A E-App, porém, continuará a exibir em seu slider de volume o valor "<strong>1</strong>" para o seu volume mínimo, bem como o valor "<strong>100</strong>" para o seu volume máximo. Assim sendo, o que ocorre é que as devidas <strong>proporções </strong>são aplicadas para que esses valores (valor definido no <strong>driver </strong>via<strong> E-Config</strong> e valor do <strong>slider </strong>da <strong>E-App</strong>) sejam correspondentes entre si.</p></div></details><hr id="44a335b0-777a-4d16-8978-1942c83b1202"><h3 id="2a89702e-7792-493c-8089-132fb7379710" class=""><strong>Conexões de Entrada/Saída</strong></h3><figure id="5a1f0795-0cc0-403c-b1ab-7de31d9f0179" class="image"><a href="http://embrace.editme.com/files/Musica/Imagem%203.2.png"><img style="width:480px" src="http://embrace.editme.com/files/Musica/Imagem%203.2.png"></a></figure><ul id="c03fd357-dcdc-4b5e-bbca-6f30bef53bc8" class="toggle"><li><details open><summary><strong>Aleatório ligado/desligado&nbsp;</strong></summary><p id="834aa407-6519-4ec7-9c3d-77e736658d43" class="">O acionamento dessas conexões realiza a troca de estados/comportamentos do serviço com relação à&nbsp;<em>playlist</em>/álbum em execução no momento. Respectivamente, acionar as entradas <strong>Aleatório ligado</strong> e <strong>Aleatório desligado</strong><strong>ligam </strong>e <strong>desligam </strong>o modo <strong>aleatório </strong>do serviço.</p></details></li></ul><ul id="c7648630-355d-40e1-aa0c-825316e32fd4" class="toggle"><li><details open><summary><strong>Repetir desligado</strong></summary><p id="1585d2fb-21b8-48a5-a7eb-fa1c0d0c790a" class="">Da mesma forma que o modo aleatório, essa entrada aciona um dos estados relacionados à <strong>repetição</strong> de faixas/<em>playlists</em>/álbuns. Nesse caso, o comportamento adotado nesse estado é o&nbsp;<em>default</em>&nbsp;do serviço, que corresponde a não realizar repetições e manter a transição das faixas em ordem sequencial e automática.</p></details></li></ul><ul id="df4c08cd-516c-4a4d-856f-290c93fd6d69" class="toggle"><li><details open><summary><strong>Repetir tudo</strong></summary><p id="34c7b637-28ae-4e69-a1bc-991f405a00c8" class="">Acionar este estado faz com que o serviço <strong>repita </strong>uma&nbsp;playlist&nbsp;ou um álbum quando o mesmo chega ao fim. O que define se o álbum ou a&nbsp;playlist&nbsp;serão executados de forma sequencial ou não durante as repetições são os estados do modo aleatório citado acima (ligado/desligado).</p></details></li></ul><ul id="a11a1571-d1bb-4d1c-bd9f-b205cdad79ad" class="toggle"><li><details open><summary><strong>Repetir música&nbsp;</strong></summary><p id="079efaa3-0e1c-4827-b410-d66f3e17339e" class="">Da mesma forma que o estado anterior, acionar essa entrada habilita a <strong>repetição</strong>. Porém, nesse caso, uma vez que a repetição está ligada ela é válida apenas para a <strong>faixa que estiver tocando no momento do acionamento</strong>, que será executada novamente sempre que a faixa referida terminar, até que o estado da repetição mude para um dos dois anteriores (“Desligado” ou “Repetir tudo”). Esse modo sobrepõe o modo aleatório caso&nbsp;o mesmo&nbsp;também esteja ligado, uma vez que o serviço não pula automaticamente para a próxima música da playlist/álbum enquanto a função “Repetir música” estiver ligada.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3d8d6c9d-a6cf-4167-8342-17e6ba864205"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">         Alguns serviços de música não operam utilizando o conceito de <strong>fila de reprodução</strong> (Ex: Amazon Music é um serviço que pode ser utilizado pelo controlador Heos, porém as músicas reproduzidas por meio deste serviço&nbsp;não são adicionadas à fila do Heos). Isso pode fazer com que o uso de algumas funcionalidades relacionadas à repetição e ao modo aleatório se comportem de maneira inadequada.        </div></figure></details></li></ul><ul id="a89e5f7a-b24d-440d-a724-83ef339fbcb4" class="toggle"><li><details open><summary><strong>Play/Pause&nbsp;</strong></summary><p id="6bdb9608-dc5b-4c30-8c27-2059b5f70f74" class="">Essas duas entradas realizam o controle da faixa atual, respectivamente <strong>iniciando</strong>/<strong>retomando </strong>sua execução no serviço.</p></details></li></ul><ul id="74654816-d1e9-4dc4-8b0e-ad0cdbcd3430" class="toggle"><li><details open><summary><strong>Próximo/Anterior</strong></summary><p id="1ae8d338-cdc8-44ca-9931-67d64afe008a" class="">Esses comandos fazem o controle da&nbsp;playlist/álbum atual, respectivamente <strong>avançando </strong>ou <strong>retrocedendo </strong>as faixas em ordem sequencial (desde que o modo aleatório não esteja ligado). Caso o modo “<em>Repetir música</em>” esteja ligado, acionar qualquer uma dessas entradas fará com que o estado da repetição seja alterado para “<em>Repetir</em><em>tudo</em>”.</p></details></li></ul><ul id="9cf89832-ec6e-4ed8-b018-764c14006c7f" class="toggle"><li><details open><summary><strong>Lista de Top</strong></summary><p id="a0f413fe-5f04-4044-ad6a-6edb7691b7f0" class="">Essas entradas garantem ao usuário a possibilidade de executar cada uma das músicas/<em>playlists</em>/álbuns salvos na sua <strong>Lista de Tops&nbsp;</strong>(<em>mais detalhes abaixo</em>).</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a66ad706-e900-44fa-bf15-47a2ed443cee"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">         A <strong>quantidade </strong>de posições na <strong>Lista de Top </strong>pode <strong>variar </strong>de acordo com o <strong>driver/serviço</strong> que está sendo integrado.        </div></figure></details></li></ul><ul id="e9968af7-5c14-48a6-aa83-bb4ba37617e5" class="toggle"><li><details open><summary><strong>Volume UP/DOWN</strong>&nbsp;</summary><p id="79ddafee-4158-4690-beed-c1abc4e45ef1" class="">Acionar essas entradas permite a realização do controle de volume. A entrada <strong>Volume UP</strong><strong>incrementa </strong>o valor atual do volume em 2, <strong>Volume DOWN</strong><strong>decrementa </strong>em 2 a cada acionamento, sendo que manter o acionamento contínuo de qualquer uma dessas entradas faz com que o incremento (ou decremento) seja realizado em valores exponenciais. Além disso, existe um comportamento na E-App que permite ao usuário tocar duas vezes no&nbsp;<em>slider</em>&nbsp;de volume para que o valor seja alterado em <strong>5%</strong> do valor total, incrementando ou decrementando ao tocar no&nbsp;<em>slider</em>&nbsp;à direita ou esquerda do&nbsp;<em>knob</em>, respectivamente. Vale lembrar que essas conexões ficam disponíveis apenas enquanto a&nbsp;<em>checkbox&nbsp;</em><strong>de Controle de volume fixo</strong>&nbsp;estiver&nbsp;<strong>desabilitada</strong>. Caso o usuário tenha programado algo utilizando essas entradas e eventualmente habilitar o <strong>controle fixo</strong>, esses comandos serão&nbsp;ignorados.</p></details></li></ul><ul id="01dd1d52-4da3-422a-82db-0f1d72af9ac0" class="toggle"><li><details open><summary><strong>Mute</strong></summary><p id="0a130d51-7a66-4ce9-b225-ec3e1cb5019e" class="">A entrada permite <strong>interromper</strong>/<strong>retomar </strong>a emissão de som sem pausar a execução. Por ser uma entrada única, possui o comportamento de&nbsp;<em>toggle</em>, ou seja, cada acionamento da entrada vai alterar seu estado atual para o estado inverso.</p></details></li></ul><p id="1859e3ea-be30-4990-9254-c46d5d846679" class="">Os drivers correspondentes aos serviços de música também oferecem&nbsp;<strong>Conexões de Saída</strong>&nbsp;para que o usuário possa utilizar os&nbsp;<strong><em>feedbacks</em></strong><strong>&nbsp;</strong>disponibilizados em seu <strong>E-App Customizado</strong> ou em demais lógicas na Programação de seu projeto (como <strong>Macros</strong>, por exemplo), bem como outras <em>informações </em>exibidas no&nbsp;template&nbsp;do player de música da E-App, como&nbsp;<strong><em>Nome do artista</em></strong>,&nbsp;<strong><em>Volume</em></strong><strong>&nbsp;</strong>e&nbsp;<strong><em>Progresso</em></strong>.</p><hr id="72f8fce7-de2e-4bc3-8191-f327e12b6111"><h3 id="3b9e1cfb-8626-4433-b002-b01b46ac2a1c" class=""><strong>Atividades</strong></h3><p id="de26a6c4-e397-4595-aab2-1ecaf69b66c2" class="">O acesso ao&nbsp;template&nbsp;do player de música na E-App é realizado por meio de&nbsp;<strong>Atividades de áudio e vídeo</strong>. Ou seja, durante o desenvolvimento do projeto, recomenda-se ao usuário que sejam criadas Atividades que se comuniquem com os serviços, fazendo com que todas as interações entre a instalação e o(s) serviço(s) de música sejam realizadas por meio de tais atividades.</p><p id="6e3cb18b-2f1d-4474-a38d-aec527cb2b61" class="">Para criar uma atividade, o usuário poderá clicar com o botão direito do mouse no Ambiente em que deseja que essa atividade seja realizada (no nosso exemplo: Sala de Áudio e Vídeo) e selecionar a opção "<strong>Adicionar atividade de áudio e vídeo</strong>" para abrir uma nova janela,&nbsp; onde será possível editar e configurar os acionamentos que a atividade realizará ao ser chamada. A atividade criada será exibida na E-App ao acessar esse Ambiente, além de ser possível programar seu acionamento via&nbsp;<em>keypads</em>&nbsp;e/ou pulsadores.</p><figure id="a4b42d4b-e75b-4694-a30e-204f628a3833" class="image"><a href="http://embrace.editme.com/files/Musica/atividadeAV2.png"><img style="width:672px" src="http://embrace.editme.com/files/Musica/atividadeAV2.png"></a></figure><p id="e0664366-db91-4193-a085-f9c030c4976e" class="">Devido ao formato de driver deste recurso de integração, torna-se possível realizar as atribuições de&nbsp;<strong>Fonte&nbsp;</strong>e&nbsp;<strong>Volume&nbsp;</strong>das atividades a esses serviços, o que garante um controle maior sobre a reprodução de áudio, além de oferecer a possibilidade de programar outros acionamentos na automação em conjunto com a reprodução de mídia.</p><p id="526c86be-560a-4f2b-8df7-b15ea9e71595" class="">Os acionamentos&nbsp;<strong>Power ON</strong>&nbsp;e&nbsp;<strong>Power OFF</strong>&nbsp;são necessários para que a interação com o driver de música seja respectivamente <strong>iniciada </strong>ou <strong>finalizada</strong>, portanto, recomenda-se a incorporação dos mesmos nas atividades de áudio e vídeo adicionadas durante o desenvolvimento do projeto.</p><h2 id="d3467cac-e03d-4412-ad17-c706a76d45e3" class="">Configuração na E-App</h2><p id="6f762290-b463-44a4-9327-2860b01a4fc4" class="">Antes de começar a utilizar e controlar os serviços de música via E-App, o usuário deverá acessar sua instalação (após enviar o projeto à controladora) para realizar a configuração dos serviços.</p><p id="6daed8e2-ac6c-4774-9256-ea85fba7e6f5" class="">Ao navegar pelo projeto na E-App, acessar o ícone de <strong>Menu</strong> (localizado no canto superior direito da tela) e pressionar o botão <strong>Configurações</strong>, será possível observar que a opção <strong>Serviços de integração </strong>estará disponível. </p><p id="d9bb5bf9-b2ff-4199-a838-ebd8958b68b9" class="">Ao selecionar essa opção, o usuário será redirecionado a uma página que lista todos os dispositivos (<em>drivers</em>) de serviços de música presentes em seu projeto, que serão exibidos conforme os nomes que foram atribuídos durante sua inserção no projeto.</p><figure id="97045763-4157-40b3-ad3e-e529a6a1c2e2" class="image"><a href="Drivers%20de%20Musica/Untitled.png"><img style="width:480px" src="Drivers%20de%20Musica/Untitled.png"></a></figure><p id="9700044e-5b87-444e-9026-2a094c0b5c00" class="">Para garantir o funcionamento do serviço na E-App, o usuário deverá possuir uma conta no serviço que deseja utilizar e vincular esta conta aos drivers correspondentes em seu projeto. </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ac5a4643-0049-470b-8ab7-da0aa48cb710"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Exemplo</strong>: o usuário que quiser fazer uso do <strong>Heos&nbsp;</strong>em sua instalação deverá ter inserido um (ou mais de um) <em>driver </em>Heos&nbsp;em seu projeto e precisará vincular sua conta Heos&nbsp;a esse driver para que alguns dados dessa conta (como músicas favoritas, serviços, álbuns,&nbsp;<em>playlists</em>&nbsp;e dispositivos de reprodução) sejam devidamente carregados na E-App.     </div></figure><p id="7aec4a34-89b3-47a9-872c-1b8e49e42ee3" class="">É possível realizar essa operação pressionando o botão <strong>Usuário </strong>(visível na imagem acima) para acessar a tela de gerenciamento de contas e em seguida a opção <strong>Adicionar </strong>que será exibida na parte inferior desta tela. Uma tela de Autenticação será aberta na E-App e nela o serviço em questão solicitará ao usuário que realize o login com sua conta para que assim seja possível fazer a associação do serviço com a instalação.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="84a45d0b-d523-40bf-8e45-5483f6ce5075"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Alguns dispositivos podem ser integrados via <strong>rede local </strong>(como o <strong>AAT</strong>, por exemplo) e, portanto, dispensam a necessidade de autenticação de usuário.     </div></figure><figure id="fa1770d2-3c40-4567-8004-e00a6fa53c88" class="image"><a href="Drivers%20de%20Musica/Untitled%201.png"><img style="width:2104px" src="Drivers%20de%20Musica/Untitled%201.png"></a><figcaption><em>Telas de autenticação dos serviços Sonos e Heos.</em></figcaption></figure><p id="fe6dd98a-96d7-4992-8599-5cebe89067a7" class="">Vale notar que embora o usuário apenas possa utilizar uma conta por vez em cada driver, ele poderá conectar mais de uma conta do mesmo serviço a esses drivers, e dessa forma poderá selecionar qual conta deseja utilizar conforme sua necessidade acessando a tela de gerenciamento de contas. Todas as contas adicionadas e autenticadas pelo usuário ficam salvas e são exibidas nessa tela. Essas contas são listadas nas telas de gerenciamento de contas de todos os drivers(do mesmo serviço) existentes no projeto.</p><p id="c7dc37a0-c50a-4a92-a220-503386c7fb24" class="">Após a associação da conta, a E-App apresentará ao usuário uma lista com os aparelhos de reprodução disponíveis para essa conta. A mesma lista poderá ser acessada a qualquer momento pressionando a linha&nbsp;<strong>Dispositivo&nbsp;</strong>e por meio dela o usuário poderá associar sua conta ao dispositivo que fará a reprodução. Assim que o usuário escolher em qual dispositivo o som será reproduzido, uma mensagem de confirmação será exibida. Dessa forma, a instalação e o(s) dispositivo(s) estarão vinculados e será possível reproduzir e controlar as músicas disponíveis em diversos serviços sem sair da E-App.</p><h3 id="eaeb58ce-3aa6-4ee6-9460-3365efe81375" class=""><strong>Lista de Top</strong></h3><p id="52ded25f-aecb-42db-9745-8863d86cc9ea" class="">Além de oferecer a integração da automação com os serviços de música dos seus usuários, a plataforma Embrace também oferece uma ferramenta que permite a criação de uma <strong>lista personalizada </strong>e de <strong>fácil acesso</strong> para que o usuário possa <strong>salvar </strong>e <strong>reproduzir </strong>suas <em>músicas</em>, <em>álbuns </em>e&nbsp;<em>playlists</em>&nbsp;favoritas sem sair da <strong>E-App</strong>.</p><div id="86cbff0d-cc86-4194-b7c7-41e57a289f7b" class="column-list"><div id="e0c44e60-f655-4fda-b70d-cafb6ad74351" style="width:93.75%" class="column"><ul id="60b9c47a-d087-4c1a-94b5-a69795fe11e3" class="bulleted-list"><li style="list-style-type:disc">Ao <strong>salvar </strong>uma música em uma posição da sua lista de Top, o usuário estará armazenando nessa posição o&nbsp;<strong>contexto</strong>&nbsp;da faixa em execução no momento. Ou seja, quando o usuário executar alguma música previamente salva em sua lista Top, todas as características da reprodução no momento em que a música foi salva serão restauradas: a fila de execução da faixa original (que pode ser composta pelo álbum que contém a faixa em questão ou a&nbsp;<em>playlist</em>&nbsp;a qual ela pertence), o estado dos modos aleatório/repetir e o volume da reprodução, etc.</li></ul><ul id="a2da1fcd-b723-4045-8650-de1a12459543" class="bulleted-list"><li style="list-style-type:disc">Para adicionar uma música à lista de Top, o usuário deve pressionar o botão <mark class="highlight-yellow"><strong>+ </strong></mark>localizado acima da barra de progresso da faixa. Após pressionar o botão, uma mensagem informará o usuário de que ele pode selecionar uma posição (dentre as posições disponíveis) para <strong>salvar </strong>o que ele está ouvindo naquele momento.</li></ul><ul id="318336af-6ca4-4aaa-9018-ac79c5c44ea2" class="bulleted-list"><li style="list-style-type:disc">Após selecionar a posição, a música (assim como o seu contexto)&nbsp;ficará gravada e disponível para <strong>execução</strong>. Além da possibilidade de reproduzir músicas da lista de Top por meio da E-App, também é possível associar e programar a reprodução dessas posições utilizando as <strong>conexões de Entrada</strong>&nbsp;dos drivers.</li></ul></div><div id="fa6651fd-ca7d-415a-bf1a-cf3fe03c98b9" style="width:100%" class="column"><figure id="b58123de-41c2-43ab-9000-f3ae0bf8e2fb" class="image"><a href="Drivers%20de%20Musica/Untitled%202.png"><img style="width:672px" src="Drivers%20de%20Musica/Untitled%202.png"></a><figcaption>        Layout da lista de Top do serviço Heos       </figcaption></figure><p id="beab208a-36ba-4b1a-ab23-f79de69d6190" class=""></p></div></div><p id="7c0e87f9-0682-4a02-870b-630594e6d62c" class=""></p><p id="1133a852-31d5-46b7-85ef-5a86db02d374" class=""></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

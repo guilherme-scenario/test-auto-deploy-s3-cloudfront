@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Rede</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="5c1585ae-9f87-40ee-a79c-682260be48ce" class="page sans"><header><h1 class="page-title">Rede</h1><p class="page-description"></p></header><div class="page-body"><p id="1cea71de-36bd-4d91-8d2f-4d7c9c2477f2" class="">A aba <strong>Rede </strong>é acessada através do menu <strong>Instalação</strong>. Nela é possível interagir com a rede <strong>Embrace </strong>através das funções <strong>Modo Programação</strong>,&nbsp;<strong>Modo Teste</strong>, <strong>Zigbee,</strong>&nbsp;<strong>Procurar Dispositivos </strong>e, quando aplicável,<strong> Atualizar Firmwares.</strong></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7c2505c8-10b2-49c6-9ed7-c38f7ca25ba7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para acessar a aba Rede é necessário estar conectado a uma <strong>Controladora</strong>.     </div></figure><h2 id="0f132c4d-a8ef-4c11-9c81-2377b29b157d" class=""><strong>Modo Programação</strong></h2><figure id="57f251ea-722b-49a0-957f-545c6347be71" class="image"><a href="Rede/Untitled.png"><img style="width:919px" src="Rede/Untitled.png"></a></figure><ul id="64bb4500-2e79-46c2-9407-5053f0e5ed4d" class="bulleted-list"><li style="list-style-type:disc">Na seção à esquerda ficam listados os&nbsp;<strong>Dispositivos do Projeto</strong>, que são todos os equipamentos Embrace pertencentes ao projeto&nbsp;separados de acordo com seus respectivos ambientes.</li></ul><ul id="3007edfb-d253-4f95-ac7d-821f06428efd" class="bulleted-list"><li style="list-style-type:disc">Na seção à direita ficam listados os&nbsp;<strong>Dispositivos da Rede</strong>&nbsp;presentes na rede à qual o E-Config está atualmente conectado. Eles estão separados em&nbsp;<strong>LAN&nbsp;</strong>e&nbsp;<strong>WIRELESS</strong>.      <ul id="21f40abc-dc3c-41f9-9b75-9819281d64f4" class="bulleted-list"><li style="list-style-type:circle">Em&nbsp;<strong>LAN</strong>&nbsp;são listadas as interfaces de comunicação entre a controladora e os dispositivos. Para listar todas as interfaces de comunicação basta clicar em&nbsp;<strong>Procurar Redes</strong>&nbsp;e escolhendo uma delas (através do checkbox à esquerda) basta clicar em&nbsp;<strong>Procurar Dispositivos</strong>&nbsp;para que todos os dispositivos conectados àquela interface sejam listados, dentre eles&nbsp;Módulos,&nbsp;Keypads&nbsp;e&nbsp;Sensores.</li></ul><ul id="48043ef9-d300-4db2-88ca-17982513d4b1" class="bulleted-list"><li style="list-style-type:circle">Já na pasta&nbsp;<strong>WIRELESS</strong>&nbsp;são listados os dispositivos que pertencem à linha EB-WIFI.</li></ul></li></ul><h3 id="124a05b9-0e63-4181-bacb-b50d07b5efca" class="">Associação</h3><p id="85dd1e0b-87e9-4aef-b249-45752ac7dcbc" class="">Para associar um dispositivo de <strong>projeto </strong>a um dispositivo de <strong>rede</strong>, basta selecionar e <strong>arrastar </strong>o componente de projeto que deseja vincular até a janela da direita. De acordo com cada conexão e função, as letras do nome do dispositivo podem assumir 5 <strong>cores </strong>diferentes:</p><div class="indented"><ul id="96bb569e-1825-4c91-8765-85683c317c14" class="bulleted-list"><li style="list-style-type:disc">Se o dispositivo do projeto <strong>não </strong>tiver associação, ficará com a cor <strong><mark class="highlight-blue">azul</mark></strong>.</li></ul><ul id="cb59d8b4-3d5d-40bf-ae53-ed56a3f4ddfe" class="bulleted-list"><li style="list-style-type:disc">Ao clicar sobre o componente, todos os componentes do <strong>mesmo tipo</strong> presentes na rede ficarão com as letras na cor <mark class="highlight-blue"><strong>azul</strong></mark>.</li></ul><ul id="3fc4f41b-6a00-4bb2-937e-f6bf1b276741" class="bulleted-list"><li style="list-style-type:disc">Ao <strong>associar </strong>os dispositivos, a cor de ambos muda para <strong><mark class="highlight-teal">verde</mark></strong>.</li></ul><ul id="2de58e52-41df-4ba5-98b7-8cd1d8ee79e8" class="bulleted-list"><li style="list-style-type:disc">Quando já foi associado, mas por algum motivo o dispositivo da rede <strong>não </strong>está mais presente, a cor do dispositivo (tanto em projeto quanto em rede) fica <mark class="highlight-red"><strong>vermelha</strong></mark>.</li></ul><ul id="e0ebb3b2-e716-4c0a-ba17-727978dce20b" class="bulleted-list"><li style="list-style-type:disc">Por fim, quando o dispositivo possui endereço IP (como a <strong>EB-NTL1</strong> ou algum dispositivo <strong>EB-WIFI</strong>, por exemplo) e está com o&nbsp;<strong>DHCP habilitado</strong>, um aviso com a cor <mark class="highlight-orange"><strong>laranja </strong></mark><mark class="highlight-default">é exibido com o nome do dispositivo</mark><mark class="highlight-default"><strong>.</strong></mark></li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b471e11f-8278-469e-848e-15f28c7e9268"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">       É importante garantir que <strong>todos </strong>os dispositivos <strong>Embrace </strong>tenham&nbsp;<strong>IPs dedicados</strong>&nbsp;na rede (as boas práticas de uso do sistema ditam que esses IPs também&nbsp;<strong>devem</strong>&nbsp;<strong>estar fixados fora da faixa DHCP</strong>).      </div></figure></div><p></p><h3 id="5efcfb37-b80c-49b1-b126-663ca10d3836" class=""><strong>Identificação</strong></h3><p id="1fa824ae-40c2-4e56-9d29-c436f3bb93b1" class="">Para <strong>identificar </strong>dispositivos físicos, basta clicar com o <strong>botão direito</strong> do mouse sobre um componente na janela de rede e selecionar uma das opções:</p><ul id="6a9e150d-2e07-410b-87e5-4f0ce5602bda" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Identificar dispositivo</em></strong>: apenas o dispositivo selecionado irá ser identificado.</li></ul><ul id="08b7f294-3f51-43ef-90ee-6e12aac72573" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Identificar dispositivos selecionados</em></strong>: de acordo com as <em>checkboxes </em>selecionadas, vários dispositivos (de mesmo tipo ou não) serão identificados.</li></ul><ul id="6e77ace5-5962-4f4b-b629-e34435cc4507" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Identificar dispositivos do mesmo tipo</em></strong>: neste caso, os dispositivos de mesmo tipo irão piscar ao mesmo tempo. Não há necessidade de selecionar o <em>checkbox </em>destes dispositivos.</li></ul><figure id="9c8ac508-1d9d-4032-aca4-49ae56b76efc" class="image"><a href="Rede/Untitled%201.png"><img style="width:618px" src="Rede/Untitled%201.png"></a></figure><p id="546f1872-3000-4d52-94bf-4543773d7ef7" class="">A identificação funciona de forma diferente para&nbsp;<strong><em>módulos</em></strong><strong>&nbsp;</strong>e&nbsp;<strong><em>keypads</em></strong>:</p><ul id="5ff4770b-70dc-4777-b232-9432d65ec58f" class="bulleted-list"><li style="list-style-type:disc"><strong>Módulos </strong>em estado de identificação faz seu LED piscar em uma frequência maior do que a usual. Acionando o botão de&nbsp;<strong><em>setup</em></strong><em>,</em><strong>&nbsp;</strong>o módulo para de piscar e é identificado.</li></ul><ul id="193366f4-2d7b-4065-843a-d0ac89c12598" class="bulleted-list"><li style="list-style-type:disc"><strong>Keypads </strong>ficam com todos os LEDs piscando até que alguma de suas <strong>teclas </strong>seja acionada ou que alguém interrompa a identificação.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="cf732fff-3f10-4a1d-b1ea-409cb671d550"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Ao clicar com o botão <strong>direito </strong>do mouse sobre a<strong> EB-NTL1</strong> vinculada ao projeto é possível <strong>identificar todos os dispositivos</strong> presentes na rede. Além disso é possível identificar dispositivos através dos próprios <strong>dispositivos de projeto</strong> quando estes já estiverem <strong>associados</strong>.     </div></figure><h3 id="dc764917-cfce-4225-b340-dd1f52448d74" class=""><strong>Enviar firmware</strong></h3><p id="2511225e-8cc3-400d-9fd6-bf485b101eb4" class="">Além da <strong>identificação </strong>é possível <strong>enviar&nbsp;</strong><strong><em>firmware</em></strong>&nbsp;para um <strong>único </strong>dispositivo ou <strong>vários </strong>de mesmo tipo. Com essa opção, o programador pode enviar versões de firmware para os dispositivos e garantir que todos os aparelhos contam com as últimas correções e recursos oferecidos pela Embrace. </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="78b7e035-5872-4409-9b52-621f4056e4a2"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      É <strong>altamente recomendável </strong>manter todos os dispositivos da rede com suas respectivas versões de <em>firmware </em>mais recentes a fim de garantir um bom funcionamento do sistema.     </div></figure><h3 id="b3ac6144-2458-4d3b-bb0a-089c63761f47" class=""><strong>Alterar IP</strong></h3><div id="566be42b-1c5d-4d57-bf10-dc8dfdab7ba7" class="column-list"><div id="bca0aad4-6e85-4139-b6db-e44d4f223982" style="width:43.75%" class="column"><p id="96556592-3334-41da-b139-6d9b3f0b44b1" class="">Esta opção só está disponível para <strong>interfaces </strong>de comunicação e dispositivos <strong>Wireless</strong>. </p><p id="a8aa2625-5d2f-45f1-8cdc-e7b82a40db33" class="">Clicando com o botão direito do mouse sobre um desses itens, dentre as opções estará a opção para&nbsp;<strong><em>Alterar endereço de IP</em></strong>. </p><p id="b0f8cf84-2cd5-4466-ba21-7f8cc64e2800" class="">Ao clicar sobre esta opção abrirá uma janela à direita com as&nbsp;<strong><em>Configurações de endereço</em></strong>&nbsp;do dispositivo, além dos&nbsp;<strong><em>Dados da rede</em></strong>&nbsp;(estes não podem ser alterados). Logo abaixo estarão os campos&nbsp;<strong><em>Novo IP</em></strong>,&nbsp;<strong><em>Nova Máscara de Rede</em></strong>&nbsp;e&nbsp;<strong><em>Nova Porta TCP</em></strong>.</p></div><div id="628db7c5-5418-4515-9192-804aeb7afed8" style="width:56.25%" class="column"><figure id="cdea2430-e0a5-45ac-8015-756f7dc55f9a" class="image"><a href="Rede/Untitled%202.png"><img style="width:336px" src="Rede/Untitled%202.png"></a></figure></div></div><h2 id="27a4ffb1-6e93-4e00-833e-cfcf6bdeff37" class="">Modo Teste</h2><p id="549cab47-cbd8-4eb0-bf84-c443e08856f3" class="">Esta página separa a tela em&nbsp;<strong>Dispositivos da Rede</strong>&nbsp;e&nbsp;<strong>Resposta Física</strong>. Com este recurso, é possível <strong>testar </strong>os dispositivos Embrace em <strong>tempo real</strong>, auxiliando no processo de instalação da automação.</p><p id="2475317c-a611-4963-949b-94af2345b076" class="">Ao selecionar um dispositivo da janela de <strong>Dispositivos da Rede</strong> (à esquerda), a janela de <strong>Resposta Física</strong> (à direita) exibirá uma <strong>representação </strong>do dispositivo em questão (além de <strong>informações </strong>a respeito do mesmo, como <em>Nome</em>, <em>Versão</em>, <em>Endereço </em>e <em>Número de série</em>), a partir de onde será possível controlar (e observar) as respostas para todos os <strong>comandos </strong>que o dispositivo aceita <strong>receber/enviar</strong>.</p><figure id="400e4670-587e-4007-8754-39b168e0b527" class="image"><a href="Rede/Untitled%203.png"><img style="width:855px" src="Rede/Untitled%203.png"></a><figcaption>      Janela de Resposta Física no Modo Teste do módulo EB-SDM8-STD     </figcaption></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="20d6db1a-de55-41ec-8403-9711f027efb8"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Por meio dos recursos disponíveis nas abas <strong>INPUT</strong> e <strong>OUTPUT</strong>,<strong></strong>é possível realizar diversos acionamentos no dispositivo, como o estímulo de <strong>teclas </strong>e controle de <strong>canais</strong>, bem como observar os <strong><em>feedbacks </em></strong>que alguns módulos dispõem, como o estímulo de <strong>sensores </strong>e fechamento de contato em entradas <strong>auxiliares</strong>.     </div></figure><h2 id="17abbfe4-eabb-4d58-8b2d-cfcd896949e6" class="">Zigbee</h2><p id="66f3d5ee-2100-4c82-852b-91d8273e8515" class="">Nesta página é possível realizar o <strong>Gerenciamento </strong>das redes <strong>Zigbee</strong> da instalação. </p><figure id="cedacd2a-5cca-4f1e-a212-250413b5cdf1" class="image"><a href="Rede/Untitled%204.png"><img style="width:845px" src="Rede/Untitled%204.png"></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e66d5eef-2e15-4222-8876-5c2355f96851"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para mais detalhes sobre os dispositivos que podem ser integrados à automação por meio deste protocolo e sobre os passos necessários para a configuração e gerenciamento desses dispositivos, favor consultar a página <a href="../EB-WIFI/EB-ZRF-HUB.html">EB-ZRF-HUB</a>.     </div></figure><h2 id="2fd7300b-e804-4dd3-bd1b-ba4c8bb2e3d8" class="">Procurar Dispositivos</h2><p id="a8e9226d-aa5a-4b97-8470-148148427ff0" class="">Ao pressionar este botão, o <strong>E-Config</strong> listará todos os dispositivos Embrace que atualmente estão presentes na rede da <strong>Controladora</strong>, incluindo todas as <strong>Interfaces </strong>de comunicação e seus respectivos <strong>módulos (E-Net)</strong>, além de módulos <strong>EB-WIFI</strong>.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="518e7984-eef3-4155-bc1e-fb51c222d20a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      É essencial utilizar este recurso para fazer a <strong>associação </strong>dos dispositivos do <strong>projeto </strong>com os dispositivos da <strong>rede </strong>no <strong>Modo Programação</strong>.     </div></figure><h2 id="9775d6fa-1132-4375-9fc1-83e3a3752bad" class=""><strong>Atualizar Firmwares</strong></h2><p id="0f145fd3-e526-40fd-a7dd-4990de39793b" class="">Este botão aparece apenas nas ocasiões em que o&nbsp;<em>firmware</em>&nbsp;de algum dispositivo da rede esteja desatualizado. Ele é exibido tanto no menu de <strong>Instalação </strong>quanto no canto <strong>superior direito</strong> da janela principal do <strong>E-Config</strong>. </p><p id="18101f64-25d9-4f17-a897-0c9465567d8e" class="">Ao pressioná-lo, uma <strong>verificação </strong>será realizada em todos os dispositivos na rede da Controladora a fim de comparar a <strong>versão que eles estão rodando atualmente</strong> com as <strong>versões mais recentes disponíveis para atualização.</strong></p><div id="20374e25-6a64-4680-9459-ee4c3861592b" class="column-list"><div id="2885721e-03ce-433a-9715-80186326d31e" style="width:50%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="498e52e7-bed5-4aea-9644-f58ac7a718c7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">        Caso existam novas versões disponíveis, o E-Config oferecerá ao usuário a opção de <strong>Atualizar todos</strong> ou <strong>Selecionar na lista</strong> quais dispositivos ele deseja atualizar.       </div></figure></div><div id="be93d9c7-f5c4-4d8c-b7fd-0c9f7bd3991c" style="width:50%" class="column"><figure id="8a3199b5-8577-40e3-b015-8bdfa6477f6e" class="image"><a href="Rede/Untitled%205.png"><img style="width:403px" src="Rede/Untitled%205.png"></a></figure></div></div><figure id="2caed567-fd01-4574-ac1d-d61c2c3c5729" class="image"><a href="Rede/Untitled%206.png"><img style="width:790px" src="Rede/Untitled%206.png"></a><figcaption>      Lista para selecionar dispositivos que passarão por uma atualização de firmware.     </figcaption></figure><p id="42af4df8-38d8-4f39-b1d4-75f084d68a4d" class=""></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

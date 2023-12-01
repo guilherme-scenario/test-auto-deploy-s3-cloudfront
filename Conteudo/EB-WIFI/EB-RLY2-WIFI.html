@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>EB-RLY2-WIFI</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="2756d5d6-7681-429b-98be-1043471edbab" class="page sans"><header><h1 class="page-title"><mark class="highlight-blue_background">EB-RLY2-WIFI</mark></h1><p class="page-description"></p></header><div class="page-body"><div id="e2921588-8657-4985-8423-9035bab2082c" class="column-list"><div id="bf4f7764-9e42-4f3f-b765-4038ef8ef721" style="width:37.5%" class="column"><p id="7a5b3668-6533-498c-89ef-9c92d10f11df" class="">Com o módulo&nbsp;<strong>EB-RLY2-WIFI</strong>&nbsp;é possível comandar <strong>cortinas</strong>, <strong>toldos </strong>ou <strong>persianas</strong>, bem como outras <strong>cargas não dimerizáveis</strong>. Ele também conta com <strong>2 entradas auxiliares</strong> onde podem ser ligados pulsadores ou outros contatos de acionamento .</p></div><div id="e0a0283f-7101-4c88-87fa-dbf8b455a13b" style="width:62.5%" class="column"><figure id="5092f62f-0bf4-4b70-95e6-e86e17f514a5" class="image"><a href="http://embrace.editme.com/files/EB-RLY2-WIFI/rele.png"><img style="width:288px" src="http://embrace.editme.com/files/EB-RLY2-WIFI/rele.png"></a></figure></div></div><h2 id="8484ac85-5f3a-44ce-8194-10cd62553e4f" class=""><strong>Considerações gerais</strong></h2><ul id="68abcf89-598c-40ff-98b1-ddfb451d0204" class="bulleted-list"><li style="list-style-type:disc"><strong>Especificações:</strong><ul id="57b4d27e-7ce1-4039-b51d-866859b6a0f0" class="bulleted-list"><li style="list-style-type:circle">Possui&nbsp;2 canais de relés: 5&nbsp;Amperes&nbsp;total (2,5A&nbsp;para cada canal).</li></ul><ul id="c191f3fa-8206-40ff-b408-12625d0f6dea" class="bulleted-list"><li style="list-style-type:circle">Possui&nbsp;2 entradas auxiliares&nbsp;com acionamento AC&nbsp;(FASE).</li></ul><ul id="1150dfae-d919-403c-bc2c-913e5816888e" class="bulleted-list"><li style="list-style-type:circle">Possui&nbsp;1 botão&nbsp;de&nbsp;<em>setup</em>&nbsp;na caixa do próprio dispositivo usado para&nbsp;ativar modo de configuração e outros recursos descritos a seguir.</li></ul><ul id="7a48123e-b33c-4efa-9138-6a9f3a9f892c" class="bulleted-list"><li style="list-style-type:circle"><em>Bivolt&nbsp;</em>automático.</li></ul></li></ul><ul id="dee6ad78-0b6a-496b-854d-eb292f8f7733" class="bulleted-list"><li style="list-style-type:disc"><strong>Modos de operação</strong><ul id="f998b2fb-72b3-4581-9bce-7bde9efc4fe0" class="bulleted-list"><li style="list-style-type:circle"><strong>Uso geral</strong>:&nbsp;os canais de relé funcionam de forma independente.</li></ul><ul id="d233471f-afb9-4b46-af2c-7c32f92a0459" class="bulleted-list"><li style="list-style-type:circle"><strong>Cortina</strong>:&nbsp;os canais de relé funcionam de forma intertravada, ou seja, nunca ficarão ligados simultaneamente, já que um canal será para abrir/subir e o outro será para fechar/descer. No modo cortina quando comandamos um canal e o outro está ativado, por exemplo, o módulo desliga o canal que está ativado, aguarda 1 segundo e liga o outro canal.</li></ul></li></ul><h2 id="81bb4f7f-5cba-4dbd-8e2a-9c9e00138fef" class=""><strong>Processo de instalação</strong></h2><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="10a50349-57f1-4a9b-9c1b-cfac22b37796"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      O módulo<strong>&nbsp;EB-RLY2-WIFI</strong>&nbsp;pode ser <strong>incluído na rede </strong>da instalação da mesma forma que os outros dispositivos da linha&nbsp;<strong>EB-WIFI</strong>. Para mais informações a respeito de como proceder para configurar o dispositivo, favor visitar a seção&nbsp;<strong>Configuração</strong>&nbsp;da página&nbsp;<a href="../EB-WIFI.html"><strong>EB-WIFI</strong></a>.     </div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0732dfca-6750-4343-a7d1-846b7aa1d925"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      O&nbsp;<strong>Modo Setup</strong>&nbsp;deste dispositivo é acionado da seguinte maneira: pressione o botão de&nbsp;<em>setup</em>&nbsp;por aproximadamente 5 segundos até que o LED de&nbsp;<em>setup</em>&nbsp;pisque numa cadência de 3 piscadas em intervalo de 1 segundo entre elas. Solte o botão de&nbsp;<em>setup</em>&nbsp;antes de 10 segundos, senão o EB-RLY2-WIFI restaurará para o&nbsp;<strong>padrão de fábrica</strong>&nbsp;(mais detalhes adiante).     </div></figure><h2 id="6701821a-3e24-4881-a656-2c0f4e8bb557" class=""><strong>Incluindo EB-RLY2-WIFI em seu projeto&nbsp;para controlar cortina</strong></h2><p id="ee8af0cd-fd7b-4fde-86d9-24d2eac6c2f6" class="">O&nbsp;<strong>EB-RLY2-WIFI </strong>aparecerá na aba de&nbsp;<strong>E-Net</strong>&nbsp;do&nbsp;seu&nbsp;E-Config. Basta adicioná-lo&nbsp;ao ambiente como qualquer outro dispositivo da rede Embrace.&nbsp;Em seguida os procedimentos serão:</p><ul id="82d6c3a7-a6b8-4310-9bae-d0b2b07f4847" class="bulleted-list"><li style="list-style-type:disc">Adicionar uma Cortina/Toldo (em&nbsp;Acionadores, localizado em&nbsp;Equipamentos/Ambiente) ao ambiente desejado.</li></ul><ul id="5b682759-72c9-457d-91ca-b5ba4cbabc0a" class="bulleted-list"><li style="list-style-type:disc">Arrastar a Cortina/Toldo na conexão do EB-RLY2-WIFI.</li></ul><figure id="3f17b049-adab-4f1a-9f72-366c7f9b57ba" class="image"><a href="http://embrace.editme.com/files/EB-RLY2-WIFI/associando4.png"><img style="width:604px" src="http://embrace.editme.com/files/EB-RLY2-WIFI/associando4.png"></a></figure><ul id="b7ced16b-d154-4eb3-bd2b-fa6599701fd8" class="bulleted-list"><li style="list-style-type:disc">Se desejado, conectar&nbsp;pulsadores&nbsp;às&nbsp;entradas auxiliares, porém isto é opcional, pois é possível fazer o controle somente pela E-App também.</li></ul><ul id="472b4e91-c1d5-4d23-81a4-2a46c1b60de9" class="bulleted-list"><li style="list-style-type:disc">Em seguida fazer as associações desejadas no módulo de Cortina/Toldo.</li></ul><figure id="70136c2a-5fee-491f-b956-804dcfdbc880" class="image"><a href="http://embrace.editme.com/files/EB-RLY2-WIFI/cortina2.png"><img style="width:600px" src="http://embrace.editme.com/files/EB-RLY2-WIFI/cortina2.png"></a></figure><ul id="3bcca185-4d67-4969-bd2c-f3ba4862ac30" class="bulleted-list"><li style="list-style-type:disc">Se for usar&nbsp;E-App Automático&nbsp;o próprio E-Config&nbsp;já traz um&nbsp;<em>template</em>&nbsp;com botões para controle de cortina&nbsp;e a posição da mesma.</li></ul><ul id="616f5553-0bd5-4946-8d85-5abfdb7e0d05" class="bulleted-list"><li style="list-style-type:disc">Associar o dispositivo físico EB-RLY2-WIFI&nbsp;na aba de&nbsp;Rede.</li></ul><figure id="158ec6ac-3c86-4f34-ad68-8e52369e1b2b" class="image"><a href="http://embrace.editme.com/files/EB-RLY2-WIFI/varredura-vinculado3.png"><img style="width:558px" src="http://embrace.editme.com/files/EB-RLY2-WIFI/varredura-vinculado3.png"></a></figure><ul id="9718d6e6-bd15-4b9d-8050-f91ea17398c5" class="bulleted-list"><li style="list-style-type:disc">Enviar o projeto para a controladora.</li></ul><h2 id="3e2acb02-21f0-42c9-9a5b-51ec41f550c0" class=""><strong>Modo Teste</strong></h2><ul id="758b33dc-18d2-40d7-96c4-aeeb8d743958" class="bulleted-list"><li style="list-style-type:disc">Ainda na aba&nbsp;Rede, é possível testar&nbsp;o funcionamento do EB-RLY2-WIFI.</li></ul><ul id="56b4203c-4c04-408b-9db9-9db82552295b" class="bulleted-list"><li style="list-style-type:disc">Para realizar estes testes, basta selecionar o EB-RLY2-WIFI correspondente e clicar em Modo Teste (localizado no topo da aba Rede).</li></ul><ul id="826444f7-4b87-4275-bfc4-2a22d2ff17f4" class="bulleted-list"><li style="list-style-type:disc">Neste momento, os&nbsp;<em>Dispositivos da Rede</em>&nbsp;passarão a ficar à esquerda e a tela do módulo EB-RLY2-WIFI abrirá à direita.</li></ul><ul id="dcfca73f-0adf-495c-8471-034dbc3a82ae" class="bulleted-list"><li style="list-style-type:disc">Na aba&nbsp;<em>INPUT</em>&nbsp;encontram-se as informações do módulo e os métodos de teste: o&nbsp;slider indica a posição da cortina e&nbsp;os checkbox abrir e fechar servem para abrir e fechar cortina. Mais abaixo é possível acompanhar o sinal do Wi-Fi e o consumo do EB-RLY2-WIFI.</li></ul><p id="d8186055-f80d-40b4-ac38-9b47cd275f51" class=""></p><div class="indented"><figure id="ffa516c5-c366-4930-aee0-ab85f25e21c0" class="image"><a href="http://embrace.editme.com/files/EB-RLY2-WIFI/modoteste3.png"><img style="width:588px" src="http://embrace.editme.com/files/EB-RLY2-WIFI/modoteste3.png"></a></figure></div><p></p><ul id="d2afc585-b873-4262-96fb-9d69e978ac61" class="bulleted-list"><li style="list-style-type:disc">Na aba&nbsp;<em>OUTPUT</em>&nbsp;são listados o&nbsp;<em>consumo de potência</em>&nbsp;e o&nbsp;<em>sinal do Wi-Fi</em>&nbsp;a cada segundo.</li></ul><p id="a7ae3e02-c83b-4a92-8b9a-f2aeaf6dfb2f" class=""></p><div class="indented"><figure id="ddcb5339-6883-4d59-88f1-20b28ecba100" class="image"><a href="http://embrace.editme.com/files/EB-RLY2-WIFI/modoteste4.png"><img style="width:588px" src="http://embrace.editme.com/files/EB-RLY2-WIFI/modoteste4.png"></a></figure></div><p></p><h2 id="fc0fffd4-b285-43bb-99d6-78c2f5b63d17" class=""><strong>Projeto</strong></h2><p id="fa317f46-8e9d-416f-880a-02a95e017542" class="">O módulo tem seu funcionamento atrelado à&nbsp;controladora (AC). Dizemos que quando conectado à AC ele está no&nbsp;<strong>Modo&nbsp;C</strong><strong>entral</strong>, caso contrário estará em&nbsp;<strong>Modo&nbsp;L</strong><strong>ocal</strong>. O modo local é apenas um modo de emergência caso a&nbsp;AC fique inoperante por algum motivo, ou ainda quando não conectamos logicamente&nbsp;o EB-RLY2-WIFI ao projeto Embrace. Neste momento o EB-RLY2-WIFI não tem funcionamento algum. As auxiliares no modo local assumirão diferentes funcionalidades dependendo do modo de operação que&nbsp;o EB-RLY2-WIFI estava antes, como explicado a seguir:</p><ul id="281e6939-3fbf-464b-b025-a68ec122c6cc" class="bulleted-list"><li style="list-style-type:disc"><strong>Desvincular modo local</strong>&nbsp;habilitado: faz com que&nbsp;as auxiliares&nbsp;não tenham funcionalidade&nbsp;no modo local. O funcionamento do EB-RLY2-WIFI e das auxiliares voltará no momento em que estiverem conectados à AC novamente.</li></ul><ul id="ae183d07-6e67-4485-bc25-ab44b10f8c0a" class="bulleted-list"><li style="list-style-type:disc"><strong>Desvincular modo local</strong>&nbsp;desabilitado:      <ul id="c0fe03fe-af9f-48b5-8d81-a419b27a3b2f" class="bulleted-list"><li style="list-style-type:circle">Se no&nbsp;E-Config o EB-RLY2-WIFI foi configurado para operar cortinas, as auxiliares assumirão as funções de abrir (auxiliar 1) e fechar (auxiliar 2) a cortina.</li></ul><ul id="4845e0c0-93cf-4bd9-8ffd-4731f10f690a" class="bulleted-list"><li style="list-style-type:circle">Se no&nbsp;E-Config o EB-RLY2-WIFI foi configurado para operar de modo geral,&nbsp;as auxiliares irão comandar os relés de forma independente, cujo&nbsp;canal 1 será comandado pela auxiliar 1 e&nbsp;o canal 2 comandado pela auxiliar 2, ambos no modo <em>toggle</em>.</li></ul></li></ul><figure id="0c188874-0b66-4d5e-b8d0-cd08d1a76986" class="image"><a href="http://embrace.editme.com/files/EB-RLY2-WIFI/desvincularounao.png"><img style="width:600px" src="http://embrace.editme.com/files/EB-RLY2-WIFI/desvincularounao.png"></a></figure><p id="d37f5316-edd4-4130-a383-184868fd0012" class=""></p><h3 id="579ca73a-ed4e-4ca7-b4ed-0811baace765" class=""><strong>Estados do LED</strong></h3><p id="8f65d0d7-b00f-4dcf-8c3a-1910912ca16b" class="">De acordo com a conexão com a rede Wi-Fi os LEDs do módulo podem piscar:</p><table id="264a9214-62cc-4ad7-8502-1d815279ded8" class="simple-table"><tbody><tr id="1dfbdd86-836b-4c81-ac73-e0cf9e7c3282"><td id="^{ro" class="" style="width:232.66666666666666px"><strong>Piscadas</strong></td><td id="URgb" class="" style="width:232.66666666666666px"><strong>Pausa&nbsp;em segundos</strong></td><td id="]B_Y" class="" style="width:232.66666666666666px"><strong>Estado</strong></td></tr><tr id="d9f49c75-e907-4b55-8d06-4672953e6f19"><td id="^{ro" class="" style="width:232.66666666666666px">3</td><td id="URgb" class="" style="width:232.66666666666666px">2</td><td id="]B_Y" class="" style="width:232.66666666666666px">Desconectado</td></tr><tr id="4485b697-d1cb-492c-a02c-8d0dd5ede289"><td id="^{ro" class="" style="width:232.66666666666666px">2</td><td id="URgb" class="" style="width:232.66666666666666px">2</td><td id="]B_Y" class="" style="width:232.66666666666666px">Conectado</td></tr><tr id="8fa0a0d1-ce6e-4b22-91fe-aa2bd6cae229"><td id="^{ro" class="" style="width:232.66666666666666px">Constante</td><td id="URgb" class="" style="width:232.66666666666666px">Sem pausa</td><td id="]B_Y" class="" style="width:232.66666666666666px">Aguardando conexão</td></tr><tr id="005b9697-9fdb-40d2-b7d8-816d1d426390"><td id="^{ro" class="" style="width:232.66666666666666px">1</td><td id="URgb" class="" style="width:232.66666666666666px">1</td><td id="]B_Y" class="" style="width:232.66666666666666px">Identificação</td></tr><tr id="6cabc051-33a1-4405-b669-1db32b49b25d"><td id="^{ro" class="" style="width:232.66666666666666px">1</td><td id="URgb" class="" style="width:232.66666666666666px">2</td><td id="]B_Y" class="" style="width:232.66666666666666px">Conectado à&nbsp;AC</td></tr></tbody></table><h3 id="e3351dbc-d532-445d-8e96-16c19dfc616d" class=""><strong>Padrões de fábrica</strong></h3><ul id="b933334d-8629-4ba9-8fd9-db4386ac9e9e" class="bulleted-list"><li style="list-style-type:disc">Vem de fábrica operando para controlar cortinas, toldos ou persianas.</li></ul><ul id="6da29c1a-4d56-4031-9037-99fc3c679d85" class="bulleted-list"><li style="list-style-type:disc">O tempo padrão de curso é de 60 segundos.</li></ul><ul id="d4a5dad1-fd24-452e-841f-87806f23a011" class="bulleted-list"><li style="list-style-type:disc">DHCP habilitado.</li></ul><h2 id="b18e4fe2-5f31-4906-b5ff-6fc46b4119d5" class=""><strong>Informações</strong></h2><p id="d5232a45-cc8a-49b2-aaad-512b44f6082f" class="">Adicionando o EB-RLY2-WIFI ao projeto, inicialmente encontram-se as informações técnicas do dispositivo:&nbsp;<em>IP</em>,&nbsp;<em>Porta</em>,&nbsp;<em>MAC</em>&nbsp;e&nbsp;<em>versão</em>. Essas informações são preenchidas automaticamente ao vincular o módulo ao dispositivo físico feito em&nbsp;Rede.</p><figure id="5dfbe46f-10aa-4f4f-8df6-81b885a7232c" class="image"><a href="http://embrace.editme.com/files/EB-RLY2-WIFI/telainicial.png"><img style="width:627px" src="http://embrace.editme.com/files/EB-RLY2-WIFI/telainicial.png"></a></figure><h3 id="781c9092-5ebd-4a22-898c-8b13b0da2936" class=""><strong>Propriedades</strong></h3><ul id="919540d9-7d9b-4be4-ab0a-2aa36abd1368" class="bulleted-list"><li style="list-style-type:disc"><strong>Tensão de alimentação:</strong>&nbsp;informe a tensão em volts da fonte que será conectada ao EB-RLY2-WIFI. Mesmo que o módulo se adapte às tensões 127V e 220V, é muito importante informar a tensão do local devido ao cálculo de consumo.</li></ul><ul id="a5c0c736-42c9-441f-9f96-1058c8c4b4d4" class="bulleted-list"><li style="list-style-type:disc"><strong>Desvincular modo local:</strong>&nbsp;quando esse&nbsp;<em>checkbox</em>&nbsp;estiver checado, em modo local as entradas auxiliares não têm função.</li></ul><h3 id="3148fd37-2569-4d3d-9ec0-2184e864be4a" class=""><strong>Conexões</strong></h3><p id="00527e4d-a543-4dc4-82b9-4f65c06cc1e6" class="">Neste módulo temos apenas a&nbsp;<strong>Saída</strong>. Essas conexões são feitas com&nbsp;<em>textos</em>&nbsp;de Projetos Gráficos Customizados (veja mais em&nbsp;E-App Customizado), pois exibirá o valor do consumo e o valor da intensidade do sinal do Wifi.</p><ul id="c1c76ff7-7f22-4858-bbf9-eff7ad0269ed" class="bulleted-list"><li style="list-style-type:disc"><strong>Consumo de Potência:</strong>&nbsp;o programador pode acompanhar o consumo do motor (em&nbsp;<em>Watts</em>).</li></ul><ul id="5c6954a6-d0cb-42e0-ac84-2fe81355eccd" class="bulleted-list"><li style="list-style-type:disc"><strong>Intensidade do Sinal do Wifi:</strong>&nbsp;o programador pode acompanhar a oscilação de intensidade do sinal de Wi-Fi. Os valores são negativos: quanto pior for o sinal, mais negativo será o valor; quanto melhor for o sinal, mais próximo de&nbsp;<em><strong>zero</strong></em>&nbsp;será o valor.</li></ul><h2 id="234bf028-d2eb-4b61-b626-d7745b4f8345" class=""><strong>Armazenamento de informação</strong></h2><p id="1e18cdd9-b046-47c0-96dc-055023e8e85e" class="">Ao vincular a Cortina/Toldo ao EB-RLY2-WIFI, na página da Cortina/Toldo aparecerão as seguintes opções:&nbsp;<strong><em>Sensor de corrente</em></strong>&nbsp;e&nbsp;<strong><em>Personalizado</em></strong>. </p><p id="b84624fe-3d36-4f64-b9af-cd6354075332" class="">Além disso, também será visível a&nbsp;<em>checkbox&nbsp;</em><strong><em>Controlar Posição</em></strong><em>.</em>&nbsp;No caso de uma cortina que já esteja devidamente vinculada ao módulo, essa&nbsp;<em>checkbox&nbsp;</em>ficará&nbsp;<strong>habilitada</strong>&nbsp;por&nbsp;<em>default</em>, o que fará com na&nbsp;<strong>E-App</strong>&nbsp;seja exibido um&nbsp;<em>slider</em>&nbsp;de controle de posição da cortina em questão. Para que este&nbsp;<em>slider</em>&nbsp;não seja exibido e somente os botões&nbsp;<em>Fechar</em>,&nbsp;<em>Parar</em>&nbsp;e&nbsp;<em>Abrir</em>&nbsp;sejam visíveis, a checkbox deverá ficar&nbsp;<strong>desabilitada</strong>.</p><ul id="d34c546c-9497-4859-9899-808d312078a9" class="bulleted-list"><li style="list-style-type:disc"><strong>Sensor de corrente</strong>: o EB-RLY2-WIFI armazena o tempo que a Cortina/Toldo leva para abrir/fechar completamente.      <ul id="dd89d618-7445-4a42-ab98-8cc5d00c5d92" class="bulleted-list"><li style="list-style-type:circle">Ao iniciar um projeto com este módulo, o&nbsp;<em>slider</em>&nbsp;do curso da cortina estará em 50% independentemente da posição real.</li></ul><ul id="89603fc8-9df5-4f78-becf-49a8bab53899" class="bulleted-list"><li style="list-style-type:circle">Neste momento é preciso efetuar a&nbsp;<em>calibragem</em>, ou seja, deixar que a Cortina/Toldo faça seu curso completo (ir de um extremo a outro).</li></ul><ul id="45455865-2833-48cf-9bb9-f09f6c7b8e40" class="bulleted-list"><li style="list-style-type:circle">Fazendo isso o módulo armazena essa informação e a partir daí é possível indicar o quanto deseja que a cortina seja aberta/fechada (20%, 50%, 75%, etc) utilizando o&nbsp;<em>slider</em>.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1103ac36-e638-4234-9917-e64363879594"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>OBS:</strong>&nbsp;Para a garantia do bom funcionamento desta opção é recomendado o uso de um motor que possua uma amperagem maior ou equivalente a 100 mA.       </div></figure></li></ul><figure id="f5a8fa11-ece4-4440-acbb-e1a98107c6fc" class="image"><a href="http://embrace.editme.com/files/EB-RLY2-WIFI/Sensor.png"><img style="width:457px" src="http://embrace.editme.com/files/EB-RLY2-WIFI/Sensor.png"></a></figure><ul id="c8ae078e-f8ca-4d58-8b5d-7b9ddbad4160" class="bulleted-list"><li style="list-style-type:disc"><strong>Personalizado</strong>: o programador define o tempo de curso completo e não é necessário efetuar a&nbsp;<em>calibragem</em>. Esta opção existe pelo fato de algumas cortinas não permitirem a identificação do fim de curso. Neste caso pode-se contornar a situação especificando o tempo do curso completo no campo&nbsp;<strong>Tempo máximo de acionamento</strong>.</li></ul><figure id="c9eea765-b73d-4249-8bc5-7c1a14dfda4e" class="image"><a href="http://embrace.editme.com/files/EB-RLY2-WIFI/TipoPersonalizado.png"><img style="width:453px" src="http://embrace.editme.com/files/EB-RLY2-WIFI/TipoPersonalizado.png"></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

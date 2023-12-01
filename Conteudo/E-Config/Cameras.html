@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Câmeras</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="00aff607-182b-40d0-a3aa-9443e77f392f" class="page sans"><header><h1 class="page-title">Câmeras</h1><p class="page-description"></p></header><div class="page-body"><div id="663f08d2-3e74-492c-a7f1-2a811708b3a4" class="column-list"><div id="653a61ff-93e9-44da-a745-fd3f1f856a1e" style="width:62.5%" class="column"><p id="8050f7dd-a0af-4a42-a4e1-55f22d837071" class="">A <strong>Embrace </strong>oferece a possibilidade de inclusão de <strong>Câmeras </strong>no projeto: esses dispositivos encontram-se na aba <strong>Ambiente </strong>da guia de <strong>Equipamentos</strong>. </p><p id="054f08b0-2ca1-4d2a-9614-a0cef55ac5d2" class="">Existem três tipos de dispositivo nesta categoria que podem ser adicionados ao projeto (<strong>DVR</strong>, <strong>ONVIF </strong>e <strong>Custom</strong>). A seção abaixo tem como objetivo expor o processo de configuração de cada um deles e descrever as particularidades de cada um:</p></div><div id="d218f060-8882-45dd-b55b-83634d0cfe30" style="width:99.99999999999999%" class="column"><figure id="246139bf-7e97-4318-aaee-de5b7cff4ae0" class="image"><a href="Cameras/Untitled.png"><img style="width:419px" src="Cameras/Untitled.png"></a></figure></div></div><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>DVR</strong></summary><div class="indented"><figure id="16171941-1a90-413b-b9c8-9858f2a27ea5" class="image"><a href="Cameras/Untitled%201.png"><img style="width:708px" src="Cameras/Untitled%201.png"></a></figure><p id="95439a6c-7da5-4cfd-8011-cd8bb1606dc3" class="">Ao adicionar um&nbsp;<strong>DVR</strong>&nbsp;ao projeto podemos editar suas propriedades alterando os seguintes parâmetros:&nbsp;<em>Modelo</em>,&nbsp;<em>Usuário</em>,&nbsp;<em>Senha</em>,&nbsp;<em>IP Local,</em>&nbsp;<em>Porta Local, Endereço Remoto, Porta Remota, e Canais DVR</em>.</p><ul id="90f37861-a85c-4aa7-a03f-66f9d2a91fd4" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Modelo</em></strong>: corresponde ao fabricante/modelo do dispositivo. A lista de dispositivos atualmente suportada pode ser consultada adiante nesta página;</li></ul><ul id="592924f3-a45c-43b6-86f2-305ea9e84fe7" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Usuário</em></strong>: corresponde ao usuário para acessar o DVR;</li></ul><ul id="c1cba651-4fe7-4b14-8903-9b11d3591dc7" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Senha</em></strong>: senha para acesso ao DVR;</li></ul><ul id="bfe7e4f3-6d32-4460-a21f-665fb8ca7a4f" class="bulleted-list"><li style="list-style-type:disc"><strong><em>IP Local</em></strong>: corresponde ao endereço IP do DVR em questão.</li></ul><ul id="c5fe86aa-0f2f-4008-adcf-a9f5caa6fb0a" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Porta Local</em></strong>: corresponde à porta de comunicação que pode variar de acordo com modelo e fabricante.</li></ul><ul id="165a43ed-d299-48bf-a436-d4ba274f5800" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Endereço Remoto</em></strong>: corresponde ao endereço para acesso externo ao DVR;</li></ul><ul id="a85cbf6d-c318-497c-9002-3facf04d1168" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Porta Remota</em></strong>: corresponde à porta para acesso externo ao DVR;</li></ul><ul id="3e268226-e3e5-49b2-a7ab-9807021b78ac" class="bulleted-list"><li style="list-style-type:disc"><em><strong>Canais DVR</strong></em><strong>: </strong>o Modelo de DVR selecionado influencia diretamente quantos Canais DVR serão disponibilizado: estes canais possuem o comportamento de <strong>bloco</strong> e podem ser distribuídos no projeto conforme a necessidade do usuário. Ao habilitar/desabilitar a <em>checkbox </em>de um canal é possível garantir que apenas os canais desejados serão exibidos no projeto.</li></ul><div id="e71a6b8f-ea05-4549-a1fd-6690e74650c6" class="column-list"><div id="3d56ccbe-59df-4795-b1a7-230c6810146e" style="width:106.25%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f73040bd-3533-4f95-bcbe-39ffa1515e8f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">          Ao selecionar um <strong>Canal </strong>do DVR é possível optar pela exibição do <strong>Stream Principal</strong> ou <strong>Stream Secundário</strong>.         </div></figure><p id="f4fb1fde-0c4d-47c6-968f-59ae530665c5" class=""></p></div><div id="22de2912-0624-4a5e-9836-520b1228a64f" style="width:87.50000000000001%" class="column"><figure id="e0d9a797-4a2c-4602-afee-3a28230ac406" class="image"><a href="Cameras/Untitled%202.png"><img style="width:384px" src="Cameras/Untitled%202.png"></a></figure></div></div></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Câmera ONVIF</summary><div class="indented"><figure id="49d48bfd-8a98-4de6-97d2-d3054a10c234" class="image"><a href="Cameras/Untitled%203.png"><img style="width:672px" src="Cameras/Untitled%203.png"></a></figure><p id="1c40512e-dbbe-470c-85d4-271cf7c5ad68" class="">Ao adicionar câmeras que suportam o protocolo <strong>ONVIF </strong>as seguintes propriedades são exibidas:&nbsp;<em>Usuário, Senha, IP</em>,&nbsp;<em>Porta, Endereço Remoto e Porta Remota</em>.</p><ul id="535b1209-a3f7-45c1-8a2c-66e932e569dd" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Usuário</em></strong>: corresponde ao usuário para acessar a câmera;</li></ul><ul id="99098486-02bf-4c79-96dc-355ebf49754b" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Senha</em></strong>: senha para acesso à&nbsp;câmera;</li></ul><ul id="91f2c30b-0852-49ad-afb7-79cc2015b688" class="bulleted-list"><li style="list-style-type:disc"><strong><em>IP Local</em></strong>: corresponde ao endereço IP da câmera em questão.</li></ul><ul id="511e3d9f-7282-4730-952d-ef51cc9f83f5" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Porta Local</em></strong>: corresponde à porta de comunicação que pode variar de acordo com modelo e fabricante.</li></ul><ul id="06923603-94e8-4709-896b-0f7fe0e6a403" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Endereço Remoto</em></strong>: corresponde ao endereço para acesso externo à câmera;</li></ul><ul id="97e1637e-38ee-4c61-abd2-0f5705fbb5f8" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Porta Remota</em></strong>: corresponde à porta para acesso externo à câmera;</li></ul><ul id="4696da9e-c8f7-40e2-91b3-86c2ce0322da" class="bulleted-list"><li style="list-style-type:disc"><strong>Stream</strong>: permite optar pela exibição do <strong>Stream Principal</strong> ou <strong>Stream Secundário</strong>.</li></ul></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Câmera Custom</summary><div class="indented"><figure id="d3384d8e-5668-4ec2-a927-ea4c981bdd46" class="image"><a href="Cameras/Untitled%204.png"><img style="width:699px" src="Cameras/Untitled%204.png"></a></figure><p id="069bf4ad-5a95-4d93-bb54-02bd672c60c1" class="">Utilizando esta opção de dispositivo é possível conectar-se à câmera desejada utilizando o seguinte <strong>URL</strong>:</p><pre id="6eea4e99-cd82-4235-ad38-feb93d1cc6a5" class="code"><code>rtsp://$USUARIO$:$SENHA$@$IP$:$PORTA$/cam/realmonitor?channel=1&amp;subtype=0&amp;unicast=true&amp;proto=Onvif.</code></pre><p id="4760006e-486b-49b3-be1f-ec02e713522d" class="">Os campos em negrito correspondem às mesmas informações que seriam preenchidas em dispositivos do tipo&nbsp;<strong>Câmera ONVIF</strong> (consultar).</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="02436f63-2901-4c2c-8617-1b5694d65f18"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">        Para saber como viabilizar o <strong>acesso remoto</strong> por <strong>DDNS</strong>, consulte o trecho a seguir.       </div></figure><p id="ae335ce4-74a5-4361-99e1-68b45b2e43ad" class=""><strong>Modelo de montagem da URL de Câmera Custom para acesso remoto com DDNS:</strong></p><p id="f7219d99-5448-415b-b600-a17ec725fca7" class="">Preencha o campo <strong>URL </strong>nas Propriedades do dispositivo implementando o modelo abaixo:</p><p id="569afb2e-0437-42f7-9a52-c50c508a4d61" class=""><code>http://&lt;usuario&gt;:&lt;senha&gt;@&lt;DDNS&gt;:&lt;porta&gt;/videostream.cgi</code></p><p id="d88e78af-a948-44ed-b8b8-0b188e3a95f2" class=""><strong>Exemplo</strong>:&nbsp;<code>http://usuario:Senha@example.ddns.net:55/videostream.cgi</code> - (Modelo da câmera = <em>Tenvis JPT3815W</em>)</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4e50e20d-9a3f-43b0-ae49-8935b067c9d4"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><strong>Atenção</strong>: ao copiar o link do exemplo e colar para outra pessoa, pode ser que o trecho "<em>usuario:Senha</em>" suma da URL, pois como fazem parte da autenticação, as URLs costumam ocultar essa parte.       </div></figure><p id="47ccd4e9-1c25-4bb3-ac3a-6d8128ff64ac" class=""></p></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Modelos de DVR suportados</strong></summary><div class="indented"><p id="30b8dd36-93a7-40c8-bc7a-e27753db30dc" class=""></p><ul id="8e60f4f1-ea01-4081-82c1-41e7d1078c3b" class="bulleted-list"><li style="list-style-type:disc">Intelbras - VD 5004</li></ul><ul id="e23630ed-fed4-4763-9178-e2728ce88fda" class="bulleted-list"><li style="list-style-type:disc">Intelbras - VD 5008</li></ul><ul id="d147cedd-ed80-4f88-8193-9d24ff4fd089" class="bulleted-list"><li style="list-style-type:disc">Intelbras - VD 5016</li></ul><ul id="d27595c1-526b-4343-9bfe-6a16fdb25644" class="bulleted-list"><li style="list-style-type:disc">Intelbras - VD 5024</li></ul><ul id="cc26e9b2-0b35-43c9-a7de-69c66b5492c8" class="bulleted-list"><li style="list-style-type:disc">Intelbras - VD 5032</li></ul><ul id="b32d135e-513b-499a-bfab-1d3197013aec" class="bulleted-list"><li style="list-style-type:disc">Intelbras - VD 3104</li></ul><ul id="b0c70ed4-d8fa-46fd-a9d5-1899d52fb7f1" class="bulleted-list"><li style="list-style-type:disc">Intelbras - VD 3108</li></ul><ul id="a6508551-af53-412a-a4f9-0f75cddae6dd" class="bulleted-list"><li style="list-style-type:disc">Intelbras - VD 3116</li></ul><ul id="1e3887dd-e16a-48fb-8c92-8496792a1661" class="bulleted-list"><li style="list-style-type:disc">Intelbras - NVD 1008</li></ul><ul id="31ce9896-2963-4cc3-a1d6-b540cd4030b0" class="bulleted-list"><li style="list-style-type:disc">Intelbras - NVD 1008 P</li></ul><ul id="4adb95ed-14e3-4b80-a35e-fb01c3800003" class="bulleted-list"><li style="list-style-type:disc">Intelbras - NVD 1108</li></ul><ul id="31be3625-c283-46fc-b073-f2e743c8bafb" class="bulleted-list"><li style="list-style-type:disc">Intelbras - NVD 1204</li></ul><ul id="f8f51cf6-4947-42d8-8e0f-fc68bda5f37c" class="bulleted-list"><li style="list-style-type:disc">Intelbras - NVD 1208</li></ul><ul id="029f0a3e-5e58-43b2-aaf5-6e5d5c585b33" class="bulleted-list"><li style="list-style-type:disc">Intelbras - NVD 1216</li></ul><ul id="8858319d-b464-408c-8ec4-f8bc6bc6df8d" class="bulleted-list"><li style="list-style-type:disc">Intelbras - NVD 3108 P</li></ul><ul id="8097373e-d111-427a-9510-6d8da36691d1" class="bulleted-list"><li style="list-style-type:disc">Intelbras - NVD 3016</li></ul><ul id="2a9f62e3-39b8-4639-9c99-3f022b342b7d" class="bulleted-list"><li style="list-style-type:disc">Intelbras - NVD 3016 P</li></ul><ul id="74c931a8-e5ee-4733-9d9c-3dd2fb05100c" class="bulleted-list"><li style="list-style-type:disc">Intelbras - NVD 5016 4K</li></ul><ul id="582d3d25-1a5e-43ad-9b67-5cda17ab39ee" class="bulleted-list"><li style="list-style-type:disc">Intelbras - NVD 7032</li></ul><ul id="cc7501e7-8c7a-47c6-b7e3-85c75e90ca86" class="bulleted-list"><li style="list-style-type:disc">Intelbras - MHDX 1004</li></ul><ul id="c990ffe3-d398-40d6-a7fb-d5a5e7899ffe" class="bulleted-list"><li style="list-style-type:disc">Intelbras - MHDX 1008</li></ul><ul id="5ebf5d97-e92e-433b-b3b6-437b52dc1a47" class="bulleted-list"><li style="list-style-type:disc">Intelbras - MHDX 1016</li></ul><ul id="63210e89-6285-4dac-a145-49fe90bc3b0f" class="bulleted-list"><li style="list-style-type:disc">Intelbras - MHDX 3008</li></ul><ul id="55d884db-f9e6-45a8-bec1-e2fec4650885" class="bulleted-list"><li style="list-style-type:disc">Intelbras - MHDX 3016</li></ul><ul id="f95ebb04-2423-4fbc-8955-b11da862c2a4" class="bulleted-list"><li style="list-style-type:disc">Intelbras - MHDX 5016</li></ul><ul id="c2f0207b-1104-4274-8532-05857760d4c5" class="bulleted-list"><li style="list-style-type:disc">Intelbras - MHDX 1032</li></ul><ul id="2f1e890b-71ac-4cff-9e2e-b9ec0a6a498a" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 1004</li></ul><ul id="5ce62a93-7d3a-4985-957c-12ae9b92c9b1" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 1008</li></ul><ul id="476f2676-8ff7-4ddb-b97b-bd171b41257b" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 1016</li></ul><ul id="f5d73163-3c65-4a7b-81ee-847f336864f7" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 1032</li></ul><ul id="9e195c60-9d27-4469-9b91-40fe337521e3" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 1004 - G2</li></ul><ul id="8bc2a4b3-b0f0-4458-b9cd-fe5c2f8c0904" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 1008 - G2</li></ul><ul id="e1fa1e68-6837-4d1f-a766-93f2fe83ec54" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 1016 - G2</li></ul><ul id="08523cd9-fd4f-4596-8527-76964397b185" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 3004</li></ul><ul id="42c0df1f-9074-4866-b38f-6f00898b1195" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 3008</li></ul><ul id="46775c7d-8a91-490c-be36-a084de3617fc" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 3016</li></ul><ul id="8000622a-81e5-433f-912e-95dda4fd2f14" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 3108</li></ul><ul id="993e8f39-3f25-4ab7-9926-437b2ac9630f" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 3116</li></ul><ul id="a14f28e6-8746-40e0-9721-3dc1db28ae6d" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 3116 - G2</li></ul><ul id="d7e78483-39ac-4761-8840-706c7bcfb369" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 3132 M</li></ul><ul id="44695aaa-4c1b-4dcc-bde0-ddd04b5f2199" class="bulleted-list"><li style="list-style-type:disc">Intelbras - HDCVI 5032 H</li></ul><ul id="5d39a28d-b43b-44b8-9324-7fd8fc8e1364" class="bulleted-list"><li style="list-style-type:disc">TecVoz - TW-U1032</li></ul><ul id="ebdae5a6-ef45-44bb-a8ab-1686b4eba6f5" class="bulleted-list"><li style="list-style-type:disc">TecVoz - TW-E316(m)</li></ul><ul id="340e0129-a79e-4f75-97eb-b00de2b13708" class="bulleted-list"><li style="list-style-type:disc">TecVoz - TW-E308(m)</li></ul><ul id="404e1d2f-c5e9-4b38-b289-ad1236101485" class="bulleted-list"><li style="list-style-type:disc">TecVoz - TW-E304(m)</li></ul><ul id="fbe40ed9-76e1-4e8d-a041-3daa550de832" class="bulleted-list"><li style="list-style-type:disc">TecVoz - TW-P3016(m)</li></ul><ul id="092fd811-2f2d-4a1e-a8ee-688ab9a88d53" class="bulleted-list"><li style="list-style-type:disc">TecVoz - TW-P3008(m)</li></ul><ul id="819d1f06-ff8c-4fbb-82f0-892ad9545bd6" class="bulleted-list"><li style="list-style-type:disc">TecVoz - TW-P3004(m)</li></ul><ul id="af25e159-e59d-4791-85ad-187e89aaf0e6" class="bulleted-list"><li style="list-style-type:disc">TecVoz - TW-U5064</li></ul><ul id="696ba517-eacc-4d14-a144-9420f27b5d5f" class="bulleted-list"><li style="list-style-type:disc">TecVoz - TW-U5032</li></ul><ul id="50a80113-a037-40b3-b513-ab1e7f9775fe" class="bulleted-list"><li style="list-style-type:disc">TecVoz - TW-P5032</li></ul><ul id="0f275769-bba8-4993-91cd-eebd85dc2109" class="bulleted-list"><li style="list-style-type:disc">TecVoz - THK-SH08</li></ul><ul id="51da15e4-9dc3-4e08-8b29-95380db4d82f" class="bulleted-list"><li style="list-style-type:disc">TecVoz - THK-SH04</li></ul><ul id="d5e7af2d-16af-44ad-bf3f-7d229c785a8f" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-TVI16</li></ul><ul id="de5e3746-bcdf-45a2-b333-59a082ccd0ac" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-TVI32</li></ul><ul id="6ffdd237-9ef7-49de-91da-7ae66f8ed91a" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-TVI08</li></ul><ul id="a72ed209-a55a-4cad-b2e4-cffcacc3adca" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-TVI04</li></ul><ul id="1791f175-19fb-4d70-b084-eceb49d4da42" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-LVI16</li></ul><ul id="eba8629f-174e-427a-a073-11353afe2ae4" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-LVI08</li></ul><ul id="e6aa8277-5f12-48b2-ae14-b656033fe379" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-LVI04</li></ul><ul id="464fcc7c-bb79-4bcc-acc0-4c328c84e8c9" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-STVI32</li></ul><ul id="4de201c6-9c60-4f86-9a1c-7bb42032d76c" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-STVI16/S</li></ul><ul id="fae6f089-5d7c-4aca-a615-46c63fb52342" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-STVI08/S</li></ul><ul id="b3e514d5-d6a1-4103-b102-08a2c61270f1" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-STVI04/S</li></ul><ul id="fbde2804-ba46-4ea1-817c-c770be4d9900" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-SHY16w</li></ul><ul id="34caff49-b9fb-40ad-a54c-3dac93800798" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-STVI16</li></ul><ul id="56d23f89-9204-4d9b-a69e-02abba517a9c" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-STVI08</li></ul><ul id="5ca30869-cd1a-4e38-8a51-5090d44509d9" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-STVI04</li></ul><ul id="839843b6-5194-4bd6-991c-84f332adb3e4" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-SHY16</li></ul><ul id="173f71b4-be19-4479-97ee-86421a249089" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-SHY08</li></ul><ul id="ac34146a-ff2a-46ba-9c7e-0ae175b6e7e2" class="bulleted-list"><li style="list-style-type:disc">TecVoz - T1-SHY04</li></ul><ul id="3b630b18-be63-4e16-8385-b4a839d244c1" class="bulleted-list"><li style="list-style-type:disc">Hikvision - DS-7208HGHI-SH</li></ul><ul id="496023dc-902f-4083-83b0-6418aa6c47ae" class="bulleted-list"><li style="list-style-type:disc">Giga -&nbsp;GS04OPEN4Mi2</li></ul></div></details><hr id="ebdba8c4-9dbd-4a47-befc-57d9b7f1b3ec"><h2 id="5b7beac6-bb10-4641-bbe2-c5c88939d9b3" class="">E-App</h2><p id="1d4bfcbb-0b73-40f0-ab4e-bea6d6d0eee3" class="">O aplicativo Embrace 2 permite selecionar uma <strong>resolução </strong>para a câmera pelo próprio aplicativo. Dessa forma o usuário pode verificar qual resolução é a mais próxima da imagem real sem distorção. Para isso é necessário ativar o&nbsp;<strong>Modo Serviço</strong>&nbsp;nas <strong>Configurações </strong>do aplicativo:</p><figure id="b9452faf-f6c2-4840-91b9-3aeb26dc041f" class="image"><a href="http://embrace.editme.com/files/Cameras/319.png"><img style="width:300px" src="http://embrace.editme.com/files/Cameras/319.png"></a></figure><p id="b35a5788-ec5e-454a-beb3-22dc58c5532a" class="">A partir daí basta acessar a câmera no projeto desejado e escolher a <strong>resolução </strong>de preferência:</p><div id="e1375d73-ceb6-476a-952c-34584785ea8f" class="column-list"><div id="7440f4c8-068e-4f03-9066-0e7fc5db4442" style="width:87.5%" class="column"><p id="be5d9e7f-301b-4010-81f2-774f63b38221" class="">• No <strong>Android </strong>é preciso tocar na imagem da câmera para exibir as opções:</p><figure id="98ab7d90-6b78-4f36-ad5e-6afcf1c435a0" class="image"><a href="Cameras/Untitled%205.png"><img style="width:286px" src="Cameras/Untitled%205.png"></a></figure></div><div id="7e6c76c2-fbf3-458f-b097-a6df4c8a32b3" style="width:112.5%" class="column"><p id="d0b1457c-7318-4725-bcaf-58847542a959" class="">• No <strong>iOS </strong>as opções aparecem na imagem da câmera:</p><figure id="6682e80a-0880-4da9-9f72-8fa479984132" class="image"><a href="Cameras/Untitled%206.png"><img style="width:300px" src="Cameras/Untitled%206.png"></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c0900306-c213-4608-b7a9-b0f9573c7c98"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      A alteração realizada será enviada à controladora e replicada para os outros dispositivos. Assim todos os usuários compartilharão a mesma configuração da câmera alterada.     </div></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

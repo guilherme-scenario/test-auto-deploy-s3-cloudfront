@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>EB-RC1-Remote</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="d23a4a89-09bd-4082-b98f-ebcb42ed258e" class="page sans"><header><h1 class="page-title">EB-RC1-Remote</h1><p class="page-description"></p></header><div class="page-body"><p id="d515e10c-d5c1-4a54-a40f-51db793f3eec" class="">O&nbsp;<strong>EB-RC1-Remote</strong>&nbsp;oferece maior rapidez para o acesso de sua automação, principalmente no que diz respeito às&nbsp;<strong>Atividades&nbsp;de Áudio e Vídeo</strong>. Equipado com tela&nbsp;<em>touch screen</em>, o EB-RC1-Remote também possui teclas físicas que permitem acessar os principais recursos para controle das Atividades A/V.&nbsp;Na parte inferior, suas teclas físicas permitem rápido acesso às funções de&nbsp;<strong>Iluminação</strong>,&nbsp;<strong>Cortinas/Persianas</strong>&nbsp;e&nbsp;<strong>Ar-Condicionado</strong>.</p><figure id="e2c8bdbb-8bed-4ab2-a67e-2541f4398a77" class="image"><a href="http://embrace.editme.com/files/EB-RC1-Remote/eb-rc1-remote_07_frontal.png"><img style="width:468px" src="http://embrace.editme.com/files/EB-RC1-Remote/eb-rc1-remote_07_frontal.png"></a></figure><p id="b775d723-0b1d-4d1e-bd77-c25679e8df1c" class="">O objetivo desta página é atuar como um guia básico para a integração do dispositivo à instalação e elencar um resumo de suas funcionalidades principais.</p><hr id="1eb284dd-aaad-47b8-ab26-dc39a6ad2742"><h2 id="04447e7c-5f31-49f3-bb56-c04a41538d96" class=""><strong>Setup&nbsp;</strong></h2><div id="01e8cfaa-1be7-4508-997f-1bb46542f36c" class="column-list"><div id="40c5068c-bf73-4b33-aeab-3bc237e39a5f" style="width:100%" class="column"><p id="470b7cc8-6e8c-4d56-990e-b62f6d2a467a" class="">O EB-RC1-Remote é integrado à instalação e comunica-se por meio de conexão&nbsp;<em>wireless</em>, portanto a primeira etapa para realizar a implantação deste recurso na automação consiste em inserir o dispositivo na&nbsp;<strong>rede local</strong>&nbsp;para que ele possa estabelecer comunicação com a&nbsp;<a href="Controladora.html"><strong>AC</strong></a>.</p><p id="8e12b1e0-ab39-4bc5-9b2d-2a4428b4f7e9" class="">Na primeira vez em que o EB-RC1-Remote for ligado, o dispositivo fará uma varredura de redes locais e, quando o&nbsp;<em>SSID</em>&nbsp;da rede desejada for selecionado (lembrando que deve ser a mesma rede da AC), um assistente de configuração solicitará ao usuário para que insira as credenciais desta rede no dispositivo para que ele possa se conectar e baixar o projeto.</p><p id="0c01b5e1-cfab-4164-a1da-dba457a29120" class="">Caso a conexão com a rede seja efetuada com sucesso, o dispositivo buscará por&nbsp;<strong>atualizações</strong>&nbsp;de&nbsp;<em>firmware&nbsp;</em>disponíveis e fará o seu download e instalação.&nbsp;Quando essa etapa for concluída, o EB-RC1-Remote estará pronto para baixar o projeto da rede local: para fazer isso, basta fazer utilizar as&nbsp;<strong>credenciais Embrace</strong>, da mesma forma que ocorre na&nbsp;<strong>E-App</strong>.</p></div><div id="3bb60672-9f64-405f-a068-7e2839dfb600" style="width:100%" class="column"><figure id="cab88402-e50a-4200-9be9-e1bb3afb7e81" class="image"><a href="EB-RC1-Remote/Untitled.png"><img style="width:720px" src="EB-RC1-Remote/Untitled.png"></a><figcaption><em>Tela para download de projeto do EB-RC1-Remote</em></figcaption></figure></div></div><p id="9123b440-c4be-4268-a57b-be6022bebb4e" class="">Assim que o download do projeto for concluído, o usuário deverá fazer a seleção do&nbsp;<strong>ambiente</strong>&nbsp;do projeto que será gerenciado pelo controle. Este ambiente, por padrão, será o ambiente que responderá aos comandos dos&nbsp;<strong>botões físicos</strong>&nbsp;para controle de áudio e vídeo, iluminação, cortinas e ar-condicionado.</p><p id="3a845526-5a93-4730-b351-5eba367524f9" class="">Esta seleção&nbsp;<strong>pode ser alterada</strong>&nbsp;a qualquer momento e outros&nbsp;<strong>modos de seleção de ambiente</strong>&nbsp;estarão disponíveis nas opções do EB-RC1-Remote para que o usuário escolha a opção que melhor atende sua instalação.&nbsp;Mais informações sobre os modos de seleção de ambiente podem ser consultadas na seção&nbsp;<strong>Configurações</strong>&nbsp;desta página.</p><hr id="8c12dbd2-39ec-4c15-8be2-152e9b6f6239"><h2 id="58e18b5f-108c-46e7-9174-1513c870af87" class=""><strong>Funcionalidades&nbsp;</strong></h2><p id="66dc10d0-94a0-46d8-9857-1306af6f57b1" class="">Conforme descrito em seções anteriores, o EB-RC1-Remote oferece uma forma rápida para que os usuários possam realizar o controle de múltiplos itens de sua automação. Por meio dos botões físicos e do display&nbsp;<em>touch</em>&nbsp;do Remote é possível navegar entre múltiplas páginas de controle de dispositivos da automação e a qualquer momento realizar o controle de mídia executada pelas Atividades A/V (ou seja, utilizar o Remote para&nbsp;<strong>ligar</strong>&nbsp;e&nbsp;<strong>desligar</strong>&nbsp;atividades do ambiente, realizar o controle de&nbsp;<strong>volume</strong>, além de utilizar comandos de&nbsp;<strong>transporte</strong>&nbsp;e&nbsp;<strong>navegação</strong>). Após&nbsp;<strong>5</strong>&nbsp;<strong>segundos</strong>&nbsp;sem ações do usuário no controle, a página de&nbsp;<strong>Atividades&nbsp;</strong>do ambiente do controle (que pode variar conforme o&nbsp;<strong>modo de seleção de ambiente</strong>&nbsp;optado) voltará a ser exibida para que o usuário possa rapidamente ter o acesso ao controle de&nbsp;<strong>áudio e vídeo</strong>&nbsp;do ambiente.</p><p id="9c1317b9-c471-4694-9681-2b32673c5694" class="">A seção abaixo destaca resumidamente cada função realizada pelos botões físicos do dispositivo:</p><div id="904838f8-7ab5-4ba4-ac70-f786efd186cc" class="column-list"><div id="458c17b3-c007-4737-ba25-8fc0b7d65e23" style="width:87.5%" class="column"><figure id="f360a75c-2b02-49ed-9152-bcf0d0382b1b" class="image"><a href="EB-RC1-Remote/Untitled%201.png"><img style="width:528px" src="EB-RC1-Remote/Untitled%201.png"></a></figure></div><div id="caabc002-fb1f-4d3d-b4f1-0617209e8661" style="width:106.25%" class="column"><ul id="3e7c0304-782a-4fe3-bfab-b43c12a251bc" class="toggle"><li><details open><summary><strong>1 - Volume</strong></summary><p id="a7178c90-c583-4666-afa3-2f4536918313" class=""><strong>Volume Down</strong>: reduz o <em>Volume </em>da Atividade que está sendo executada;</p><p id="4d1bb05f-7869-414b-9bbc-7face5ff8380" class=""><strong>Volume Up</strong>: aumenta o <em>Volume </em>da Atividade que está sendo executada;</p></details></li></ul><ul id="07e367a8-a65c-44f8-aca3-c96ba1e9909f" class="toggle"><li><details open><summary><strong>2 - Mute</strong></summary><p id="e0d4a102-8f84-49f2-ab4a-5082c3ae78aa" class="">Realiza o&nbsp;<em>toggle</em>&nbsp;da função de mutar/desmutar o Volume da Atividade que está sendo executada;</p></details></li></ul><ul id="a34c6800-154f-47ef-98c8-53fe1535321a" class="toggle"><li><details open><summary><strong>3 - Ambientes/Home</strong></summary><p id="b53d708d-0938-445f-8e2a-db7ac2885f21" class="">Utilizado para navegação entre as telas do Remote, se pressionado quando se está em uma tela de <em>template</em> ou de dispositivos exibe a página do ambiente, se pressionado novamente exibe a página de seleção de ambientes (se pressionado e mantido em&nbsp;<em>Hold</em>, exibe imediatamente a página de seleção de ambientes);</p></details></li></ul><ul id="8b64a4e9-db84-4121-92ff-c7563340a6a5" class="toggle"><li><details open><summary><strong>4 - Smart</strong></summary><p id="a9c7fea7-826b-47f3-b487-1ccdd600b6d9" class="">Aciona a função&nbsp;<em>Smart</em>&nbsp;da Fonte ativa (caso seja uma função suportada pela Fonte);</p></details></li></ul><ul id="1b3eb15e-701f-45f3-b0e4-2ba5f3d6fb47" class="toggle"><li><details open><summary><strong>5 - Power</strong></summary><p id="d543f9af-3c37-4e88-99a7-b648312bf0a4" class="">Aciona a última Atividade A/V executada no ambiente (caso nenhuma Atividade esteja sendo executada no momento) ou oferece a opção de executar a Atividade Power Off do ambiente (caso alguma Atividade já esteja sendo executada);</p></details></li></ul><ul id="4ab168c4-883f-4246-b776-091b3098459b" class="toggle"><li><details open><summary><strong>6 - Atividades</strong></summary><p id="d34bbc49-ef35-4e5d-9c34-0b848e8ff57d" class="">Exibe a página de Atividades de áudio e vídeo do Ambiente e alterna entre o&nbsp;<em>template</em>&nbsp;da Fonte ativa caso tenha alguma Atividade sendo executada no momento;</p></details></li></ul><ul id="bc9a4b40-fcb1-412a-9c5a-3272da1e336d" class="toggle"><li><details open><summary><strong>7 - Setas direcionais/OK</strong></summary><p id="beee908f-28cc-4cef-8260-46d2902546b1" class=""><strong>Direcionais</strong>: utilizados para navegação na Fonte ativa (caso seja uma função suportada pela Fonte);</p><p id="2f10e918-ca5e-4ca0-9170-d3a4b4095bd3" class=""><strong>OK</strong>: aciona a função <em>Enter/OK </em>da Fonte ativa (caso seja uma função suportada pela Fonte);</p></details></li></ul><ul id="7478db2b-a7c7-4a4b-851b-14d3553d82bf" class="toggle"><li><details open><summary><strong>8 - Controles</strong></summary><p id="1f35340f-47ba-4379-aab7-26b3053a4ac5" class="">Exibe a página de controles/drivers do ambiente (para acesso a&nbsp;<em>templates</em>);</p></details></li></ul><ul id="5507abe4-223f-4b89-a42e-bd587d6085a3" class="toggle"><li><details open><summary><strong>9 - Voltar</strong></summary><p id="539abf31-9c99-4fd4-bf7c-cd826b74716f" class="">Aciona a função&nbsp;<em>Return</em>&nbsp;da Fonte ativa (caso seja uma função suportada pela Fonte);</p></details></li></ul><ul id="70a830a9-ef38-4e36-abc9-c010cda0a241" class="toggle"><li><details open><summary><strong>10 - Teclas de Transporte</strong></summary><p id="d397386d-8dba-49c6-81fb-5025096539eb" class=""><strong>Previous </strong>: aciona a função <em>Previous </em>da Fonte ativa (caso seja uma função suportada pela Fonte);</p><p id="eeb9289b-082b-4f19-b4a6-5ca17f24599e" class=""><strong>Play/Pause </strong>: aciona a função <em>Play/Pause </em>da Fonte ativa (caso seja uma função suportada pela Fonte);</p><p id="de0f316b-b619-4e95-89e5-5c51c51ec254" class=""><strong>Next </strong>: aciona a função <em>Next </em>da Fonte ativa (caso seja uma função suportada pela Fonte);</p></details></li></ul><ul id="7bfb3c8d-6db2-4733-a7de-a106ccb4cb80" class="toggle"><li><details open><summary><strong>11 - Ligar/Desligar Ar-condicionado</strong></summary><p id="45a0b037-aa84-4c68-87ca-0fb1f048c99e" class=""><strong>Ar-condicionado On </strong>: exibe a página de controle de ar-condicionado do Ambiente. Envia o comando de <em>Power On </em>para os dispositivos de ar-condicionado do Ambiente com a última temperatura que havia sido enviada para o dispositivo. Vale lembrar que a opção de controle via EB-RC1-Remote é exclusiva para dispositivos do tipo <strong>Ar-condicionado Inteligência Embrace</strong>;</p><p id="f8432cac-c72e-42c6-99ce-9898650d4bbd" class=""><strong>Ar-condicionado Off </strong>: exibe a página de controle de ar-condicionado do Ambiente. Envia o comando de <em>Power Off </em>para os dispositivos de ar-condicionado do Ambiente;</p></details></li></ul><ul id="bb9a3a14-83f3-4ce3-9509-78d1183c1fc8" class="toggle"><li><details open><summary><strong>12 - Abrir/Fechar Persianas/Cortinas</strong></summary><p id="1a54a0b1-b99f-44a3-b4cd-1da079f8761b" class=""><strong>Cortina Aberta </strong>: exibe a página de controle de cortinas/persianas do Ambiente. Quando pressionado, o botão assume o comportamento correspondente à função <strong>Botão Superior </strong>dos componentes Cortina Embrace, o que significa que ele realizará, alternadamente, o envio dos comandos <em>Abrir </em>ou <em>Parar </em>(caso pressionado novamente) para as cortinas do Ambiente;</p><p id="2eb93688-ebe0-423c-8dee-918fca5f95d2" class=""><strong>Cortina Fechada </strong>: exibe a página de controle de cortinas/persianas do Ambiente. Quando pressionado, o botão assume o comportamento correspondente à função <strong>Botão Inferior </strong>dos componentes Cortina Embrace, o que significa que ele realizará, alternadamente, o envio dos comandos <em>Fechar </em>ou <em>Parar </em>(caso pressionado novamente) para as cortinas do Ambiente;</p></details></li></ul><ul id="5460af03-7fd6-48b5-8143-f429a3c06a8f" class="toggle"><li><details open><summary><strong>13 - Iluminação</strong></summary><p id="8326546e-598f-4709-9baa-2f5cf454f76a" class=""><strong>Luminária On </strong>: exibe a página de controle de luminárias do Ambiente. Caso o ambiente possua <strong>Room-Control</strong>, este botão assume o comportamento correspondente à função <strong>Pulsador superior</strong>, o que significa que ele vai circular entre as <strong>Cenas Custom </strong>do ambiente&nbsp;(tirando o ambiente do <strong>Modo Automático </strong>ou acionando a Cena subsequente caso já exista uma <strong>Cena </strong>ativa no momento em que for pressionado, sempre respeitando os parâmetros definidos no Room-Control). Manter o botão pressionado <strong>dimeriza </strong>as luminárias do ambiente, <strong>aumentando </strong>sua intensidade. A dimerização é aplicada para todas as luminárias do ambiente que estão <strong>ligadas </strong>(ou seja, que possuem intensidade diferente de zero);</p><p id="e16b4d1f-fa99-44af-9200-d5e15cce113e" class=""><strong>Luminária Off </strong>: exibe a página de controle de luminárias do Ambiente. Caso o ambiente possua <strong>Room-Control</strong>, este botão assume o comportamento correspondente à função <strong>Pulsador inferior</strong>, o que significa que ele vai acionar o <strong>Modo Automático </strong>do ambiente. Manter o botão pressionado <strong>dimeriza </strong>as luminárias do ambiente, <strong>diminuindo </strong>sua intensidade. A dimerização é aplicada para todas as luminárias do ambiente que estão <strong>ligadas </strong>(ou seja, que possuem intensidade diferente de zero);</p></details></li></ul></div></div><hr id="211e86da-3388-4db8-b479-d74774c5a386"><h2 id="bd704a47-189d-4e33-a4d8-9c4f836b1f4a" class=""><strong>Adaptação do Projeto</strong></h2><p id="d75ce02a-34e8-451b-a2d6-c3cce0e89519" class="">Para que o EB-RC1-Remote possa ser devidamente integrado à automação, são necessárias algumas&nbsp;<strong>adaptações</strong>&nbsp;no projeto que são feitas, em sua maior parte,&nbsp;<strong>automaticamente</strong>&nbsp;pelo&nbsp;<strong>Config E2</strong>. Essas adaptações envolvem, por exemplo, a&nbsp;<strong>atualização de drivers</strong>&nbsp;do projeto para que os seus&nbsp;<em>templates</em>&nbsp;passem a ser compatíveis com o formato de exibição do EB-RC1-Remote. Esta seção do texto tem como objetivo descrever as adaptações necessárias para que todos os recursos oferecidos pelo EB-RC1-Remote sejam plenamente aproveitados:</p><h3 id="151dcde2-5d31-4f33-a266-a4a159db9336" class=""><strong>Substituição de drivers</strong></h3><p id="4d3cd80b-8255-44fb-9786-9b584d44914c" class="">Os drivers da&nbsp;<strong>biblioteca Scenario</strong>&nbsp;são atualizados&nbsp;<strong>automaticamente</strong>&nbsp;por versões compatíveis com o EB-RC1-Remote, enquanto os drivers da biblioteca do Usuário devem ser&nbsp;<strong>adaptados</strong>&nbsp;utilizando as&nbsp;<strong>ferramentas</strong>&nbsp;oferecidas pelo&nbsp;<strong>Config E2</strong>&nbsp;para criação e edição de templates.</p><p id="5391f77a-9b1d-4746-a23f-2fe93c10e08d" class="">Ao abrir um projeto salvo ou ao importar um projeto da controladora, o Config E2 fará uma&nbsp;<strong>verificação</strong>&nbsp;dos drivers do projeto e informará o usuário da possibilidade de&nbsp;<strong>atualização&nbsp;</strong>deles por versões compatíveis com o EB-RC1-Remote, caso existam tais versões na biblioteca, oferecendo uma&nbsp;<strong>janela</strong>&nbsp;para&nbsp;<strong>seleção individual ou múltipla</strong>&nbsp;de cada driver a ser&nbsp;<strong>atualizado</strong>.</p><p id="ef6677ce-19fb-4ec7-b34f-2cd32039a5fe" class="">Já para o caso de&nbsp;<strong>drivers desenvolvido por usuários</strong>, o Config E2 oferece a possibilidade de realizar as adaptações necessárias por meio de seu&nbsp;<strong>Editor Gráfico</strong>. Para adequar um&nbsp;<strong>driver customizado</strong>&nbsp;e prepará-lo para seu uso no EB-RC1-Remote, basta importá-lo do&nbsp;<strong>projeto</strong>&nbsp;(com um clique direito sobre o dispositivo) para a&nbsp;<strong>biblioteca de Usuário</strong>&nbsp;e abrir sua janela de edição no&nbsp;<strong>Gerenciamento de Drivers</strong>:</p><p id="096a7449-e216-4371-83e3-7507a66f14d5" class="">Ao habilitar a&nbsp;<strong>edição</strong>&nbsp;do driver, na seção&nbsp;<strong>Template</strong>, o usuário observará as abas para&nbsp;<strong>E-App</strong>&nbsp;e&nbsp;<strong>Remote</strong>: um driver pode possuir mais de um template que será exibido de acordo com o dispositivo que está carregando o projeto (<em>smartphones</em>&nbsp;e o EB-RC1-Remote, respectivamente).</p><p id="f5e4873d-5ee9-4e0b-a875-c506dd14137f" class="">No caso de um driver que possui apenas&nbsp;<strong>Template</strong>&nbsp;para&nbsp;<strong>E-App</strong>, é necessário criar um&nbsp;<strong>template novo</strong>&nbsp;(via&nbsp;<strong>Gerenciador de Templates</strong>) ou adaptar um&nbsp;<strong>template existente</strong>&nbsp;(selecionando um dos templates já listados na própria janela de&nbsp;<strong>edição</strong>&nbsp;do driver) para torná-lo compatível com o Remote.</p><p id="e1a8836f-9fd8-4ca5-8855-689a37e2a0cd" class="">Ao selecionar a opção para criar um&nbsp;<em>template</em>&nbsp;novo ou ao editar um&nbsp;<em>template</em>&nbsp;existente, o&nbsp;<strong>Editor Gráfico</strong>&nbsp;(disponível apenas no ambiente&nbsp;<strong>Windows</strong>) será executado: esta ferramenta tem o propósito de auxiliar o usuário na criação&nbsp;<strong>padronizada</strong>&nbsp;de templates. A forma com que essa padronização se apresenta se dá por meio de um&nbsp;<strong>algoritmo</strong>&nbsp;que visa possibilitar a&nbsp;<strong>uniformidade</strong>&nbsp;na definição do&nbsp;<strong>posicionamento</strong>,&nbsp;<strong>alinhamento</strong>&nbsp;e&nbsp;<strong>dimensionamento</strong>&nbsp;<strong>automático</strong>&nbsp;dos elementos gráficos disponibilizados para a edição de templates (<em>Texto</em>,&nbsp;<em>Sliders</em>&nbsp;e&nbsp;<em>Botões</em>). Este ajuste automático se baseia principalmente em um esquema de&nbsp;<strong>linhas</strong>&nbsp;(altura) e&nbsp;<strong>colunas</strong>&nbsp;(largura) que garante que os elementos gráficos não se sobreponham e mantenham um espaçamento razoável para que a usabilidade do template não seja afetada.</p><p id="9097c665-63aa-43c0-b858-1d55de4ea7dd" class="">O recurso de ajuste automático é aplicado assim que o&nbsp;<strong>Editor</strong>&nbsp;é fechado e ele instantaneamente&nbsp;<strong>notifica</strong>&nbsp;o usuário de quaisquer&nbsp;<em>não-conformidades</em>&nbsp;existentes no template editado de forma detalhada para que as correções necessárias sejam feitas pelo usuário. Da mesma forma, o&nbsp;<strong>dimensionamento automático</strong>&nbsp;é realizado conforme a&nbsp;<strong>largura</strong>&nbsp;atribuída aos componentes do tipo&nbsp;<strong>Botão</strong>&nbsp;durante a edição (reajustando-os em até&nbsp;<strong>três</strong>&nbsp;tamanhos distintos): complementarmente, por definição, a&nbsp;<strong>altura</strong>&nbsp;dos componentes sempre vai ser de&nbsp;<strong>1 (uma) linha</strong>.</p><div><p id="e700ddf4-dfe1-47d5-9224-f0fd39f9df85" class="">Além do ajuste automático, o&nbsp;<strong>E-Config</strong> também oferece recursos para a personalização de&nbsp;<em>templates</em>&nbsp;tanto para&nbsp;<strong>E-App</strong>&nbsp;quanto para o&nbsp;<strong>Remote</strong>. Com esses recursos, é possível alterar o esquema de organização de&nbsp;<strong>colunas</strong>&nbsp;e&nbsp;<strong>paginação</strong>&nbsp;dos templates: para personalizar esses elementos, basta utilizar etiquetas de&nbsp;<strong>Texto</strong>&nbsp;com&nbsp;<strong>palavras reservadas</strong>&nbsp;que vão estabelecer parâmetros que serão considerados quando o ajuste automático for realizado no template. Quando uma palavra reservada é aplicada no template,&nbsp;<strong>todos os elementos gráficos que estão diretamente abaixo do componente de Texto serão afetados</strong>. Vale enfatizar que esses&nbsp;<strong>recursos de formatação</strong>&nbsp;são inteiramente&nbsp;<strong>optativos</strong>, portanto seu uso não é obrigatório para que o template que está sendo adaptado seja considerado compatível.</p><p id="de6e3213-e85a-40be-8883-a5ea6169f2ff" class="">Abaixo estão as definições de cada&nbsp;<strong>palavra reservada</strong>:</p><ul id="ab33246a-98ef-4ea5-91ae-c9252ca55413" class="toggle"><li><details open><summary><strong>##3 colunas##</strong></summary><p id="b72ba310-99c6-4251-8596-182237082c33" class="">Ao inserir no&nbsp;<em>template</em>&nbsp;um componente de <em>Texto </em>com este conteúdo, todos os elementos gráficos posicionados diretamente&nbsp;<strong>abaixo</strong>&nbsp;deste componente serão automaticamente ordenados pelo Editor Gráfico de forma que a grade de visualização vertical do template fique igualmente dividida em&nbsp;<strong>três</strong>&nbsp;partes. Esta é a visualização&nbsp;<em>default&nbsp;</em>dos&nbsp;<em>templates</em>&nbsp;para o Remote, portanto as palavras reservadas com parâmetros de colunas (como essa) <strong>não </strong>são aplicáveis nestes tipos de template.</p></details></li></ul><ul id="ecbdb8ea-a48c-4abe-aea7-2fa9fb03fc04" class="toggle"><li><details open><summary><strong>##4 colunas##</strong></summary><p id="c2a02af9-c9b7-414c-a14e-ebd1c1a6e139" class="">Ao inserir no&nbsp;<em>template</em>&nbsp;um componente de <em>Texto </em>com este conteúdo, todos os elementos gráficos posicionados diretamente&nbsp;<strong>abaixo</strong>&nbsp;deste componente serão automaticamente ordenados pelo Editor Gráfico de forma que a grade de visualização vertical do template fique igualmente dividida em&nbsp;<strong>quatro</strong>&nbsp;partes.</p></details></li></ul><ul id="6b058c6d-2960-47eb-b7e9-046687f4e2e4" class="toggle"><li><details open><summary><strong>##muda pagina##</strong></summary><p id="88609f41-498b-4786-b91a-5c0b70b5ee89" class="">Ao inserir no&nbsp;<em>template</em>&nbsp;um componente de <em>Texto </em>com este conteúdo, todos os elementos gráficos posicionados diretamente&nbsp;<strong>abaixo</strong>&nbsp;deste componente serão exibidos em uma&nbsp;<strong>nova página</strong>, navegável via E-App e Remote por meio do gesto de&nbsp;<em>swipe</em>&nbsp;lateral.</p></details></li></ul><ul id="67713e5d-7166-4537-ae8f-60aaf7e04515" class="toggle"><li><details open><summary><strong>##pagina emergencia##</strong></summary><p id="022285e2-86e9-405d-8ee8-413d866d4daa" class="">Ao inserir no&nbsp;<em>template</em>&nbsp;um componente de <em>Texto </em>com este conteúdo, todos os elementos gráficos posicionados diretamente&nbsp;<strong>abaixo</strong>&nbsp;deste componente serão automaticamente ordenados pelo Editor Gráfico de forma que eles passem a ser exibidos na <strong>Página de Emergência </strong>do driver (<em>mais informações na seção dedicada abaixo</em>).</p></details></li></ul></div><p id="d24ebfce-7106-4daf-8896-4e6811e849b2" class="">Após finalizar a adaptação/criação de um&nbsp;<em>template</em>, basta realizar a&nbsp;<strong>associação</strong>&nbsp;de seus&nbsp;<strong>componentes</strong>&nbsp;gráficos com as&nbsp;<strong>funções</strong>&nbsp;do driver: isso pode ser feito abrindo o&nbsp;<em>preview</em>&nbsp;do&nbsp;<em>template</em>&nbsp;em questão e&nbsp;<strong>arrastando</strong>&nbsp;as&nbsp;<strong>funções</strong>&nbsp;até os&nbsp;<strong>componentes</strong>&nbsp;gráficos que deseja que realizem o controle/acionamento daquela função (ou vice-versa).</p><p id="735d18a5-a098-490a-8f05-f7b55a33df5a" class="">Com todos os drivers devidamente adaptados e substituídos no projeto, basta enviar (ou reenviar) o projeto para a controladora para que o EB-RC1-Remote faça o&nbsp;<em>download</em>&nbsp;da nova versão do projeto automaticamente. </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e5b39493-401d-4a3d-ba54-c42f1e3d7fa1"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Vale notar que ao tentar realizar o envio do projeto via Config E2, uma&nbsp;<strong>verificação dos drivers</strong>&nbsp;será realizada e o programador será notificado caso algum driver de seu projeto ainda<strong>&nbsp;não esteja compatível</strong>&nbsp;com o <strong>EB-RC1-Remote</strong>, o que fará com que o template do driver em questão&nbsp;<strong>não</strong>&nbsp;seja exibido no dispositivo até que ele seja devidamente adaptado e substituído.     </div></figure><div><h3 id="ea90343b-b293-4271-9c9f-890295fdca8c" class=""><strong>Página de Emergência</strong></h3><p id="aafda88d-86e6-4e38-b46d-c24b7398215f" class="">O recurso de <strong>Página de Emergência</strong> é oferecido com base no conceito de que o acesso a algumas funções avançadas no controle de dispositivos por meio da automação não é interessante a todo momento e para todos os usuários (por motivos como sincronia de feedback e preservação de configurações, dentre outros), porém ainda assim é pertinente em casos pontuais, e, portanto, também devem estar presentes em uma página dedicada do template do driver para eventual acesso, à qual atribui-se o nome de&nbsp;<strong>Página de Emergência</strong>. </p><p id="3e78a14c-d469-44b9-b301-434529611773" class="">Nesta página geralmente ficarão localizadas as funções que podem afetar a sincronia do dispositivo com a automação&nbsp;e, portanto, possui a opção de ser ocultada ou não.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="52f94ea9-0915-4a4e-b8ca-b6674df2e2fa"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">       A <strong>Embrace </strong>oferece à revenda a possibilidade de selecionar, de forma individual para cada instância de driver do projeto, se suas respectivas <strong>Página de Emergência</strong> devem ou não ser exibidas (na <strong>E-App </strong>e no <strong>Remote</strong>).       </div></figure><p id="83b21b38-3498-4616-9419-4c4e80bd1496" class="">Para alterar essa opção, basta marcar ou desmarcar a&nbsp;<strong><em>checkbox&nbsp;</em></strong>pertinente na tela de <strong>Programação </strong>do driver. Uma vez <strong>habilitada</strong>, a Página de Emergência (bem como as demais páginas convencionais pertencentes a um determinado template) pode ser acessada por meio do gesto de <em>swipe </em>lateral.</p></div><h3 id="5a696a2b-2594-47e4-b1a7-2473a2ca4b03" class=""><strong>Atividades</strong></h3><p id="30a39ce7-5c49-439a-b783-270d0319f85f" class="">Para que a função de&nbsp;<strong>Power Toggle</strong>&nbsp;do botão físico do EB-RC1-Remote apresente um funcionamento mais prático (e para garantir que a estruturação de&nbsp;<strong>Atividades</strong>&nbsp;do projeto como um todo é conceitualmente&nbsp;<strong>coerente</strong>&nbsp;com o formato proposto pela&nbsp;<strong>Embrace</strong>), é necessária a implementação de atividades de áudio e vídeo que atendam a função de&nbsp;<strong>Power Off do Ambiente.&nbsp;</strong>O objetivo é garantir que todos os ambientes que possuam Atividades contem com uma atividade (e é importante que ela seja&nbsp;<strong>única</strong>) dedicada que fará o chaveamento de estados (ligado &gt; desligado) dos dispositivos de&nbsp;<strong>Fonte</strong>&nbsp;e&nbsp;<strong>Volume</strong>.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1d1a9e04-22af-4a4d-bbf3-521df394eb5d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para definir uma Atividade de áudio e vídeo como&nbsp;Power Off do Ambiente, basta criar uma Atividade nova ou editar uma Atividade já existente e selecionar a&nbsp;<em>checkbox</em>&nbsp;pertinente.     </div></figure><hr id="054d7b4e-9394-4ff0-b92f-7ad8b3b502f7"><h2 id="b5fc10b5-af4d-4c70-88da-1076c21817b0" class=""><strong>Configurações</strong></h2><p id="ed554062-1d82-42cc-abcd-fbb8f22b6653" class="">Para acessar a tela de&nbsp;<strong>Configurações&nbsp;</strong>do EB-RC1-Remote, basta navegar até a tela de seleção de ambientes do projeto (pressionando ou segurando o botão&nbsp;<strong>Home</strong>) e então usar o gesto de&nbsp;<em>swipe&nbsp;</em>lateral para a&nbsp;<em>direita</em>.</p><p id="a1d34561-e9c8-4a82-bc38-92d1442130ce" class="">Esta seção do texto tem como objetivo descrever resumidamente quais são as opções de configuração disponíveis nesta tela e quais funções elas atendem.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e8854702-4074-401a-8330-d3ba95cab4cf"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Todas as <strong>opções de configuração</strong> também possuem uma janela de&nbsp;<strong>Ajuda&nbsp;</strong>que pode ser acessada diretamente do controle e que vai exibir <strong>mais informações</strong> a respeito de cada elemento configurável<strong>.</strong></div></figure><figure id="4b7a5dea-8885-4b24-84ea-6d617bf2520c" class="image"><a href="http://embrace.editme.com/files/EB-RC1-Remote/Configuracoes_1.png"><img style="width:288px" src="http://embrace.editme.com/files/EB-RC1-Remote/Configuracoes_1.png"></a></figure><p id="e737b6b7-b64a-4f60-8827-cfe56bda4082" class=""><strong>Seleção de ambientes</strong>: possibilita definir qual será o modo de Seleção de ambientes do dispositivo. Possui três opções:</p><ul id="8122d496-d4e7-453d-970e-66167cb697a1" class="bulleted-list"><li style="list-style-type:disc"><strong>Ambiente padrão fixo</strong>: opção&nbsp;<em>default&nbsp;</em>do controle. Permite que o usuário selecione um ambiente do projeto para controlar exclusivamente: todos os comandos dos botões físicos serão direcionados aos dispositivos do ambiente em questão;</li></ul><ul id="0e7961cc-fb99-40b2-b71c-737039776e33" class="bulleted-list"><li style="list-style-type:disc"><strong>Ambiente padrão alterável temporariamente</strong>: permite que o usuário defina um ambiente do projeto como o padrão, porém também permite que ele altere o ambiente padrão do projeto temporariamente com base no último ambiente acessado. Caso o controle&nbsp;<em>durma&nbsp;</em>e seja ativado novamente, o ambiente definido pelo usuário nessa configuração voltará a ser o padrão;</li></ul><ul id="027fdf87-7793-4917-bbc9-54ca72414e4c" class="bulleted-list"><li style="list-style-type:disc"><strong>Ambiente padrão alterável permanentemente</strong>: faz com que o ambiente padrão sempre seja o último ambiente acessado pelo usuário;</li></ul><p id="8230d1b2-8cfe-46c9-923d-e225eaf6788b" class=""><strong>Imagem de fundo</strong>: possibilita ao usuário definir se as telas do Remote devem exibir a&nbsp;<strong>Imagem de Fundo</strong>&nbsp;dos ambientes do projeto ou se as telas devem ter o&nbsp;<strong>Fundo Preto</strong>;</p><p id="ba62ba70-748b-4a0c-8a0d-79236f0d3731" class=""><strong>Tempo para dormir</strong>: possibilita ao usuário definir o tempo sem atividade (toques, acionamento de botões físicos, movimento) até que o controle entre em modo de baixo consume e apague o display;</p><p id="44540338-ba8d-4fec-9b0d-39f8a0c28cc9" class=""><strong>Rede Wi-Fi</strong>: possibilita ao usuário redefinir a rede Wi-Fi do dispositivo;</p><p id="1c24102b-1742-4f7b-b3e4-9e8cfd925b5a" class=""><strong>Som no toque</strong>: possibilita ao usuário definir o volume do feedback sonoro das teclas físicas e digitais do dispositivo;</p><p id="e700d804-b665-44ed-9b48-d59690bdb614" class=""><strong>LED da base</strong>: possibilita ligar ou desligar o LED da base do controle;</p><p id="873cfec7-8ef8-42af-a953-b8a6b7379b4f" class=""><strong>Informações</strong>: exibe informações sobre o projeto e o dispositivo como autonomia da bateria, versão de firmware, endereço IP, entre outros.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

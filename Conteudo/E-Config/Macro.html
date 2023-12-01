@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Macro</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="38cd1c0c-c48b-49bf-ac68-d096a66545cd" class="page sans"><header><h1 class="page-title">Macro</h1><p class="page-description"></p></header><div class="page-body"><div id="ae3037c3-c9df-4219-a992-2c0e3e1b4d4a" class="column-list"><div id="c110cffe-67fe-4fbf-b2a1-673caf6dda67" style="width:75%" class="column"><p id="20bf1121-4196-4a37-b73c-964bbe3ea0b0" class="">A <strong>Macro </strong>é um <strong>Módulo lógico</strong> que cumpre a função de armazenar (e executar) uma sequência de instruções,&nbsp;totalmente programável e customizável desde os seus acionadores até os comandos que serão realizados. O usuário poderá adicionar essa ferramenta ao seu projeto acessando a aba de&nbsp;<em>Módulos Lógicos</em>&nbsp;localizada na guia de&nbsp;<em>Equipamentos</em>.</p><p id="799d09c9-1ecc-4033-9cde-86739564a861" class="">É uma ferramenta de programação bastante intuitiva, sendo necessário apenas <em>arrastar </em>o comando e o item que deseja, envolvendo iluminação, drivers, equipamentos, entre outros.</p></div><div id="8c5757c2-3087-48a7-9cec-41fd295fd4e9" style="width:112.5%" class="column"><figure id="97b96c6c-3aeb-4881-837f-c9ba3db00057" class="image"><a href="Macro/Untitled.png"><img style="width:419px" src="Macro/Untitled.png"></a></figure></div></div><h2 id="80070b49-f0fa-4dc6-a81c-5b618fa70009" class=""><strong>Tela inicial</strong></h2><figure id="6492cdc4-2146-49e9-9432-dafa71263f54" class="image"><a href="http://embrace.editme.com/files/Macro/ed00.png"><img style="width:720px" src="http://embrace.editme.com/files/Macro/ed00.png"></a></figure><h3 id="06d97def-2fa8-4294-954b-9b161683c248" class=""><strong>Conexões</strong></h3><p id="31d2f60c-c5c3-4cb6-8431-e9a63a128ab8" class="">Em&nbsp;<strong>Entrada</strong>&nbsp;encontramos os itens:</p><ul id="9573d1ac-9029-4324-9a4d-0d82947245df" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Acionadores</em></strong>: dispositivo que irá acionar a macro;</li></ul><ul id="f0366078-bce1-47d9-9e29-e76af44706e3" class="bulleted-list"><li style="list-style-type:disc"><strong><em>OnChange</em></strong>: a macro será acionada a cada mudança de estado. Além disso, verifica se a macro está em execução. Pode estar associado a sensores, por exemplo;</li></ul><ul id="aef35bd0-d73e-40e1-892e-d9de19561ad3" class="bulleted-list"><li style="list-style-type:disc"><strong><em>Abortar</em></strong>: a macro terá sua execução abortada ao acionar esta opção.</li></ul><p id="d7165bf8-5f75-486b-921f-c11aafeea272" class="">Em&nbsp;<strong>Saída</strong>&nbsp;encontramos apenas o item&nbsp;<em>Em execução</em>, momento em que a macro é acionada e executada.</p><h3 id="88d5bea1-413e-4489-a49e-c8b0f54496ba" class=""><strong>Tela de comandos</strong></h3><p id="36d76d7d-1ecc-40ef-9459-441177b4b0ed" class="">É o espaço que serão inseridos os comandos localizados à direita da janela. Esta tela possui alguns itens à direita:</p><div id="82e0ef7c-f455-441b-b458-56da906f9634" class="column-list"><div id="1ab7c685-3768-45b7-9f6e-4ede9763f573" style="width:43.75%" class="column"><ul id="88c8b63c-6886-4d86-a0bc-e6da2addf28c" class="bulleted-list"><li style="list-style-type:disc"><em>Deletar comando</em>;</li></ul><ul id="c74b4021-b9b9-42f3-8d22-37e5bbac31e2" class="bulleted-list"><li style="list-style-type:disc"><em>Copiar comando</em>;</li></ul><ul id="d3f6182d-01a5-4a59-a405-4df1c422da95" class="bulleted-list"><li style="list-style-type:disc"><em>Colar comando</em>;</li></ul></div><div id="f779ed04-c6cb-44d6-a146-77382ebb897b" style="width:125%" class="column"><ul id="33210be5-8721-469a-916d-f164f31110fa" class="bulleted-list"><li style="list-style-type:disc"><em>Recortar comando</em>;</li></ul><ul id="2f68e307-164c-48f2-abff-459d1785ed7d" class="bulleted-list"><li style="list-style-type:disc"><em>Subir comando na lista</em>;</li></ul><ul id="9beeea76-5fcb-4cd9-838a-19cfbd20ae33" class="bulleted-list"><li style="list-style-type:disc"><em>Descer comando na lista</em>.</li></ul></div></div><p id="acf58038-5dc4-48d7-bff7-9b786bf9dbfe" class="">Basta selecionar o comando e o item desejado para que seja feita a alteração.</p><h3 id="b65de8a3-d8f1-4ebe-8d36-0ddb906c8081" class=""><strong>Entradas</strong></h3><p id="dbf96881-b01c-4c11-a962-20e4f42b03f6" class="">São listadas todas as entradas de todos os ambientes do projeto. De acordo com o comando adicionado à tela de comandos, as entradas podem mudar. Para&nbsp;<em>expandir</em>&nbsp;os grupos de comandos basta clicar no símbolo&nbsp;<em>mais</em>&nbsp;(+) à esquerda de cada grupo e serão listadas as entradas que podem ser adicionadas ao comando utilizado.</p><h2 id="61e98700-761b-4ed9-b80d-20513bd8edc2" class=""><strong>Lista de comandos</strong></h2><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Se ____&nbsp;</strong><em><strong>igual a</strong></em><strong>&nbsp;____, faça:</strong></summary><div class="indented"><div id="37524fc0-4764-4402-857e-24d3dd40af2d" class="column-list"><div id="077655d1-29ce-46ff-9bce-b66389d63e65" style="width:62.5%" class="column"><p id="a9d29d88-1c73-40a5-b02f-fc727ac0c943" class="">Este comando é conhecido como&nbsp;<em>condicional</em>&nbsp;por estabelecer condições para que determinados comandos aconteçam. Além disso, dá a chance de executar outro comando caso a situação não respeite as condições iniciais.</p></div><div id="84a8cf31-dfbb-4531-9b64-fc8633410c5e" style="width:118.75%" class="column"><figure id="54a1fb83-8924-4986-b882-86f6961dd558" class="image"><a href="http://embrace.editme.com/files/Macro/ed02.png"><img style="width:336px" src="http://embrace.editme.com/files/Macro/ed02.png"></a></figure></div></div><ul id="2d11658c-81c6-4ec2-88f6-5620d0dc0186" class="bulleted-list"><li style="list-style-type:disc">O <strong>primeiro </strong>campo é a entrada do comando, podendo ser uma&nbsp;Variável, um&nbsp;Módulo Dia/Noite,&nbsp;Sensores&nbsp;ou qualquer outra entrada que assuma valores reais.</li></ul><ul id="1d7689b4-1fe2-47be-8fc7-e868e99c5e1b" class="bulleted-list"><li style="list-style-type:disc">O <strong>segundo </strong>campo é um&nbsp;<em>combobox</em>&nbsp;com as opções:</li></ul><div id="13220dc2-0967-471a-a5cc-cfefdff44be6" class="column-list"><div id="250b4608-0a3a-4801-a7ac-5689d53b90da" style="width:37.5%" class="column"><ul id="fae33a68-d20d-4411-8a50-6b2b7c225e9d" class="bulleted-list"><li style="list-style-type:disc"><em>menor que</em></li></ul><ul id="9929990b-e95b-418b-ad45-377bb544ee8c" class="bulleted-list"><li style="list-style-type:disc"><em>menor ou igual a</em></li></ul><ul id="7fd43b31-252c-4df1-92c6-8d094aa2a435" class="bulleted-list"><li style="list-style-type:disc"><em>igual a</em></li></ul></div><div id="7b508d94-7b07-49bd-b676-7870203bab74" style="width:118.75000000000003%" class="column"><ul id="fae27b74-d842-45cd-a4eb-58c3e0af8538" class="bulleted-list"><li style="list-style-type:disc"><em>diferente de</em></li></ul><ul id="85510b25-c1e9-49e8-a8d3-5ab3a617be17" class="bulleted-list"><li style="list-style-type:disc"><em>maior que</em></li></ul><ul id="dd4d9ac9-241d-4662-ba4b-6e068be01f7f" class="bulleted-list"><li style="list-style-type:disc"><em>maior ou igual a</em></li></ul></div></div><ul id="a9f54a39-cad1-417b-b309-3b1bf2a4a119" class="bulleted-list"><li style="list-style-type:disc">O <strong>terceiro </strong>campo é o valor que a entrada do primeiro campo pode assumir.</li></ul><p id="9254c26d-4bde-4e8a-81df-225947f95fb4" class="">Depois de definir as entradas, é preciso determinar o que deve acontecer.</p><ul id="5c284e88-80ea-4c33-9394-b38a8db12ecd" class="bulleted-list"><li style="list-style-type:disc">Para isso basta arrastar os comandos escolhidos em cima de&nbsp;<strong>Faça</strong>&nbsp;para que sejam executados se respeitar as condições impostas.</li></ul><ul id="fe67b5d5-569c-45f8-90f7-ba56fba897f9" class="bulleted-list"><li style="list-style-type:disc">Caso não respeitem, o programador pode atribuir outros comandos no campo&nbsp;<strong>Senão, faça</strong>&nbsp;ou simplesmente deixar em branco.</li></ul></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Acionar a entrada ____.</strong></summary><div class="indented"><figure id="a288e249-ad3d-4af7-87ca-a8419dcd53b4" class="image"><a href="http://embrace.editme.com/files/Macro/ed03.png"><img style="width:528px" src="http://embrace.editme.com/files/Macro/ed03.png"></a></figure><p id="d0221ed8-ecb9-4ccf-9271-dfa9e67e23dd" class="">Este comando serve para executar entradas, como cenas, outras macros, funções de drivers, entre outros.</p><ul id="af0b13f5-ef6d-401e-ab89-20e6b52d35cd" class="bulleted-list"><li style="list-style-type:disc">Basta arrastar o comando&nbsp;<em>Acionar a entrada ____.</em>&nbsp;ou simplesmente arrastar a entrada direto à tela de inserção de comandos.</li></ul><ul id="d1a1e203-63bd-4584-b3bb-c554832b6ce8" class="bulleted-list"><li style="list-style-type:disc">Algumas entradas só podem ser acionadas através de&nbsp;<em>Hold</em>&nbsp;e neste comando é possível simular essa situação colocando o tempo de&nbsp;<em>Hold</em>, em segundos, no segundo campo.</li></ul></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Atribuir valor&nbsp;xxxx&nbsp;à entrada</strong></summary><div class="indented"><figure id="f972a478-1c99-4088-bda7-722cefbeca2a" class="image"><a href="http://embrace.editme.com/files/Macro/ed05.png"><img style="width:528px" src="http://embrace.editme.com/files/Macro/ed05.png"></a></figure><p id="1d03d77a-b072-4f53-b475-185288521615" class="">Com este comando, além de controlar as entradas dos diversos equipamentos disponíveis no E-Config, também é possível controlar Variáveis.</p></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Enquanto ____&nbsp;</strong><em><strong>igual a</strong></em><strong>&nbsp;____, faça:</strong></summary><div class="indented"><div id="9a2f43bd-e771-4638-9333-aabc2691e38b" class="column-list"><div id="2f942714-e680-4c77-86c1-f86bfd2cbfef" style="width:37.5%" class="column"><p id="486acfed-95f5-4085-96cd-e7b8a5f49334" class="">Este comando é conhecido como&nbsp;<em>loop</em>, pois irá repetir os comandos adicionados&nbsp;<em>enquanto</em>&nbsp; respeitarem determinadas condições.</p></div><div id="6fddf1cb-2958-46dd-9706-7c3d3002292f" style="width:93.75%" class="column"><figure id="f391c376-9d3e-4c85-b8dc-8a17466f2355" class="image"><a href="http://embrace.editme.com/files/Macro/ed06.png"><img style="width:432px" src="http://embrace.editme.com/files/Macro/ed06.png"></a></figure></div></div><ul id="17ba7311-1739-41d9-8e0a-910f45330e20" class="bulleted-list"><li style="list-style-type:disc">O <strong>primeiro</strong> campo é a entrada do comando, podendo ser uma Variável, um&nbsp;Módulo Dia/Noite, Sensores&nbsp;ou qualquer outra entrada que assuma valores reais.</li></ul><ul id="4380b620-60f5-4d00-bf18-6ad047eaa1f2" class="bulleted-list"><li style="list-style-type:disc">O <strong>segundo </strong>campo é um&nbsp;<em>combobox</em>&nbsp;com as opções:</li></ul><div id="40c55813-7fb7-4142-bf37-b257e3d84f43" class="column-list"><div id="d8462e4d-6a94-4928-b1b4-a73a6040f352" style="width:43.75%" class="column"><ul id="eddbfcd1-1417-4aa3-872c-ef1c0f8ee94d" class="bulleted-list"><li style="list-style-type:disc"><em>menor que</em></li></ul><ul id="fec677ee-5528-4dd6-a32f-8e3883377c42" class="bulleted-list"><li style="list-style-type:disc"><em>menor ou igual a</em></li></ul><ul id="aaaa685f-2726-4b3a-9714-e869acd5935d" class="bulleted-list"><li style="list-style-type:disc">igual a</li></ul></div><div id="a573a478-ca4e-4b6a-9470-046965cf41b7" style="width:93.75%" class="column"><ul id="3b8fd2c5-0178-40d6-ae64-b40452be743f" class="bulleted-list"><li style="list-style-type:disc">diferente de</li></ul><ul id="cb10a427-b39e-40cc-b363-c8ec6da1b8ef" class="bulleted-list"><li style="list-style-type:disc">maior que</li></ul><ul id="422a1036-dcbe-4641-9474-2b5b02c6b678" class="bulleted-list"><li style="list-style-type:disc">maior ou igual a</li></ul></div></div><ul id="2ba5f72a-e1ae-4968-8b8a-b039923a78d2" class="bulleted-list"><li style="list-style-type:disc">O <strong>terceiro </strong>campo é o valor que a entrada do primeiro campo pode assumir.</li></ul></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Repetir os comandos por&nbsp;</strong><em><strong>xxxx</strong></em><strong>&nbsp;vezes.</strong></summary><div class="indented"><figure id="8743d30c-5da9-441c-a70a-cdac08511317" class="image"><a href="http://embrace.editme.com/files/Macro/ed07.png"><img style="width:503px" src="http://embrace.editme.com/files/Macro/ed07.png"></a></figure><p id="0c7c4fe0-7b24-4abf-a1f1-154ecd025e54" class="">Como o próprio nome diz, este comando serve para&nbsp;<em>repetir</em>&nbsp;os comandos. Podem ser adicionados quaisquer comandos para serem repetidos a quantidade de vezes determinada.</p></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Aguarde por&nbsp;xxxx&nbsp;segundos.</strong></summary><div class="indented"><figure id="1a3fac6f-6844-4b77-81a1-a41b50bd9e50" class="image"><a href="http://embrace.editme.com/files/Macro/ed08.png"><img style="width:503px" src="http://embrace.editme.com/files/Macro/ed08.png"></a></figure><p id="8ddb750e-eeb2-4187-91b1-d908ca60faf4" class="">Com este comando é possível adicionar tempo entre quaisquer comandos.</p></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0"><strong>Jump para&nbsp;xxxx,&nbsp;xxxx</strong></summary><div class="indented"><figure id="b473e50b-3488-4461-9477-fb04e2d4d75a" class="image"><a href="http://embrace.editme.com/files/Macro/ed09.png"><img style="width:697px" src="http://embrace.editme.com/files/Macro/ed09.png"></a></figure><p id="f0deae78-100f-4b61-8ea1-f5fffe0494f8" class="">Este comando serve para redirecionar para um Guia TV ou um aplicativo externo.</p><ul id="ef03a179-da67-46c6-a141-e2fb75161ade" class="bulleted-list"><li style="list-style-type:disc">O <strong>primeiro </strong>campo é um combobox com as opções&nbsp;<em>GuiaTV</em>&nbsp;e&nbsp;<em>aplicativo externo</em>. O segundo campo depende da escolha do primeiro.</li></ul><ul id="9757843a-d923-4562-bf54-5cbb7f702be0" class="bulleted-list"><li style="list-style-type:disc"><strong>Guia TV</strong><ul id="db595c15-b50d-4b22-a3df-238769785ac0" class="bulleted-list"><li style="list-style-type:circle">Com essa opção, o <strong>segundo </strong>campo listará os drivers que foram adicionados ao projeto que têm Guia TV.</li></ul><ul id="49c54bb5-c046-496d-a53b-e22c0d59bedf" class="bulleted-list"><li style="list-style-type:circle">Ao acionar esta macro pelo&nbsp;<em>aplicativo Embrace</em>&nbsp;abrirá uma página com os canais e a programação do Guia.</li></ul></li></ul><ul id="dcf29290-f286-46fb-a733-c66d88f60368" class="bulleted-list"><li style="list-style-type:disc"><strong>Aplicativo externo</strong><ul id="e42c9609-e4cd-4941-90d7-e7235d2f1fd0" class="bulleted-list"><li style="list-style-type:circle">O <strong>segundo</strong> campo listará os aplicativos testados pela&nbsp;<em>Scenario</em>.</li></ul><ul id="cd5cac1c-e97f-4adf-8994-3ddb2691ca9e" class="bulleted-list"><li style="list-style-type:circle">Nem todos estão disponíveis para ambos os sistemas (<em>iOS</em>&nbsp;e&nbsp;<em>Android</em>). </li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e982ebf8-a92b-47cf-a6d4-4e7e96d1b7f8"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">          Caso o acesso ao aplicativo somente esteja disponível em um dos sistemas operacionais, essa informação estará explicitada na listagem de aplicativos.         </div></figure><p id="0dbc7b08-93ff-40cf-844c-83bd2597e924" class=""></p></li></ul></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

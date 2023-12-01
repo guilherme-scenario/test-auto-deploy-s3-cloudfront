@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>E-App</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="0b12d908-8729-4c99-9e87-40586fa93943" class="page sans"><header><h1 class="page-title">E-App</h1><p class="page-description"></p></header><div class="page-body"><p id="811eaba7-1f28-4b9b-aebc-ef8f5b59e2dc" class="">A plataforma Embrace oferece aos seus usuários a possibilidade de controlar e gerenciar sua automação também por meio de dispositivos móveis. O aplicativo&nbsp;<strong>Embrace 2</strong>&nbsp;(também conhecido como&nbsp;<strong>E-App</strong>) está disponível para download na&nbsp;<strong><a href="https://itunes.apple.com/br/app/embrace-2/id1423211561">App Store</a></strong>&nbsp;e&nbsp;<strong><a href="https://play.google.com/store/apps/details?id=br.ind.scenario.embrace2&amp;hl=en_US">Play Store</a></strong>.</p><figure id="287772ac-2fa4-433f-baac-d4c0290b8b8e" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/iconeApp.png"><img style="width:278px" src="http://embrace.editme.com/files/PaginaRevisao/iconeApp.png"></a></figure><hr id="34e48a2b-aa6b-468b-9bb6-88f6a2d9e0bb"><div id="149f5a84-5574-4d44-8c4b-f9e3d750b792" class="column-list"><div id="f5a34846-dbb6-4a0e-9774-ac6828165851" style="width:50%" class="column"><p id="8b182be3-2338-49dc-877f-612645b35654" class="">Após instalar e executar o aplicativo pela primeira vez, a seguinte tela será exibida:</p><p id="ea70edd2-cfca-4c60-bebf-29672c35cfbc" class=""></p></div><div id="2015a19a-aadb-4fd5-9c15-be0db771c6c8" style="width:50%" class="column"><figure id="77dad2d4-e46b-4b43-af97-0809fae9a727" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/1instalacoes_inicial.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/1instalacoes_inicial.png"></a></figure></div></div><hr id="33fe9cf0-56e9-4544-bda7-f300123f6238"><div id="fdee1595-34d1-4237-84e8-bb8e588c67b4" class="column-list"><div id="8b5cfa2d-18f7-4cbd-ae68-7752916c0b83" style="width:50%" class="column"><p id="f02e90fe-a242-4ee0-b75c-2e1290e6104c" class="">Tocando no ícone no canto superior esquerdo aparecerá a seguinte tela de login:</p></div><div id="8a08f335-17e8-4e57-9790-5933cc43805a" style="width:50%" class="column"><figure id="c4e813ac-b100-4f1d-a918-a65bee334329" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/2login.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/2login.png"></a></figure></div></div><hr id="7d3503dd-3c68-433b-b79c-41ae8ab0c2fa"><div id="f3c16bfc-c6a9-4b75-bf3d-5011addd6f4a" class="column-list"><div id="2cdb5fcf-3030-4d47-a396-4c97880d4b69" style="width:50%" class="column"><p id="b28e2620-c66f-42d6-9a3c-9cc61adb8924" class="">Utilizando o login e senha da revenda é possível acessar todas as instalações e respectivos projetos gráficos enviados por seus instaladores cadastrados.</p><p id="99aa1bb2-6628-49c6-afb0-5edc82eb4c74" class="">Quando existem até duas instalações disponíveis para download, o aplicativo irá listar os projetos gráficos com suas imagens de capa (caso existentes) da seguinte forma:</p></div><div id="bb45b19f-134e-4752-a4be-aead1aa3c55b" style="width:50%" class="column"><figure id="7f04b78d-a669-4a80-a3d1-deb2e2702eec" class="image"><a href="E-App/Untitled.png"><img style="width:288px" src="E-App/Untitled.png"></a></figure></div></div><hr id="e52291b8-ce3a-4b9a-b4f0-ca603942801f"><div id="b397ab6b-69d5-44b4-b9be-0046d1b21026" class="column-list"><div id="affe7dad-ba8f-4c21-8cb4-3a0b39a43d2c" style="width:50%" class="column"><p id="40ec8f2e-45e0-4a17-a7d4-7a1823184ae7" class="">Porém, caso existam mais de duas instalações para exibição, o aplicativo listará todas sequencialmente, ordenando-as de acordo com a disponibilidade do acesso:&nbsp;<strong>Remoto&nbsp;</strong>ou&nbsp;<strong>Local</strong>. Após selecionar a instalação desejada, seus&nbsp;<strong>Projetos&nbsp;</strong>gráficos poderão ser selecionados:</p></div><div id="6a38adbd-cf66-40ed-8e0e-2c50cf63f262" style="width:50%" class="column"><figure id="88379b02-189d-448b-bb36-43e0d689eb2e" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/4projetosdownload.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/4projetosdownload.png"></a></figure></div></div><p id="d8871a91-bfbe-43bf-9ac0-7ff7ca08751d" class=""></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="88a997f9-fd9a-4c61-a2d2-4d3dde465e64"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Selecionando os projetos desejados, basta concluir a operação tocando no ícone de <strong>confirmar </strong>no canto superior direito. É possível selecionar projetos de diferentes instalações ao mesmo tempo, para isso é preciso selecionar os projetos desejados de uma instalação, voltar à lista de instalações e selecionar projetos de outra instalação. Neste caso, as imagens dos projetos só serão baixadas no momento de carregamento de cada projeto.     </div></figure><hr id="6da1df70-b0a4-48e4-bd2d-290dd6778c9a"><div id="2b13c036-58f1-4057-98dd-d9c36a80e796" class="column-list"><div id="e60ffc97-74f4-4e62-b08d-3ba1f2fed2a9" style="width:50%" class="column"><p id="7006d3d1-58c0-47fe-9950-b319a23bda0e" class="">A próxima página tem todos os projetos selecionados anteriormente e ao tocar sobre eles o download será efetuado.</p></div><div id="3babca0b-8a69-496d-a3bb-aa0260511266" style="width:50%" class="column"><figure id="f649dffe-a6b7-48d7-91fa-dceac90f2ef9" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/5inicial_instalacoes.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/5inicial_instalacoes.png"></a></figure></div></div><hr id="c5df5bf7-d067-4a8d-a728-e7c872ffc47a"><div id="f4ef0c01-b07c-4ded-b774-a2639b040695" class="column-list"><div id="7c17d49d-ba84-4d62-8cc4-448139b5c80b" style="width:50%" class="column"><p id="ca2fcd98-b86e-4e58-8f1c-2c9cf0c86fc7" class="">Após realizar o download e acessar um dos projetos, a tela de ambientes será exibida. A partir desta tela inicial, será possível acessar os ambientes da instalação e realizar o controle de seus respectivos dispositivos.</p></div><div id="580d637c-6ae2-4e9e-a1de-448d98da7800" style="width:50%" class="column"><figure id="258f67c0-377e-4377-8862-123539152e47" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/6tela_ambientes.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/6tela_ambientes.png"></a></figure></div></div><hr id="24383111-742e-4f81-95e4-ebe80070e3dd"><div id="682457c3-cb85-4554-9339-c842046439e6" class="column-list"><div id="8d047982-c749-4192-85dd-706b03cecb00" style="width:50%" class="column"><p id="9c59cefc-086f-41a9-abf5-8c8eed93ef66" class="">Ao acessar o menu localizado no canto superior direito da tela, serão exibidas as diversas opções que a plataforma oferece para o usuário controlar/configurar/personalizar sua instalação.</p></div><div id="87b5b5e2-3b03-4fba-adab-6a00c5ef9f2d" style="width:50%" class="column"><figure id="7ce6378b-fe4e-481a-b9c0-1536eebe09b9" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/7hamburguer.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/7hamburguer.png"></a></figure></div></div><hr id="4f6fd91c-3ae0-4e41-9d47-f6a1da0e1991"><div id="a1b48114-018a-4062-9b6e-a96eb95bdc5e" class="column-list"><div id="772bc3fa-c5e2-4abb-8c0e-c2e50e7d33e3" style="width:50%" class="column"><p id="4a9bbd1b-0314-4af8-8dd3-a7e6c29aa0ff" class="">Ao pressionar o botão&nbsp;<strong>Editar</strong>, será possível personalizar os ambientes (marcando&nbsp;<strong>Favoritos</strong>,&nbsp;<strong>Ordenando&nbsp;</strong>e&nbsp;<strong>Alterando&nbsp;</strong>as imagens de cada um) e acessar o<strong>&nbsp;gerenciamento de Usuários</strong>.</p></div><div id="8bdfeebb-a3ab-48f9-9db6-e02bcea5426f" style="width:50%" class="column"><figure id="176bd659-fdd6-45b9-8238-3fc220f93f8a" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/8ambiente_editar.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/8ambiente_editar.png"></a></figure></div></div><hr id="0cd031c3-e18c-47a0-ae00-a300d88a2832"><div id="a074aeab-56be-4ddc-9171-1d7bfe4f91e0" class="column-list"><div id="1b995e7a-7f81-4437-9edd-76cc60d7ded4" style="width:50%" class="column"><p id="734f503f-bf3d-4582-97ba-84683006a140" class="">Ao acessar o gerenciamento, por razões de segurança, a&nbsp;<em>senha&nbsp;</em>do usuário será solicitada novamente. Após inserir uma senha válida, será possível editar os próprios dados e administrar usuários convidados. Também existe a possibilidade de selecionar a opção&nbsp;<strong>mantenha-me conectado</strong>&nbsp;pra que a senha não volte a ser solicitada durante essa sessão.</p></div><div id="cda6a596-f25e-4c52-ab71-144736a89433" style="width:50%" class="column"><figure id="7b798ae9-00ca-4c9c-ba15-443b924fa511" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/9admin_inicial.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/9admin_inicial.png"></a></figure></div></div><hr id="563a4138-4d6a-4f84-9bd0-3a1a01bee89a"><div id="e730dcb3-79e6-4b79-b56d-a7209301fada" class="column-list"><div id="c30ddeb5-6524-46b1-b5b9-fdd8ae5cd347" style="width:50%" class="column"><p id="a708321e-c5f8-47b3-b419-3c3a7ad8d644" class="">Ao tocar o botão&nbsp;<strong>Administrar usuários</strong>, a tela de usuários convidados será exibida. Nesta tela, todos os usuários da instalação serão listados, bem como seu&nbsp;<em>status&nbsp;</em>atual (<em>ativo</em>/<em>bloqueado</em>). Também nesta tela será possível&nbsp;<strong>Adicionar usuários</strong>&nbsp;e&nbsp;<strong>Gerenciar</strong>&nbsp; usuários já existentes na instalação. Ao selecionar a opção <em>Adicionar usuário</em> ou selecionando um usuário já existente, uma tela para personalização do acesso deste usuário será exibida:</p></div><div id="9ae6eff4-4c19-4743-8a78-0d0e824e5025" style="width:50%" class="column"><figure id="9f5ced67-892f-41c6-880c-3902b445d0aa" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/10administrar_usu.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/10administrar_usu.png"></a></figure></div></div><ul id="da2f4ac5-a3da-41fe-9a74-d6f561798c8a" class="bulleted-list"><li style="list-style-type:disc"><strong>Novo usuário&nbsp;</strong>ou&nbsp;<strong>Editar usuário</strong>: Este primeiro campo pode ser editado tanto pelo administrador quanto pelo próprio usuário. Logo abaixo está localizado o campo para adicionar o e-mail deste usuário. O último campo desta seção é a senha, que pode ser alterada a qualquer momento pelo usuário. É válido mencionar que a inserção de senha não é obrigatória no momento do convite de um novo usuário.</li></ul><ul id="0f983376-60cb-4bef-ac1f-91c86d2f9f29" class="bulleted-list"><li style="list-style-type:disc"><strong>Atribuições</strong>: são os tipos de acesso que o usuário poderá ter.</li></ul><ul id="07460442-1aeb-44c3-af23-6f5c5fb760f0" class="bulleted-list"><li style="list-style-type:disc"><strong>Admin</strong>: quando habilitado, dá ao usuário o acesso de administrador, ou seja, autonomia de adicionar novos usuários e alterar os níveis de acesso ao projeto de usuário já cadastrados. Quando desabilitado, este usuário não terá a possibilidade de adicionar novos usuários e alterar os próprios níveis de acesso, as únicas alterações que podem ser feitas nesse caso são sua imagem, nome e senha.</li></ul><ul id="f7e8aeb1-47fc-43a8-abd8-f58942ac0015" class="bulleted-list"><li style="list-style-type:disc"><strong>Acesso remoto</strong>: quando habilitado, o usuário poderá acessar o projeto de qualquer lugar, não precisa necessariamente estar na mesma rede que a controladora que contém o projeto. Quando desabilitado, o usuário só terá acesso ao projeto quando estiver na mesma rede.</li></ul><ul id="a7b4cce1-0aa1-406e-adcc-2a5af5d19f3d" class="bulleted-list"><li style="list-style-type:disc"><strong>Projeto Custom</strong>: serão listados os projetos do tipo&nbsp;<strong>E-App Automático</strong>&nbsp;e&nbsp;<strong>E-App Customizado</strong>&nbsp;que também pertencem à mesma instalação. É possível habilitar/desabilitar o acesso do convidado a a cada um desses projetos.</li></ul><ul id="66670ed5-7d82-4553-9b9a-47cb8356dd67" class="bulleted-list"><li style="list-style-type:disc"><strong>E-App</strong>: o administrador poderá gerenciar o acesso do usuário, limitando seu acesso a determinadas&nbsp;<strong>categorias&nbsp;</strong>e&nbsp;<strong>ambientes</strong>.</li></ul><div id="8ace3551-d381-4398-8a7e-24b1d2bc95fa" class="column-list"><div id="8d5ee913-436a-4b90-9c7b-2dece94e14ba" style="width:100%" class="column"><figure id="86a80fc2-d1c3-4c72-b6e0-11822286589a" class="image"><a href="E-App/Untitled%201.png"><img style="width:750px" src="E-App/Untitled%201.png"></a></figure></div><div id="c0992779-a51a-4940-82de-52a731fda0af" style="width:100%" class="column"><figure id="3ab441b1-da6a-4e4b-9787-c91cb6d7a327" class="image"><a href="E-App/Untitled%202.png"><img style="width:750px" src="E-App/Untitled%202.png"></a></figure></div></div><hr id="2577420c-569c-4c1d-be2c-a0fc7d24bc17"><div id="96794f09-72dc-4444-8476-e273013ddac3" class="column-list"><div id="368a5416-f120-4cb8-98d5-9d420ab85dc6" style="width:50%" class="column"><p id="20471eea-4983-4117-9bad-34a833de8449" class="">Finalizando as configurações, basta tocar no ícone <strong>confirmar </strong>no canto superior direito para que os dados editados sejam enviados à controladora.</p></div><div id="0a50cc0e-67bf-4986-aea8-c2f80517990e" style="width:50%" class="column"><figure id="e966605f-7b43-4687-ac0b-b2445538d9f2" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/13sucesso.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/13sucesso.png"></a></figure></div></div><hr id="450ed350-eb1f-4dd8-831f-eed23433a87f"><div id="8c24d5e7-90fa-4614-bd31-4ca0e567bfa3" class="column-list"><div id="0c91c79b-2457-49ee-afba-265761c2a859" style="width:25%" class="column"><p id="a9b0eadd-8868-4bf4-9722-94cdb1e5e0b9" class="">A partir daí o novo usuário será listado na página&nbsp;<em>Administrar usuários</em>, sendo possível ativar ou bloquear seu acesso à instalação.</p></div><div id="86fcbd78-b812-4d9f-b8fc-d8ae020bf81d" style="width:75%" class="column"><figure id="cdfe9546-aa4a-47c3-8210-d54be4ee5546" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/14user_ativo.png"><img style="width:600px" src="http://embrace.editme.com/files/PaginaRevisao/14user_ativo.png"></a></figure></div></div><hr id="cec25836-33bb-4776-8897-c6fc27d89234"><div id="c8edc78c-a450-4cfc-a400-e1d7e6f3c1ce" class="column-list"><div id="74c51808-6a4d-4d3b-9391-cfc418b95527" style="width:50%" class="column"><p id="5810789f-d5b0-464c-9740-d0da7f0a374e" class="">Neste momento o novo usuário receberá um e-mail de convite da Embrace.</p></div><div id="6d837dad-7ac5-47df-9e6e-0ca837fe361c" style="width:50%" class="column"><figure id="879a8389-df39-4b82-bd2b-b187db2da85f" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/Convite.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/Convite.png"></a></figure></div></div><hr id="04197712-f2db-4e74-87d6-69a0141dd7bc"><div id="d5b72c39-ab4c-47db-9356-a8f04d8cebdb" class="column-list"><div id="af3ee13d-a619-4d18-8b7f-5d4997f45312" style="width:50%" class="column"><p id="029d0c9e-95c7-46f8-b420-09f4223a70e8" class="">Ao clicar em&nbsp;<em>aceitar o convite,</em>&nbsp;o usuário será redirecionado para uma página de confirmação. Neste momento é possível alterar o nome e senha.</p></div><div id="b501eb58-8fae-4cfa-b567-d5a43bb3ba11" style="width:50%" class="column"><figure id="345db46b-088f-40c3-bc99-5037c217efdc" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/Convidado.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/Convidado.png"></a></figure></div></div><hr id="b1a08e07-36a3-4d7e-8227-692804593a70"><div id="206e6e98-833a-472c-80d0-584b24f5ac01" class="column-list"><div id="5a399c9f-3c5e-42b7-8e63-6d1f221b6cb5" style="width:50%" class="column"><p id="f51ed304-2019-4342-b986-f92c8539e252" class="">Clicando em&nbsp;<strong>Aceitar</strong>, o processo será concluído e a mensagem de sucesso será exibida:</p></div><div id="a0ebab3d-5bcc-46ed-8583-df1810a69d21" style="width:50%" class="column"><figure id="c33cb858-6dc3-4e8e-9d44-ee9a3f68f645" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/Sucesso.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/Sucesso.png"></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0d410054-3e38-4187-8f81-926935878a91"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      A partir de então, o usuário convidado poderá acessar o projeto pela tela de&nbsp;<em>login</em>&nbsp;utilizando os dados cadastrados, exatamente do mesmo modo explicado acima. Tanto administradores como usuários poderão alterar os próprios dados, mas apenas administradores podem alterar níveis de acesso. Lembrando que não há limite para inclusão de usuários, sejam eles administradores ou não.     </div></figure><hr id="12368035-497e-41d1-85e9-b0fa0f5694b9"><div id="54a22820-fe80-45a9-b2d6-54a638454fae" class="column-list"><div id="9e53be34-bc3c-46ba-94f1-8bf1d269aace" style="width:50%" class="column"><p id="9d5b1555-06dc-42c1-88e6-466712247f5a" class="">O usuário administrador também possui permissão para&nbsp;<strong>Apagar&nbsp;</strong>usuários da instalação. Para isso, basta acessar a tela de Gerenciamento,&nbsp;<em>arrastar para a esquerda</em>&nbsp;o nome do usuário que deseja remover e confirmar a operação.</p></div><div id="f0135c02-4a8a-404d-be8f-fdecbedf965e" style="width:50%" class="column"><figure id="7b103343-d078-4aef-b806-cd99c0f48653" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/15apaga_user.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/15apaga_user.png"></a></figure></div></div><hr id="b852ea8e-175f-4ece-af5a-beac5e6b41a4"><h2 id="786ce143-5cda-4da7-96cb-3218dcfbd269" class=""><strong>Alterar imagem de ambientes</strong></h2><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e5076ecd-4799-4c88-b60e-48e8de38617b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Apenas administradores do projeto podem alterar imagem de ambientes e essa alteração será refletida para todos os outros usuários.      </div></figure><div id="6bab6b8a-abfa-4448-94c2-485f58edc207" class="column-list"><div id="8334aba8-8c85-4763-b7ea-56db432a02a5" style="width:50%" class="column"><p id="80c49d4e-302f-4c15-8d37-830d3b67098f" class="">Ao habilitar a&nbsp;<strong>Edição</strong>&nbsp;do projeto e pressionando o ícone que passou a ser exibido no canto superior esquerdo do ambiente, as opções para alterar a imagem do ambiente serão exibidas:</p></div><div id="89d34df1-1abf-49cc-94e1-0eb3a504461e" style="width:50%" class="column"><figure id="5abaea4b-14ad-4f27-b429-ad8ccdd41686" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/16altera_img_ambiente.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/16altera_img_ambiente.png"></a></figure></div></div><hr id="f7df96ae-da7c-4fe1-a944-eefb5711f775"><h2 id="813fc6f3-2697-4fce-892d-5089d5646f96" class=""><strong>Favoritos</strong></h2><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="96850107-96a6-4a21-b40c-121744eec61a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para facilitar o acesso do usuário aos ambientes mais usados, é oferecida a possibilidade de marcar determinados ambientes como&nbsp;<strong>Favoritos</strong>.      </div></figure><div id="a1cbadb0-8214-40cd-955d-b2556aad84c4" class="column-list"><div id="417fda3f-16ad-4cfb-a758-03c762e49dae" style="width:50%" class="column"><p id="929e9ab1-8b38-4e18-bd7c-2b81f340ec98" class="">Para selecionar os ambientes, basta habilitar a&nbsp;<strong>Edição</strong>&nbsp;do projeto e depois pressionar a estrela respectiva ao ambiente que deseja marcar como favorito.</p></div><div id="383f54b6-3584-4875-8737-fe5b71a9037b" style="width:50%" class="column"><figure id="7c56f34e-5cf8-4303-9b37-a0e0050199b8" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/17favorito_ambiente.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/17favorito_ambiente.png"></a></figure></div></div><hr id="c98a54c4-c622-4255-b93c-da2838e6c2c0"><div id="80679e84-52c5-474f-bd53-4bf603ee5309" class="column-list"><div id="62407c02-82f2-402c-b6f1-4fd92cf3c3c3" style="width:50%" class="column"><p id="c280504b-92b1-4519-93e5-a75e947c0939" class="">Para exibir apenas os favoritos é preciso selecionar o menu no canto superior direito da tela de ambientes e logo após a opção&nbsp;<strong>Ambientes Favoritos</strong>. A partir de então, apenas os ambientes marcados como favoritos no passo anterior serão exibidos.</p><p id="952ad18f-f2b2-43d9-9bce-59f37f554c77" class=""></p><p id="8485d823-2759-4c32-8f77-c5426ea19d2f" class="">Para restaurar a exibição de todos os ambientes, basta acessar novamente o menu no canto superior direito da tela e selecionar a opção recém habilitada&nbsp;<strong>Todos Ambientes</strong>.</p></div><div id="b2e2b49c-4ea5-440a-b848-9d224cb2ea87" style="width:50%" class="column"><figure id="17f11525-a447-424c-9474-cf18bc58ed4b" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/18favoritos_selecionados.png"><img style="width:300px" src="http://embrace.editme.com/files/PaginaRevisao/18favoritos_selecionados.png"></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a7a8850e-1cd1-40dd-a4ca-1a74425b4a1e"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Vale notar que os ambientes favoritos podem ser personalizados&nbsp;<em>individualmente&nbsp;</em>para cada usuário, não existe uma lista de favoritos padrão, como acontece com nome e imagem de ambiente.     </div></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

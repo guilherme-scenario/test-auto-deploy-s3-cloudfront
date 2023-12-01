@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Alexa</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="6b257412-8e6f-4a7f-a6d3-ac1fbc66fae5" class="page sans"><header><h1 class="page-title">Alexa</h1><p class="page-description"></p></header><div class="page-body"><p id="ab0c9994-52ab-406c-8e20-1be0797c55f0" class="">A Embrace oferece a possibilidade de integração com a Amazon Alexa, assistente virtual da Amazon, que reconhece <strong>comandos de voz</strong> e os executa. Dessa forma, tudo que o usuário faria utilizando botões físicos ou o aplicativo Embrace será possível apenas utilizando os comandos de voz. Para utilizar essa funcionalidade é preciso baixar o aplicativo oficial, disponível na App Store.</p><figure id="bcb62152-a845-4d7f-bec3-4eaf647b2dd1" class="image"><a href="http://embrace.editme.com/files/Controle-de-usuario/AmazonAlexa1.png"><img style="width:445px" src="http://embrace.editme.com/files/Controle-de-usuario/AmazonAlexa1.png"></a></figure><hr id="221893ab-28ba-44dd-8c27-f668e7cd3bc9"><div id="623d741f-4687-4f0f-8411-01b2f596727d" class="column-list"><div id="94c1a517-19df-4f22-bb77-f6976ca3982c" style="width:50%" class="column"><p id="a7bf70d4-ec95-4339-b8da-32c0bdc05a59" class="">Ao abrir o aplicativo será solicitado o acesso utilizando uma conta. Se já tiver uma conta e quiser utilizá-la basta efetuar login. Caso contrário é preciso criar uma conta.</p></div><div id="571d0a34-e285-4386-aa1a-c047c1498862" style="width:50%" class="column"><figure id="7f1d0f77-c36d-4ceb-baaa-a90e52b36c2a" class="image"><a href="http://embrace.editme.com/files/Alexa/2.%20criar.png"><img style="width:300px" src="http://embrace.editme.com/files/Alexa/2.%20criar.png"></a></figure></div></div><hr id="8105623d-6928-4e5a-ac0f-b4eda9d70049"><div id="c527c50d-3af7-4db7-b8dd-64b254308822" class="column-list"><div id="28d4a706-163a-4fc7-aee5-3a610598b48b" style="width:50%" class="column"><p id="508ad8d9-7310-4553-b4f3-1a92f122be4a" class="">Será aberta uma tela para aceitar os termos de uso da funcionalidade Alexa.</p></div><div id="0088033d-0742-457d-b838-ffb93d64dbb5" style="width:50%" class="column"><figure id="b4614982-5fb7-4339-80ea-f975c71fb18a" class="image"><a href="http://embrace.editme.com/files/Alexa/3.%20termos%20de%20uso.png"><img style="width:300px" src="http://embrace.editme.com/files/Alexa/3.%20termos%20de%20uso.png"></a></figure></div></div><hr id="4c9a6128-074b-48d5-841f-58706b16f897"><div id="85ac6c6a-0e5d-45f7-8e92-94ac9afc9d7e" class="column-list"><div id="044cd845-a172-409c-9646-e75373dc374d" style="width:50%" class="column"><p id="62481298-9327-4cd8-bae8-928c9bcef758" class="">A partir daí será possível escolher a partir de qual equipamento deseja enviar comandos de voz:&nbsp;<strong>Echo</strong>,&nbsp;<strong>Echo Dot</strong>,&nbsp;<strong>Echo Plus</strong>&nbsp;ou&nbsp;<strong>Amazon Tap</strong>.</p></div><div id="909edb12-ec4c-4535-96d5-d4ddb76a62a8" style="width:50%" class="column"><figure id="66d6e0c3-8ac9-49cf-80a2-6200fa6e56fd" class="image"><a href="http://embrace.editme.com/files/Alexa/4.%20device.png"><img style="width:300px" src="http://embrace.editme.com/files/Alexa/4.%20device.png"></a></figure></div></div><hr id="c4068c3c-adf8-4239-abac-91d2d0a598b9"><div id="2776414b-1239-4566-ac00-c1feca6ce791" class="column-list"><div id="b39e74a0-56b2-43ee-9130-7e6c362f6478" style="width:50%" class="column"><p id="8abc5b09-48b7-4dfa-a8aa-b164ba402475" class="">Toque em&nbsp;<strong>Get Started</strong>&nbsp;para finalizar cadastro.</p></div><div id="b3139b46-b221-4f40-9349-5c52ea7ef424" style="width:50%" class="column"><figure id="91e91b06-46ab-46ed-9a76-2c8b8205154f" class="image"><a href="http://embrace.editme.com/files/Alexa/5.%20get%20started.png"><img style="width:300px" src="http://embrace.editme.com/files/Alexa/5.%20get%20started.png"></a></figure></div></div><hr id="f40cd2eb-51b4-4cd3-92e1-2268df8deed8"><div id="709e7869-f583-4f08-890f-f0fd7737a1fa" class="column-list"><div id="f40600ca-6765-4672-896e-4c1cc9611081" style="width:50%" class="column"><p id="65ad4084-08ff-4f2e-aef8-82b709449f61" class="">Selecione seu usuário.</p></div><div id="0372b185-0c68-49e1-a043-0fc859be7f74" style="width:50%" class="column"><figure id="12b43d8c-40bc-400b-8572-b830277ed760" class="image"><a href="http://embrace.editme.com/files/Alexa/6.%20user.png"><img style="width:300px" src="http://embrace.editme.com/files/Alexa/6.%20user.png"></a></figure></div></div><hr id="4010b553-692a-47d5-83de-1995a0091a65"><div id="a47d30d1-e8f4-4024-b20a-6f9c98a3592e" class="column-list"><div id="b98ae560-e6e2-4ba8-8f9e-796431b2c65f" style="width:50%" class="column"><p id="a2657870-8111-4cfa-a267-3f6f85df1231" class="">Adicione todos os dados necessários e será exibida a seguinte tela:</p></div><div id="2f08f1c8-00c9-415d-ad59-8abfc6d87dd2" style="width:50%" class="column"><figure id="bfe9a97a-2ec9-4dbf-86b9-b65e781c7613" class="image"><a href="http://embrace.editme.com/files/Alexa/7.%20welcome.png"><img style="width:300px" src="http://embrace.editme.com/files/Alexa/7.%20welcome.png"></a></figure></div></div><hr id="c8b758cc-4e90-4df9-aed7-0319e5c01e1c"><p id="3cd5470d-8709-4be5-8c57-9a72c48f4ae2" class="">A partir daí será possível adicionar a funcionalidade Embrace. Para isso, basta acessar a seção de <strong>Skills </strong>do aplicativo. Será aberta uma tela contendo diversas opções. Em&nbsp;<strong>Search all skills</strong>&nbsp;digite Embrace e toque na opção mostrada a seguir.</p><div id="4d5124f5-3e22-48a9-aed3-14a53c8ad3c8" class="column-list"><div id="4145487c-43a3-41b4-87d2-849213ef3bd0" style="width:100%" class="column"><figure id="cb2f160d-c6c2-43bb-9026-cea9a962c153" class="image"><a href="http://embrace.editme.com/files/Alexa/9.%20skills.png"><img style="width:300px" src="http://embrace.editme.com/files/Alexa/9.%20skills.png"></a></figure></div><div id="ee50f915-01fd-45e8-9e9e-f0ab0a3927fb" style="width:100%" class="column"><figure id="8b755316-6aeb-4938-9cb4-731239caffba" class="image"><a href="http://embrace.editme.com/files/Alexa/10.%20embraceLogo.png"><img style="width:300px" src="http://embrace.editme.com/files/Alexa/10.%20embraceLogo.png"></a></figure></div></div><hr id="570af58d-a8b9-4c41-9db5-882c49904a17"><div id="2f49fcae-4884-4a8a-a4f0-657d2c1c46a8" class="column-list"><div id="0eae25e1-1f3c-4495-915b-c4211a2791c9" style="width:50%" class="column"><p id="44c5e871-56cc-4375-a970-688e9cef285e" class="">Toque em&nbsp;<strong>Enable</strong>&nbsp;para habilitar a Embrace.</p></div><div id="80bb7d9f-9b51-494e-9129-84b32726e578" style="width:50%" class="column"><figure id="991f11ca-c665-4e74-bf33-e767a76ec2be" class="image"><a href="http://embrace.editme.com/files/Alexa/11.%20enableLogo.png"><img style="width:300px" src="http://embrace.editme.com/files/Alexa/11.%20enableLogo.png"></a></figure></div></div><hr id="8ff9eb91-1d62-442f-862b-f287a066d51c"><div id="c219aca9-87d1-4fca-854c-7b8f18d8a7ca" class="column-list"><div id="f138e18f-512a-445a-8c81-434260c7cd3c" style="width:50%" class="column"><p id="b5897c44-6cb7-4ceb-ad23-8dcbc5614687" class="">Será aberta uma tela de login de usuário da Embrace.</p></div><div id="91a633dc-2372-47f5-9de6-39f52d14656b" style="width:50%" class="column"><figure id="f1cb9cd8-1e37-4197-8c8f-e5259c8b3cc0" class="image"><a href="http://embrace.editme.com/files/Alexa/12.%20loginEmbrace.png"><img style="width:300px" src="http://embrace.editme.com/files/Alexa/12.%20loginEmbrace.png"></a></figure></div></div><hr id="bd5f9407-59d9-431e-aac5-e15c68ece557"><div id="6f39fd88-95cd-43ad-873f-71ca44dd92db" class="column-list"><div id="7f6fb25a-6c71-4548-8b34-e3a1b5af53c1" style="width:50%" class="column"><p id="5d197674-bc33-44fc-9b38-8fd70a4898db" class="">A seguinte tela listará as instalações às quais o usuário informado no passo anterior tem acesso.</p></div><div id="20745eee-901d-4890-8cf7-958facc17133" style="width:50%" class="column"><figure id="6de04a24-0523-4531-9ac3-e537b00215dd" class="image"><a href="http://embrace.editme.com/files/Alexa/13.%20lista%20projetos.png"><img style="width:300px" src="http://embrace.editme.com/files/Alexa/13.%20lista%20projetos.png"></a></figure></div></div><hr id="d5f18350-e8c3-4997-8208-a7b28d126968"><div id="4c818a28-2713-4519-b86c-a72f1841f6dd" class="column-list"><div id="14776669-73fa-43ef-9146-7cff343e8e4d" style="width:50%" class="column"><p id="63839074-18e2-4816-a47c-aaec4b9226fe" class="">Finalizando a integração com a Embrace, toque em&nbsp;<strong>OK</strong>&nbsp;localizado no canto superior esquerdo da tela e em seguida selecione a opção&nbsp;<strong>Discover devices</strong>&nbsp;para que seja feita uma busca de dispositivos.</p></div><div id="90847bcc-8bd2-4d42-878b-155763e3abc5" style="width:50%" class="column"><figure id="1242037b-e04a-48cc-9fc2-2c7b99b11df4" class="image"><a href="http://embrace.editme.com/files/Alexa/15.%20discoverLogo.png"><img style="width:300px" src="http://embrace.editme.com/files/Alexa/15.%20discoverLogo.png"></a></figure></div></div><hr id="50d87578-d425-492d-b8da-aa8bbae65c74"><p id="8f1a9847-d549-4cff-878f-0dee74cc9b07" class="">Neste momento será possível controlar&nbsp;absolutamente tudo que a Embrace oferece desde iluminação até atividades de áudio e vídeo.</p><p id="00962cdf-5783-4d67-b6b7-713f8517bd24" class="">Abaixo estão listados alguns comandos que podem ser utilizados para realizar o acionamento do dispositivos da automação que foram integrados à Assistente. </p><p id="61646a99-7af3-4f7c-81c6-2a725c4c693a" class="">Também é possível obter um relatório de comandos de voz válidos para o seu projeto utilizando o recurso de <strong>Exportar Comandos de Assistente Virtual </strong>no <a href="E-Config.html">E-Config</a>.</p><h2 id="d0d33fef-e9ee-46b9-9fa8-f7d09883fb46" class=""><strong>Comandos suportados:</strong></h2><h3 id="a528ed89-dacd-41e8-a5b4-6d433ae33c70" class=""><strong>Discovery Message</strong></h3><p id="cbf398fd-f87a-4430-ba24-1c8f238fa700" class="">Usada para descobrir quais os devices e cenas associadas a conta do usuário:</p><p id="88483ae8-3858-4b1d-81e9-b5ac47bc0aa2" class=""><strong>Comando</strong></p><pre id="dd19c033-6336-40cb-a24a-5f440f28f745" class="code code-wrap"><code>"Alexa, discover my smart home devices"."Alexa, descobrir meus dispositivos".</code></pre><p id="66b235f3-a79d-4f22-bb84-c19d41d60a9e" class="">ou pela função discovery no aplicativo Alexa.</p><h3 id="b9595dad-0eb0-462c-9083-c560cd961666" class=""><strong>Comandos para ativar cenas/atividades</strong></h3><p id="85bf8260-c2c2-4263-8c2c-6f5e46ba243c" class=""><strong>Comando</strong></p><pre id="5c2786f0-c980-4661-bb4f-e28bdb59862f" class="code code-wrap"><code>"Alexa, turn on scene &lt;scene_name&gt;""Alexa, turn on &lt;activity_name&gt;""Alexa, ligar cena &lt;scene_name&gt;""Alexa, ligar &lt;activity_name&gt;"</code></pre><h3 id="67b25d07-55ad-42af-9fd0-08278771d6dc" class=""><strong>Comandos para dispositivos de iluminação</strong></h3><p id="90a28430-1d22-470d-b4a1-8c43b90a26e0" class="">Usado para controlar a dimerização de uma (ou mais) lâmpadas.</p><p id="91832ffc-b54a-4e86-b95e-1919ec345075" class=""><strong>Comando</strong></p><pre id="2a59ff0a-233d-4764-bb0f-798640a02d2d" class="code code-wrap"><code>"Alexa, turn on/off &lt;device_name&gt;""Alexa, ligar/desligar &lt;device_name&gt;""Alexa, acender/apagar &lt;device_name&gt;""Alexa, dim &lt;device_name&gt; to &lt;brightness_delta_value&gt;""Alexa, aumentar &lt;device_name&gt; para &lt;brightness_delta_value&gt;""Alexa, set the &lt;device_name&gt; to &lt;brightness_value&gt;""Alexa, definir o &lt;device_name&gt; para &lt;brightness_value&gt;"</code></pre><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7b2ae5c6-4b67-4cae-98a8-ed2400a36a22"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><em>Os comandos de carga também são aceitos para dispositivos de iluminação.</em></div></figure><h3 id="3520a7bc-7996-47a1-b0fb-1c9405e86a49" class=""><strong>Comandos para dispositivos de iluminação RGB</strong></h3><p id="a610b5b1-4536-4149-9867-0f3a8c8ce3fe" class="">Usado para controlar a cor de uma lâmpada.</p><p id="bc20cbb4-3ebe-4d7c-829c-f5e5b728f19d" class=""><strong>Comando</strong></p><pre id="54e6aad2-6a97-4962-b366-9cbfc83a49fc" class="code code-wrap"><code>“Alexa, set the &lt;device_name&gt; to &lt;color_name&gt;"Alexa, definir &lt;device_name&gt; para &lt;color_name&gt;""Alexa, alterar &lt;device_name&gt; para &lt;color_name&gt;""Alexa, Trocar &lt;device_name&gt; para &lt;color_name&gt;"</code></pre><h3 id="99324c56-7c98-4e67-8cef-2ee00d19f54e" class=""><strong><strong>Comandos para controle de áudio/vídeo</strong></strong></h3><p id="0188cd69-efb6-43e3-b74e-42c398ae6666" class=""><strong>Comando</strong></p><pre id="56ff6d1d-bbaf-43a4-8281-ea98b38d5a12" class="code code-wrap"><code>"Alexa, change channel to &lt;channel_number&gt; on &lt;device_name&gt;""Alexa, alterar para o canal &lt;channel_number&gt; no &lt;device_name&gt;""Alexa, Trocar para o canal &lt;channel_number&gt; no &lt;device_name&gt;""Alexa, Alterar o canal do &lt;device_name&gt;""Alexa, Trocar o canal do &lt;device_name&gt;" "Alexa, next channel on &lt;device_name&gt;""Alexa, Próximo canal no &lt;device_name&gt;" "Alexa, channel up on &lt;device_name&gt;""Alexa, subir o canal no &lt;device_name&gt;" "Alexa, channel down on &lt;device_name&gt;""Alexa, descer o canal na &lt;device_name&gt;" "Alexa, lower the volume on &lt;device_name&gt;""Alexa, abaixar o volume no &lt;device_name&gt;" "Alexa, volume up &lt;volume_number&gt; on &lt;device_name&gt;""Alexa, aumentar o volume do &lt;device_name&gt;" "Alexa, set the volume of &lt;device_name&gt; to &lt;volume_number&gt;""Alexa, definir no &lt;device_name&gt; para o volume &lt;volume_number&gt;" "Alexa, turn the volume down/up on &lt;device_name&gt; by &lt;volume_number&gt;""Alexa, aumentar/abaixar no &lt;device_name&gt; para o volume &lt;volume_value&gt;" "Alexa, mute/unmute on &lt;device_name&gt;""Alexa, mute/desmutar no &lt;device_name&gt;" "Alexa, play on &lt;device_name&gt;""Alexa, tocar no &lt;device_name&gt;" "Alexa, resume on &lt;device_name&gt;""Alexa, resumo no &lt;device_name&gt;" "Alexa, stop on &lt;device_name&gt;""Alexa, parar no &lt;device_name&gt;" "Alexa, pause on &lt;device_name&gt;""Alexa, pausar no &lt;device_name&gt;" "Alexa, next on &lt;device_name&gt;""Alexa, próximo no &lt;device_name&gt;" "Alexa, previous on &lt;device_name&gt;""Alexa, anterior no &lt;device_name&gt;"</code></pre></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

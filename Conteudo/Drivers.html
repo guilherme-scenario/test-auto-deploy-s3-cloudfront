@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Drivers</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="71b9903a-0a62-4394-bc9f-702e437ace9a" class="page sans"><header><h1 class="page-title">Drivers</h1><p class="page-description"></p></header><div class="page-body"><p id="f2a22f71-9981-4f16-992d-91546a93aa55" class="">A plataforma <strong>Embrace </strong>oferece a possibilidade de integração dos mais diversos tipos de dispositivos à automação por meio de <strong>drivers</strong>: no projeto Embrace, um <strong>driver </strong>atua como uma interface de <strong>comunicação </strong>entre o dispositivo e a automação por meio de diferentes vias de comunicação, como <strong>IP</strong>, <strong>IR </strong>e <strong>RS232 </strong>(Serial). </p><p id="402c5593-3130-487f-9eca-197ebe2cd69c" class="">Além dos dispositivos da própria linha <strong>Embrace</strong>, a plataforma permite a integração com dispositivos de outros <strong>fabricantes </strong>por meio destes drivers, o que faz com que o projeto de automação possa controlar uma vasta quantidade de aparelhos dos mais variados <strong>tipos</strong>, como dispositivos de <strong>áudio e vídeo </strong>e <strong>ar-condicionado</strong>, por exemplo.</p><hr id="6eb01f99-3929-4c80-8faa-86f9d6ff478f"><h2 id="5f8b504a-59ee-4bb4-91fb-8471a13e78f2" class="">Projeto</h2><p id="00a16c8e-0d9f-4d95-9863-ba92e7201df8" class="">Para realizar o controle de dispositivos por meio da <strong>automação</strong>, basta <strong>adicionar um driver</strong> compatível com o dispositivo que deseja controlar ao <strong>projeto Embrace </strong>(via<strong> E-Config</strong>)<strong></strong>e configurá-lo de acordo com o método de comunicação que o aparelho usa (selecionando a <strong>Rede </strong>para o caso de dispositivos que comunicam via <strong>IR/Serial</strong> ou preenchendo o <strong>Endereço IP </strong>para dispositivos que comunicam via <strong>IP</strong>, por exemplo). </p><figure id="3e4e47d3-134c-4b30-88b9-ed2735363ea1" class="image"><a href="Drivers/Untitled.png"><img style="width:729px" src="Drivers/Untitled.png"></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="32ce727f-7503-4942-9d3d-e3e397d951ca"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para adicionar um driver ao projeto, basta acessar a aba <strong>Drivers </strong>na tela de <strong>Equipamentos (</strong>nesta aba estarão listados todos os drivers que fazem parte da biblioteca <strong>Scenario </strong>e da biblioteca do <strong>Usuário</strong>) e <strong>arrastar </strong>o driver escolhido até o <strong>ambiente </strong>desejado.     </div></figure><div id="dda5feb3-81a4-4e54-b6f6-587fd772bb90" class="column-list"><div id="25a10880-c883-4a74-8e2f-bf3afefd143c" style="width:50%" class="column"><p id="6e7d7f68-55f0-406f-ba0d-8b38056f7d8a" class=""><strong>Biblioteca Scenario</strong></p><p id="9a6c1342-e419-417b-ba21-dd9eb7bc9479" class="">A <strong>Scenario </strong>constantemente atualiza sua <strong>biblioteca de drivers </strong>visando expandir a gama de dispositivos suportados e garantir cada vez mais recursos ao usuário. </p></div><div id="08f2eda0-4871-4f62-95c1-938cf86e3784" style="width:50%" class="column"><p id="b24383f5-4fb9-4af5-a323-1965bc0b514b" class=""><strong>Biblioteca Usuário</strong></p><p id="0c7406c1-f613-4eff-9b76-3657eb5957c2" class="">Da mesma forma, o <strong>Usuário </strong>também consegue gerenciar sua própria <strong>biblioteca de drivers</strong>, criando-os ou personalizando drivers já existentes para melhor atender sua instalação.</p></div></div><p id="dfd407d4-b6e5-40b2-9231-2612775abf9f" class="">Os drivers <strong>Scenario </strong>possuem <strong>templates </strong>próprios que são exibidos no <strong>projeto gráfico</strong> da <strong>E-App</strong>. Da mesma forma que ocorre com outros dispositivos de projeto Embrace, os drivers também possuem <strong>Conexões de Entrada e Saída</strong> para que seus acionamentos possam ser programados de acordo com a necessidade do <strong>projeto </strong>de automação.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f4c44bbf-d134-487e-a31f-255736617f1f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Alguns drivers <strong>Scenario</strong> possuem uma maior variedade de <strong>recursos </strong>e por conta disso por vezes requerem um processo de <strong>Integração </strong>que envolve etapas mais específicas. As páginas abaixo tem como intuito descrever os <strong>recursos </strong>oferecidos por esses drivers e expor as <strong>etapas</strong> necessárias para a <strong>configuração </strong>de cada um deles:     </div></figure><div id="42795df2-fc91-4f2f-b6d4-60d2f53ede26" class="column-list"><div id="baa03728-5166-4b49-b8c9-9f372a4020b7" style="width:43.75%" class="column"><figure id="901ddeb6-ad11-4783-a433-a279bd39a7ac" class="link-to-page"><a href="Drivers/Drivers%20de%20Musica.html">Drivers de Música</a></figure><figure id="4530709d-5689-430a-999b-5769ab7e2dd8" class="link-to-page"><a href="Drivers/Driver%20Apple%20TV.html">Driver Apple TV</a></figure><figure id="35fd835c-254d-4482-811a-af9b7b175d5f" class="link-to-page"><a href="Drivers/Driver%20TV%20LG.html">Driver TV LG</a></figure></div><div id="30114d27-1e58-4b62-8b02-44e0e2fe8729" style="width:56.25%" class="column"><figure id="eb1d3a70-90f8-408b-956f-80acfaf5988d" class="link-to-page"><a href="Drivers/Driver%20Sonos.html">Driver Sonos</a></figure><figure id="63ed8ee2-4315-40c7-8f83-1b7bff5555da" class="link-to-page"><a href="Drivers/Driver%20TV%20Samsung.html">Driver TV Samsung</a></figure><figure id="60cd0dba-30f1-4953-9dd6-6f0e08f6a188" class="link-to-page"><a href="Drivers/Driver%20de%20Integracao%20Classic.html">Driver de Integração Classic</a></figure></div></div><hr id="ec4e08e6-85dc-44a1-9ed6-bb3156115355"><h2 id="38af27e3-0dfd-4bbf-a208-1ff088495bcb" class="">Gerenciamento de Drivers</h2><p id="0783ec58-67a2-45e6-8df8-7b2739c7aa32" class="">No menu de <strong>Gerenciamento de Drivers</strong> do <strong>E-Config</strong>, o usuário pode <em>Criar</em>, <em>editar</em>, <em>importar </em>e <em>exportar </em><strong>drivers</strong>, <strong>bibliotecas </strong>e <strong>templates</strong>. </p><p id="2ccfaa2c-7263-433b-8c1e-da65e347f63a" class="">Além de garantir esses recursos, o menu de Gerenciamento de Drivers também permite ao usuário ter uma visão mais completa dos drivers que compõem as bibliotecas às quais ele tem acesso, com detalhes específicos pertinentes a cada <strong>comando </strong>desses drivers a nível individual. </p><p id="9329ec49-7f94-47a1-8fc5-a00c0b135f16" class="">Da mesma forma, o <strong>E-Config</strong> também oferece a possibilidade de <strong>testar </strong>esses comandos sem que seja necessário testar o driver diretamente por meio do <strong>projeto</strong>, auxiliando o usuário no processo de <strong>desenvolvimento </strong>e/ou <strong>ajuste </strong>de drivers.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="5b091fde-6d19-4632-bb89-cadfdddffcd4"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Os testes em questão estão disponíveis somente para drivers do tipo <strong>IR</strong> até o momento     </div></figure><p id="ed421dec-6742-45a1-8db7-ea58723f1dc2" class="">Para realizar um <strong>teste de driver</strong> através do menu de <strong>Gerenciamento</strong>, basta selecionar o driver desejado (seja ele oriundo da biblioteca <strong>Scenario</strong> ou da própria biblioteca do <strong>Usuário</strong>) e selecionar a opção <strong>Editar </strong>e logo em seguida a opção <strong>Iniciar Teste</strong>.</p><figure id="0a5bd65a-1994-4a34-8d29-40289cf7a4ca" class="image"><a href="Drivers/Untitled%201.png"><img style="width:987px" src="Drivers/Untitled%201.png"></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2cf072ea-3745-4759-b680-88f80b8c9783"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para realizar o <strong>teste de drivers</strong>, é necessário estar conectado a uma <strong>Controladora, </strong>que por sua vez deve possuir <strong>dispositivos </strong>em sua rede que possam realizar a <strong>emissão </strong>dos <strong>comandos IR</strong> que serão testados (como uma <strong>EB-NTL1</strong> ou uma <strong>EB-IRS-WIFI</strong>, por exemplo).     </div></figure><figure id="f98486dd-4d6e-4fc5-ac98-cb7ef75992dd" class="image"><a href="Drivers/Untitled%202.png"><img style="width:987px" src="Drivers/Untitled%202.png"></a></figure><p id="133ff108-d5fe-470f-b385-beeec2a73197" class="">Após <strong>Iniciar </strong>o teste, algumas <strong>novas opções </strong>serão exibidas na tela de <strong>Comandos </strong>do driver em questão:</p><figure id="14829611-2aa6-4af1-8ca0-5edbb73e77eb" class="image"><a href="Drivers/Untitled%203.png"><img style="width:974px" src="Drivers/Untitled%203.png"></a></figure><ul id="3510e81e-e3d9-4e9b-bb69-30828970f471" class="bulleted-list"><li style="list-style-type:disc">A caixa de seleção de <strong>Redes</strong> lista todos os dispositivos emissores da rede que estão disponíveis para realizar o teste;</li></ul><ul id="96a23858-52b9-4262-b5db-d279891d2c78" class="bulleted-list"><li style="list-style-type:disc">A caixa de seleção de <strong>Canal</strong> lista os canais disponíveis que emitirão os comandos de teste (<strong>Exemplo</strong>: Canais <em>1-8</em> da <strong>EB-NTL1</strong> ou <em>IR Blaster</em>/<em>Externo </em>da <strong>EB-IRS-WIFI</strong>);</li></ul><ul id="776948d3-2749-489d-b33e-640c50c45fc1" class="bulleted-list"><li style="list-style-type:disc">O ícone de <strong>varredura</strong> realizar uma nova busca na rede da Controladora para atualizar a lista de Redes disponíveis;</li></ul><ul id="b42aed44-9e9b-4780-b407-d5a40cca43c9" class="bulleted-list"><li style="list-style-type:disc">A coluna <strong>Enviar </strong>possui <strong>ícones </strong>ao lado de cada comando do driver. Ao clicar no ícone, o comando em questão é disparado por meio do <strong>Canal </strong>da <strong>Rede</strong> selecionada.       <figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="55529c36-201d-4cea-8939-f0526672c858"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">        O<strong> Teste </strong>realiza tanto o envio de <strong>comandos simples</strong> quanto o envio de <strong>comandos Contínuos </strong>(este condicionado pelo <strong>tempo </strong>em que o usuário mantém o mouse <strong>pressionado </strong>sobre o <strong>ícone </strong>e se a função está <strong>habilitada ou não</strong> para o comando em questão).       </div></figure></li></ul><hr id="08b89347-0574-4d62-98e6-c684a36d344f"><h2 id="632ee387-5390-4907-aeb5-3dbc2738d93c" class="">Templates</h2><p id="99729cca-a83e-4417-90af-f6144286e47b" class="">Um <strong>Template </strong>é um agrupamento de <strong>componentes gráficos</strong> (Ex: <em>botões</em>, <em>sliders </em>e <em>texto</em>) que são exibidos no <strong>projeto </strong>da<strong> E-App</strong> com o propósito de agir como a <strong>interface </strong>dos drivers no aplicativo: dessa forma, é possível interagir com os drivers da automação e realizar seus acionamentos desejados via E-App.</p><div id="db37212d-52a5-412b-87a2-05d1f1498c32" class="column-list"><div id="eecc4025-e847-4ae4-a829-b1ba4d2835af" style="width:37.5%" class="column"><p id="fbfa9c64-49b4-4ced-a1fc-a67a5ed5442f" class="">A Scenario oferece uma biblioteca de <strong>templates</strong> próprios tanto para <strong>E-App</strong> quanto para o <strong>EB-RC1-Remote </strong>a fim de garantir ao usuário a possibilidade de <strong>Criar </strong>novos drivers ou <strong>editar </strong>drivers existentes utilizando os modelos genéricos desta biblioteca. </p><p id="dcf426b2-7d2d-470e-b16c-b4b710c7002a" class="">Por meio do <strong>Gerenciador de Templates</strong>, é possível <em>Criar</em>, <em>editar</em>, <em>importar </em>e <em>exportar </em>templates tanto para E-App quanto para o EB-RC1-Remote. </p></div><div id="db602629-e003-4ea8-89f7-c6c1f6beb20a" style="width:62.5%" class="column"><figure id="c82b73fc-083f-45f2-84dc-88fc89f106fc" class="image"><a href="Drivers/Untitled%204.png"><img style="width:459px" src="Drivers/Untitled%204.png"></a></figure></div></div><p id="a59b3e2f-f7ac-49b6-8eca-8dfc9572e8f3" class="">Quando um usuário tenta <strong><em>Criar </em></strong>ou <strong><em>Editar</em></strong><strong></strong>um <strong>template</strong>, o <strong>E-Config </strong>automaticamente executa o <strong>Editor Gráfico</strong>, que é a ferramenta que permite realizar os ajustes necessários nos <strong>componentes gráficos </strong>que pertencem ao template. Esses componentes eventualmente devem ser associados aos <strong>Comandos </strong>dos drivers (ao <strong>Visualizar</strong> o template e <strong>arrastar </strong>os componentes gráficos até os comandos desejados) para que o projeto gráfico na E-App interaja com o driver.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="27c5a99d-70e6-4ff0-a61e-3983c608c6b8"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      O <strong>Editor Gráfico</strong> possui um <strong>algoritmo </strong>que faz o <strong>ajuste automático</strong> de templates <strong>novos </strong>e <strong>editados </strong>em um formato de <strong>linhas </strong>e <strong>colunas </strong>organizadas de forma a manter o template em questão <strong>padronizado </strong>e garantir sua <strong>usabilidade</strong>.     </div></figure><div><p id="e700ddf4-dfe1-47d5-9224-f0fd39f9df85" class="">Além do ajuste automático, o&nbsp;<strong>E-Config</strong> também oferece recursos para a personalização de&nbsp;<em>templates</em>&nbsp;tanto para&nbsp;<strong>E-App</strong>&nbsp;quanto para o&nbsp;<strong>Remote</strong>. Com esses recursos, é possível alterar o esquema de organização de&nbsp;<strong>colunas</strong>&nbsp;e&nbsp;<strong>paginação</strong>&nbsp;dos templates: para personalizar esses elementos, basta utilizar etiquetas de&nbsp;<strong>Texto</strong>&nbsp;com&nbsp;<strong>palavras reservadas</strong>&nbsp;que vão estabelecer parâmetros que serão considerados quando o ajuste automático for realizado no template. Quando uma palavra reservada é aplicada no template,&nbsp;<strong>todos os elementos gráficos que estão diretamente abaixo do componente de Texto serão afetados</strong>. Vale enfatizar que esses&nbsp;<strong>recursos de formatação</strong>&nbsp;são inteiramente&nbsp;<strong>optativos</strong>, portanto seu uso não é obrigatório para que o template que está sendo adaptado seja considerado compatível.</p><p id="de6e3213-e85a-40be-8883-a5ea6169f2ff" class="">Abaixo estão as definições de cada&nbsp;<strong>palavra reservada</strong>:</p><ul id="ab33246a-98ef-4ea5-91ae-c9252ca55413" class="toggle"><li><details open><summary><strong>##3 colunas##</strong></summary><p id="b72ba310-99c6-4251-8596-182237082c33" class="">Ao inserir no&nbsp;<em>template</em>&nbsp;um componente de <em>Texto </em>com este conteúdo, todos os elementos gráficos posicionados diretamente&nbsp;<strong>abaixo</strong>&nbsp;deste componente serão automaticamente ordenados pelo Editor Gráfico de forma que a grade de visualização vertical do template fique igualmente dividida em&nbsp;<strong>três</strong>&nbsp;partes. Esta é a visualização&nbsp;<em>default&nbsp;</em>dos&nbsp;<em>templates</em>&nbsp;para o Remote, portanto as palavras reservadas com parâmetros de colunas (como essa) <strong>não </strong>são aplicáveis nestes tipos de template.</p></details></li></ul><ul id="ecbdb8ea-a48c-4abe-aea7-2fa9fb03fc04" class="toggle"><li><details open><summary><strong>##4 colunas##</strong></summary><p id="c2a02af9-c9b7-414c-a14e-ebd1c1a6e139" class="">Ao inserir no&nbsp;<em>template</em>&nbsp;um componente de <em>Texto </em>com este conteúdo, todos os elementos gráficos posicionados diretamente&nbsp;<strong>abaixo</strong>&nbsp;deste componente serão automaticamente ordenados pelo Editor Gráfico de forma que a grade de visualização vertical do template fique igualmente dividida em&nbsp;<strong>quatro</strong>&nbsp;partes.</p></details></li></ul><ul id="6b058c6d-2960-47eb-b7e9-046687f4e2e4" class="toggle"><li><details open><summary><strong>##muda pagina##</strong></summary><p id="88609f41-498b-4786-b91a-5c0b70b5ee89" class="">Ao inserir no&nbsp;<em>template</em>&nbsp;um componente de <em>Texto </em>com este conteúdo, todos os elementos gráficos posicionados diretamente&nbsp;<strong>abaixo</strong>&nbsp;deste componente serão exibidos em uma&nbsp;<strong>nova página</strong>, navegável via E-App e Remote por meio do gesto de&nbsp;<em>swipe</em>&nbsp;lateral.</p></details></li></ul><ul id="67713e5d-7166-4537-ae8f-60aaf7e04515" class="toggle"><li><details open><summary><strong>##pagina emergencia##</strong></summary><p id="022285e2-86e9-405d-8ee8-413d866d4daa" class="">Ao inserir no&nbsp;<em>template</em>&nbsp;um componente de <em>Texto </em>com este conteúdo, todos os elementos gráficos posicionados diretamente&nbsp;<strong>abaixo</strong>&nbsp;deste componente serão automaticamente ordenados pelo Editor Gráfico de forma que eles passem a ser exibidos na <strong>Página de Emergência </strong>do driver (<em>mais informações na seção dedicada abaixo</em>).</p></details></li></ul></div><div><h3 id="ea90343b-b293-4271-9c9f-890295fdca8c" class=""><strong>Página de Emergência</strong></h3><p id="aafda88d-86e6-4e38-b46d-c24b7398215f" class="">O recurso de <strong>Página de Emergência</strong> é oferecido com base no conceito de que o acesso a algumas funções avançadas no controle de dispositivos por meio da automação não é interessante a todo momento e para todos os usuários (por motivos como sincronia de feedback e preservação de configurações, dentre outros), porém ainda assim é pertinente em casos pontuais, e, portanto, também devem estar presentes em uma página dedicada do template do driver para eventual acesso, à qual atribui-se o nome de&nbsp;<strong>Página de Emergência</strong>. </p><p id="3e78a14c-d469-44b9-b301-434529611773" class="">Nesta página geralmente ficarão localizadas as funções que podem afetar a sincronia do dispositivo com a automação&nbsp;e, portanto, possui a opção de ser ocultada ou não.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="52f94ea9-0915-4a4e-b8ca-b6674df2e2fa"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">       A <strong>Embrace </strong>oferece à revenda a possibilidade de selecionar, de forma individual para cada instância de driver do projeto, se suas respectivas <strong>Página de Emergência</strong> devem ou não ser exibidas (na <strong>E-App </strong>e no <strong>Remote</strong>).       </div></figure><p id="83b21b38-3498-4616-9419-4c4e80bd1496" class="">Para alterar essa opção, basta marcar ou desmarcar a&nbsp;<strong><em>checkbox&nbsp;</em></strong>pertinente na tela de <strong>Programação </strong>do driver. Uma vez <strong>habilitada</strong>, a Página de Emergência (bem como as demais páginas convencionais pertencentes a um determinado template) pode ser acessada por meio do gesto de <em>swipe </em>lateral.</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Driver de Integração Classic</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="60cd0dba-30f1-4953-9dd6-6f0e08f6a188" class="page sans"><header><h1 class="page-title">Driver de Integração Classic</h1><p class="page-description"></p></header><div class="page-body"><p id="24dff6da-337a-490b-80d2-381defdc94dd" class="">Para os usuários que possuem dispositivos da linha&nbsp;<a href="https://scenario.ind.br/classic.html"><strong>Classic</strong></a><strong></strong>e pretendem usufruir das funcionalidades oferecidas pela <strong>Embrace </strong>em suas instalações, é possível continuar utilizando seus equipamentos <strong>Classic </strong>sem que seja necessária sua substituição por modelos compatíveis com a&nbsp;plataforma Embrace. </p><div id="9c853cf8-b9fd-4663-849f-3fecfb136a6d" class="column-list"><div id="00eac2fa-a968-447d-8491-6ed345125b10" style="width:50%" class="column"><p id="0e07e8e8-36d0-4054-9297-4720aec690c5" class="">Para que isso seja possível, a linha Embrace oferece aos seus usuários recursos para que seja efetuada a <strong>Integração </strong>entre as duas plataformas, de forma a unificar os acionamentos dos dispositivos de ambas sob um único controle <a href="../Controladora.html"><strong>central</strong></a>.</p><p id="d116cb41-2d96-424d-a6a9-49f32c496f13" class=""></p><p id="9159a4e3-db8a-4bc3-aa3e-1345f0d1eace" class="">Essa integração pode ser realizada por meio do&nbsp;<strong>Driver</strong>, que é disponibilizado via&nbsp;<strong>E-Config</strong>&nbsp; e oferece ao programador total flexibilidade para desenvolver seu projeto, de modo a customizar os acionamentos (tanto de módulos quanto de teclados Classic), que passarão a ser controlados pela Embrace.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="10fe3e96-a7af-4029-8342-8aab3ae8f38c"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">        O <strong>driver de integração</strong> encontra-se na aba de <em>Drivers </em>do menu de <strong>Equipamentos</strong> do E-Config, e pode ser adicionado ao projeto como um driver convencional.       </div></figure></div><div id="241069c5-55be-4c35-9c9a-0fe1b1bfdd40" style="width:50%" class="column"><figure id="401da8eb-a64a-407a-b868-2bcb7fdfd218" class="image"><a href="Driver%20de%20Integracao%20Classic/Untitled.png"><img style="width:421px" src="Driver%20de%20Integracao%20Classic/Untitled.png"></a></figure></div></div><p id="69fc9c02-a3d0-4d16-aacd-3d448a0965b9" class="">O&nbsp;<strong>driver de integração</strong>&nbsp;tem como propósito estabelecer um canal de comunicação entre a interface&nbsp;<strong>IFSEI&nbsp;</strong>Classic e a&nbsp;<a href="../Controladora.html"><strong>Controladora</strong></a><strong>&nbsp;</strong>Embrace. Assim sendo, para que essa conexão seja realizada, é necessário informar ao driver o endereço&nbsp;<strong>IP</strong>&nbsp;e a&nbsp;<strong>Porta&nbsp;</strong>de comunicação da <strong>IFSEI </strong>que será integrada (por&nbsp;<em>default</em>, a porta de integração definida é a&nbsp;<strong>28000</strong>). Ambos os campos serão visíveis e poderão ser preenchidos ao adicionar o driver de integração no projeto:</p><figure id="a38a4ded-1c0f-4189-bba3-63c7bd7ed6c5" class="image"><a href="Driver%20de%20Integracao%20Classic/Untitled%201.png"><img style="width:825px" src="Driver%20de%20Integracao%20Classic/Untitled%201.png"></a></figure><hr id="8046fe50-8fce-4005-b626-e44faa09700a"><h2 id="b058c753-4a26-45bc-abf8-2aa7adcde6b0" class=""><strong>Teclados</strong></h2><p id="f4b438ca-e3bb-4267-b42b-681a1e8772e1" class="">É possível integrar os teclados Classic fazendo uso do&nbsp;<strong>PRID&nbsp;</strong>das teclas: </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="63b2cca9-1fb2-4806-93ac-9cf0dc9710cc"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      O <strong>PRID </strong>é um valor apresentado no formato&nbsp;<strong>hexadecimal&nbsp;</strong>que funciona como <strong>identificador único</strong> para cada <strong>tecla </strong>dentro da <strong>rede Classic</strong>.      </div></figure><p id="60eb634f-f4ee-4dd8-b9cf-90b3bf9b11d0" class="">O driver de integração, por sua vez, disponibiliza (em formato&nbsp;<strong>decimal</strong>)&nbsp;<strong>conexões</strong>&nbsp;de&nbsp;<strong>Entrada&nbsp;</strong>e&nbsp;<strong>Saída&nbsp;</strong>e que têm como papel representar as teclas Classic na interface do E-Config.&nbsp;</p><div id="9b1009c5-12af-47ed-977d-faf12ad83601" class="column-list"><div id="6dc02f0b-e50a-424e-9d07-a6d6e1924b9f" style="width:37.5%" class="column"><p id="8b846780-75c8-48cb-996c-cfa3f4ab5c9f" class="">Assim sendo, cada conexão&nbsp;<strong>Tecla X</strong>&nbsp;e<strong>&nbsp;Feedback Tecla X</strong>&nbsp;que o driver possui corresponde a um&nbsp;<em>Press/Release</em>&nbsp;de um teclado físico da rede Classic, onde&nbsp;<strong>X&nbsp;</strong>é o valor&nbsp;<strong>decimal</strong>&nbsp;equivalente ao valor&nbsp;<strong>hexadecimal</strong>&nbsp;(<strong>PRID</strong>) exibido no teclado Classic. O driver conta com 500 conexões de entrada/saída, o que significa que ele poderia suportar, em tese, a integração de até 500 teclas da linha Classic.</p><p id="a6922aa5-f641-4557-bd11-c520ad6be130" class=""></p></div><div id="7acea730-5a91-4608-a5d4-8790d12a0705" style="width:62.5%" class="column"><figure id="8b18cb89-9863-442a-96ec-0c2b77a2432e" class="image"><a href="Driver%20de%20Integracao%20Classic/Untitled%202.png"><img style="width:313px" src="Driver%20de%20Integracao%20Classic/Untitled%202.png"></a></figure></div></div><p id="fe0d1c07-853d-42ab-adec-2ca895959a65" class="">Para recuperar o&nbsp;<strong>PRID</strong>&nbsp;de uma tecla <strong>Classic</strong>, basta acessar por meio do&nbsp;<strong>Config&nbsp;Classic</strong>&nbsp;o teclado que se pretende integrar à Embrace: </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ebb2e957-c62e-4688-9bc9-bc221a924aa7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      O <strong>PRID </strong>exibido no&nbsp;Config&nbsp;Classic corresponde à&nbsp;<strong>primeira&nbsp;</strong>tecla do teclado em questão, enquanto os&nbsp;<strong>PRIDs&nbsp;</strong>das demais teclas são dispostos de maneira <strong>sequencial</strong>.      </div></figure><p id="e579de13-0750-432a-b931-8691bb39c8ac" class="">Segue exemplo de uma integração de um&nbsp;<strong>M-12</strong>:</p><figure id="a2275f55-0f78-4f94-b2c1-64e8ce789db0" class="image"><a href="Driver%20de%20Integracao%20Classic/Untitled%203.png"><img style="width:684px" src="Driver%20de%20Integracao%20Classic/Untitled%203.png"></a></figure><p id="55df1c9b-fb73-497e-b476-8a57ecec4a24" class="">Ao acessar este teclado utilizando o&nbsp;Config&nbsp;Classic, nota-se que sua primeira tecla possui o PRID <strong>0021</strong>. </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="96ef5238-af27-466e-ab92-3c782124498b"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      É importante lembrar que o PRID é apresentado no formato <strong>hexadecimal</strong>, e, portanto, é necessário fazer a conversão deste valor para <strong>decimal </strong>a fim de&nbsp;chegar ao número da tecla correspondente no driver.      </div></figure><p id="de5c2f39-2145-4f91-8925-35d9ad90fc9d" class="">No caso apresentado, sabemos que ao converter o hexadecimal <strong>0021 </strong>para o formato decimal obtém-se o valor <strong>33</strong>. Assim sendo, conclui-se que a primeira tecla deste teclado Classic que possui <strong>PRID 0021 </strong>corresponde à <strong>Tecla 33 </strong>do Driver.</p><p id="c717e4ae-c1ad-4af0-8e0f-e86e340a2872" class="">Seguindo a mesma lógica e realizando a conversão, é possível <strong>mapear </strong>os valores das teclas restantes para o nosso exemplo:</p><table id="647908a1-4294-4359-a1bb-0c5c7f9dc2a3" class="simple-table"><tbody><tr id="68812ebe-8ed3-4b56-980a-da87e202dabe"><td id="O;XK" class="" style="width:232.66666666666666px"><strong>Botão do M-12 Classic</strong></td><td id="cFYR" class="" style="width:232.66666666666666px"><strong>PRID Classic</strong></td><td id=";uS>" class="" style="width:232.66666666666666px"><strong>Tecla Driver Embrace</strong></td></tr><tr id="8a473800-c2ba-4238-829f-54b3e4c15683"><td id="O;XK" class="" style="width:232.66666666666666px"><strong>Botão 1</strong></td><td id="cFYR" class="" style="width:232.66666666666666px"><strong>0021</strong></td><td id=";uS>" class="" style="width:232.66666666666666px"><strong>Tecla 33</strong></td></tr><tr id="a3a766a3-f2b8-4319-b3bd-ad503beb24f2"><td id="O;XK" class="" style="width:232.66666666666666px">Botão 2</td><td id="cFYR" class="" style="width:232.66666666666666px">0022</td><td id=";uS>" class="" style="width:232.66666666666666px">Tecla 34</td></tr><tr id="cf21657d-37d7-4301-8e05-c2af93e4eedb"><td id="O;XK" class="" style="width:232.66666666666666px">Botão 3</td><td id="cFYR" class="" style="width:232.66666666666666px">0023</td><td id=";uS>" class="" style="width:232.66666666666666px">Tecla 35</td></tr><tr id="f53ffa3b-dbfe-4708-8b77-3d1455feac2e"><td id="O;XK" class="" style="width:232.66666666666666px">Botão 4</td><td id="cFYR" class="" style="width:232.66666666666666px">0024</td><td id=";uS>" class="" style="width:232.66666666666666px">Tecla 36</td></tr><tr id="b3043d7b-c549-4ed5-937f-580474facfd3"><td id="O;XK" class="" style="width:232.66666666666666px">Botão 5</td><td id="cFYR" class="" style="width:232.66666666666666px">0025</td><td id=";uS>" class="" style="width:232.66666666666666px">Tecla 37</td></tr><tr id="13f6328b-cd8c-45f1-91fd-bf54aebfb278"><td id="O;XK" class="" style="width:232.66666666666666px">Botão 6</td><td id="cFYR" class="" style="width:232.66666666666666px">0026</td><td id=";uS>" class="" style="width:232.66666666666666px">Tecla 38</td></tr><tr id="f656f625-6c54-4dde-9186-89b1022346d4"><td id="O;XK" class="" style="width:232.66666666666666px">Botão 7</td><td id="cFYR" class="" style="width:232.66666666666666px">0027</td><td id=";uS>" class="" style="width:232.66666666666666px">Tecla 39</td></tr><tr id="c2f2001a-a125-4f52-947c-0deb7767db77"><td id="O;XK" class="" style="width:232.66666666666666px">Botão 8</td><td id="cFYR" class="" style="width:232.66666666666666px">0028</td><td id=";uS>" class="" style="width:232.66666666666666px">Tecla 40</td></tr><tr id="21a52341-b814-4651-bfe9-dbfa0fb37b01"><td id="O;XK" class="" style="width:232.66666666666666px">Botão 9</td><td id="cFYR" class="" style="width:232.66666666666666px">0029</td><td id=";uS>" class="" style="width:232.66666666666666px">Tecla 41</td></tr><tr id="a5b53a40-9f1b-41ba-a840-6b7d0223e914"><td id="O;XK" class="" style="width:232.66666666666666px">Botão 10</td><td id="cFYR" class="" style="width:232.66666666666666px">002A</td><td id=";uS>" class="" style="width:232.66666666666666px">Tecla 42</td></tr><tr id="d81c8efa-7e6c-467e-9888-7344d98d58b9"><td id="O;XK" class="" style="width:232.66666666666666px">Botão 11</td><td id="cFYR" class="" style="width:232.66666666666666px">002B</td><td id=";uS>" class="" style="width:232.66666666666666px">Tecla 43</td></tr><tr id="fd4c0245-a17c-4d97-985e-6db03649bc80"><td id="O;XK" class="" style="width:232.66666666666666px">Botão 12</td><td id="cFYR" class="" style="width:232.66666666666666px">002C</td><td id=";uS>" class="" style="width:232.66666666666666px">Tecla 44</td></tr></tbody></table><p id="e5d53b5b-ca76-4ea2-94e9-c42e68f8a5d5" class="">Com as teclas devidamente mapeadas, basta proceder com a programação da mesma forma que se faria trabalhando com os botões dos&nbsp;<em>keypads&nbsp;</em>Embrace, utilizando as suas <strong>conexões de entrada/saída</strong> para programar os <strong>acionamentos </strong>da instalação.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b3689998-d2ea-4bc6-97bb-c45db8504505"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Vale lembrar que ao fazer a integração de um teclado é importante certificar-se que a opção&nbsp;<strong>Press/Release&nbsp;</strong>dos botões<strong>&nbsp;</strong>esteja&nbsp;<strong>habilitada</strong>.      </div></figure><p id="d9b169da-9118-4811-825d-f42d495a9fd1" class="">É possível confirmar se essa opção está habilitada ou não importando a programação do teclado em questão pelo&nbsp;<strong>Config&nbsp;Classic</strong>&nbsp;e acessando os botões individualmente. Da mesma forma, também é necessário garantir que a opção&nbsp;<strong>Controle por central&nbsp;</strong>no teclado esteja&nbsp;<strong>habilitada</strong>.</p><figure id="13297ade-4fb1-4026-b8b0-98ab40d64dd6" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/PressReleaseControleCentral.png"><img style="width:680px" src="http://embrace.editme.com/files/PaginaRevisao/PressReleaseControleCentral.png"></a></figure><hr id="e3203af0-0e91-43eb-8da6-4b9058a3e57e"><h2 id="414ca1d8-4aeb-47df-ae54-0a8a1173a9a7" class=""><strong>Módulos</strong></h2><p id="810f58f1-5a45-42e9-8858-4fd21e9c9a48" class="">Para que seja possível realizar o controle dos&nbsp;<strong>módulos&nbsp;</strong>Classic utilizando a&nbsp;plataforma Embrace, o driver de integração disponibiliza ao usuário&nbsp;<strong>30&nbsp;módulos </strong>que são apresentados no formato de <strong>blocos </strong>com múltiplas&nbsp;<strong>conexões&nbsp;</strong>de Saída (representando os respectivos canais do módulo Classic), onde o usuário poderá associar as cargas (<strong>luminárias&nbsp;</strong>ou&nbsp;<strong>cargas não-dimerizáveis</strong>) que ele deseja controlar&nbsp;via Embrace.</p><figure id="0a15ee3a-202d-4bc4-babd-13d16932d6be" class="image"><a href="Driver%20de%20Integracao%20Classic/Untitled%204.png"><img style="width:920px" src="Driver%20de%20Integracao%20Classic/Untitled%204.png"></a></figure><p id="aaa2b405-26c7-4444-8610-c43187c1067c" class="">Os <strong>30 blocos</strong> disponibilizados pelo driver refletem a faixa de&nbsp;<strong>endereçamento&nbsp;</strong>dos módulos Classic, ou seja, vão do endereço&nbsp;<strong>0</strong>&nbsp;até o endereço&nbsp;<strong>29</strong>. Ao realizar a integração, portanto, o programador deverá saber qual o&nbsp;<strong>endereço na rede Classic</strong>&nbsp;o módulo que ele deseja integrar ocupa, e desenvolver sua programação no&nbsp;<strong>bloco do driver</strong>&nbsp;correspondente a este módulo.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="60e9aa5a-36ed-4c49-84c1-9123d9eeadd7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para recuperar o&nbsp;<strong>endereço</strong>&nbsp;de um módulo na rede Classic, basta utilizar o&nbsp;<strong>Config&nbsp;Classic&nbsp;</strong>para consultar estas informações.     </div></figure><p id="81c245d5-a22b-4349-9a6a-86ba405b7a44" class="">Considere o seguinte exemplo: pretende-se integrar um módulo&nbsp;<strong>Mini&nbsp;SDM-8 Classic</strong>&nbsp;à&nbsp;instalação Embrace. A primeira medida nesse caso deve ser confirmar o endereço do módulo na rede Classic. No nosso exemplo, observa-se que o módulo em questão está alocado no&nbsp;<strong>Endereço 1:</strong></p><figure id="6773c13b-d271-49ba-9ce7-8f54df74cd9e" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/miniSDM8Classic.png"><img style="width:720px" src="http://embrace.editme.com/files/PaginaRevisao/miniSDM8Classic.png"></a></figure><p id="3c583bc8-a826-4919-9aff-c4247c03e977" class="">Logo, o módulo do driver a ser selecionado para programação é o&nbsp;<strong>Módulo 1</strong>.</p><p id="9f105026-8f64-4546-bcdf-40e9f931e509" class="">Ao acessar o <strong>Módulo 1</strong>, é possível observar as conexões de Saída&nbsp;<strong>Intensidade Canal</strong>&nbsp;X, onde X varia de <strong>1</strong> a <strong>8</strong>. Essas conexões representam os&nbsp;<strong>canais&nbsp;</strong>do módulo, e, conforme dito, é onde as cargas serão associadas. No caso do nosso exemplo, por estarmos utilizando um módulo&nbsp;dimerizável, as cargas associadas serão&nbsp;<strong>Luminárias</strong>, que deverão ser adicionadas ao projeto a fim de refletir a instalação Classic atual.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="80cc3f3f-b7b7-4ef5-982c-58f16004b633"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Vale notar que a integração suporta o uso de luminárias e demais cargas não-dimerizáveis, de forma que a única limitação nestes casos é imposta pelo próprio módulo que está sendo integrado.     </div></figure><figure id="88c08ec6-b404-4dfa-8f95-aa43803d77e9" class="image"><a href="Driver%20de%20Integracao%20Classic/Untitled%205.png"><img style="width:924px" src="Driver%20de%20Integracao%20Classic/Untitled%205.png"></a></figure><p id="ee0444cf-5c1d-49b7-84cd-3cfef340d91a" class="">Com as cargas devidamente associadas aos módulos do driver de integração, basta gerar o&nbsp;<a href="../E-Config/Room-Control.html"><strong>Room-Control</strong></a>&nbsp;dos respectivos ambientes aos quais estas cargas pertencem para que seja possível programá-las e controlar seus acionamentos como seria feito com qualquer&nbsp;dispositivo Embrace.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

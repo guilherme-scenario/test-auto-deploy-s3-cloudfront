@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Inteligência Iluminação</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="acac7844-694c-4899-9336-8cfdc1a0d438" class="page sans"><header><h1 class="page-title">Inteligência Iluminação</h1><p class="page-description"></p></header><div class="page-body"><p id="4ca5ce95-010d-43c7-ae00-c8971cdb301e" class="">A plataforma&nbsp;<strong>Embrace&nbsp;</strong>oferece aos seus usuários a possibilidade de configurar os acionamentos automáticos das luminárias de sua instalação por meio da&nbsp;<strong>Inteligência de Iluminação,</strong>&nbsp;disponibilizada via&nbsp;<strong>E-App</strong>. </p><p id="19174ce4-6499-435a-9e12-94b47904b11a" class="">Esta funcionalidade tem como objetivo proporcionar maior autonomia ao usuário final, que poderá customizar diversos parâmetros que controlam o acionamento de seus dispositivos de iluminação, bem como personalizar o&nbsp;<strong>Room Control&nbsp;</strong>de cada ambiente da sua instalação sem precisar utilizar o&nbsp;<strong>E-Config</strong>&nbsp;para realizar as alterações que&nbsp;julgar necessárias. </p><p id="1cd060f8-8479-45be-a7f2-3e576c8fbb7f" class="">Conforme mencionado, essas configurações poderão ser redefinidas facilmente e a qualquer momento pelo usuário via&nbsp;<strong>E-App</strong>, possibilitando, portanto, que ele ajuste e adapte os parâmetros de maneira que melhor atendam ao contexto da sua instalação para uma experiência mais interativa, aumentando assim não somente sua autonomia como também a autonomia de seu sistema.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="fc51e5cc-4c5d-4df6-9488-03e58adabc7a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para que a <strong>Inteligência </strong>de Iluminação possa atuar em um ambiente, existem alguns&nbsp;<strong>requisitos&nbsp;básicos </strong>que precisam ser cumpridos, veja abaixo:     </div></figure><ul id="b9653f8e-58e1-4c46-b28b-497c5434bf4f" class="bulleted-list"><li style="list-style-type:disc">Pelo menos um&nbsp;<strong>sensor de movimento</strong>;</li></ul><ul id="5277c746-497d-4b94-a3ad-327cccf977d1" class="bulleted-list"><li style="list-style-type:disc">Este sensor deve estar conectado ao&nbsp;<strong>Room Control</strong>&nbsp;do ambiente (em caso de múltiplos sensores, isso deve ser verdadeiro para todos aquele que o usuário deseja integrar à Inteligência).</li></ul><p id="3485de55-411d-42de-bdf2-ad631bc20a61" class=""></p><p id="3d9f0838-de06-413c-b730-22a79ef9168d" class="">A partir do momento em que estes&nbsp;<strong>requisitos&nbsp;</strong>estejam devidamente preenchidos, é proporcionada ao usuário a possibilidade de alterar os seguintes parâmetros de cada ambiente:</p><ul id="15bb1bc6-623e-4b99-afbc-d73251cdd657" class="toggle"><li><details open><summary><strong>Tempo de ocupação</strong>: </summary><p id="14c69795-8ba4-4d62-890a-bbe6bf89dd9f" class="">é o que mantém a cena&nbsp;<strong>com movimento&nbsp;</strong>ativa enquanto houver captação de movimento pelo sensor;</p></details></li></ul><ul id="1302fb85-93da-4438-a921-1db794be7d7d" class="toggle"><li><details open><summary><strong>Tempo de esquecimento</strong>: </summary><p id="bcf4ee07-cf60-4bae-a9c3-73c7ae82ef67" class="">é o que mantém as&nbsp;<strong>cenas customizadas</strong>&nbsp;ativas enquanto houver captação de movimento pelo sensor;</p></details></li></ul><ul id="7e05b0ad-cf21-45b5-b500-4e88be9c3870" class="toggle"><li><details open><summary>Comportamento do&nbsp;<strong>Modo noite automático (Smart Lumi)</strong>: </summary><p id="a3a72d80-1878-44b7-bcdd-88248702956b" class="">se ele será ativado nos horários pré-definidos (via&nbsp;<strong>Módulo Dia/Noite</strong>&nbsp;ou do próprio ambiente) ou se ele será ativado também quando a proporção de luminosidade detectada no ambiente estiver abaixo de um determinado limite (que poderá ser definido pelo próprio usuário de forma totalmente responsiva);</p></details></li></ul><ul id="4eb597ce-cb2c-420e-8c2b-f9e491808317" class="toggle"><li><details open><summary><strong>Definição de horário</strong> para início dos períodos de <strong>dia</strong>, <strong>noite&nbsp;</strong>e, opcionalmente, <strong>madrugada</strong>:</summary><p id="eb2bc44c-82c8-4052-a28d-93158ffb5a56" class="">o usuário poderá definir horários personalizados para cada ambiente ou, se assim desejar, fazer com que os ambientes preservem os horários ditados pelo&nbsp;<strong>Módulo Dia/Noite</strong>&nbsp;nativo da instalação.</p></details></li></ul><p id="17ccec50-86d0-4c25-b98d-5770031ada84" class=""></p><div id="d92b8559-5370-45a9-babb-904b1b9c2752" class="column-list"><div id="dc463704-0b96-437f-b50d-e2525d92872b" style="width:87.5%" class="column"><p id="b6ce56b0-7461-4da2-b14e-023d97e4f94a" class="">Por fim, caso o usuário não tenha interesse em ter acesso a nenhuma dessas configurações pela&nbsp;<strong>E-App</strong>, ou caso a própria revenda queira utilizar apenas os controles já disponíveis na&nbsp;plataforma Embrace&nbsp;por meio do&nbsp;<strong>E-Config</strong>&nbsp;sem que haja a necessidade de configurar os parâmetros de monitoramento para os ambientes do projeto, também é&nbsp;possível&nbsp;<strong>Omitir&nbsp;o menu Inteligência para usuários na E-App </strong>por meio das Opções de Projeto Gráfico nas <strong>Preferências do projeto </strong>(localizada na guia de <em>Preferências </em>da barra superior).</p></div><div id="2dbbfd68-9e8a-406e-915f-d28675a6e2b7" style="width:112.5%" class="column"><figure id="972323d4-c01e-4c77-9d54-fb9a90161fc3" class="image"><a href="Inteligencia%20Iluminacao/Untitled.png"><img style="width:528px" src="Inteligencia%20Iluminacao/Untitled.png"></a></figure></div></div><h2 id="ab9a4db1-4a63-4978-b468-01b9026ef0b0" class=""><strong>E-App</strong></h2><p id="10f23b2c-3999-40a7-b736-ef7b86faa384" class="">Conforme já mencionado, uma das vantagens trazidas por esta implementação é a possibilidade de realizar todas essas configurações sem sair da<strong>&nbsp;E-App</strong>: quando os&nbsp;<strong>requisitos&nbsp;</strong>básicos forem atendidos em algum ambiente da instalação, ficará habilitado o acesso aos respectivos menus dentro de cada um destes ambientes para a configuração de todos os&nbsp;<strong>parâmetros&nbsp;</strong>citados previamente.</p><p id="589ec6a1-6672-4ef3-8800-33739e57b4c3" class=""></p><p id="32a63cfa-e8d4-411c-a324-495b9f22e160" class="">Para acessar as telas de <strong>configuração de Inteligência </strong>do ambiente, basta navegar até o ambiente desejado partir da página principal da instalação e em seguida acessar o <strong>Menu</strong>. Caso os requisitos básicos (presença de <strong>sensor de movimento vinculado ao Room Control</strong>) estejam sendo satisfeitos no ambiente, a opção <strong>Inteligência </strong>estará disponível para seleção. Além disso, é possível notar que abaixo do nome de cada Ambiente poderão estar visíveis pequenos ícones, que representam o <strong>feedback de status da Inteligência</strong>. Vale ressaltar que a exibição deste feedback pode ser desabilitada a qualquer momento por meio do menu de&nbsp;Configurações, também acessível pelo <strong>Menu</strong>.</p><div id="60c0943d-0d8c-4193-97e5-39e39e40394f" class="column-list"><div id="d9576050-0069-4927-85e6-e7de50fb3c04" style="width:100%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4adba8d6-1785-4cec-bb5c-65ddc185cba1"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">        Ao acessar a tela de Inteligência, o usuário notará opções para <strong>Ligar</strong>,&nbsp;<strong>Desligar&nbsp;</strong>e&nbsp;<strong>Configurar&nbsp;</strong>a Inteligência para cada elemento da sua instalação       </div></figure></div><div id="90ce5b17-659d-4a8a-9bbd-3bc486900ce7" style="width:100%" class="column"><figure id="0c06bf75-ae36-4a52-a53a-45154137a6e1" class="image"><a href="http://embrace.editme.com/files/Inteligencia-Embrace-Iluminacao/OpcoesIluminacao.jpg"><img style="width:528px" src="http://embrace.editme.com/files/Inteligencia-Embrace-Iluminacao/OpcoesIluminacao.jpg"></a></figure></div></div><p id="3a53940b-9b3c-4122-9699-b02d9af65238" class="">Note que ao <strong>Desligar </strong>a Inteligência são oferecidas as opções para fazê-lo de modo&nbsp;<strong>Permanente&nbsp;</strong>ou&nbsp;<strong>Até Amanhã</strong>: em ambos os casos, isso significa, essencialmente, que na Inteligência de Iluminação as capturas de movimento feitas pelos sensores do ambiente serão desconsideradas, impedindo que as cenas&nbsp;<strong>com movimento</strong>&nbsp;sejam acionadas, o que por consequência inutiliza também o&nbsp;<strong>tempo de esquecimento</strong>. </p><p id="99c51847-7551-48be-8bb3-f81cb8f56403" class="">No caso do desligamento&nbsp;<strong>Até Amanhã</strong>, destaca-se que as opções citadas serão desabilitadas até o amanhecer do dia seguinte (interpretado pela Controladora como um novo acionamento do <strong>Modo Dia</strong>). </p><p id="da714dc7-0264-41c6-b9c0-0f31b8612f52" class="">Note também que são estes estados do recurso de Inteligência (<strong>Ligado</strong>, desligado&nbsp;<strong>Permanente&nbsp;</strong>e inibido&nbsp;<strong>Até Amanhã</strong>) que os ícones do&nbsp;<strong>feedback de status da Inteligência&nbsp;</strong>(mencionado acima) vão refletir quando tiverem sua visualização habilitada.</p><h3 id="b4c01328-d977-4148-a987-bd4049cd9d1a" class=""><strong>Configuração</strong></h3><div id="1e58bf18-43b3-4881-92b0-dab4b17f85e3" class="column-list"><div id="648f3683-87dd-45a3-b9d5-5897978b42df" style="width:100%" class="column"><p id="fde98696-aff6-4d31-9fc6-03002982ce14" class="">Para&nbsp;<strong>Configurar</strong>&nbsp;a Iluminação do ambiente, basta acessar o menu de Inteligência do ambiente, clicar no ícone&nbsp;de <strong>Configurações</strong>&nbsp;para ser redirecionado a uma página com uma breve descrição acerca das interações das cenas de iluminação e os períodos do dia. </p><p id="01a54523-3a9f-4b64-81d0-52ebd65b2c7d" class="">Note que todas essas opções que serão demonstradas também são facilmente configuráveis por meio do próprio&nbsp;<strong>Room Control</strong>&nbsp;do ambiente via&nbsp;<strong>E-Config</strong>.</p></div><div id="0d040d15-47ee-48e3-bdc8-d702bea0b2ef" style="width:100%" class="column"><figure id="16f622c2-c54f-43c2-a462-9e5ce6087c77" class="image"><a href="Inteligencia%20Iluminacao/Untitled%201.png"><img style="width:350px" src="Inteligencia%20Iluminacao/Untitled%201.png"></a></figure></div></div><hr id="ac1de52e-9308-4b98-ac84-844131de58ad"><div id="a26935c7-3c43-465f-9458-3b8883832af2" class="column-list"><div id="acdcf285-c82c-4bda-a79e-2c8666002630" style="width:100%" class="column"><p id="96153373-7a50-4adb-9b01-c49d923a5060" class="">Na tela seguinte, será possível realizar o&nbsp;<strong>ajuste de horários</strong>&nbsp;do ambiente, definindo horas para o início de cada período do dia ou delegando essas definições para o&nbsp;<strong>Módulo Dia/Noite</strong>&nbsp;da instalação (<strong>Horário padrão</strong>)</p></div><div id="353c9e1d-d700-4490-93e5-481db2726672" style="width:100%" class="column"><figure id="36b36c31-e168-48b6-85e6-a5e7bd62a694" class="image"><a href="Inteligencia%20Iluminacao/Untitled%202.png"><img style="width:350px" src="Inteligencia%20Iluminacao/Untitled%202.png"></a></figure></div></div><hr id="cc47a4f5-9376-4d37-b63b-b93f88910cbe"><div id="1484f63b-8e33-411d-a990-9400f133fd74" class="column-list"><div id="698b6550-c989-4f32-a0d1-6b8e57376846" style="width:100%" class="column"><p id="f4f53017-b3e7-4794-80be-cda2a36f3667" class="">Esta tela viabiliza a configuração da duração do&nbsp;<strong>tempo de ocupação</strong>, que, conforme citado anteriormente, tem como papel manter a cena&nbsp;<strong>com movimento</strong>&nbsp;acionada até o fim do período definido caso não ocorra uma nova captação de movimento pelos sensores do ambiente.</p></div><div id="2971253a-3fef-4d52-a279-3cc11dc52cb5" style="width:100%" class="column"><figure id="81dbd174-d955-40b4-8e77-e961657d697c" class="image"><a href="Inteligencia%20Iluminacao/Untitled%203.png"><img style="width:350px" src="Inteligencia%20Iluminacao/Untitled%203.png"></a></figure></div></div><hr id="356333b0-0ee4-485b-802c-7fc567da56ab"><div id="ba75fea1-ae96-47eb-be02-bfcf5e762dc4" class="column-list"><div id="850288ba-df95-4260-aaa5-dfe4069d9659" style="width:100%" class="column"><p id="ccbfb9c8-7ebe-4714-ab4f-4e97deed1b1b" class="">O<strong>&nbsp;tempo de esquecimento</strong>&nbsp;do ambiente pode ser configurado nesta tela: por meio dela, é possível&nbsp;<strong>habilitar/desabilitar</strong>&nbsp;o seu funcionamento, bem como definir o intervalo (em minutos) em que ele deverá manter a cena fixa quando ele estiver habilitado:</p><p id="d7206d55-9d4d-42ca-8b6f-b3b65713f7b8" class=""></p></div><div id="e0b3ed93-7a6d-496e-8e76-48e336709fc6" style="width:100%" class="column"><figure id="d5a4cd11-673d-452b-8131-84b7dfb16ad4" class="image"><a href="Inteligencia%20Iluminacao/Untitled%204.png"><img style="width:350px" src="Inteligencia%20Iluminacao/Untitled%204.png"></a></figure></div></div><hr id="7bfc63f4-4c27-4cb8-a4a2-0573b2c2b977"><h3 id="1fbc2b8a-9f26-4688-8830-e047ca15c3ce" class=""><strong>Smart Lumi</strong></h3><div id="a00f288c-ddf5-442f-9f5f-9f2658dce469" class="column-list"><div id="76454164-fc54-423b-81c8-06719403ee14" style="width:200.00000000000009%" class="column"><p id="f767a540-cf57-4e48-8ecb-c4d8f191661a" class=""></p><p id="8e367632-5089-4b91-8cd1-c19cf9e6b12d" class="">Por fim, também existe a possibilidade de personalizar os critérios de acionamento da cena&nbsp;<strong>Noite com movimento:</strong>&nbsp; por meio da funcionalidade&nbsp;<strong>Smart&nbsp;Lumi</strong>, é possível definir um limite de intensidade luminosa que o ambiente deve atingir para que as luzes se acendam.&nbsp; </p><p id="fb2ef9d4-9b5d-4dd6-8cbc-8f4794b56d5f" class="">Dessa forma, sempre que a luminosidade do ambiente estiver&nbsp;<strong>abaixo&nbsp;</strong>deste limite e houver captação de movimento, a cena&nbsp;<strong>Noite com movimento</strong>&nbsp;será acionada automaticamente, inclusive durante o dia, fazendo com que essa opção seja ideal para ambientes com menor incidência de luminosidade. </p><p id="8f5692a8-9a54-4b2d-8121-d8fdaae6ccab" class="">Esta opção também é ajustada para que as suas interações com o&nbsp;<strong>Modo Dormir</strong>&nbsp;do Room Control, por exemplo, resultem em transições entre as cenas de forma mais fluida e natural, conforme será descrito mais abaixo.</p><p id="4368036a-6171-4fa1-b684-6c9322861560" class=""></p></div><div id="0487659c-f124-4ec5-8ad9-485c44764163" style="width:100.00000000000003%" class="column"><figure id="c844c6cd-14c6-4c84-90ac-b9796e3c5de5" class="image"><a href="Inteligencia%20Iluminacao/Untitled%205.png"><img style="width:336px" src="Inteligencia%20Iluminacao/Untitled%205.png"></a></figure></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6788ff14-634c-488a-9ffb-0dc0f863a12a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Assim como as demais funcionalidades de Inteligência, o Smart Lumi também pode ser regido por&nbsp;<strong>múltiplos&nbsp;</strong>dispositivos de&nbsp;<strong>sensoriamento</strong>:&nbsp;inicialmente, qualquer dispositivo&nbsp;<strong>detector de luminosidade</strong>&nbsp;que se encontre no ambiente contribuirá com a alimentação de informações à Inteligência Embrace, e para reportar a luminosidade atual, a Inteligência fará uma&nbsp;<strong>média&nbsp;</strong>do valor captado por todos esses dispositivos.     </div></figure><div id="26d7425c-223e-44e9-89b3-880d41bd82c7" class="column-list"><div id="f9c35be1-dfb1-43ae-9ae0-3e45416fdce3" style="width:50%" class="column"><p id="88183baa-4f68-4d8b-9afd-9d76361423c2" class="">É oferecida a possibilidade de ignorar dispositivos específicos no cálculo de luminosidade caso o usuário assim deseje, como por exemplo em casos em que algum sensor em particular esteja posicionado de forma a receber maior incidência de luz solar:</p><p id="a57c5f09-f56b-415b-80f1-62c2b1c3472a" class="">Para <strong>ignorar </strong>a luminosidade captada por algum sensor em específico, basta acessar o dispositivo via&nbsp;<strong>E-Config</strong>&nbsp;e&nbsp;<strong>desabilitar&nbsp;</strong>a&nbsp;<em>checkbox&nbsp;</em><strong>Considerar luminosidade quando Smart Lumi ativado</strong>. Assim, esse sensor deixará de ser integrado ao cálculo da média para seu respectivo ambiente.</p></div><div id="1da7a3f0-86df-495e-927d-ebf7fad5088a" style="width:50%" class="column"><figure id="bc7a8e5c-13d0-47df-93d8-14efb6508bc4" class="image"><a href="Inteligencia%20Iluminacao/Untitled%206.png"><img style="width:432px" src="Inteligencia%20Iluminacao/Untitled%206.png"></a></figure></div></div><h3 id="46f510f9-355f-460b-b570-dce4a3969147" class=""><strong>Modo Dormir</strong></h3><p id="77855380-f4f5-460f-ba88-b565c1cc038b" class="">A Inteligência de Iluminação oferece integração completa com a funcionalidade&nbsp;<strong>Modo Dormir</strong>&nbsp;do Room Control, garantindo que o&nbsp;<strong>Smart Lumi</strong>&nbsp;não acionará a cena&nbsp;<strong>noite com movimento</strong>&nbsp;em momentos indesejáveis e suavizando a transição entre o Modo Dormir e o&nbsp;<strong>Modo Automático</strong>&nbsp;no amanhecer. Para fazer isso, a Inteligência Embrace usa as informações de luminosidade captadas pelos sensores do ambiente e confronta essas informações com o limite de luminosidade definido pelo usuário. Dessa forma, assim que o&nbsp;<strong>Modo Dormir</strong>&nbsp;é ativado, além de aguardar o amanhecer para retornar ao Modo Automático, também será considerada a&nbsp;<strong>luminosidade atual</strong>&nbsp;do ambiente, bem como a&nbsp;<strong>captura de movimento</strong>&nbsp;neste. O retorno para o Modo automático é efetuado apenas uma vez que os critérios citados forem atendidos.</p><p id="4450cdeb-201e-4add-bca5-f7f916590c21" class="">Considerado esse contexto, pode-se sintetizar que a lógica adotada pela Inteligência quando o&nbsp;<strong>Modo Dormir</strong>&nbsp;está&nbsp;<strong>ativo&nbsp;</strong>é a seguinte: </p><blockquote id="d829c1fb-e66d-4f35-9a1c-12f9fc15747c" class="">     O ambiente sairá automaticamente do&nbsp;<strong>Modo Dormir&nbsp;</strong>depois que o dia&nbsp;<strong>amanhecer&nbsp;</strong>(segundo horário do próprio ambiente ou do Módulo Dia/Noite) e houver detecção de&nbsp;<strong>movimento&nbsp;</strong>por um dos sensores do ambiente. A partir da captura de movimento, a Inteligência fará uma verificação da&nbsp;<strong>luminosidade&nbsp;</strong>captada nos últimos&nbsp;<strong>15 segundos</strong>: caso a luminosidade captada nesse intervalo tenha ficado&nbsp;<strong>acima do limite</strong>&nbsp;de forma&nbsp;<strong>ininterrupta</strong>, o sistema fará a transição para o&nbsp;<strong>Modo Automático</strong>. Caso contrário, o sistema entenderá que o Modo Dormir deverá ser&nbsp;<strong>mantido&nbsp;</strong>até que essas condições mudem, e uma nova checagem será feita a cada&nbsp;<strong>captura de movimento</strong>&nbsp;subsequente.    </blockquote><p id="bfee4355-ba0a-4a8c-a619-2ca31a081aad" class=""></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

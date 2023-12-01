@@ -1,0 +1,681 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>
+EB-PWM3-WIFI</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="1f817d41-15a5-444d-8ecb-4ab8f5386329" class="page sans"><header><h1 class="page-title"><mark class="highlight-blue_background"> EB-PWM3-WIFI</mark></h1><p class="page-description"></p></header><div class="page-body"><div id="3b84572f-e0a4-4390-ab77-60aa7f86e32b" class="column-list"><div id="60a77734-6822-492f-a4f2-36a4edabe83e" style="width:37.5%" class="column"><p id="106485d3-4985-4881-b172-91ffb3c9e654" class="">O módulo&nbsp;<strong>EB-PWM3-WIFI</strong>&nbsp;tem a função de controlar fitas&nbsp;<strong>RGB</strong>&nbsp;(<strong>R</strong>ed - vermelho,&nbsp;<strong>G</strong>reen - verde,&nbsp;<strong>B</strong>lue - azul) ou fitas de&nbsp;<strong>LED comum</strong>. A vantagem oferecida pelo uso deste dispositivo, assim como nos outros dispositivos da linha&nbsp;<strong>EB-WIFI</strong> é que ele pode ser instalado sem necessidade de cabos, funcionando apenas com o sinal de WiFi.</p></div><div id="ca956827-179f-4202-ae18-3bcfe567e382" style="width:62.5%" class="column"><figure id="6b19b05f-224d-45dd-828c-2f533702cf41" class="image"><a href="http://embrace.editme.com/files/EB-PWM3-WIFI/PWM.png"><img style="width:336px" src="http://embrace.editme.com/files/EB-PWM3-WIFI/PWM.png"></a></figure></div></div><h3 id="b16af493-80bc-40a5-ae43-98e883c05f30" class=""><strong>Considerações gerais</strong></h3><p id="30cf492c-9aaf-452b-b3e1-2bacdd9a748a" class=""><strong>Especificações</strong></p><ul id="e2ceb59b-da67-4a12-9979-27e791eb4851" class="bulleted-list"><li style="list-style-type:disc">Possui 3 canais RGB dimerizáveis (correspondentes às cores vermelho, verde e azul):&nbsp;6&nbsp;Amperes&nbsp;total (2A&nbsp;para cada canal).</li></ul><ul id="6bc6e02f-313d-44f8-bdc3-79e582603104" class="bulleted-list"><li style="list-style-type:disc">Possui 2 entradas auxiliares com acionamento AC (FASE).</li></ul><ul id="f259204f-6c7a-4735-92f5-d377398af91d" class="bulleted-list"><li style="list-style-type:disc">Possui 1 botão de&nbsp;<em>setup</em>&nbsp;na caixa do próprio dispositivo usado para ativar modo de configuração e outros recursos descritos a seguir.</li></ul><ul id="3595000d-cb9a-461d-a1eb-5fd407587405" class="bulleted-list"><li style="list-style-type:disc"><em>Bivolt</em>&nbsp;automático.</li></ul><ul id="7d5c9bd9-e5c6-4457-9d0f-3fd02582353b" class="bulleted-list"><li style="list-style-type:disc">Pode controlar fita LED RGB ou fita LED comum.</li></ul><h3 id="a4b6e5f4-586e-4d12-b043-bb5131767cd8" class=""><strong>Processo de instalação</strong></h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="27f72f53-1b01-4c1c-9b1f-3ee0b4093903"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      O módulo<strong>&nbsp;EB-PWM3-WIFI</strong>&nbsp;pode ser inserido na rede da instalação da mesma forma que os outros dispositivos da linha&nbsp;<strong>EB-WIFI</strong>. Para mais informações a respeito de como proceder para configurar o dispositivo, favor visitar a seção&nbsp;<strong>Configuração</strong>&nbsp;da página&nbsp;<a href="../EB-WIFI.html"><strong>EB-WIFI</strong></a>.     </div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f2a5b0d2-3346-4873-bee4-5137652809ed"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para acionar o<strong>&nbsp;Modo Setup</strong>&nbsp;deste módulo, pressione o botão de&nbsp;<em>setup</em>&nbsp;por aproximadamente 5 segundos até que o LED de&nbsp;<em>setup</em>&nbsp;pisque constantemente. Solte o botão de setup antes de 10 segundos, caso contrário o EB-PWM3-WIFI restaurará para o&nbsp;<strong>padrão de fábrica</strong>&nbsp;(mais detalhes a seguir).&nbsp;     </div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f0d82875-ceab-4639-b825-996a03ec5deb"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><strong>Importante</strong>: caso o módulo já tenha sido configurado e esteja vinculado a uma AC, o processo de alteração de rede (manter o botão&nbsp;<em>setup</em>&nbsp;pressionado por 5 segundos) não funcionará, pois o módulo se conecta com apenas 1 dispositivo, que neste caso é a AC.     </div></figure><h3 id="b68d6678-b35d-44fe-9606-ea48bf72c3ca" class=""><strong>Funcionamento EB-PWM3-WIFI</strong></h3><p id="2e536110-8013-4a4c-958a-d6a5ea083eec" class="">O módulo tem seu funcionamento atrelado à <strong>Controladora </strong>(<strong>AC</strong>). Dizemos que quando conectado à AC ele está no&nbsp;<strong>Modo Central</strong>, caso contrário (desconectado) estará em&nbsp;<strong>Modo Local</strong>. O Modo Local é apenas um modo de emergência caso a AC fique inoperante por algum motivo, ou ainda quando não conectamos logicamente o<strong> EB-PWM3-WIFI</strong> ao <strong>projeto Embrace</strong>. Neste momento, o EB-PWM3-WIFI não tem funcionamento algum. As <strong>auxiliares </strong>no modo local assumirão diferentes funcionalidades dependendo do modo de operação que o EB-PWM3-WIFI estava antes.</p><figure id="9fe99fcc-d07a-4ddc-89d6-dcf8e0a1417e" class="image"><a href="http://embrace.editme.com/files/EB-PWM3-WIFI/telaInicial3.png"><img style="width:585px" src="http://embrace.editme.com/files/EB-PWM3-WIFI/telaInicial3.png"></a></figure><ul id="5e64c9e3-41f7-4499-b2a9-5fd8b4c2d8c1" class="bulleted-list"><li style="list-style-type:disc"><strong>Desvincular modo local</strong>&nbsp;habilitado: faz com que as auxiliares não tenham funcionalidade no modo local. O funcionamento do EB-PWM3-WIFI e das auxiliares voltará no momento em que estiverem conectados à AC novamente.</li></ul><ul id="ea75807a-f0e3-4ba2-8385-9e76f918b960" class="bulleted-list"><li style="list-style-type:disc"><strong>Desvincular modo local</strong>&nbsp;desabilitado:      <ul id="04efb610-b9ea-4d9c-a726-b35e3c2bb6bf" class="bulleted-list"><li style="list-style-type:circle"><strong>Auxiliar 1</strong>:        <ul id="5565c61e-e5ed-496e-9a14-870da3c017c1" class="bulleted-list"><li style="list-style-type:square">1º toque acende todos os canais da fita LED RGB;</li></ul><ul id="95c4423b-79c1-4959-93e1-c591065444ad" class="bulleted-list"><li style="list-style-type:square">2º toque acende o canal R (vermelho);</li></ul><ul id="293f798a-c8d7-4ea3-bd06-7e28977cf3d6" class="bulleted-list"><li style="list-style-type:square">3º toque acende o canal G (verde);</li></ul><ul id="e12a923b-a68b-46f4-8108-509d474838de" class="bulleted-list"><li style="list-style-type:square">4º toque acende o canal B (azul);</li></ul><ul id="6b194310-0819-461c-9d82-1fdd6466bb0c" class="bulleted-list"><li style="list-style-type:square">a partir daí o ciclo se repete.</li></ul></li></ul><ul id="05f10cfc-e57f-4a8d-81b6-b6e62366755f" class="bulleted-list"><li style="list-style-type:circle"><strong>Auxiliar 2</strong>: apaga fita LED RGB.</li></ul></li></ul><p id="10b71984-c859-4124-b551-a35daf7dad92" class="">Em <em>conexões </em>é possível vincular um slider de um projeto gráfico customizado à&nbsp;<strong>Intensidade do Sinal do WiFi.</strong></p><h3 id="b8532568-699c-4735-bb1c-b0f97b88be5e" class=""><strong>Incluindo EB-PWM3-WIFI no projeto para controlar fita RGB</strong></h3><p id="b01feabe-3612-49b6-9835-69ec18875503" class="">O EB-PWM3-WIFI aparecerá na aba de E-Net do seu E-Config. Basta adicioná-lo ao ambiente como qualquer outro dispositivo da rede Embrace. Em seguida os procedimentos serão:</p><ul id="efe51d09-0609-425c-9285-4b54e8f22847" class="bulleted-list"><li style="list-style-type:disc">Adicionar uma fita LED RGB (em Acionadores, localizado em Equipamentos/Ambiente) ao ambiente desejado.</li></ul><ul id="4b7ff72a-dc49-48ac-b0a0-1a443cb515c4" class="bulleted-list"><li style="list-style-type:disc">Arrastar a fita LED RGB na conexão do EB-PWM3-WIFI.</li></ul><figure id="5183a211-25aa-493d-bb75-13138e35da25" class="image"><a href="http://embrace.editme.com/files/EB-PWM3-WIFI/conexao2.png"><img style="width:697px" src="http://embrace.editme.com/files/EB-PWM3-WIFI/conexao2.png"></a></figure><ul id="24c1211a-6620-4c11-8035-052d4d2733c9" class="bulleted-list"><li style="list-style-type:disc">Em seguida fazer as associações desejadas na fita LED RGB </li></ul><figure id="10cbe4e5-a07a-46cc-8ff5-7bfa44f8f81f" class="image"><a href="http://embrace.editme.com/files/EB-PWM3-WIFI/linkFitaLed.png"><img style="width:700px" src="http://embrace.editme.com/files/EB-PWM3-WIFI/linkFitaLed.png"></a></figure><ul id="4f416c96-59ed-4428-8330-e207535801c1" class="bulleted-list"><li style="list-style-type:disc">O projeto Controle de Usuário e E-App Automático já possuem as ferramentas para controlar a fita LED RGB.</li></ul><ul id="6604834d-f265-4c05-8e0b-cd0a4050da08" class="bulleted-list"><li style="list-style-type:disc">Associar o dispositivo físico EB-PWM3-WIFI na aba de Rede.</li></ul><figure id="5479f9e4-08b8-46c5-91ae-c6080d07e7e2" class="image"><a href="http://embrace.editme.com/files/EB-PWM3-WIFI/vincularRede.png"><img style="width:700px" src="http://embrace.editme.com/files/EB-PWM3-WIFI/vincularRede.png"></a></figure><ul id="a15e5c90-398d-4e5d-973f-85ce0a4f6905" class="bulleted-list"><li style="list-style-type:disc">Enviar o projeto para a controladora.</li></ul><h3 id="4330a127-819e-4f01-ae94-cd2dba9f6154" class=""><strong>Modo Teste</strong></h3><ul id="2b8fabed-0fdb-4186-981b-7fc6e3bf3686" class="bulleted-list"><li style="list-style-type:disc">Ainda na aba Rede, é possível testar a funcionalidade do EB-PWM3-WIFI.</li></ul><ul id="779d8763-5584-47f1-aef0-02aa6db5d65b" class="bulleted-list"><li style="list-style-type:disc">Para realizá-lo basta selecionar o EB-PWM3-WIFI correspondente e clicar em Modo Teste (localizado no topo da aba Rede).</li></ul><ul id="5b4af8ed-398c-4169-a27a-8f4dac8d3b47" class="bulleted-list"><li style="list-style-type:disc">Neste momento os Dispositivos da Rede passarão a ficar à esquerda e a tela do módulo EB-PWM3-WIFI abrirá à direita.</li></ul><ul id="b8669154-74c9-403d-bff4-28881dad2560" class="bulleted-list"><li style="list-style-type:disc">Na aba INPUT encontram-se as informações do módulo e os métodos de teste: os sliders indicam a intensidade de cada canal. Mais abaixo é possível acompanhar o sinal do Wi-Fi do EB-PWM3-WIFI.</li></ul><figure id="d7144526-2f23-4618-a7c5-ee7bbf078ec3" class="image"><a href="http://embrace.editme.com/files/EB-PWM3-WIFI/modoTesteInput.png"><img style="width:700px" src="http://embrace.editme.com/files/EB-PWM3-WIFI/modoTesteInput.png"></a></figure><ul id="db99dbaa-5c0c-44d0-9df5-1ed3adbe979a" class="bulleted-list"><li style="list-style-type:disc">Na aba OUTPUT é listado tudo o que o EB-PWM3-WIFI reporta, incluindo o sinal do Wi-Fi a cada segundo e acionamento de teclas auxiliares.</li></ul><figure id="b629f17f-fc89-47d2-bf4f-95a1aa971e6e" class="image"><a href="http://embrace.editme.com/files/EB-PWM3-WIFI/modoTesteOutput.png"><img style="width:700px" src="http://embrace.editme.com/files/EB-PWM3-WIFI/modoTesteOutput.png"></a></figure><h3 id="26e1573e-ed66-423f-b7c0-fc23f308ca44" class=""><strong>Estados do LED</strong></h3><p id="0c3be17d-c087-4a3b-8e71-17016eed0ff1" class="">De acordo com a conexão com a rede Wi-Fi os LEDs do módulo podem piscar:</p><table id="edf73a8c-1a9a-4c15-9da1-90731bcdbc59" class="simple-table"><tbody><tr id="a401810d-0a95-45b8-a82a-3e70b75252bd"><td id="IGG:" class="" style="width:232.66666666666666px"><strong>Piscadas</strong></td><td id="s`jn" class="" style="width:232.66666666666666px"><strong>Pausa&nbsp;em segundos</strong></td><td id="B~AW" class="" style="width:232.66666666666666px"><strong>Estado</strong></td></tr><tr id="010a2b78-880b-4d94-94ac-a85d00774696"><td id="IGG:" class="" style="width:232.66666666666666px">3</td><td id="s`jn" class="" style="width:232.66666666666666px">2</td><td id="B~AW" class="" style="width:232.66666666666666px">Desconectado</td></tr><tr id="69b3d468-c688-407d-8316-324f65188063"><td id="IGG:" class="" style="width:232.66666666666666px">2</td><td id="s`jn" class="" style="width:232.66666666666666px">2</td><td id="B~AW" class="" style="width:232.66666666666666px">Conectado</td></tr><tr id="540e1bdf-9fb4-4662-8ec7-a0b4ffe5789d"><td id="IGG:" class="" style="width:232.66666666666666px">Constante</td><td id="s`jn" class="" style="width:232.66666666666666px">Sem pausa</td><td id="B~AW" class="" style="width:232.66666666666666px">Aguardando conexão</td></tr><tr id="e4d08124-963b-4c19-a16f-bb46a265fe6c"><td id="IGG:" class="" style="width:232.66666666666666px">1</td><td id="s`jn" class="" style="width:232.66666666666666px">1</td><td id="B~AW" class="" style="width:232.66666666666666px">Identificação</td></tr><tr id="5c05ff3c-5553-4da8-8796-fe0ab3ac9c98"><td id="IGG:" class="" style="width:232.66666666666666px">1</td><td id="s`jn" class="" style="width:232.66666666666666px">2</td><td id="B~AW" class="" style="width:232.66666666666666px">Conectado à&nbsp;AC</td></tr></tbody></table><h3 id="ea701cf6-c16f-4ebd-a751-ad61115dde18" class=""><strong>Padrões de fábrica</strong></h3><ul id="c909edd0-823a-445a-80ae-5b843cf4e4e0" class="bulleted-list"><li style="list-style-type:disc">DHCP habilitado.</li></ul><ul id="9ef795c1-e8f8-4c07-a3b7-c7100b0ba181" class="bulleted-list"><li style="list-style-type:disc">SSID da rede é apagado.</li></ul><ul id="5404022d-5d7f-4c4c-9f76-833b3485c2f9" class="bulleted-list"><li style="list-style-type:disc">Limites dos canais RGB vão para o&nbsp;<em>default</em>&nbsp;(mínimo 1 e máximo 100, configuração via E-Config).</li></ul><ul id="35bf1ad5-3281-481a-8bcb-e4a67f90c07f" class="bulleted-list"><li style="list-style-type:disc">Parâmetros dos modos de programação vão para o modo&nbsp;<em>default</em>:      <ul id="41b4f828-0296-43f8-99b0-fbc6a4fad9ef" class="bulleted-list"><li style="list-style-type:circle">Parâmetro referente ao R: 100%</li></ul><ul id="0f8a22cb-99ec-4eaf-9fc5-55e0ca983b60" class="bulleted-list"><li style="list-style-type:circle">Parâmetro referente ao G: 100%</li></ul><ul id="899ebb47-2cfc-420a-8cf0-7670a4861657" class="bulleted-list"><li style="list-style-type:circle">Parâmetro referente ao B: 1%</li></ul></li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="49d05f96-7398-4864-afb6-bed3f08e65e5"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><strong>Atenção</strong>: ao energizar o EB-PWM3-WIFI o canal ligado ao circuito R pode acionar por 100 milissegundos.     </div></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

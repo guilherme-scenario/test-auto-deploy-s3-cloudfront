@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Inteligência Ar-condicionado</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="cadbf459-e3a0-4d79-bb2c-5b5d0dc06cce" class="page sans"><header><h1 class="page-title">Inteligência Ar-condicionado</h1><p class="page-description"></p></header><div class="page-body"><p id="f1add464-3c48-4011-97c6-8a874f3e92ff" class="">A&nbsp;plataforma&nbsp;<strong>Embrace&nbsp;</strong>oferece aos seus usuários a possibilidade de programar o monitoramento de diversos&nbsp;<strong>parâmetros&nbsp;</strong>(devidamente detalhados abaixo) dentro dos ambientes de sua instalação, e a partir das informações levantadas customizar acionamentos dos seus dispositivos de forma a aumentar o seu conforto e a autonomia do seu sistema.</p><p id="b07e335b-df8d-47a5-b0cb-f230c4dbc61e" class="">Com a função de&nbsp;<strong>Inteligência</strong>, o&nbsp;usuário Embrace&nbsp;pode informar à sua instalação, por meio da&nbsp;<strong>E-App,</strong>&nbsp;exatamente quais critérios serão monitorados dentro de cada ambiente, para que quando estes critérios sejam atendidos, a&nbsp;<strong>Controladora&nbsp;</strong>utilize o contexto em que o sistema se encontra no momento para realizar o acionamento dos dispositivos da automação.</p><p id="c79a3830-25a3-45e8-b318-49835e5cbb05" class=""></p><p id="febcf6f2-55de-434d-8246-b4df8f51a990" class="">Esta página tem como objetivo servir de apoio para o usuário que deseja realizar a configuração da&nbsp;<strong>Inteligência&nbsp;</strong>dos dispositivos de&nbsp;<strong>ar-condicionado</strong>&nbsp;nos ambientes de sua instalação. Com as configurações devidamente realizadas, o usuário poderá fazer com que a Embrace ligue e desligue os aparelhos em um ambiente baseada em condições de&nbsp;<strong>temperatura</strong>,&nbsp;<strong>presença&nbsp;</strong>e acionamento de&nbsp;<strong>atividades</strong>, com todos os detalhes acerca destas condições a serem determinados pelo próprio usuário.</p><p id="bc54db25-bb78-41ff-bb4a-f83fc226e682" class="">Dessa forma, a partir do momento em que os critérios definidos são satisfeitos em seus respectivos ambientes, o acionamento (e/ou desligamento) dos equipamentos é feito de forma automática pela central, sem necessidade de intervenção direta do usuário.</p><p id="c86ff96d-4681-48a0-b49c-fc9b2ceec66d" class=""></p><p id="2fe348f3-bf87-4f22-8bfc-a492f0ee46c5" class="">Conforme mencionado, essas configurações poderão ser redefinidas facilmente e a qualquer momento pelo usuário via&nbsp;<strong>E-App</strong>, possibilitando, portanto, que ele ajuste e adapte os parâmetros de maneira que melhor atenda ao contexto da sua instalação para uma experiência mais interativa.</p><p id="d55eb0df-225b-4ac2-a108-935a697b13e9" class="">Da mesma forma, o&nbsp;<strong>monitoramento&nbsp;</strong>poderá&nbsp;ser&nbsp;<strong>desabilitado&nbsp;</strong>ou&nbsp;<strong>inibido&nbsp;</strong>a qualquer momento, o que fará com que ele deixe de realizar os acionamentos até ser habilitado novamente ou até o vencimento do período de inibição, respectivamente.</p><p id="729ace4f-8e92-49d3-81c6-adb2645c90ef" class=""></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="ae3dd2bf-d24b-450d-b772-ebfa864fec5c"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para que a&nbsp;<strong>Inteligência&nbsp;</strong>seja capaz de realizar o monitoramento do ambiente, existem alguns&nbsp;<strong>requisitos básicos</strong>&nbsp;que habilitarão a sua configuração, <strong>veja abaixo</strong>:     </div></figure><ul id="2e925021-d6d7-4f13-a4ea-3080e1c535f1" class="bulleted-list"><li style="list-style-type:disc">O ambiente precisa contar com um ou mais drivers de&nbsp;<strong>ar-condicionado</strong>&nbsp;compatível;</li></ul><ul id="2fa7e35a-d9b9-40cc-b9c1-095a29483e80" class="bulleted-list"><li style="list-style-type:disc">O ambiente precisa possuir um&nbsp;<strong>sensor de temperatura</strong>, disponível nos&nbsp;equipamentos:<em>&nbsp;EB-KP0M</em>&nbsp;(v1 e v2),&nbsp;<em>EB-KP6M</em>&nbsp;(v1 e v2) e&nbsp;<em>EB- SMT</em>&nbsp;(v1 e v2).&nbsp;<strong>Importante</strong>: no caso de ambientes com múltiplos sensores, serão levados em consideração os valores reportados pelo&nbsp;<strong>primeiro&nbsp;</strong>sensor no ambiente em questão (ou seja, o sensor que está posicionado acima dos demais na estrutura do projeto no&nbsp;<strong>E-Config</strong>).</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3f12ff27-c6c2-41b8-9c1f-ec4de564df0f"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Adicionalmente, existem <strong>componentes&nbsp;</strong>opcionais para o&nbsp;monitoramento, os quais têm&nbsp;função de enriquecer a gama de parâmetros que serão considerados pela&nbsp;Inteligência&nbsp;para realizar o&nbsp;<strong>acionamento&nbsp;</strong>dos dispositivos de ar-condicionado, <strong>sendo eles</strong>:     </div></figure><ul id="c5aefddf-f70f-4dc9-a3ee-b781aeed9e04" class="bulleted-list"><li style="list-style-type:disc">Sensores de&nbsp;<strong>movimento</strong>;</li></ul><ul id="1d1fb7d0-59e1-43b9-92c7-60ba8c08ad13" class="bulleted-list"><li style="list-style-type:disc"><strong>Atividades</strong>/<strong>Macros&nbsp;</strong>no projeto Embrace.</li></ul><p id="af0e92c5-e04c-4c64-bf9c-110b656538cb" class=""></p><p id="00f5b36c-701b-49a9-9f62-ebb9214115d3" class="">Nominalmente, o usuário poderá configurar os seguintes&nbsp;<strong>parâmetros </strong>utilizando a Inteligência Embrace:</p><ul id="8d0f7207-bd75-4a05-976c-eef7e3cc32ec" class="bulleted-list"><li style="list-style-type:disc">Definição da&nbsp;<strong>temperatura&nbsp;</strong>na qual&nbsp;ele deseja que o ar-condicionado opere quando ligado (bem como outras funções oferecidas pelo driver do dispositivo, como ventilação, modo de operação etc.);</li></ul><p id="4442c045-46b2-420d-a51f-eaf3f0d8318b" class=""></p><ul id="5878ad2c-f7a0-4aa8-8046-7ba28ae15f4b" class="bulleted-list"><li style="list-style-type:disc"><strong>Dias&nbsp;</strong>da semana&nbsp;nos quais&nbsp;o monitoramento estará ativo, bem como os&nbsp;<strong>horários&nbsp;</strong>de início e fim do monitoramento nos dias selecionados;</li></ul><p id="cab70402-4af4-425e-914d-ec663d024063" class=""></p><ul id="9a527084-e78c-4b3d-bb78-e6d36ea32bf2" class="bulleted-list"><li style="list-style-type:disc">Nível de&nbsp;<strong>temperatura ambiente</strong>&nbsp;para que o aparelho seja ligado (ou seja, definir que o ar-condicionado será ligado quando a temperatura atingir ou ultrapassar este valor);</li></ul><p id="6a481f61-0c72-4565-b6c0-201e02718731" class=""></p><ul id="8aa7dd40-ba74-4f13-a8da-d1d22e666a9a" class="bulleted-list"><li style="list-style-type:disc"><strong>Atividades&nbsp;</strong>e/ou&nbsp;<strong>macros</strong>, que quando ativadas, poderão&nbsp;ligar ou desligar os dispositivos de ar-condicionado no ambiente;</li></ul><p id="ef0392ba-3933-429a-92c0-544769f25b00" class=""></p><ul id="00efe490-0ac8-4335-8021-1a4ff5f21ab1" class="bulleted-list"><li style="list-style-type:disc">Detecção de <strong>presença</strong>: poderá ser habilitado o acionamento dos dispositivos em caso de detecção de&nbsp;<strong>movimento&nbsp;</strong>no ambiente, bem como a definição de um tempo máximo sem que os sensores capturem movimento para que estes dispositivos sejam desligados.</li></ul><p id="7f9b23ac-7d60-45c6-853c-940e70cae4ca" class=""></p><p id="6296189c-8c38-43b6-bed9-b432df226da5" class=""></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="eb110040-f42d-4e47-b1af-3560d0f89cd0"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      A I<strong>nteligência Embrace</strong>&nbsp;adota um comportamento de&nbsp;<strong>inibição&nbsp;temporária </strong>(1 minuto) do monitoramento nos casos em que o ar-condicionado é desligado por<strong>&nbsp;interação direta</strong>&nbsp;do usuário (seja por conexão digital ou seja pelo template do driver na própria E-App)     </div></figure><p id="5f9ad808-c683-45cd-a887-7fb32d161d97" class="">Esse mecanismo possibilita que os aparelhos que são desligados pelo usuário durante o intervalo de monitoramento definido possam ser ligados novamente pela Inteligência sem que isso seja feito de forma instantânea logo após o desligamento, o que desconsideraria a ação do usuário. </p><p id="fb5d4b94-8e70-4ba0-9db4-2e75ffedbf8f" class="">Assim sendo, nota-se que sempre que um aparelho de ar-condicionado do ambiente for desligado diretamente pelo usuário, o monitoramento ficará inibido pelo período de&nbsp;<strong>1 minuto</strong>, ao fim de qual os aparelhos serão ligados novamente (sempre respeitando o atendimento aos&nbsp;<strong>critérios de acionamento</strong>).</p><p id="a495687e-f44e-4967-9603-f38632400d15" class=""></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="06662f6c-ee61-4791-8766-b490c5abbbf6"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      A <strong>Inteligência de Ar-condicionado</strong> Embrace tem a capacidade de adequar os seus intervalos de monitoramento de acordo com a<strong>&nbsp;interação direta</strong>&nbsp;do usuário com o sistema.     </div></figure><p id="2f9602c8-bed8-4551-9a4d-59e357231deb" class="">Para definir se o sistema de Inteligência deve atuar ou não nos aparelhos de ar-condicionado de cada ambiente em determinados momentos, a Embrace leva em consideração a ação do usuário: ou seja, caso o usuário deseje ativamente realizar os acionamentos de seus aparelhos de ar-condicionado, a Inteligência Embrace entenderá que ele pretende controlar os dispositivos daquele ambiente manualmente e não vai desligar os aparelhos que o usuário ligou.</p><p id="011216d1-a28c-4eae-9eec-78f946c6caf2" class="">A única exceção para esse comportamento é quando,&nbsp;porventura,&nbsp;os critérios que foram definidos pelo usuário na configuração da Inteligência são atendidos mesmo depois da interação direta dele com o aparelho. Nesse caso, a Inteligência&nbsp;<strong>sobrepõe os parâmetros atuais</strong>&nbsp;dos aparelhos com aqueles que foram inicialmente configurados e volta a operar de forma a desligar esses aparelhos quando os&nbsp;<strong>critérios de desligamento</strong>&nbsp;forem atendidos, garantindo um maior nível de <strong>autonomia</strong> ao usuário ao mesmo tempo em que garante consistência nos comportamentos automáticos preferenciais que ele definiu no momento da configuração.</p><p id="bba1c2ee-b279-48a3-90d3-a89cd52ea805" class=""></p><div id="7476f43e-bb3e-46fb-ae77-2425ba5d248b" class="column-list"><div id="5473518b-1de9-4b1e-8a8f-024a2a2a238c" style="width:100%" class="column"><p id="e3361624-e27c-4ad3-adc1-95339d54ec7d" class="">Por fim, caso o usuário não tenha interesse em ter acesso a nenhuma dessas configurações pela&nbsp;<strong>E-App</strong>, ou caso a própria revenda queira utilizar apenas os controles já disponíveis na&nbsp;plataforma Embrace&nbsp;por meio do&nbsp;<strong>E-Config</strong>&nbsp;sem que haja a necessidade de configurar os parâmetros de monitoramento para os ambientes do projeto, também é&nbsp;possível&nbsp;<strong>Omitir&nbsp;o menu Inteligência para usuários na E-App </strong>por meio das Opções de Projeto Gráfico nas <strong>Preferências do projeto </strong>(localizada na guia de <em>Preferências </em>da barra superior).</p></div><div id="4e32579a-74b5-4a7b-ba6c-f5a3aea81e1b" style="width:100%" class="column"><figure id="783a0bab-d4bf-44f1-bb19-91270fe94586" class="image"><a href="Inteligencia%20Iluminacao/Untitled.png"><img style="width:528px" src="Inteligencia%20Iluminacao/Untitled.png"></a></figure></div></div><h2 id="52d4cc29-e6da-4cb2-994e-32b67c1e6a3d" class=""><strong>E-App</strong></h2><p id="b063f301-8dc2-4c50-8ef4-9180422bcb03" class="">Como já citado, a vantagem desta implementação é a possibilidade oferecida ao usuário de realizar todas essas configurações sem sair da<strong>&nbsp;E-App</strong>: quando os&nbsp;<strong>requisitos básicos</strong>&nbsp;forem atendidos em algum ambiente da instalação, ficará habilitado o acesso aos respectivos menus dentro de cada um destes ambientes para a configuração de todos os seus&nbsp;<strong>parâmetros&nbsp;</strong>de&nbsp;<strong>monitoramento</strong>.</p><p id="88a86475-e674-42b1-bea2-bac6f334d181" class="">Para acessar as telas de <strong>configuração de Inteligência </strong>do ambiente, basta navegar até o ambiente desejado partir da página principal da instalação e em seguida acessar o <strong>Menu</strong>. Caso os requisitos básicos (presença de driver de&nbsp;<strong>ar-condicionado</strong>&nbsp;e&nbsp;<strong>sensor de temperatura</strong>) estejam sendo satisfeitos no ambiente, a opção <strong>Inteligência </strong>estará disponível para seleção. Além disso, é possível notar que abaixo do nome de cada Ambiente poderão estar visíveis pequenos ícones, que representam o <strong>feedback de status da Inteligência</strong>. Vale ressaltar que a exibição deste feedback pode ser desabilitada a qualquer momento por meio do menu de&nbsp;Configurações, também acessível pelo <strong>Menu</strong>.</p><div id="e4cd932f-9562-485c-b8b7-35cfa3569856" class="column-list"><div id="07ff9865-395b-46ae-9800-6f35eca5f0bf" style="width:100%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="43fe5d2d-7405-4bdf-a070-f2028d05e831"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">        Ao acessar a tela de Inteligência, o usuário notará opções para <strong>Ligar</strong>,&nbsp;<strong>Desligar&nbsp;</strong>e&nbsp;<strong>Configurar&nbsp;</strong>a Inteligência para cada elemento da sua instalação.       </div></figure></div><div id="17c93a3f-dbc8-4620-9f6c-4ed76b3e39f1" style="width:100%" class="column"><figure id="b3e8abf0-b4bf-4f86-8666-2c492ba3c10b" class="image"><a href="http://embrace.editme.com/files/Inteligencia-Embrace-Iluminacao/OpcoesIluminacao.jpg"><img style="width:528px" src="http://embrace.editme.com/files/Inteligencia-Embrace-Iluminacao/OpcoesIluminacao.jpg"></a></figure></div></div><p id="153528e1-5e6c-4276-b2af-db14e6871ee9" class="">Note que ao <strong>Desligar </strong>a Inteligência são oferecidas as opções para fazê-lo de modo&nbsp;<strong>Permanente&nbsp;</strong>ou&nbsp;<strong>Até Amanhã</strong>: em ambos os casos, isso significa, essencialmente, que na Inteligência de Iluminação as capturas de movimento feitas pelos sensores do ambiente serão desconsideradas, impedindo que as cenas&nbsp;<strong>com movimento</strong>&nbsp;sejam acionadas, o que por consequência inutiliza também o&nbsp;<strong>tempo de esquecimento</strong>. </p><p id="46fd2ea4-a517-4ceb-a84c-8dc0e576298e" class="">No caso do desligamento&nbsp;<strong>Até Amanhã</strong>, destaca-se que as opções citadas serão desabilitadas até o amanhecer do dia seguinte (interpretado pela Controladora como um novo acionamento do <strong>Modo Dia</strong>). </p><p id="f0d5e808-31b0-4e3b-a10b-83ab581b1e7c" class="">Note também que são estes estados do recurso de Inteligência (<strong>Ligado</strong>, desligado&nbsp;<strong>Permanente&nbsp;</strong>e inibido&nbsp;<strong>Até Amanhã</strong>) que os ícones do&nbsp;<strong>feedback de status da Inteligência&nbsp;</strong>(mencionado acima) vão refletir quando tiverem sua visualização habilitada.</p><h3 id="a739bd99-d0f8-446d-8e04-fbe7d5cde6fc" class=""><strong>Configuração</strong></h3><div id="6dd7393b-1b65-426e-8e76-8a968ad5f2ab" class="column-list"><div id="74c2fcad-bc2f-4114-a391-493c70bcec7c" style="width:100%" class="column"><p id="d6fbf218-b159-4520-b89a-2df515680bc3" class="">Para&nbsp;<strong>Configurar</strong>&nbsp;os parâmetros do monitoramento do ambiente, basta acessar o menu de Inteligência do ambiente e clicar no ícone&nbsp;de <strong>Configurações</strong>, a partir de onde será possível alterar e definir cada critério individualmente.</p></div><div id="93906247-ddf0-41b1-8685-ae82adc8c63d" style="width:100%" class="column"><figure id="5b234e65-352e-457a-8294-8a3c9db0b8d2" class="image"><a href="Inteligencia%20Ar-condicionado/Untitled.png"><img style="width:1080px" src="Inteligencia%20Ar-condicionado/Untitled.png"></a></figure></div></div><hr id="5c60e54d-a60c-48a8-b450-f3b6eb9e5b21"><div id="46106ba6-bc49-4d40-a533-e216302d7795" class="column-list"><div id="1a6c965c-a437-433c-a3e9-5886ecee3a8d" style="width:100%" class="column"><p id="0117979a-8625-45d5-ad3b-2c587822fb0c" class="">O primeiro parâmetro a ser configurado é a<strong>&nbsp;Temperatura desejada</strong>, ou seja, a temperatura padrão que será encaminhada aos dispositivos de ar-condicionado sempre que eles forem ligados pela Inteligência. Além da temperatura, deverão ser escolhidos outros parâmetros, que estarão disponíveis para configuração com base nas funções que o dispositivo oferece, como por exemplo:&nbsp;<strong>modo</strong>, velocidade do&nbsp;<strong>fan</strong>,&nbsp;<strong>swing&nbsp;</strong>etc. </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a1611b03-f4fe-4319-b126-498a78d47ecd"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">        A Inteligência Embrace vai atuar exclusivamente no&nbsp;<strong>primeiro&nbsp; </strong>dispositivo de ar-condicionado do ambiente, segundo a estrutura do projeto        </div></figure><p id="cbf15d1f-2597-44a5-9d2a-f29aece3ae2a" class="">Ou seja, para assegurar-se de que o aparelho correto está sendo gerenciado, basta adequar o projeto no&nbsp;<strong>E-Config</strong>. </p><p id="5ec196ce-872e-4c21-9b7f-d0d5c495d77c" class="">Além disso, a Inteligência tem a capacidade de gerenciar múltiplos dispositivos no mesmo ambiente, desde que estes sejam do mesmo modelo/fabricante.</p></div><div id="6811564e-c306-4405-9b04-27cc4c5aa15a" style="width:100%" class="column"><figure id="c66fefa0-00a5-49a6-b8a1-905b331d1589" class="image"><a href="Inteligencia%20Ar-condicionado/Untitled%201.png"><img style="width:1080px" src="Inteligencia%20Ar-condicionado/Untitled%201.png"></a></figure></div></div><hr id="38ebd30e-27c7-4c88-9e49-c6336f9d0cdc"><div id="108ce95c-11fa-4b33-8f77-ab463dfe5fff" class="column-list"><div id="bcad0976-8af8-4141-827c-e567dc0eebe5" style="width:100%" class="column"><p id="1388908a-1be4-4163-84a1-befdf316166f" class="">Em seguida, na tela de&nbsp;<strong>Acionamento</strong>, o usuário poderá determinar um valor máximo (ou mínimo) de temperatura ambiente (informação que será captada por um único sensor do ambiente), a partir da qual os dispositivos de ar-condicionado deverão ser ativados.&nbsp;</p><p id="6fe562c6-b72c-4266-a4d4-e17e9947240b" class="">Nesta tela, também é necessário definir o gatilho de temperatura do ambiente para ativação do ar-condicionado: se na tela anterior, por exemplo, o modo for "<em>heat</em>", é escolhida a temperatura "menor/igual à"; senão, é escolhida a temperatura "maior/igual à".</p></div><div id="6b0aa828-4521-4bb8-ae69-2974f5a33772" style="width:100%" class="column"><figure id="edb1e1a0-aaca-4c63-8045-607772fea71b" class="image"><a href="Inteligencia%20Ar-condicionado/Untitled%202.png"><img style="width:1080px" src="Inteligencia%20Ar-condicionado/Untitled%202.png"></a></figure></div></div><hr id="057d5c4f-1f55-4f78-9c78-4919871f67d9"><div id="85f87d38-a65d-484e-a3ca-8fa24b507f80" class="column-list"><div id="84f8415d-edbb-4ee5-8b09-1115ce95984d" style="width:100%" class="column"><p id="fa277408-86b5-4e4b-ad9f-1164f8fb26de" class="">Na tela de&nbsp;<strong>Agendamento</strong>, será possível programar os dias da semana e os horários desses dias em que o&nbsp;<strong>monitoramento</strong>&nbsp;do sistema estará ativo.</p><p id="86e474a7-068f-4cc7-919a-69d12b8af658" class=""></p></div><div id="94f302e1-dfed-447b-b7bb-d0912b594140" style="width:100%" class="column"><figure id="dc5b6752-2200-426a-b3f8-07de7659004e" class="image"><a href="Inteligencia%20Ar-condicionado/Untitled%203.png"><img style="width:1080px" src="Inteligencia%20Ar-condicionado/Untitled%203.png"></a></figure></div></div><hr id="22440e0d-5967-4dd9-a7f0-af86dc7ba5f2"><div id="1f334cbb-713e-424c-94b0-5fd1b6a7af05" class="column-list"><div id="c69e4117-2745-4142-ab7c-74e084ee9020" style="width:100%" class="column"><p id="b8080154-ec14-45e7-8a8a-718a7d11dfe8" class=""></p><p id="90e33d07-bfa6-41cc-b8f1-dd25873618b8" class="">A seguir, na tela de&nbsp;<strong>Operação</strong>, é possível escolher um&nbsp;<strong>Modo de Operação</strong>&nbsp;para o monitoramento. Note que a disponibilidade de alguns modos é dependente da presença de componentes específicos que viabilizem o monitoramento de parâmetros (por exemplo, a seleção do Modo de Operação&nbsp;<strong><em>Temperatura + Atividade</em></strong>&nbsp;é condicionada pela existência de&nbsp;<strong>Atividades</strong>&nbsp;ou&nbsp;<strong>Macros&nbsp;</strong>naquele ambiente). </p><p id="62c20220-0503-4421-b379-538a10622e5f" class="">Da mesma forma, é possível que alguns parâmetros selecionados anteriormente inviabilizem o uso de certos Modos (por exemplo, quando a Inteligência está agendada para atuar o dia todo todos os dias, o&nbsp;<strong>Modo Temperatura</strong>&nbsp;não é disponibilizado devido à impossibilidade de definição de um parâmetro de desligamento para esse contexto).</p></div><div id="ad38631d-ee8d-4e48-9f8f-8a1d227f6aba" style="width:100%" class="column"><figure id="beee8fd3-22ed-4f77-baf0-f6c403a71df8" class="image"><a href="Inteligencia%20Ar-condicionado/Untitled%204.png"><img style="width:1080px" src="Inteligencia%20Ar-condicionado/Untitled%204.png"></a></figure></div></div><hr id="7b7d1df5-6261-4c1a-b552-dbdff03bfa52"><div id="78522590-ea5a-42c2-9af9-a867f7cb8c0d" class="column-list"><div id="e0186ec7-06ea-4684-bbf1-761ed624656e" style="width:100%" class="column"><p id="7d573dde-b78d-4bc1-b907-8325c9519aa4" class="">No caso dos&nbsp;<strong>Modos de Operação</strong>&nbsp; <em>Temperatura + Movimento</em>&nbsp;e&nbsp; <em>Temperatura + Atividade</em>, é possível definir parâmetros adicionais que serão levados em conta no momento de desligar os dispositivos de ar-condicionado e que vão além dos períodos previamente definidos na tela de&nbsp;<strong>Agendamento</strong>.</p><p id="bbdb12ff-619b-4989-98d3-9720280fbbd0" class="">Especificamente, no Modo de Operação&nbsp;<strong>Temperatura + Movimento</strong>, é possível delimitar um intervalo de tempo máximo, fazendo com que uma das condições para desligamento do ar-condicionado seja a ausência de qualquer registro de movimento pelos sensores dentro deste intervalo.</p></div><div id="a3f00b15-01f6-4782-b3c6-35c0bd75af54" style="width:100%" class="column"><figure id="eda77caa-8233-418b-97b3-18bd8e092302" class="image"><a href="Inteligencia%20Ar-condicionado/Untitled%205.png"><img style="width:1080px" src="Inteligencia%20Ar-condicionado/Untitled%205.png"></a></figure></div></div><hr id="225f00d4-ce3d-41f1-a1ce-05c365ac0406"><p id="2b86686f-86e2-48e9-a1f6-a8efbca97ce5" class="">Já no Modo de Operação&nbsp;<strong>Temperatura + Atividade</strong>, é possível definir <strong>Atividades </strong>ou&nbsp;<strong>Macros&nbsp;</strong>que deverão ligar ou desligar o ar-condicionado quando acionadas. Vale notar&nbsp;que, para que esta opção esteja habilitada na E-App, é necessário&nbsp;que estes componentes estejam devidamente inseridos no projeto.</p><figure id="6502a4c9-7a04-40e0-b152-524f2a193604" class="image"><a href="Inteligencia%20Ar-condicionado/Untitled%206.png"><img style="width:3244px" src="Inteligencia%20Ar-condicionado/Untitled%206.png"></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="83246a9e-93f8-4cf5-b902-56ff79831f22"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      A Inteligência considera a&nbsp;<strong>última</strong>&nbsp;Atividade acionada no ambiente como critério válido no momento de fazer a checagem para ligar ou desligar os dispositivos.     </div></figure><p id="37843a56-1d8f-4f14-b736-4292af99b27e" class="">Isso significa, por exemplo, que ainda que a Atividade Liga não esteja atualmente ativa, é possível que o ar-condicionado seja ligado em uma ocasião em que a temperatura alcançar o limite de temperatura estabelecido no momento da configuração, pois em teoria os critérios estarão sendo atendidos integralmente (<strong>temperatura</strong>&nbsp;acima/abaixo do valor estipulado e&nbsp;<strong>Atividade de áudio e vídeo</strong>&nbsp;acionada no ambiente).</p><hr id="a6c4d43e-296a-4ddd-ae2d-c42e4a248951"><h2 id="60c3a9e3-6c64-423b-809c-3a97f2c30f27" class=""><strong>Modo Dormir</strong></h2><p id="113ab6a0-1ed2-4b13-a9f6-d2d8429fbfb2" class="">Para complementar o funcionamento da Inteligência de&nbsp;ar-condicionado Embrace&nbsp;e garantir maior fluidez na interação entre os diferentes elementos da instalação, alguns contextos envolvendo o&nbsp;<strong>Modo Dormir</strong>&nbsp;do&nbsp;<strong>Room-Control</strong>&nbsp;são considerados pelo sistema. Dessa forma, expande-se a gama de possibilidades oferecidas ao usuário para customizar e adequar o funcionamento da Inteligência de forma que melhor atenda as preferências que ele poderá definir para cada ambiente da automação.</p><p id="3d3b2b0a-5c06-4eac-b60c-b28831baf07e" class="">A solução de Inteligência foi elaborada com a finalidade de possibilitar que a instalação funcione de forma <strong>autônoma</strong>, porém <strong>sem interferir nas ações do usuário</strong>. Assim sendo, no caso do Modo Dormir, que é um modo de operação do&nbsp;<strong>Room Control</strong>&nbsp;que geralmente é acionado diretamente pelo usuário, a forma com que a Inteligência gerencia os equipamentos daquele ambiente será adequada para acomodar este acionamento, ou seja:</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="5b2d5542-29da-451e-a66e-b4ac4fc97fe1"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">      Quando a Inteligência trabalha no&nbsp;<strong>Modo de Operação</strong>&nbsp;<em>Temperatura + Movimento</em>, diferentes estados do Modo Dormir podem afetar os&nbsp;<strong>critérios de desligamento</strong>&nbsp;dos aparelhos.      </div></figure><p id="062cdfbb-e2d9-4d46-9b51-1c6186545414" class="">Isso é feito com o intuito de garantir que nenhum acionamento indesejado seja realizado pelo sistema no momento em que supostamente o usuário continua ocupando o ambiente (geralmente um dormitório ou similar) porém sem&nbsp;estimular o&nbsp;<strong>sensor de movimento</strong>:</p><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Para casos em que o agendamento do monitoramento não estipula um&nbsp;<strong>fim de período</strong>&nbsp;e o&nbsp;<strong>critério de desligamento</strong>&nbsp;dos aparelhos é o tempo com&nbsp;<strong>ausência de captura de movimento</strong>&nbsp;pelos sensores: </summary><div class="indented"><p id="811f1648-73a0-49d2-999a-4b4033460cbe" class="">A Inteligência entende que, uma vez que o&nbsp;<strong>Modo Dormir</strong>&nbsp;esteja ativado, essa ausência de movimento deve-se ao fato de que alguém pode estar repousando no ambiente, e, portanto,&nbsp;<strong>não&nbsp;</strong>vai desligar os aparelhos como normalmente faria. O desligamento, porém, ainda será realizado automaticamente pelo sistema: no momento em que o Modo Dormir for&nbsp;<strong>interrompido</strong>, seja por meio de intervenção direta do usuário ou pelo acionamento do&nbsp;<strong>Modo Automático</strong>, o&nbsp;<em>timer&nbsp;</em>que rege o critério de desligamento por falta de movimento vai voltar a atuar.</p></div></details><details open><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">Para casos em que o&nbsp;<strong>agendamento&nbsp;</strong>determina o&nbsp;<strong>fim do período de monitoramento</strong>&nbsp;como&nbsp;<strong>critério de desligamento:</strong></summary><div class="indented"><p id="ea7446c2-c61c-4287-b163-d3d4e00cbd35" class="">A Inteligência entende que esse critério será&nbsp;<strong>desconsiderado&nbsp;</strong>enquanto o Modo Dormir estiver&nbsp;<strong>ativo</strong>. Esse comportamento atende uma situação semelhante à do caso anterior a qual,&nbsp;por conta do Modo Dormir, talvez o desligamento do aparelho não seja uma opção desejável no momento e, portanto,&nbsp;<strong>estende&nbsp;</strong>o período em que o aparelho de ar ficará ligado até que o Modo Dormir deixe de operar,&nbsp;<strong>desligando&nbsp;</strong>o aparelho instantaneamente a partir dessa mudança de estado (salvo em casos em que o período possa ter sido estendido a ponto de entrar na janela de monitoramento do dia&nbsp;<strong>seguinte</strong>).</p></div></details></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

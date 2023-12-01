@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>EB-ZRF-HUB</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="1cd9fbcf-46b7-40b8-bbf2-ba62f8448125" class="page sans"><header><h1 class="page-title">EB-ZRF-HUB</h1><p class="page-description"></p></header><div class="page-body"><p id="081e57ff-3395-465d-a3c4-75c8e2e48367" class="">O&nbsp;<strong>EB-ZRF-HUB&nbsp;</strong>oferece aos usuários da plataforma Embrace uma alternativa para expandir a gama de aparelhos que podem compor seus projetos, possibilitando a&nbsp;<strong>emissão</strong>&nbsp;e a&nbsp;<strong>captura&nbsp;</strong>de comandos via&nbsp;<strong>RF,&nbsp;</strong>bem como a integração de equipamentos que utilizam o protocolo&nbsp;<strong>ZigBee&nbsp;</strong>às suas instalações.</p><p id="a2cbfe02-4e7f-4c33-8c6f-8f2121e564c0" class="">Mais especificamente, o&nbsp;<strong>EB-ZRF</strong>-<strong>HUB&nbsp;</strong>tem a função de centralizar a comunicação entre esses aparelhos e a&nbsp;<a href="../Controladora.html"><strong>Controladora</strong></a>&nbsp;da instalação, representando um papel não muito diferente do que pode ser observado na interface&nbsp;<strong>EB-NTL1</strong>&nbsp;atualmente no quesito de intermediar e atuar como uma <strong>interface </strong>na comunicação entre múltiplos dispositivos e a controladora (porém voltado à comunicação <strong>RF</strong> e <strong>Zigbee</strong>).</p><figure id="f44331cc-302d-4ef6-98fa-f31b1a72aa10" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/1-3D.png"><img style="width:432px" src="http://embrace.editme.com/files/PaginaRevisao/1-3D.png"></a></figure><p id="037e10b0-dfcf-47a4-a9ad-3153fdef3722" class="">O EB-ZRF-HUB pode ser adicionado ao sistema<strong>&nbsp;Embrace&nbsp;</strong>tanto via cabo&nbsp;<strong>Ethernet&nbsp;</strong>quanto via&nbsp;<strong>Wi-Fi</strong>. Por conta disso, é importante destacar que, por possuir <strong>2 adaptadores distintos</strong>, existirão 2 endereços <strong>MAC </strong>diferentes para o Hub, um para cada adaptador (<strong>Ethernet </strong>e <strong>Wi-Fi</strong>), e para ambos os casos todas as nossas recomendações de boas práticas ao integrar equipamentos à rede local (Ex: sempre <strong>fixar o endereço IP</strong> dos dispositivos de rede, atentar-se para que o endereço fixado <strong>não </strong>esteja situado <strong>dentro </strong>do <strong>range DHCP</strong>, etc.) são válidas.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7342db60-7f0f-49ff-945f-1b3e788543be"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para mais informações sobre como integrar dispositivos Wi-Fi à rede Embrace, favor visitar a página&nbsp;<a href="../EB-WIFI.html"><strong>EB-WIFI</strong></a>.     </div></figure><h3 id="c316b186-bdf6-4cc5-9a34-13b14ef1134a" class=""><strong>Projeto</strong></h3><p id="f8a56b35-293b-4c38-bf58-df8dad613e60" class="">Com o EB-ZRF-HUB devidamente inserido na rede, é necessário incluí-lo no projeto Embrace pelo&nbsp;<strong>E-Config</strong>.</p><p id="58b4ce72-c213-4446-bcf9-c0a455afb8d3" class="">O componente&nbsp;<strong>EB-ZRF-HUB</strong>&nbsp;estará localizado na seção&nbsp;<strong>Wireless</strong>&nbsp;da aba de&nbsp;<em>Equipamentos</em>&nbsp;do software, e deverá ser arrastado até a árvore do projeto e posteriormente vinculado ao dispositivo físico na aba de&nbsp;<em>Rede</em>&nbsp;na guia de&nbsp;<em>Instalação</em>. A partir daí, o EB-ZRF-HUB estará pronto para ser utilizado para realizar o controle de dispositivos&nbsp;<strong>RF 433MHz&nbsp;</strong>e&nbsp;<strong>ZigBee</strong>.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2bc50343-6849-4956-9046-7898fd7c470d"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><strong>Atenção: </strong>É importante notar que as configurações do <strong>EB-ZRF-HUB</strong> e as demais funcionalidades referentes à integração de dispositivos <strong>ZigBee </strong>e <strong>RF 433MHz</strong> só estarão disponíveis e serão validadas no E-Config depois que o dispositivo do projeto estiver devidamente <strong>associado </strong>a um dispositivo de rede.     </div></figure><figure id="b8b29bfb-1978-4c12-a5a6-58a541bd8f3e" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/2-Equipamentos.png"><img style="width:600px" src="http://embrace.editme.com/files/PaginaRevisao/2-Equipamentos.png"></a></figure><h2 id="a7deb532-8115-43eb-96b3-5e1a56734643" class=""><strong>ZigBee</strong></h2><p id="f12fd73c-96e4-4649-b8cc-8a0cea111e5b" class="">Para inserir um dispositivo&nbsp;<strong>ZigBee&nbsp;</strong>no projeto, basta procurar pelo modelo do aparelho na biblioteca de dispositivos de&nbsp;<strong>Ambiente</strong>&nbsp;presentes na aba de&nbsp;<em>Equipamentos&nbsp;</em>e arrastá-lo (ou adicionar com clique duplo) para a árvore do projeto.</p><p id="1212def7-92e3-4c7d-b168-eff6d2213253" class="">Depois de programar o dispositivo inserido no projeto utilizando suas&nbsp;<strong>Conexões</strong>, é necessário&nbsp;<strong>parear&nbsp;</strong>esse dispositivo com o&nbsp;<strong>EB-</strong><strong>ZRF-HUB</strong>, para que este possa gerenciar a comunicação e encaminhar os comandos do dispositivo à controladora e para que os acionamentos programados sejam devidamente processados e efetuados.</p><p id="0bda2dcc-f4fa-47a1-bac5-dfbbdb7308a8" class="">Para demonstrar como&nbsp;<strong>parear&nbsp;</strong>um dispositivo&nbsp;<strong>ZigBee&nbsp;</strong>com o&nbsp;<strong>EB-ZRF-HUB</strong>, nesta página utilizaremos o exemplo de uma&nbsp;<strong>Fechadura Yale</strong>: depois de adicionar o EB-ZRF-HUB ao projeto e inseri-lo à rede local (via Ethernet ou Wi-Fi) e após alocar o dispositivo&nbsp;<em>Fechadura Yale&nbsp;</em>(disponível no menu de&nbsp;<strong>Equipamentos</strong>, no diretório&nbsp;<em><strong>Diversos</strong></em>&nbsp;da aba de&nbsp;<em><strong>Ambiente</strong></em>) no ambiente desejado do projeto, é necessário acessar a guia&nbsp;<strong>Zigbee</strong>, localizada no menu de&nbsp;<strong>Instalação</strong>.</p><p id="f435238f-f5ec-4572-aa08-3f5672f82e72" class="">A aba de&nbsp;<strong>Gerenciamento Zigbee&nbsp;</strong>exibirá uma listagem informativa de todos os aparelhos EB-ZRF-HUB encontrados na rede local (com&nbsp;<strong>MAC</strong>,&nbsp;<strong>IP</strong>,&nbsp;<strong>qualidade do sinal</strong>,&nbsp;<strong>quantidade de dispositivos pareados</strong>, etc.) e também disponibilizará ao usuário duas opções para cada um desses equipamentos no que se refere às suas respectivas redes ZigBee:&nbsp;<strong>Reconstrução da rede</strong>&nbsp;e&nbsp;<strong>Inclusão de dispositivos na rede</strong>, que serão exploradas a seguir.</p><figure id="e6846d87-869e-4c03-b1f8-9fba8f648cfa" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/3-GerenciamentoZigbee.png"><img style="width:600px" src="http://embrace.editme.com/files/PaginaRevisao/3-GerenciamentoZigbee.png"></a></figure><p id="67ea50f6-4696-4671-9f4a-4e59050f688f" class="">A opção de<strong>&nbsp;Reconstrução da rede</strong>&nbsp;desfaz o pareamento do EB-ZRF-HUB com todos os dispositivos até então vinculados a ele, restaurando-o ao seu estado inicial.</p><p id="d4d742fb-8f80-4218-8df4-c6f6b0dad428" class="">Quando selecionada, a opção&nbsp;<strong>Inclusão de dispositivos na rede&nbsp;</strong>habilita o pareamento do EB-ZRF-HUB e permite ao usuário que selecione o&nbsp;<strong>canal&nbsp;</strong>de comunicação para cada um dos seus dispositivos pareados.</p><figure id="5fc21dac-c6ab-42d8-a376-c808765deb70" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/4-Pareamento.png"><img style="width:600px" src="http://embrace.editme.com/files/PaginaRevisao/4-Pareamento.png"></a></figure><p id="9f82f858-5958-40cc-9862-a10dae3320d8" class="">No nosso exemplo, após habilitar o pareamento do&nbsp;<strong>EB-</strong><strong>ZRF-HUB&nbsp;</strong>(via E-Config), o modo de pareamento da própria&nbsp;<strong>Fechadura&nbsp;</strong>(fisicamente)&nbsp;e selecionar o&nbsp;<strong>canal&nbsp;</strong>em que ela operará por meio da opção de<em>&nbsp;Inclusão de dispositivos na rede</em>&nbsp;(lembrando que tanto o processo para habilitar o modo de pareamento dos dispositivos quanto os respectivos canais de comunicação apropriados de cada aparelho vão variar de acordo com o modelo/fabricante), a operação de pareamento será concluída automaticamente.</p><p id="6f987ffd-3227-4d00-a3be-83a914e0458e" class="">Após a conclusão do pareamento, uma tabela informativa de&nbsp;<strong>Dispositivos Pareados&nbsp;</strong>será exibida, de forma que ao fim deste processo a fechadura estará devidamente vinculada e pronta pra ser controlada pelo EB-ZRF-HUB.</p><p id="59c84369-42d1-4302-9765-6c0c61b6b4cb" class="">Para o caso da Fechadura, também é possível realizar o controle e monitoramento do estado da tranca por meio da tela gerada exclusivamente no projeto gráfico para este tipo de dispositivo via&nbsp;<strong>E-App</strong>.</p><figure id="9990eac4-b65b-4c3b-bd14-07a9050206cb" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/5-FechaduraYaleApp.jpg"><img style="width:576px" src="http://embrace.editme.com/files/PaginaRevisao/5-FechaduraYaleApp.jpg"></a></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="0a95e0d4-f4ca-4e40-b766-28a921229361"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Ainda a respeito da&nbsp;<strong>Fechadura</strong>, é válido mencionar que o suporte é oferecido para modelos que comportam os&nbsp;<strong>módulos ZigBee T2&nbsp;</strong>e&nbsp;<strong>YMF/YDF</strong>.     </div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3444f5ae-a033-4be6-8cac-8cd8d540b678"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Assim sendo, os modelos de Fechadura atualmente <strong>suportados </strong>são:&nbsp;<strong>YDF 30</strong>,&nbsp;<strong>YDF 30 RL</strong>,&nbsp;<strong>YDF 40</strong>,&nbsp;<strong>YDF 40 RL</strong>,&nbsp;<strong>YMF 30</strong>,<strong>&nbsp;YMF 40</strong>,&nbsp;<strong>YRD216</strong>,&nbsp;<strong>YRD226</strong>,&nbsp;<strong>YRD246</strong>,&nbsp;<strong>YRD256</strong>&nbsp;e&nbsp;<strong>YRD4</strong>.     </div></figure><h2 id="f116e6be-e9cf-45e3-bfc7-1d93c190b58b" class=""><strong>RF 433MHz</strong></h2><p id="928ceffe-d99c-4e3b-ad9b-beeb09ac1ad4" class="">Conforme mencionado anteriormente, o EB-ZRF-HUB também realiza a&nbsp;<strong>emissão&nbsp;</strong>e&nbsp;<strong>captura&nbsp;</strong>de comandos via&nbsp;<strong>RF 433MHz</strong>, o que torna possível a integração de dispositivos que utilizam este tipo de comunicação com a plataforma Embrace.&nbsp;&nbsp;É importante mencionar que o valor de referência&nbsp;<em>default&nbsp;</em>utilizados nos conteúdos informativos do software para a&nbsp;<em>frequência</em>&nbsp;RF (MHz) será de&nbsp;<strong>433.92&nbsp;</strong>por se tratar do mais comum, porém este valor é&nbsp;<strong>alterável</strong>&nbsp;dentro do próprio&nbsp;<strong>projeto Embrace</strong>&nbsp;para os casos em que há expressa orientação do fabricante do dispositivo acerca da frequência utilizada para comunicação.</p><p id="c6daff69-c416-47bb-ac57-39fe84ba5075" class="">Para isso, basta selecionar o EB-ZRF-HUB como dispositivo&nbsp;<strong>emissor/receptor&nbsp;</strong>no momento em que o&nbsp;<strong>driver&nbsp;</strong>pertinente a algum aparelho de&nbsp;<strong>RF 433MHz</strong>&nbsp;for incluído no projeto, da mesma forma que é feito com a&nbsp;<em>EB-NTL1</em>&nbsp;atualmente para dispositivos que utilizam comunicação&nbsp;<em>IR&nbsp;</em>ou&nbsp;<em>Serial</em>, por exemplo.</p><figure id="09a623d2-a56a-47a7-a868-39646312baae" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/6-RFEmissor.png"><img style="width:600px" src="http://embrace.editme.com/files/PaginaRevisao/6-RFEmissor.png"></a></figure><p id="6770b09e-66f5-4603-93a0-bbc6b09158d8" class="">Os dispositivos que podem ser incluídos no projeto para controle via RF 433MHz com o EB-ZRF-HUB estão localizados na aba&nbsp;<em>Ambiente&nbsp;</em>do menu de&nbsp;<em><strong>Equipamentos&nbsp;</strong></em>e incluem (mas não estão limitados a) dispositivos de&nbsp;<strong>Cortina/Toldo Somfy</strong>.</p><p id="bc645080-57f2-4d09-b50d-ed1c1c4f960a" class="">Graças à captura de comandos via EB-ZRF-HUB, também existe a possibilidade de integrar dispositivos de outros modelos/fabricantes por meio da utilização de&nbsp;<em>templates</em>&nbsp;<strong>genéricos.&nbsp;</strong>Para que um dispositivo deste tipo seja integrado ao projeto, o&nbsp;<strong>E-Config</strong>&nbsp;oferece uma interface de captura de&nbsp;<strong>Comandos RF</strong>&nbsp;que permite ao usuário&nbsp;<strong>adicionar</strong>,&nbsp;<strong>editar</strong>,&nbsp;<strong>testar&nbsp;</strong>e&nbsp;<strong>remover Funções&nbsp;</strong>desses dispositivos.</p><figure id="b9cf9f14-b70f-43e1-8ae8-cca1f363615d" class="image"><a href="http://embrace.editme.com/files/EB-ZRF-HUB/RF_Generico.png"><img style="width:650px" src="http://embrace.editme.com/files/EB-ZRF-HUB/RF_Generico.png"></a></figure><p id="75b3bf8f-003a-495e-b2ed-696ecaa98645" class="">Ao utilizar o recurso de&nbsp;<strong>Capturar Função</strong>, uma janela de assistência com um passo a passo será exibida para auxiliar o usuário no processo de captura de forma transparente e rápida e que pode ser realizada de duas formas:&nbsp;<strong>Captura com confirmação</strong>&nbsp;ou&nbsp;<strong>Captura única</strong>.</p><p id="d565b283-7e25-425f-89d3-bf479f8ef472" class="">Ao utilizar a opção de&nbsp;<strong>Captura com confirmação</strong>, o assistente de captura solicitará que o usuário pressione o botão correspondente à função que ele deseja capturar duas vezes: ao fim do processo, os dois comandos capturados serão comparados e só então, uma vez que for confirmado que os comandos enviados são iguais, a captura terá sido concluída. A finalidade deste modo de captura é garantir maior precisão desses comandos que serão futuramente emitidos pelo EB-ZRF-HUB e, portanto, é a opção mais recomendada.</p><p id="20f77d09-f9bc-4581-8ffc-bd07df70ddd4" class="">Já com a opção de&nbsp;<strong>Captura única</strong>, o assistente somente solicitará que o botão da função seja pressionado uma única vez a fim de que seja gerada uma emissão individual do comando que está sendo capturado, sem que seja necessário efetuar a captura de confirmação.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="70488088-21c0-4f76-88a4-3fbb8aaf3a7c"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      É importante notar que a possibilidade de captura de comandos está condicionada à presença de um <strong>EB-ZRF-HUB</strong><strong>no projeto</strong> que esteja devidamente <strong>associado </strong>à um <strong>EB-ZRF-HUB</strong> existente <strong>na rede</strong>, conforme exibido na seção&nbsp;<em><strong>Rede&nbsp;</strong></em>da aba&nbsp;<strong>Comandos RF&nbsp;</strong>do dispositivo. Também&nbsp;é importante mencionar que nesta mesma tela é possível editar a quantidade de&nbsp;<strong>Repetições&nbsp;</strong>que deverão ser&nbsp;emitidas para cada comando, bastando alterar o valor na coluna mencionada.     </div></figure><figure id="3d9549af-0981-451a-8c7e-cf8fc7512c02" class="image"><a href="http://embrace.editme.com/files/PaginaRevisao/8-RFCaptura.png"><img style="width:600px" src="http://embrace.editme.com/files/PaginaRevisao/8-RFCaptura.png"></a></figure><p id="e336220b-a44e-4d5a-83b3-56e557590a18" class="">Após capturar as&nbsp;<strong>Funções&nbsp;</strong>desejadas, o usuário poderá programar os links do driver para que os comandos capturados sejam emitidos&nbsp;(com as devidas Repetições consideradas) pelo EB-ZRF-HUB, da mesma forma que convencionalmente se faz com os demais drivers da plataforma Embrace (via&nbsp;<em>keypads</em>,&nbsp;<em>macros</em>, etc.). Os <em>templates</em>&nbsp;<strong>genéricos</strong>&nbsp;também são gerados automaticamente com base nas&nbsp;<strong>Funções</strong>&nbsp;capturadas, o que possibilita ao usuário o controle de dispositivos RF 433MHz também via&nbsp;<strong>E-App</strong>.</p><h3 id="c9c377d8-7c32-49d9-a86a-1f07602d121d" class=""><strong>Integração Cortina Somfy RTS</strong></h3><p id="20196412-62ef-4ef4-9272-ed771aa31a6b" class="">O componente&nbsp;<strong>Cortina/Toldo Somfy RTS II (RF)</strong>, localizado nos itens de&nbsp;<em>Ambiente</em>&nbsp;do menu de&nbsp;<strong>Equipamentos</strong>, oferece a possibilidade de integrar dispositivos deste tipo à instalação para que possam receber comandos pelo&nbsp;<strong>EB-ZRF-HUB&nbsp;</strong>e assim passem a ser controlados pela automação Embrace.</p><figure id="df731553-dc4d-465a-971d-038996488161" class="image"><a href="http://embrace.editme.com/files/EB-ZRF-HUB/Cortina_Somfy.png"><img style="width:768px" src="http://embrace.editme.com/files/EB-ZRF-HUB/Cortina_Somfy.png"></a></figure><p id="ac4171c6-4600-410d-a9d6-ddedbfd9369e" class="">O componente dispõe de todas as&nbsp;<strong>Conexões</strong>&nbsp;e opções de&nbsp;<strong>Ajustes</strong>&nbsp;presentes nos demais itens deste tipo. Para controlar o dispositivo, basta selecionar o módulo EB-ZRF-HUB que será responsável pelo envio dos comandos na seção&nbsp;<em>Redes disponíveis</em>&nbsp;e então realizar o processo de&nbsp;<strong>sincronização</strong>&nbsp;do motor RTS. </p><p id="4f1d946d-216d-41ce-b4b3-73fc40c7491f" class="">Para realizar a sincronização, é necessário acessar a guia&nbsp;<strong>Comandos RF&nbsp;</strong>do dispositivo: com a&nbsp;<strong>rede</strong>&nbsp;(ou seja, o módulo EB-ZRF-HUB) devidamente selecionada, coloque a cortina/motor em&nbsp;<strong>modo de programação</strong>/setup (o método pode variar, a depender do modelo), atribua um&nbsp;<strong>ID</strong>&nbsp;para o dispositivo e então pressione o botão&nbsp;<strong>Sincronizar Motor RTS&nbsp;</strong>para que o comando de sincronização seja enviado e o dispositivo possa ser controlado pelo EB-ZRF-HUB.</p><h3 id="6923806b-be08-46bd-910f-fd016c58af2a" class=""><strong>Integração Cortina Amorim</strong></h3><p id="4ebfe181-84f3-45a2-90da-f394427ae178" class="">A interface&nbsp;<strong>genérica</strong>&nbsp;permite a integração com dispositivos de diversos fabricantes, e esta seção tem o objetivo de detalhar o processo de&nbsp;<strong>setup</strong>&nbsp;da cortina do fabricante Amorim para que seja possível realizar a integração com a plataforma&nbsp;<strong>Embrace</strong>.</p><p id="ed67b39e-7a35-4358-8097-8ae8a4fe1157" class="">Os tópicos serão elencados de forma a destacar as etapas necessárias para a realização da configuração do motor e posterior integração com a Embrace, que envolvem o&nbsp;<strong>pareamento</strong>, a&nbsp;<strong>definição</strong>&nbsp;e o&nbsp;<strong>ajuste</strong>&nbsp;de&nbsp;<strong>limites</strong>.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1bbf6eab-65e7-4e20-86b7-4b5e2541fb93"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para fins de demonstração, será exemplificado o&nbsp;<strong>setup</strong>&nbsp;pertinente ao modelo&nbsp;<strong>DM35(45)F/Y</strong>:&nbsp;o motor possui um botão de setup (chamado de&nbsp;<strong>P1</strong>) e existe um par de botões que fica situado no próprio controle do dispositivo (chamado de&nbsp;<strong>P2</strong>) que são utilizados para realizar as configurações necessárias para preparar a cortina para a <strong>integração</strong>.      </div></figure><p id="f97a6750-b80a-49f2-8b2a-a74c1fb59cad" class="">O processo de configuração consiste nas seguintes etapas:</p><ul id="85cf2c98-8130-4d4a-ba48-e40d3bc126cb" class="toggle"><li><details open><summary><strong>Pareamento</strong></summary><p id="b32b2735-ac04-4013-acff-92073b796b55" class="">O processo de <strong>pareamento</strong> envolve pressionar o&nbsp;<strong>P1</strong>&nbsp;por ~10 segundos (ou desligar e ligar o aparelho) ao passo em que o motor vai emitir 3 bipes e acionará brevemente. Em seguida, é necessário pressionar o&nbsp;<strong>P2</strong>&nbsp;por duas vezes, onde para cada vez que ele for pressionado um bipe será emitido e um acionamento breve será realizado. Por fim, será necessário pressionar o botão de&nbsp;<strong>Up</strong>&nbsp;ou&nbsp;<strong>Down</strong>&nbsp;no controle, então o pareamento será confirmado após 3 bipes e um acionamento breve seguido de um bipe longo.</p></details></li></ul><ul id="06f2c2f9-bd07-4616-bd1a-d98b6047f8f5" class="toggle"><li><details open><summary><strong>Definição de Limite</strong></summary><p id="c2c2ce72-b7f8-4970-babc-4926c04748f6" class="">Para <strong>definir os limites</strong> superior e inferior da cortina, é necessário pressionar o&nbsp;<strong>P2</strong>&nbsp;(que será registrado por 1 bipe e um acionamento breve), o botão&nbsp;<strong>Up</strong>&nbsp;do controle (registrado da mesma maneira) e o&nbsp;<strong>P2</strong>&nbsp;novamente (que dessa vez será confirmado por 3 bipes e 1 acionamento breve). Nesse momento, o motor estará no modo de definição de limites: para definir o&nbsp;<strong>limite superior</strong>, basta pressionar o botão&nbsp;<strong>Up</strong>&nbsp;do controle até que o limite desejado seja atingido (o que gerará 1 bipe de confirmação) e em seguida pressionar o&nbsp;<strong>Stop</strong>&nbsp;duas vezes: uma vez apenas com um toque simples (que será confirmado com 1 bipe) e depois novamente pressionando o botão e mantendo-o pressionado até que sejam emitidos 3 bipes. Para definir o limite&nbsp;<strong>inferior</strong>, o processo é o mesmo porém pressionando o botão&nbsp;<strong>Down</strong>&nbsp;do controle.</p></details></li></ul><ul id="21b58722-63bc-459e-80a4-17110b76932e" class="toggle"><li><details open><summary><strong>Ajuste de Limite</strong></summary><p id="be0dce00-53b7-4cb6-992a-e312dcd4062e" class="">Para <strong>ajustar os limites</strong> que foram definidos no tópico anterior, basta manter os botões&nbsp;<strong>Up</strong>&nbsp;e&nbsp;<strong>Down</strong>&nbsp;pressionados&nbsp;<strong>simultaneamente</strong>&nbsp;por ~5 segundos, ação que será confirmada por 3 bipes e 1 acionamento breve do motor. Em seguida, ao pressionar o botão&nbsp;<strong>Up</strong>&nbsp;ou&nbsp;<strong>Down</strong>&nbsp;o motor fará um movimento breve no sentido correspondente. Quando atingir o ajuste desejado, basta manter o botão&nbsp;<strong>Stop</strong>&nbsp;pressionado por ~5 segundos (ou aguardar a confirmação de 3 bipes e 1 acionamento breve).</p></details></li></ul><ul id="763b169d-872b-49ca-a067-e2666f681769" class="toggle"><li><details open><summary><strong>Reset</strong></summary><p id="0024bd18-f199-4abc-8a11-30134a406a51" class="">Para casos em que é necessário/desejado <strong>restaurar as definições de fábrica</strong> do dispositivo, basta manter o&nbsp;<strong>P1</strong>&nbsp;pressionado por ~10 segundos até que a confirmação seja emitida com 3 bipes e 1 acionamento breve.</p></details></li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="c7e8d361-7733-45c6-a452-5decf5927fa1"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Após finalizada a configuração do dispositivo, é importante notar que o controle e o motor precisam estar no modo de&nbsp;<strong>funcionamento unidirecional</strong>&nbsp;para que a integração possa ser realizada. Para verificar qual é o modo de atuação do controle em um dado momento, é necessário fazer a remoção da bateria do controle, pressionar o botão&nbsp;<strong>P2</strong>&nbsp;e reinserir a bateria mantendo o botão&nbsp;<strong>P2</strong>&nbsp;pressionado. Quando o controle for ligado novamente, um número será exibido no display, sendo&nbsp;<strong>1</strong>&nbsp;para o modo&nbsp;<strong>unidirecional</strong>&nbsp;e 2 para o modo bidirecional.     </div></figure><p id="bbe38440-32eb-47ae-9c19-d0c4d0d46e8f" class="">Com o dispositivo devidamente pareado, basta inserir o driver&nbsp;<strong>genérico</strong>&nbsp;no projeto e realizar a&nbsp;<strong>captura&nbsp;</strong>dos comandos de acordo com a seção deste artigo pertinente ao&nbsp;<strong>RF433MHz</strong>&nbsp;para finalizar a integração.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

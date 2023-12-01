@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>EB-KP6M-4R-WIFI/EB-KP12-4R-WIFI</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="5479e7a2-f40d-4454-9029-b5eb1ecf6a0b" class="page sans"><header><h1 class="page-title">EB-<strong><strong>KP6M-4R-WIFI/</strong></strong>EB-KP12-4R-WIFI</h1><p class="page-description"></p></header><div class="page-body"><figure id="04d56426-7ff1-43b7-a7a9-58c2db617608" class="image"><a href="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/dispositivos.png"><img style="width:698px" src="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/dispositivos.png"></a></figure><p id="bb04f701-0275-4261-8133-68168667f7da" class=""><strong></strong></p><h3 id="47abe435-9f0a-4ac7-8ea8-421ef16f3de1" class=""><strong>Especificações</strong></h3><ul id="034923c6-27a6-4079-be39-1b5d9bd7a6f7" class="bulleted-list"><li style="list-style-type:disc">Possui 4 canais relés.</li></ul><ul id="fc755897-1b11-45dc-8f4a-d1727e8c555a" class="bulleted-list"><li style="list-style-type:disc">Possui 2 entradas auxiliares com&nbsp;acionamento AC (NEUTRO/FASE).</li></ul><ul id="d48ee822-a3d5-4112-99c2-ac347d09fb61" class="bulleted-list"><li style="list-style-type:disc">Teclas:      <ul id="6e25fb70-aadd-4d09-8bef-8ff9da28b8c4" class="bulleted-list"><li style="list-style-type:circle">EB-KP6M-4R-WIFI possui 6 teclas.</li></ul><ul id="988df04f-2d14-4f79-9dde-2384997b6e7c" class="bulleted-list"><li style="list-style-type:circle">EB-KP12-4R-WIFI possui 12 teclas.</li></ul></li></ul><ul id="9bbae096-5f42-410d-93fd-4fdd92f00672" class="bulleted-list"><li style="list-style-type:disc">EB-KP6M-4R-WIFI possui sensores de movimento e luminosidade.</li></ul><ul id="a3280063-e259-42de-ab56-7e856bbe5d2a" class="bulleted-list"><li style="list-style-type:disc">Opção de adicionar Cortina/Toldo (habilita par de canal 1 e 2 e/ou 3 e 4).</li></ul><ul id="2811650a-320e-4b66-b4be-a89a54e552b0" class="bulleted-list"><li style="list-style-type:disc"><em>Bivolt</em>&nbsp;automático</li></ul><h3 id="b52a4390-e330-4c3a-86d7-7a270bcc57f3" class=""><strong>Diferenças entre&nbsp;EB-KP6M-4R-WIFI e&nbsp;EB-KP12-4R-WIFI</strong></h3><p id="159b9697-6e11-49fb-8b82-38cb257932f4" class="">As diferenças entre os dois dispositivos estão explícitas na seguinte tabela:</p><table id="49da65cd-1053-4c31-bd16-3c23ad43f517" class="simple-table"><tbody><tr id="7a88ce2d-d372-4d98-93dc-997b61c3c2b3"><td id="MvFD" class="" style="width:349px"><strong><strong>EB-KP6M-4R-WIFI</strong></strong></td><td id="@hi}" class="" style="width:349px"><strong><strong>EB-KP12-4R-WIFI</strong></strong></td></tr><tr id="ad9a310d-4139-4c4e-b237-fbf06d4bea56"><td id="MvFD" class="" style="width:349px">6 teclas</td><td id="@hi}" class="" style="width:349px">12 teclas</td></tr><tr id="2a5ec2bc-18f6-42c5-91d4-914c46806af3"><td id="MvFD" class="" style="width:349px">Sensor de luminosidade e movimento</td><td id="@hi}" class="" style="width:349px">Não possui sensor</td></tr><tr id="484197eb-5498-40ac-a6c6-6352c5177a72"><td id="MvFD" class="" style="width:349px">LED indicativo de movimento</td><td id="@hi}" class="" style="width:349px">Não possui LED indicativo de movimento</td></tr></tbody></table><h2 id="f578a341-3b66-43ff-9220-a2d02c549e58" class=""><strong>Modos de operação</strong></h2><h3 id="6903d9b2-d0cf-43b9-9d14-9554db7fd53c" class=""><strong>Modo Central</strong></h3><p id="0e0f89dc-d5c7-480d-8df2-9aa7862ffc7b" class="">Quando o dispositivo estiver vinculado a um projeto de uma AC, responderá às configurações feitas no E-Config.</p><h3 id="6802d588-a06d-4434-b471-ac4428481ac1" class=""><strong>Modo Local</strong></h3><p id="35b4fca0-e521-48f4-aeb1-949fa477bcc4" class="">É o modo quando o dispositivo está na rede, mas não está conectado a uma AC. Neste caso possui algumas funções:</p><ul id="e2f14e2a-4dce-4706-beca-d39d408b40f8" class="bulleted-list"><li style="list-style-type:disc">Teclas que ligam/desligam os canais 1, 2, 3 e 4 respectivamente:</li></ul><table id="d6560ec6-5a6d-412f-b667-8381fd5131e0" class="simple-table"><tbody><tr id="436263fc-9f6f-46c8-be64-0181e2020bb6"><td id="vRzV" class="" style="width:349px"><strong>EB-KP6M-4R-WIFI</strong></td><td id="^YEa" class="" style="width:349px"><strong>EB-KP12-4R-WIFI</strong></td></tr><tr id="9da72796-fada-4d48-8df7-f44fa169186f"><td id="vRzV" class="" style="width:349px">1, 3, 5 e 2</td><td id="^YEa" class="" style="width:349px">1, 3, 5 e 7</td></tr></tbody></table><ul id="5929446d-4f3e-4b09-ba94-ceb6424eb367" class="bulleted-list"><li style="list-style-type:disc">As auxiliares não têm função;</li></ul><ul id="65ca9131-5976-4193-ab8e-e5a77346a770" class="bulleted-list"><li style="list-style-type:disc">Os LEDs das teclas ficam com intensidade em 30%;</li></ul><ul id="62da3c45-0312-4b69-8916-c42d1c23a350" class="bulleted-list"><li style="list-style-type:disc">Para acessar os status do dispositivo basta pressionar 2 teclas por 10 segundos, como descrito na seguinte tabela:</li></ul><table id="f7c6b39b-63fa-4cbf-8df0-65316e11b4c0" class="simple-table"><tbody><tr id="c9b5db05-28f0-4c66-9682-2b3b2dd0db63"><td id="b~jD" class="" style="width:349px"><strong>EB-KP6M-4R-WIFI</strong></td><td id="nqUy" class="" style="width:349px"><strong>EB-KP12-4R-WIFI</strong></td></tr><tr id="69c61849-74e7-4fe4-94ad-d455f7da5079"><td id="b~jD" class="" style="width:349px">1 e 5</td><td id="nqUy" class="" style="width:349px">1 e 11</td></tr></tbody></table><ul id="c54df4c8-1875-42b6-aba5-84c5b6bd0e89" class="bulleted-list"><li style="list-style-type:disc">Em seguida todos os LEDs piscarão:</li></ul><table id="be7120fe-91d4-44dc-bf68-01fc983f28c0" class="simple-table"><tbody><tr id="2bcfd44f-f72b-4cee-bb62-5bf99c61ab99"><td id="UojZ" class="" style="width:349px"><strong>Piscadas</strong></td><td id="ALWC" class="" style="width:349px"><em><strong>Status</strong></em></td></tr><tr id="76c1eeb0-eae9-4100-89c7-a74e4b509de8"><td id="UojZ" class="" style="width:349px">3</td><td id="ALWC" class="" style="width:349px">Conectado ao&nbsp;<em>Access Point</em></td></tr><tr id="18bb4ff7-f63f-4503-a3ed-c8226a1f95d4"><td id="UojZ" class="" style="width:349px">2</td><td id="ALWC" class="" style="width:349px">Não está conectado ao&nbsp;<em>Access Point</em></td></tr></tbody></table><ul id="93753b8d-3960-4817-8b1e-2f0f2d145410" class="bulleted-list"><li style="list-style-type:disc">E alguns LEDs permanecerão acesos:</li></ul><table id="dbc83f5a-64ac-486e-a88d-81d08cda7db6" class="simple-table"><tbody><tr id="8e2f30ba-91e6-457d-87a5-c03037d0f499"><td id="U}pz" class="" style="width:349px"><strong>Teclas com&nbsp;</strong><em><strong>feedback</strong></em></td><td id="AgsG" class="" style="width:349px"><em><strong>Status</strong></em></td></tr><tr id="210de95b-18da-462f-be6d-4fcd0e13327b"><td id="U}pz" class="" style="width:349px">1</td><td id="AgsG" class="" style="width:349px">Par de canais 1 e 2 desabilitados</td></tr><tr id="c357e673-05b6-40b8-836f-e9b94a27418f"><td id="U}pz" class="" style="width:349px">1 e 2</td><td id="AgsG" class="" style="width:349px">Par de canais 1 e 2 habilitados</td></tr><tr id="b30f475b-15aa-4b26-b947-b58bb09e5495"><td id="U}pz" class="" style="width:349px">3</td><td id="AgsG" class="" style="width:349px">Par de canais 3 e 4 desabilitados</td></tr><tr id="1a45161b-713a-4252-bad8-699646109930"><td id="U}pz" class="" style="width:349px">3 e 4</td><td id="AgsG" class="" style="width:349px">Par de canais 3 e 4 habilitados</td></tr></tbody></table><ul id="5d213f9c-f4bc-4e16-af69-32ebca6946af" class="bulleted-list"><li style="list-style-type:disc">Para configurar par de canais no modo local:      <ul id="df7f4711-a0a8-42c1-a780-124f27347608" class="bulleted-list"><li style="list-style-type:circle">Teclas 1 e 2 pressionadas por 5 segundos habilitam/desabilitam par de canais 1 e 2;</li></ul><ul id="2016c088-5c8c-4f57-9023-18d7a63c2ec3" class="bulleted-list"><li style="list-style-type:circle">Teclas 3 e 4 pressionadas por 5 segundos habilitam/desabilitam par de&nbsp;canais 3 e 4.</li></ul></li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="08ca3671-53a4-4c47-9944-0a0092fc4940"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><strong>ATENÇÃO:&nbsp;</strong>Caso existam entradas de Cortina/Toldo vinculadas às entradas do&nbsp;EB-KP6M-4R-WIFI / EB-KP12-4R-WIFI, no modo local o par de canais respectivo ficará habilitado, mas de forma emergencial. A lógica de tempo e reversão corretos são realizados pela controladora que, neste caso, está inoperante.     </div></figure><ul id="356d6c3a-1790-4506-9db2-b63173d5508b" class="bulleted-list"><li style="list-style-type:disc"><strong>Modo&nbsp;</strong><em><strong>Setup</strong></em>&nbsp;(ou modo&nbsp;<em>Access Point; </em>teclas precisam ser pressionadas por, no mínimo, <strong>10 segundos</strong>):</li></ul><table id="c5c8f5a8-3075-4ef5-94f1-ce74ccb3bf14" class="simple-table"><tbody><tr id="afe28727-f991-410d-a7ca-bd296f56be88"><td id="Xt]W" class="" style="width:349px"><strong>EB-KP6M-4R-WIFI</strong></td><td id="@RLr" class="" style="width:349px"><strong>EB-KP12-4R-WIFI</strong></td></tr><tr id="0db9f199-45be-41db-a455-efc784f8f01e"><td id="Xt]W" class="" style="width:349px">1 e 6</td><td id="@RLr" class="" style="width:349px">1 e 12</td></tr></tbody></table><ul id="cc113f56-e1e1-4901-8cb5-d08dd822b335" class="bulleted-list"><li style="list-style-type:disc">Após 1 minuto ocioso, o Modo&nbsp;<em>Setup</em>&nbsp;é automaticamente desativado voltando à rede anterior;</li></ul><ul id="31e19b6b-6e86-434e-99c1-316b6df650a7" class="bulleted-list"><li style="list-style-type:disc">Se pressionar alguma tecla, desabilita o Modo&nbsp;<em>Setup</em>;</li></ul><ul id="b09334bb-8ddd-4794-9ca2-7286cfa7a595" class="bulleted-list"><li style="list-style-type:disc">O estado do DHCP não muda ao ativar o Modo&nbsp;<em>Setup</em>, pode mudar apenas se realizar a configuração do dispositivo na rede com sucesso, como mostra tabela a seguir:</li></ul><table id="c413f027-f67b-468b-b67b-1dc8c695327c" class="simple-table"><tbody><tr id="02a2dc2c-027a-45e3-b7f0-bd0f9dfbae63"><td id="`QG>" class="" style="width:349px"><strong>DHCP antes da configuração</strong></td><td id="X^{f" class="" style="width:349px"><strong>DHCP após a configuração</strong></td></tr><tr id="00700abd-26bd-4bb7-9671-62d367f965b2"><td id="`QG>" class="" style="width:349px">Habilitado</td><td id="X^{f" class="" style="width:349px">Habilitado</td></tr><tr id="e28aca33-c742-4e41-931f-accc990f537c"><td id="`QG>" class="" style="width:349px">Desabilitado</td><td id="X^{f" class="" style="width:349px">Habilitado</td></tr></tbody></table><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a2eaad0c-b1fc-4ec6-a424-8fd00719f157"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><strong>ATENÇÃO</strong>: O DHCP é habilitado novamente somente se a configuração do dispositivo na rede for efetuada com sucesso!     </div></figure><ul id="01b9acf1-0c15-47b5-a276-8277a582c6c7" class="bulleted-list"><li style="list-style-type:disc">De acordo com algumas piscadas dos LEDs é possível identificar se o dispositivo já está conectado à rede ou não:</li></ul><table id="eb09c10b-6ec6-4b65-abe5-8d372585d42d" class="simple-table"><tbody><tr id="8ad79524-80fe-4a83-ae07-faa662c26359"><td id="k`fk" class="" style="width:349px"><strong>Estado dos LEDs no Modo&nbsp;</strong><em><strong>Setup</strong></em></td><td id="DY[A" class="" style="width:349px"></td></tr><tr id="5d966a3d-4cee-4926-a667-480484fffbef"><td id="k`fk" class="" style="width:349px"><strong>Piscada</strong></td><td id="DY[A" class="" style="width:349px"><strong>Estado</strong></td></tr><tr id="90079ef3-4a11-4087-8d09-8bd3f67de538"><td id="k`fk" class="" style="width:349px">1 a cada 1 segundo</td><td id="DY[A" class="" style="width:349px">Desconectado da rede</td></tr><tr id="7ac66480-7bde-46e0-8aca-dd9cc9e3eb47"><td id="k`fk" class="" style="width:349px">1 a cada 0,5 segundo</td><td id="DY[A" class="" style="width:349px">Conectado à rede</td></tr></tbody></table><p id="f36faf75-c87e-465a-84e0-f51ac5e78d5f" class=""><strong></strong></p><h3 id="205ce154-47af-4409-b3f3-602746d85844" class=""><strong>Processo de instalação</strong></h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="012e2f4a-dcca-4478-be2f-c04ed2fb9190"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Os teclados&nbsp;<strong>EB-KP6M-4R-WIFI</strong>&nbsp;e&nbsp;<strong>EB-KP12-4R-WIFI</strong>&nbsp;podem ser inseridos na rede da instalação da mesma forma que os outros dispositivos da linha&nbsp;<strong>EB-WIFI</strong>. Para mais informações a respeito de como proceder para configurar os dispositivos, favor visitar a seção&nbsp;<strong>Configuração</strong>&nbsp;da página&nbsp;<a href="../EB-WIFI.html"><strong>EB-WIFI</strong></a>. Conforme mencionado anteriormente, o&nbsp;<strong>Modo Setup</strong>&nbsp;dos dispositivos deverá ser acionado para que eles sejam inseridos na rede.      </div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9cd7ac6d-c65d-4067-8fae-6412a25dcd6a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para acionar o Modo Setup do&nbsp;<strong>EB-KP6-4R-WIFI</strong>&nbsp;basta pressionar os botões&nbsp;<strong>1 e 6</strong>&nbsp;por&nbsp;<strong>10</strong>&nbsp;segundos.      </div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="40c461ab-99d2-45ed-a098-a06cda0487b7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">      Para acionar o Modo Setup do&nbsp;<strong>EB-KP12-4R-WIFI</strong>&nbsp;basta pressionar os botões&nbsp;<strong>1 e 12</strong>&nbsp;por <strong>10 </strong>segundos.     </div></figure><h3 id="b1c25716-f715-47b1-9e23-c4e6277212d6" class=""><strong>Incluindo EB-KP6M-4R-WIFI / EB-KP12-4R-WIFI em seu projeto</strong></h3><p id="d49055d8-3e39-42ff-8738-841c3b853692" class="">O EB-KP6M-4R-WIFI / EB-KP12-4R-WIFI aparecerá na aba de E-Net do seu E-Config. Basta adicioná-lo ao ambiente como qualquer outro dispositivo da rede Embrace.</p><figure id="bea8f4a1-2ef4-44fd-b9a7-1ca96502e649" class="image"><a href="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/lugarKPs.png"><img style="width:666px" src="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/lugarKPs.png"></a></figure><p id="1ee272d4-d8d5-4237-aa5a-3b6b3d184541" class="">A única diferença da tela principal do EB-KP6M-4R-WIFI e do&nbsp;EB-KP12-4R-WIFI é o checkbox&nbsp;<strong>LED indicativo de movimento habilitado</strong>.</p><figure id="dddd86d3-cc37-4319-bb06-d3220f273467" class="image"><a href="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/kps-led-2.png"><img style="width:698px" src="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/kps-led-2.png"></a></figure><p id="9ff266f5-5fd2-4efa-b59e-4db97b4f97cf" class="">Em seguida os procedimentos serão:</p><ul id="8b9271b2-7ca9-46a1-8704-695bbdf2e3cd" class="bulleted-list"><li style="list-style-type:disc">Adicionar Luminária e/ou Cortina/Toldo ao ambiente desejado.</li></ul><ul id="03573954-64da-4fe7-92fa-33689991b130" class="bulleted-list"><li style="list-style-type:disc">Arrastar a Luminária e/ou Cortina/Toldo na conexão do EB-KP6M-4R-WIFI / EB-KP12-4R-WIFI.&nbsp;Note que o par de canais que tiveram uma Cortina/Toldo associados ficaram habilitados.</li></ul><figure id="b4ac0861-6330-49ed-99b9-bd9496072d1f" class="image"><a href="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/links-2.png"><img style="width:685px" src="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/links-2.png"></a></figure><ul id="ad7301cb-d956-4f19-8152-b900929acfce" class="bulleted-list"><li style="list-style-type:disc">Se desejado, conectar pulsadores às entradas auxiliares.</li></ul><ul id="104d7f1d-f918-4e84-b834-a8d5bd6869d4" class="bulleted-list"><li style="list-style-type:disc">Em seguida gerar Room-Control e fazer as associações desejadas no módulo de Cortina/Toldo.</li></ul><ul id="2524667d-3574-4317-8582-4d8f1075cbcb" class="bulleted-list"><li style="list-style-type:disc">Associar o dispositivo físico EB-KP6M-4R-WIFI / EB-KP12-4R-WIFI na aba de Rede.</li></ul><figure id="4eddb218-fbdd-4b75-93cb-9dfd431c7c86" class="image"><a href="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/redeMenor2.png"><img style="width:698px" src="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/redeMenor2.png"></a></figure><ul id="65149f8b-cd46-4287-a13f-b92995e18849" class="bulleted-list"><li style="list-style-type:disc">Enviar o projeto para a controladora.</li></ul><h3 id="f4434e2b-23d6-473a-978c-a49a2d2d833f" class=""><strong>Modo Teste</strong></h3><ul id="7aeea9f7-d453-4e94-b31b-f68b01b5228d" class="bulleted-list"><li style="list-style-type:disc">Na aba Rede, localizado em Instalação, é possível testar a funcionalidade do EB-KP6M-4R-WIFI/EB-KP12-4R-WIFI.</li></ul><ul id="fd2838e9-15f1-4bae-8090-40414a9fa0d0" class="bulleted-list"><li style="list-style-type:disc">Para realizá-lo basta selecionar o EB-KP6M-4R-WIFI / EB-KP12-4R-WIFI correspondente e clicar em Modo Teste (localizado no topo da aba Rede).</li></ul><ul id="d4a78d03-aefc-4aa0-8890-bf157138f458" class="bulleted-list"><li style="list-style-type:disc">Neste momento os Dispositivos da Rede passarão a ficar à esquerda e a tela do módulo EB-KP6M-4R-WIFI / EB-KP12-4R-WIFI abrirá à direita.</li></ul><ul id="22465bb5-36bd-40f3-ad3b-506968f83b4a" class="bulleted-list"><li style="list-style-type:disc">Na aba <strong>INPUT </strong>encontram-se as informações do módulo e os métodos de teste: acender LEDs, acionar canais,&nbsp;<em>feedback</em>&nbsp;de aperto de botão e de auxiliar, o sinal de WiFi, e, no caso do EB-KP6M-4R-WIFI, detecção de movimento e intensidade de luminosidade.</li></ul><figure id="b9382f4c-c929-4872-a9e9-98d9a1ba270d" class="image"><a href="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/modoteste2.png"><img style="width:698px" src="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/modoteste2.png"></a></figure><ul id="2db8c957-0095-44d5-bf13-7d91714b66e0" class="bulleted-list"><li style="list-style-type:disc">Na aba <strong>OUTPUT </strong>sinal do WiFi a cada segundo,&nbsp;<em>Press/Release</em>&nbsp;de botão quando for acionado, e, no&nbsp;caso do EB-KP6M-4R-WIFI, informa movimento quando ocorrer e informa intensidade de luminosidade a cada 10 segundos.</li></ul><figure id="9e93ad2a-f7a6-4b03-a830-9757216ab927" class="image"><a href="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/modotesteOutput3.png"><img style="width:674px" src="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/modotesteOutput3.png"></a></figure><h3 id="f336a0ce-0d45-40a2-afd7-1ab68ec828a8" class=""><strong></strong></h3><h3 id="5ca29126-8fbe-412c-9046-87058d9d3504" class=""><strong>Padrões de fábrica</strong></h3><ul id="e588b486-a9f4-4e01-abdb-b672a025deab" class="bulleted-list"><li style="list-style-type:disc">Par de canais não são habilitados.</li></ul><ul id="470c7ab8-c567-4864-95e5-ab8bc1c95816" class="bulleted-list"><li style="list-style-type:disc">DHCP habilitado.</li></ul><h3 id="ed830faa-6dce-4090-9250-0b5961feba44" class=""><strong></strong></h3><h3 id="3b6ed32c-77d9-4ece-9773-d6ca0a0c0db1" class=""><strong>Informações</strong></h3><p id="25a7d003-3b7e-4362-a820-7fa7dec82c83" class="">Adicionando o EB-KP6M-4R-WIFI / EB-KP12-4R-WIFI ao projeto, inicialmente encontram-se as informações técnicas do dispositivo:&nbsp;<em>IP</em>,&nbsp;<em>Porta</em>,&nbsp;<em>MAC e&nbsp;</em><em>Versão</em>. Essas informações são preenchidas automaticamente ao vincular o módulo ao dispositivo físico feito em Rede.</p><figure id="1c68c2ee-5875-4d38-b956-cf940b8f2361" class="image"><a href="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/kps-3.png"><img style="width:698px" src="http://embrace.editme.com/files/EB-KP6M-4R-WIFI-EB-KP12-4R-WIFI/kps-3.png"></a></figure><h3 id="b9d9e535-12e4-4622-9b6c-83e39b4cb94c" class=""><strong>Propriedades</strong></h3><ul id="e4d993b5-cdfe-41c7-bde9-fb5585149575" class="bulleted-list"><li style="list-style-type:disc"><strong>Tensão de alimentação</strong>: informe a tensão em Volts da fonte que será conectada ao EB-KP6M-4R-WIFI / EB-KP12-4R-WIFI.</li></ul><ul id="683f77bd-834c-49f5-858a-1285086a17c3" class="bulleted-list"><li style="list-style-type:disc"><strong>Intensidade dos Leds</strong>:      <ul id="92fe0524-802c-4514-ba2e-ba13438698f1" class="bulleted-list"><li style="list-style-type:circle"><strong>Fixa</strong>: a intensidade dos LEDs é mantida fixa no modo ON, OFF e no modo dormir.</li></ul><ul id="e3e1e96f-983f-4ff2-b44d-67db714c6f9e" class="bulleted-list"><li style="list-style-type:circle"><strong>Variável</strong>: a intensidade dos LEDs varia de acordo com a luminosidade do ambiente. No caso do EB-KP6M-4R-WIFI pode ser o usado o próprio sensor do dispositivo; já no&nbsp;EB-KP12-4R-WIFI é preciso vincular qualquer sensor de luminosidade na conexão&nbsp;<em>Entrada de sensor de luminosidade</em>.</li></ul></li></ul><ul id="da9c5e2c-5d74-4998-b1a8-0feb200a359c" class="bulleted-list"><li style="list-style-type:disc"><em><strong>Checkbox Interlock</strong></em>:      <ul id="a90ff3a3-2d96-4a7d-bbf1-e2456d6ec487" class="bulleted-list"><li style="list-style-type:circle">Interlock dos relés (par 1): habilita par de canais 1 e 2;</li></ul><ul id="d16909aa-078d-407f-ac5a-d612e6a5b27e" class="bulleted-list"><li style="list-style-type:circle">Interlock dos relés (par 2): habilita par de canais 3 e 4.</li></ul></li></ul><h3 id="a507b37e-788a-4bbb-87d4-2a82c556dfff" class=""><strong>Conexões</strong></h3><ul id="d794b634-268b-432e-ac22-100e3ed61307" class="bulleted-list"><li style="list-style-type:disc"><strong>Entrada</strong><ul id="d83b8445-5b0b-4a56-87a7-1b925d93634e" class="bulleted-list"><li style="list-style-type:circle">Modo dormir:&nbsp;esta função faz com que os LEDs do teclado assumam a luminosidade configurada em Intensidade LEDs ON modo dormir. O recomendável é que essa função seja conectada à função&nbsp;<em>Teclados afetados pelo modo dormir</em>, localizado no Room-Control do ambiente desejado.</li></ul><ul id="1c16e1aa-999c-40e5-9428-d3ca6c8a071f" class="bulleted-list"><li style="list-style-type:circle">Entrada de sensor de luminosidade: link analógico do sensor que irá refletir na intensidade dos LEDs e no modo dormir.</li></ul></li></ul><ul id="c86ade4a-e1c6-4059-8c36-4469be0bdc32" class="bulleted-list"><li style="list-style-type:disc"><strong>Saída</strong><ul id="9fbaac10-7018-4787-9c52-9fee9938badb" class="bulleted-list"><li style="list-style-type:circle">Intensidade do Sinal do WiFi: quanto pior for o sinal, menor será a porcentagem; quanto melhor for o sinal, mais próximo de 100% será o valor.</li></ul></li></ul><p id="b72a65d6-f2f9-42d6-a115-43ec375a5854" class=""></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

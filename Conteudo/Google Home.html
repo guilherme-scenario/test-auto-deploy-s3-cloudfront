@@ -1,0 +1,680 @@
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Google Home</title>
+  <style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style> </head><body><article id="102d8a57-fa69-4356-8508-7d4271c07dbb" class="page sans"><header><h1 class="page-title">Google Home</h1><p class="page-description"></p></header><div class="page-body"><p id="2bc2d182-4a41-406e-8782-45135cacc907" class="">A Scenario também oferece possibilidade de integração da automação com a plataforma da Google, o&nbsp;<strong>Google Home</strong>.</p><figure id="fd93d0f3-3307-4595-9282-21657f341bad" class="image"><a href="http://embrace.editme.com/files/Google-Home/Google-Home.png"><img style="width:480px" src="http://embrace.editme.com/files/Google-Home/Google-Home.png"></a></figure><p id="8355a929-7095-4b9d-a8f2-bcf4cd3dc3c5" class="">Google Home é o dispositivo responsável por identificar os comandos por voz e executá-los através do assistente virtual do Google. Este dispositivo permite ao usuário ouvir música, reproduzir vídeos e até mesmo integrar sistema de automação residencial, que é o que faremos a seguir.</p><p id="12e668d1-2b46-4d67-ba94-d17d6fc0dbe6" class="">Antes de começar é preciso esclarecer alguns conceitos:</p><ol type="1" id="f2817158-7ab1-4446-8997-6e45ca81dd98" class="numbered-list" start="1"><li>O Google Home não dá suporte para controle por voz utilizando dispositivos iOS, pois o assistente não é o mesmo. Porém nada impede de configurar um speaker utilizando dispositivo iOS.</li></ol><ol type="1" id="7a07bf72-5a37-4118-9956-f82c8537eab3" class="numbered-list" start="2"><li>Para conseguir utilizar a automação o assistente precisa estar em inglês (o passo a passo de como fazer isso é mostrado na presente página) e os comandos devem ser dados no mesmo idioma.</li></ol><ol type="1" id="36408442-f25a-48ca-bd6c-797d2ddc35c9" class="numbered-list" start="3"><li>Quando o idioma do dispositivo estiver diferente do idioma do assistente pode haver conflitos, tornando difícil o envio de comandos por voz.</li></ol><ol type="1" id="896f6049-8d10-41c4-a8d8-a32eb1fd0e80" class="numbered-list" start="4"><li>Caso o usuário queira utilizar o assistente através do próprio dispositivo móvel é aconselhável alterar o idioma da conta utilizada para o inglês (mesmo idioma do assistente).&nbsp;Para alterar o idioma da conta Google clique&nbsp;<a href="https://support.google.com/accounts/answer/32047?co=GENIE.Platform%3DAndroid&amp;hl=pt-BR">aqui</a>.</li></ol><hr id="aaffdc65-ea83-4f55-825e-76be61cfb045"><div id="8b6e2012-51ef-49ff-9bdf-2fc53ccef4a7" class="column-list"><div id="e4082a40-84ba-485f-a585-a0794a79457d" style="width:50%" class="column"><p id="4805ba9f-1f42-4da5-b911-59dd8891b308" class="">Para configurar o dispositivo é preciso baixar o aplicativo Google Home na&nbsp;<a href="https://play.google.com/store/apps/details?id=com.google.android.apps.chromecast.app&amp;hl=pt_BR">Play Store</a>&nbsp;(Android) ou na&nbsp;<a href="https://itunes.apple.com/br/app/google-home/id680819774?mt=8">App Store</a>&nbsp;(iOS). A página inicial é parecida com a mostrada a seguir:</p><p id="eba8c8b1-133a-4150-b1ac-a873bb761f71" class=""></p></div><div id="31382abf-bcc8-4b68-91e1-cd538693979c" style="width:50%" class="column"><figure id="f6ae79d8-664b-40ab-b1b5-c0f8885e8d50" class="image"><a href="http://embrace.editme.com/files/Google-Home/PagInicial1.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/PagInicial1.png"></a></figure></div></div><hr id="946ef260-be15-4796-a705-f02ec2cdf6e3"><div id="ffb75343-ab65-4a4f-8d95-a70588be584e" class="column-list"><div id="c4681d97-aed0-43df-8bc7-06874868bffd" style="width:50%" class="column"><p id="55bc3b1c-02d6-4d37-9191-40b530c65ea1" class="">Tocando em&nbsp;<strong>Primeiros passos</strong>&nbsp;o aplicativo redirecionará para a página de acesso. Selecione uma conta (ou adicione uma) para prosseguir.</p></div><div id="c90a27b7-94a3-4e7e-9773-4f15cfeb3ea4" style="width:50%" class="column"><figure id="5a604cef-bbb9-4d8d-9e17-eba52d161355" class="image"><a href="http://embrace.editme.com/files/Google-Home/EscolherConta3.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/EscolherConta3.png"></a></figure></div></div><hr id="6bdb4841-bf21-4297-853f-3aaa0fede341"><div id="2e3ff674-2e8a-407b-966c-6a5b96cb1dff" class="column-list"><div id="38abdf8e-c214-47f3-a816-6c8158edfa6b" style="width:50%" class="column"><p id="cd0b9fba-7263-4835-9c00-83594360e746" class="">Tocando em&nbsp;<strong>Ok</strong>&nbsp;o aplicativo pede permissão para acessar a localização atual para detectar dispositivos próximos.</p></div><div id="4403eca5-0219-488b-8eea-2d10bff55a74" style="width:50%" class="column"><figure id="4f74179b-9ab8-40d2-90f9-a9fd8223299f" class="image"><a href="http://embrace.editme.com/files/Google-Home/AcessoWifi1.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/AcessoWifi1.png"></a></figure></div></div><hr id="873c2154-b528-4811-99d3-6369d9b3abd8"><div id="10a86213-b63a-4f3a-ae77-a9b73c18dc14" class="column-list"><div id="27052298-ffd5-43c9-aacc-7270be062520" style="width:50%" class="column"><p id="8f9af95a-32ec-48a2-b445-438c708c06da" class="">Tocando em&nbsp;<strong>Próxima</strong>&nbsp;iniciaremos a configuração do dispositivo.</p></div><div id="14c871f0-4e0a-41ee-af8c-7ac7785e1b3a" style="width:50%" class="column"><figure id="741fd3c1-167d-44c7-b44f-b4f7e648bdc5" class="image"><a href="http://embrace.editme.com/files/Google-Home/CriarCasa1.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/CriarCasa1.png"></a></figure></div></div><hr id="ea12fe49-f38f-47d1-a617-23b33d834a11"><div id="6c9099bf-529b-4ed8-a77e-274905327325" class="column-list"><div id="9cc33597-95d6-4de3-a31d-a51857e632e7" style="width:50%" class="column"><p id="71ad2100-d685-440c-a5f8-269f9ededdda" class="">Toque em&nbsp;<strong>Primeiros passos</strong>&nbsp;para dar continuidade. Aparecerá a seguinte tela:</p></div><div id="72518eef-3753-4158-8928-bc567e13409e" style="width:50%" class="column"><figure id="bb88496c-fb6f-4c41-8bc3-d42ca4b34cb8" class="image"><a href="http://embrace.editme.com/files/Google-Home/ConfigurarDispositivo1.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/ConfigurarDispositivo1.png"></a></figure></div></div><hr id="dd12dfa1-cbfa-4c24-a1e1-1de6e15364d6"><div id="49c6cb83-8455-4c8e-8a08-dd8331aa13f0" class="column-list"><div id="5f4baafb-6864-498b-a1da-8c7fe9b538f3" style="width:50%" class="column"><p id="dd7bd2c3-c194-4c21-b5e6-c443abc363c2" class="">Selecione a opção&nbsp;<strong>Compatíveis com o Google</strong>&nbsp;para ter acesso aos serviços Embrace. Em seguida será apresentada uma lista de serviços.</p></div><div id="367c625d-1ae3-4183-a8e4-da577eb04d89" style="width:50%" class="column"><figure id="1d12a5a3-61a1-46b5-90d3-626897d05283" class="image"><a href="http://embrace.editme.com/files/Google-Home/DispositivosConfigurados1.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/DispositivosConfigurados1.png"></a></figure></div></div><hr id="da4abd37-f6b9-496c-82a9-0daa4557c478"><div id="64abbc29-5c79-45e4-b3ba-97b03d46d716" class="column-list"><div id="b7643723-1f12-4ee2-8109-fd1684a68147" style="width:50%" class="column"><p id="ff042976-4b32-442d-b589-8087a259387b" class="">Selecione a lupa e busque por&nbsp;<strong>Embrace</strong>.</p></div><div id="5afd564a-d894-49a5-8de0-5ad02c6ea9dd" style="width:50%" class="column"><figure id="21d232a7-e5ef-46f9-b3a3-f21d509e1bbd" class="image"><a href="http://embrace.editme.com/files/Google-Home/BuscaEmbrace1.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/BuscaEmbrace1.png"></a></figure></div></div><hr id="3dee2c38-29e3-4e9d-9881-9afd81090d8a"><div id="51af6f80-92d2-4405-9c75-534d8570bbb8" class="column-list"><div id="2954e980-aa0f-4ef6-8f62-5849478e7696" style="width:50%" class="column"><p id="9fe4cec1-abca-483b-ac79-ab53c157e1a2" class="">Em seguida basta acessar sua conta Embrace.</p></div><div id="dae4f6d3-ba03-425a-a486-139484460b1f" style="width:50%" class="column"><figure id="98d8ea81-4cac-4487-9671-5343d806b7de" class="image"><a href="http://embrace.editme.com/files/Google-Home/LoginEmbrace1.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/LoginEmbrace1.png"></a></figure></div></div><hr id="20012eb6-adb6-4945-982c-d29347a210d0"><div id="d4bba446-06e5-442a-a69c-d3acbf97c68d" class="column-list"><div id="6fb453ac-0c65-4eea-92a0-7adad18dac66" style="width:50%" class="column"><p id="08551950-659b-4bf7-b7af-c09d2a041d3d" class="">Finalizando o login serão listadas todas as instalações associadas à conta.</p></div><div id="7c338f58-393e-497e-b5ae-7a1eec5e76ef" style="width:50%" class="column"><figure id="ee72517e-edb4-4487-af18-330d27c3323f" class="image"><a href="http://embrace.editme.com/files/Google-Home/SelecionarInstalacao1.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/SelecionarInstalacao1.png"></a></figure></div></div><hr id="a81e38ab-f869-4dfa-941a-4164062e4532"><div id="b261534c-95e6-4030-9ac0-24449d16fbbc" class="column-list"><div id="cf236c09-12f4-41c5-b36a-480aa4f2c0f1" style="width:50%" class="column"><p id="eb2e97b6-0a80-4933-9e38-d41181fd64a5" class="">Selecionando a instalação o aplicativo realizará a sincronização do projeto para ser possível utilizar a automação. Ao final da sincronização serão listadas todas as luminárias do projeto para que sejam adicionadas a ambientes do aplicativo Google Home.</p></div><div id="9e9731eb-bef1-48f7-82af-381291ece3c6" style="width:50%" class="column"><figure id="ff2dcea9-0f4c-4a1c-b7f2-31ad0c8d1b60" class="image"><a href="http://embrace.editme.com/files/Google-Home/DispositivosCasa1.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/DispositivosCasa1.png"></a></figure></div></div><hr id="1da977ad-3aba-4830-92b1-55abba95e23e"><div id="33f4cb1e-cb3f-4bed-b2af-083a538282d0" class="column-list"><div id="81a272de-76c7-4ad6-860e-d60b0e35df2d" style="width:50%" class="column"><p id="7dccff3e-8990-403b-95eb-a027afd7022a" class="">Ao selecionar os itens para compor os ambientes dentro do aplicativo, o link&nbsp;<strong>adicionar a um ambiente</strong>&nbsp;ficará habilitado. Tocando sobre ele abrirá uma lista de ambientes pré-definidos.</p><p id="abb15f7a-ce1b-4425-a3d1-e6f21f3d7ccb" class="">É possível selecionar os que já existem ou adicionar novos.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="46eb0a01-7072-4352-8955-f1100c092811"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Importante</strong>: devido ao fato de os comandos atualmente serem interpretados em inglês, pode ser que haja dificuldade para que o assistente do Google interprete as palavras em português. Pensando nisso é aconselhável que os nomes dos ambientes sejam simples, de preferência em inglês.       </div></figure></div><div id="7040fe15-f792-48d5-9265-b65f07b39718" style="width:50%" class="column"><figure id="d88495dc-3c3e-4220-b926-3572a015840b" class="image"><a href="http://embrace.editme.com/files/Google-Home/SelecionarDispositivosCasa2.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/SelecionarDispositivosCasa2.png"></a></figure></div></div><hr id="e0d06a98-8f69-4b28-a1f6-d62e4428f1ad"><p id="3c1f4e30-8025-453c-a032-726083477daf" class="">Se o dispositivo já estiver com o idioma inglês o nome dos ambientes estarão em inglês, o que facilita no momento da configuração.</p><p id="fb64d3ae-9861-42ac-8bb7-f6a1b756b67d" class="">O&nbsp;conceito de ambientes é para fins de organização e facilidade.</p><div id="10f48ccc-0a9c-4cdc-903d-52219df62df3" class="column-list"><div id="03db593f-6aa6-46b0-8895-5ddb71b54a6b" style="width:50%" class="column"><figure id="2b861115-6c99-49f7-b655-99fcae4332bf" class="image"><a href="http://embrace.editme.com/files/Google-Home/Ambientes1.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/Ambientes1.png"></a></figure></div><div id="4f7218c8-85c6-4665-bd7b-5ce1c179ee3a" style="width:50%" class="column"><figure id="5412f842-f49d-4a81-a97a-b766ad3f2397" class="image"><a href="http://embrace.editme.com/files/Google-Home/AmbientesAssociados.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/AmbientesAssociados.png"></a></figure></div></div><hr id="5c70d0cf-ce99-4c42-89fe-7e1a8c3b2770"><div id="3bcf62ab-5b3e-4994-a3b3-2f3000411a87" class="column-list"><div id="5f662435-8084-422c-a3ad-b4e5380489d5" style="width:50%" class="column"><p id="fdb1c47f-e1a1-4f61-87d0-c86b20694338" class="">Finalizando todas as associações, na tela inicial do aplicativo serão listados todos os ambientes usados/criados anteriormente.</p></div><div id="b9651c8b-6c72-4cdc-9672-aeaaac87446b" style="width:50%" class="column"><figure id="c80c4a77-50eb-4f6a-bbf8-76b926c5616c" class="image"><a href="http://embrace.editme.com/files/Google-Home/TelaCompleta1.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/TelaCompleta1.png"></a></figure></div></div><hr id="bd6dfd44-af67-40c9-8c7e-7d4211f2fb57"><p id="98215b31-293f-4852-afb5-880d5c8c69aa" class="">Agora é possível controlar a iluminação de qualquer ambiente. No exemplo a seguir, por ser uma luminária dimerizável é possível alterar a intensidade dela.</p><figure id="441b3d2d-5628-4cb8-95b8-c8fce99df3a5" class="image"><a href="http://embrace.editme.com/files/Google-Home/Hall.png"><img style="width:600px" src="http://embrace.editme.com/files/Google-Home/Hall.png"></a></figure><p id="6b571a5e-8d74-4d06-8cb2-d5a6d516b371" class="">Um ventilador é uma carga não dimerizável, neste caso não é possível fazer alterações de intensidade, apenas ligar/desligar.</p><figure id="88fab314-8888-4404-af5d-bc08c9a298fe" class="image"><a href="http://embrace.editme.com/files/Google-Home/Ventilador2.png"><img style="width:600px" src="http://embrace.editme.com/files/Google-Home/Ventilador2.png"></a></figure><hr id="5e46dac7-d63e-4a55-9f4e-b11a1ab565e2"><div id="39b359bb-8343-4d0c-b84f-70274a5b7202" class="column-list"><div id="7ffb022b-d15d-49b2-b4b1-74690a816036" style="width:50%" class="column"><p id="7d984957-788a-48dc-9bb2-acb8b7da3f7e" class="">Como já mencionado inicialmente, é de extrema importância que o idioma do aplicativo esteja em inglês, pois o assistente virtual só executa comandos em inglês. Para isso é preciso acessar as Configurações do <strong>usuário:</strong></p></div><div id="fd47caa2-177d-47d6-aae3-518d88cff195" style="width:50%" class="column"><figure id="8b396cb8-4261-4d12-9166-6214ba9d68db" class="image"><a href="http://embrace.editme.com/files/Google-Home/ConfiguracoesIdioma1.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/ConfiguracoesIdioma1.png"></a></figure></div></div><hr id="f141bb71-5dfc-4b60-9d38-7927a4685533"><div id="e392feb8-c717-46d4-bcba-80648579e83c" class="column-list"><div id="0dabb712-ddb2-4e1f-a9c8-1f0c197744a9" style="width:50%" class="column"><p id="3f8df561-1de5-4a5c-bc22-298d16cd5549" class="">Selecione a opção&nbsp;<strong>Configurações</strong>.</p></div><div id="fdd97305-15bc-460f-bd3b-ac649e181cbe" style="width:50%" class="column"><figure id="79c28f17-0f5c-4056-961b-435d199b684d" class="image"><a href="http://embrace.editme.com/files/Google-Home/Assistente2.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/Assistente2.png"></a></figure></div></div><hr id="b523ab1d-d521-4ee3-8860-48714ee5b4f9"><p id="389ffcc4-230f-4afb-adb1-9e6f1219b676" class="">Em seguida toque em&nbsp;<strong>Idiomas</strong>. O idioma&nbsp;<em>default</em>&nbsp;do aplicativo é o idioma da conta Google adicionada inicialmente.</p><figure id="a582c178-895e-42e5-b8f0-c182c57e1f49" class="image"><a href="http://embrace.editme.com/files/Google-Home/IdiomaSelecionado1.png"><img style="width:600px" src="http://embrace.editme.com/files/Google-Home/IdiomaSelecionado1.png"></a></figure><hr id="5b0a6036-46be-498e-acc4-0c4f04f658e6"><div id="b15329fd-96e7-4d62-a1c9-5941ea99b413" class="column-list"><div id="b5aa3518-81c2-495f-8489-8c6b30aaab2b" style="width:50%" class="column"><p id="c79c622d-0636-4a36-afb3-fe8178a702ed" class="">Após definir os ambientes e sua iluminação já podemos configurar toda a casa. Para isso basta tocar no ícone de <strong>usuário</strong>, <strong>Assistente</strong>&nbsp;e em seguida selecionar a opção&nbsp;<strong>Automação residencial</strong>.</p></div><div id="ced1e7fd-7f2e-4ac5-8251-324afaa1af62" style="width:50%" class="column"><figure id="9d82b4cc-a2b1-4c97-b9d0-e5fb8fbd642e" class="image"><a href="http://embrace.editme.com/files/Google-Home/Assistente2.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/Assistente2.png"></a></figure></div></div><hr id="27962379-8e3f-4538-a7e1-69fc383e1f7f"><div id="dd3a3357-b8e5-4b50-b9b6-7dc169211b7a" class="column-list"><div id="35710643-ea88-4850-968a-7698d19b2cd5" style="width:50%" class="column"><p id="83104842-d547-4535-a65d-b5b889b3ac3a" class="">Todos os dispositivos serão listados: luminárias, cortinas, ventiladores, atividades, entre outras. Inicialmente os únicos dispositivos associados a ambientes/cômodos são as cargas dimerizáveis e não dimerizáveis, que foram adicionadas anteriormente. Neste momento adicionaremos os outros dispositivos aos ambientes já criados.</p></div><div id="10894c50-d90c-4c88-9421-7c52f2cbba37" style="width:50%" class="column"><figure id="7eea9e64-120f-4f41-b2a3-4bc1ea03893b" class="image"><a href="http://embrace.editme.com/files/Google-Home/AssociarDispositivos.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/AssociarDispositivos.png"></a></figure></div></div><hr id="18de0d46-fcb2-4179-8af9-3f51d837f8d6"><div id="5d30999c-28b1-4d03-9a4a-29b0c391baac" class="column-list"><div id="0834f780-ee28-4a19-8c19-328415204dd7" style="width:50%" class="column"><p id="b322943d-8322-4e2b-a916-b69973c59d33" class="">Tocando em&nbsp;<strong>Escolher ambientes agora</strong>&nbsp;todos os dispositivos serão listados. Para adicionar um dispositivo a um ambiente basta tocar sobre o dispositivo em questão e selecionar o ambiente desejado.</p></div><div id="ced4f1f2-b7d0-4416-9ab3-c2f76000c39b" style="width:50%" class="column"><figure id="e6d379d5-10e8-40be-b712-9b79443a7133" class="image"><a href="http://embrace.editme.com/files/Google-Home/Comodos.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/Comodos.png"></a></figure></div></div><hr id="b92ca7a2-5dd0-4088-9d71-968df892ac75"><div id="d794594c-2bfc-448d-a609-fe3cda4e1101" class="column-list"><div id="ddc11400-1cff-4a7a-aa27-6c8c2c53e31c" style="width:50%" class="column"><p id="7946b708-9de8-4dbd-a526-fd3f82d537cc" class="">Feito isso em todos os dispositivos basta concluir operação.</p></div><div id="b711c7a2-ef36-4fd5-9181-568d8113bdd2" style="width:50%" class="column"><figure id="d94d3bb1-884b-4b2e-834a-b2d5412bad13" class="image"><a href="http://embrace.editme.com/files/Google-Home/AtribuindoDispositivos.png"><img style="width:300px" src="http://embrace.editme.com/files/Google-Home/AtribuindoDispositivos.png"></a></figure></div></div><hr id="88c131aa-32d4-478a-9ad6-3765eebdd5a5"><p id="fea42f42-c939-41a3-ad60-e42de33e344e" class="">Ao final dessa atribuição os dispositivos terão o nome do ambiente logo abaixo de seu nome e os ambientes terão o número de dispositivos atribuídos.</p><figure id="45d84947-0aea-4f42-9f4e-8576d9915a06" class="image"><a href="http://embrace.editme.com/files/Google-Home/Fim.png"><img style="width:600px" src="http://embrace.editme.com/files/Google-Home/Fim.png"></a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
