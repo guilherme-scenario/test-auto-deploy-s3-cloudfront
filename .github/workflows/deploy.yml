@@ -6,6 +6,8 @@ on:
 
 jobs:
   deploy:
+    name: Deploy to S3 and Cache Invalidate
+    if: contains(github.event.head_commit.message, '--deploy')
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
